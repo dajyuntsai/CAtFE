@@ -3,18 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A5C8A77ACC9214CC38945BA /* Pods_PetnoonTeaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D5F4B4117ADFC8AD050E1 /* Pods_PetnoonTeaTests.framework */; };
+		4CF7FD9C9A6AD1E34F5ED4F6 /* Pods_PetnoonTea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF797C30856BF95848EA312 /* Pods_PetnoonTea.framework */; };
 		BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210023D3FE450053FD07 /* AppDelegate.swift */; };
-		BE66210323D3FE450053FD07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210223D3FE450053FD07 /* SceneDelegate.swift */; };
-		BE66210523D3FE450053FD07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210423D3FE450053FD07 /* ViewController.swift */; };
+		BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210423D3FE450053FD07 /* LoginViewController.swift */; };
 		BE66210823D3FE450053FD07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210623D3FE450053FD07 /* Main.storyboard */; };
 		BE66210A23D3FE490053FD07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE66210923D3FE490053FD07 /* Assets.xcassets */; };
 		BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */; };
 		BE66211823D3FE490053FD07 /* PetnoonTeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66211723D3FE490053FD07 /* PetnoonTeaTests.swift */; };
 		BE66212323D3FE490053FD07 /* PetnoonTeaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66212223D3FE490053FD07 /* PetnoonTeaUITests.swift */; };
+		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
+		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
+		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
+		BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */; };
+		BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E023E2328400660AEB /* BaseViewController.swift */; };
+		BEE181E323E232B900660AEB /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E223E232B900660AEB /* UserProvider.swift */; };
+		BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E423E232C300660AEB /* HomeViewController.swift */; };
+		BEE181E823E2332800660AEB /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E723E2332800660AEB /* TabbarController.swift */; };
+		BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181EA23E2339D00660AEB /* UIViewController+Extension.swift */; };
+		BEE181EE23E237B000660AEB /* CustomProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181ED23E237B000660AEB /* CustomProgressHUD.swift */; };
+		BEE181F023E2384500660AEB /* Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181EF23E2384500660AEB /* Kingfisher.swift */; };
+		BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F123E238AD00660AEB /* UIColor+Extension.swift */; };
+		BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */; };
+		BEE181FA23E240C300660AEB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F923E240C300660AEB /* File.swift */; };
+		BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEE181FB23E2420500660AEB /* GoogleService-Info.plist */; };
+		ECD23B413012D8922A589244 /* Pods_PetnoonTea_PetnoonTeaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F7D5C8074FE1438E5974CA /* Pods_PetnoonTea_PetnoonTeaUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +52,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F430C1E87D23D2AEEC322F6 /* Pods-PetnoonTea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea.release.xcconfig"; path = "Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea.release.xcconfig"; sourceTree = "<group>"; };
+		47F7D5C8074FE1438E5974CA /* Pods_PetnoonTea_PetnoonTeaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetnoonTea_PetnoonTeaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D5F4B4117ADFC8AD050E1 /* Pods_PetnoonTeaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetnoonTeaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CED2CC349DEE5AF51BEF303 /* Pods-PetnoonTeaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTeaTests.debug.xcconfig"; path = "Target Support Files/Pods-PetnoonTeaTests/Pods-PetnoonTeaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABC69CF0F6868D91DBFFCC15 /* Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig"; path = "Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AD31ADD5AB6BFEA77017D927 /* Pods-PetnoonTea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea.debug.xcconfig"; path = "Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea.debug.xcconfig"; sourceTree = "<group>"; };
+		B3E06084F4158A106B00DFF3 /* Pods-PetnoonTeaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTeaTests.release.xcconfig"; path = "Target Support Files/Pods-PetnoonTeaTests/Pods-PetnoonTeaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE6620FD23D3FE450053FD07 /* PetnoonTea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetnoonTea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66210023D3FE450053FD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE66210223D3FE450053FD07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE66210423D3FE450053FD07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE66210423D3FE450053FD07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BE66210723D3FE450053FD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE66210923D3FE490053FD07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE66210C23D3FE490053FD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +72,23 @@
 		BE66211E23D3FE490053FD07 /* PetnoonTeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetnoonTeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66212223D3FE490053FD07 /* PetnoonTeaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetnoonTeaUITests.swift; sourceTree = "<group>"; };
 		BE66212423D3FE490053FD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
+		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
+		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
+		BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
+		BEE181E023E2328400660AEB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BEE181E223E232B900660AEB /* UserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		BEE181E423E232C300660AEB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BEE181E723E2332800660AEB /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		BEE181EA23E2339D00660AEB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		BEE181ED23E237B000660AEB /* CustomProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressHUD.swift; sourceTree = "<group>"; };
+		BEE181EF23E2384500660AEB /* Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kingfisher.swift; sourceTree = "<group>"; };
+		BEE181F123E238AD00660AEB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEE181F923E240C300660AEB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		BEE181FB23E2420500660AEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D25939728DE3A44AB9C4C34E /* Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig"; path = "Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DAF797C30856BF95848EA312 /* Pods_PetnoonTea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetnoonTea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF7FD9C9A6AD1E34F5ED4F6 /* Pods_PetnoonTea.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5C8A77ACC9214CC38945BA /* Pods_PetnoonTeaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD23B413012D8922A589244 /* Pods_PetnoonTea_PetnoonTeaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +126,8 @@
 				BE66211623D3FE490053FD07 /* PetnoonTeaTests */,
 				BE66212123D3FE490053FD07 /* PetnoonTeaUITests */,
 				BE6620FE23D3FE450053FD07 /* Products */,
+				D51BC459026DBBBC861C0736 /* Pods */,
+				CD33BE274028B22DB88B81B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +144,15 @@
 		BE6620FF23D3FE450053FD07 /* PetnoonTea */ = {
 			isa = PBXGroup;
 			children = (
+				BEE181EC23E2378F00660AEB /* Third Party Wrapper */,
+				BEE181E923E2336B00660AEB /* Extension */,
+				BEE181D323E20E2F00660AEB /* Model */,
+				BEE181D223E20E2100660AEB /* Controller */,
+				BEE181F323E239FB00660AEB /* View */,
 				BE66210023D3FE450053FD07 /* AppDelegate.swift */,
-				BE66210223D3FE450053FD07 /* SceneDelegate.swift */,
-				BE66210423D3FE450053FD07 /* ViewController.swift */,
-				BE66210623D3FE450053FD07 /* Main.storyboard */,
 				BE66210923D3FE490053FD07 /* Assets.xcassets */,
-				BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */,
 				BE66210E23D3FE490053FD07 /* Info.plist */,
+				BEE181FB23E2420500660AEB /* GoogleService-Info.plist */,
 			);
 			path = PetnoonTea;
 			sourceTree = "<group>";
@@ -128,6 +175,137 @@
 			path = PetnoonTeaUITests;
 			sourceTree = "<group>";
 		};
+		BEE181D223E20E2100660AEB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181E623E2330C00660AEB /* TabBar */,
+				BEE181DF23E2326700660AEB /* Base */,
+				BEE181DE23E2320C00660AEB /* Home */,
+				BEE181D523E20E6D00660AEB /* Login */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BEE181D323E20E2F00660AEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181F823E240B100660AEB /* User */,
+				BEE181F723E2409E00660AEB /* HTTP */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEE181D523E20E6D00660AEB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BE66210423D3FE450053FD07 /* LoginViewController.swift */,
+				BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */,
+				BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */,
+				BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */,
+				BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BEE181DE23E2320C00660AEB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181E423E232C300660AEB /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BEE181DF23E2326700660AEB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181E023E2328400660AEB /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BEE181E623E2330C00660AEB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181E723E2332800660AEB /* TabbarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		BEE181E923E2336B00660AEB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181EA23E2339D00660AEB /* UIViewController+Extension.swift */,
+				BEE181F123E238AD00660AEB /* UIColor+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BEE181EC23E2378F00660AEB /* Third Party Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181ED23E237B000660AEB /* CustomProgressHUD.swift */,
+				BEE181EF23E2384500660AEB /* Kingfisher.swift */,
+			);
+			path = "Third Party Wrapper";
+			sourceTree = "<group>";
+		};
+		BEE181F323E239FB00660AEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE66210623D3FE450053FD07 /* Main.storyboard */,
+				BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */,
+				BEE181F423E23A1900660AEB /* Home */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEE181F423E23A1900660AEB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BEE181F723E2409E00660AEB /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181F923E240C300660AEB /* File.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		BEE181F823E240B100660AEB /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BEE181E223E232B900660AEB /* UserProvider.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		CD33BE274028B22DB88B81B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DAF797C30856BF95848EA312 /* Pods_PetnoonTea.framework */,
+				47F7D5C8074FE1438E5974CA /* Pods_PetnoonTea_PetnoonTeaUITests.framework */,
+				554D5F4B4117ADFC8AD050E1 /* Pods_PetnoonTeaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D51BC459026DBBBC861C0736 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD31ADD5AB6BFEA77017D927 /* Pods-PetnoonTea.debug.xcconfig */,
+				2F430C1E87D23D2AEEC322F6 /* Pods-PetnoonTea.release.xcconfig */,
+				D25939728DE3A44AB9C4C34E /* Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig */,
+				ABC69CF0F6868D91DBFFCC15 /* Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig */,
+				9CED2CC349DEE5AF51BEF303 /* Pods-PetnoonTeaTests.debug.xcconfig */,
+				B3E06084F4158A106B00DFF3 /* Pods-PetnoonTeaTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +313,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE66212723D3FE490053FD07 /* Build configuration list for PBXNativeTarget "PetnoonTea" */;
 			buildPhases = (
+				33F32CB814A7CA3CA8596726 /* [CP] Check Pods Manifest.lock */,
 				BE6620F923D3FE450053FD07 /* Sources */,
 				BE6620FA23D3FE450053FD07 /* Frameworks */,
 				BE6620FB23D3FE450053FD07 /* Resources */,
+				54FF52AAE3377ABBE062785B /* [CP] Embed Pods Frameworks */,
+				1C05EB8E6F8033603A818776 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +333,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE66212A23D3FE490053FD07 /* Build configuration list for PBXNativeTarget "PetnoonTeaTests" */;
 			buildPhases = (
+				CC46669A932B8FC51A6B5D9B /* [CP] Check Pods Manifest.lock */,
 				BE66210F23D3FE490053FD07 /* Sources */,
 				BE66211023D3FE490053FD07 /* Frameworks */,
 				BE66211123D3FE490053FD07 /* Resources */,
@@ -170,9 +352,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE66212D23D3FE490053FD07 /* Build configuration list for PBXNativeTarget "PetnoonTeaUITests" */;
 			buildPhases = (
+				FA57D191402468BC13D80ACE /* [CP] Check Pods Manifest.lock */,
 				BE66211A23D3FE490053FD07 /* Sources */,
 				BE66211B23D3FE490053FD07 /* Frameworks */,
 				BE66211C23D3FE490053FD07 /* Resources */,
+				A881AB5E93082497322EFEAB /* [CP] Embed Pods Frameworks */,
+				ADA4CE489F61A433DAF1BF06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */,
+				BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */,
 				BE66210A23D3FE490053FD07 /* Assets.xcassets in Resources */,
 				BE66210823D3FE450053FD07 /* Main.storyboard in Resources */,
 			);
@@ -254,14 +440,164 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C05EB8E6F8033603A818776 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33F32CB814A7CA3CA8596726 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PetnoonTea-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54FF52AAE3377ABBE062785B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A881AB5E93082497322EFEAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADA4CE489F61A433DAF1BF06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC46669A932B8FC51A6B5D9B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PetnoonTeaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA57D191402468BC13D80ACE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PetnoonTea-PetnoonTeaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BE6620F923D3FE450053FD07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE66210523D3FE450053FD07 /* ViewController.swift in Sources */,
+				BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */,
+				BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */,
+				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
+				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
+				BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */,
+				BEE181FA23E240C300660AEB /* File.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
-				BE66210323D3FE450053FD07 /* SceneDelegate.swift in Sources */,
+				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
+				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
+				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
+				BEE181EE23E237B000660AEB /* CustomProgressHUD.swift in Sources */,
+				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
+				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
+				BEE181E823E2332800660AEB /* TabbarController.swift in Sources */,
+				BEE181F023E2384500660AEB /* Kingfisher.swift in Sources */,
+				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +768,7 @@
 		};
 		BE66212823D3FE490053FD07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD31ADD5AB6BFEA77017D927 /* Pods-PetnoonTea.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,6 +786,7 @@
 		};
 		BE66212923D3FE490053FD07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F430C1E87D23D2AEEC322F6 /* Pods-PetnoonTea.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +804,7 @@
 		};
 		BE66212B23D3FE490053FD07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CED2CC349DEE5AF51BEF303 /* Pods-PetnoonTeaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +826,7 @@
 		};
 		BE66212C23D3FE490053FD07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3E06084F4158A106B00DFF3 /* Pods-PetnoonTeaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +848,7 @@
 		};
 		BE66212E23D3FE490053FD07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D25939728DE3A44AB9C4C34E /* Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +868,7 @@
 		};
 		BE66212F23D3FE490053FD07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABC69CF0F6868D91DBFFCC15 /* Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

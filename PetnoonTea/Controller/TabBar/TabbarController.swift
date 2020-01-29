@@ -1,20 +1,18 @@
 //
-//  ViewController.swift
+//  TabbarController.swift
 //  PetnoonTea
 //
-//  Created by Ninn on 2020/1/19.
+//  Created by Ninn on 2020/1/27.
 //  Copyright © 2020 Ninn. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class TabbarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
-
-
 }
-
