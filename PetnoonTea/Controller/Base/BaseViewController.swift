@@ -10,6 +10,10 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +25,9 @@ extension UIViewController {
         DispatchQueue.main.async {
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
-        let tabBar = self.storyboard?.instantiateViewController(identifier: String(describing: TabbarController.self)) as? TabbarController
+        let tabBar = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController") as? TabbarController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBar
+        tabBar?.selectedIndex = 2
     }
 }

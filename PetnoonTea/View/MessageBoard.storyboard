@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WUU-wD-1JS">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notes-->
+        <scene sceneID="abE-eQ-Ao9">
+            <objects>
+                <viewController storyboardIdentifier="MessageBoardViewController" id="WUU-wD-1JS" customClass="MessageBoardViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3nY-ai-EFh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cSP-IC-zyS"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notes" image="notes" id="kQh-VK-aVz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2M-Be-Qhy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="196" y="1467"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="notes" width="30" height="30"/>
+    </resources>
+</document>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qMp-iN-mMx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="6nA-Jg-5UA">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="qMp-iN-mMx" customClass="HomeViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Cy-LT-A8t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9Jv-5N-Gig">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CNo-n7-Wiv">
+                                <rect key="frame" x="0.0" y="100" width="414" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="g5B-FN-RsP"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="VTa-EN-Sv5">
+                                    <size key="itemSize" width="88" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCollectionViewCell" id="gFF-5b-3np" customClass="HomeFilterCollectionViewCell" customModule="PetnoonTea" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="8" width="88" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8Bc-Ds-fEC">
+                                            <rect key="frame" x="0.0" y="0.0" width="88" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09e-X6-E9D">
+                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="64"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="filterButtonClick:" destination="gFF-5b-3np" eventType="touchUpInside" id="fpQ-qt-Ep1"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="09e-X6-E9D" firstAttribute="top" secondItem="8Bc-Ds-fEC" secondAttribute="top" id="IjT-YS-lXx"/>
+                                                <constraint firstAttribute="bottom" secondItem="09e-X6-E9D" secondAttribute="bottom" id="WHs-Nt-gLF"/>
+                                                <constraint firstAttribute="trailing" secondItem="09e-X6-E9D" secondAttribute="trailing" id="aAd-ga-7C3"/>
+                                                <constraint firstItem="09e-X6-E9D" firstAttribute="leading" secondItem="8Bc-Ds-fEC" secondAttribute="leading" id="noD-4G-N04"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="88" height="64"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="filterBtn" destination="09e-X6-E9D" id="bly-pB-tbj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wf9-jr-bPj">
+                                <rect key="frame" x="0.0" y="180" width="414" height="682"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wf9-jr-bPj" firstAttribute="top" secondItem="CNo-n7-Wiv" secondAttribute="bottom" id="5ux-2u-vBz"/>
+                            <constraint firstItem="ghU-Hg-Qej" firstAttribute="trailing" secondItem="CNo-n7-Wiv" secondAttribute="trailing" id="C2o-J8-EpI"/>
+                            <constraint firstItem="ghU-Hg-Qej" firstAttribute="bottom" secondItem="wf9-jr-bPj" secondAttribute="bottom" id="K6e-oM-slM"/>
+                            <constraint firstItem="CNo-n7-Wiv" firstAttribute="top" secondItem="9Jv-5N-Gig" secondAttribute="bottom" id="MJf-5h-D3E"/>
+                            <constraint firstItem="9Jv-5N-Gig" firstAttribute="trailing" secondItem="ghU-Hg-Qej" secondAttribute="trailing" id="RjU-OL-Lmn"/>
+                            <constraint firstItem="wf9-jr-bPj" firstAttribute="leading" secondItem="ghU-Hg-Qej" secondAttribute="leading" id="Vpx-Vc-Ax8"/>
+                            <constraint firstItem="CNo-n7-Wiv" firstAttribute="leading" secondItem="ghU-Hg-Qej" secondAttribute="leading" id="hb0-Vq-2fW"/>
+                            <constraint firstItem="9Jv-5N-Gig" firstAttribute="leading" secondItem="ghU-Hg-Qej" secondAttribute="leading" id="nkU-Vf-3ge"/>
+                            <constraint firstItem="ghU-Hg-Qej" firstAttribute="trailing" secondItem="wf9-jr-bPj" secondAttribute="trailing" id="zDw-qc-ti0"/>
+                            <constraint firstItem="9Jv-5N-Gig" firstAttribute="top" secondItem="ghU-Hg-Qej" secondAttribute="top" id="zcW-ZF-P9r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ghU-Hg-Qej"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home" id="Eb8-Cl-vmi"/>
+                    <connections>
+                        <outlet property="collectionView" destination="CNo-n7-Wiv" id="hOb-Wh-lSy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="foq-XP-TIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-668.11594202898561" y="1466.5178571428571"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="home" width="84" height="83"/>
+    </resources>
+</document>

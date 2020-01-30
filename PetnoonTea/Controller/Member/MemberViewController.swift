@@ -1,14 +1,14 @@
 //
-//  TabbarController.swift
+//  MemberViewController.swift
 //  PetnoonTea
 //
-//  Created by Ninn on 2020/1/27.
+//  Created by Ninn on 2020/1/30.
 //  Copyright © 2020 Ninn. All rights reserved.
 //
 
 import UIKit
 
-class TabbarController: UITabBarController {
+class MemberViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

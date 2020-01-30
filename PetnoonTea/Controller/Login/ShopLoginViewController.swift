@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShopLoginViewController: UIViewController {
+class ShopLoginViewController: BaseViewController {
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var signUpView: UIView!
     

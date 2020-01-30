@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4bB-pt-eSV">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="p67-im-Sht">
+            <objects>
+                <viewController storyboardIdentifier="FBLoginViewController" id="4bB-pt-eSV" customClass="FBLoginViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MZH-WM-KT9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmg-df-6aN">
+                                <rect key="frame" x="0.0" y="862" width="414" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yq-8A-qVZ">
+                                        <rect key="frame" x="20" y="130" width="374" height="50"/>
+                                        <color key="backgroundColor" red="0.2331545055" green="0.34559985999999998" blue="0.59610301259999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="emf-rm-XtD"/>
+                                        </constraints>
+                                        <state key="normal" title="Facebook 登入">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="fbLogin:" destination="4bB-pt-eSV" eventType="touchUpInside" id="twL-sn-fKC"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-JP-pHy">
+                                        <rect key="frame" x="20" y="109" width="374" height="1"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="Gvk-9m-BN3"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8h-m3-sXr">
+                                        <rect key="frame" x="346" y="20" width="48" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="kzs-A1-aO8"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="loginCancel:" destination="4bB-pt-eSV" eventType="touchUpInside" id="jar-dJ-bks"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請先登入會員" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoO-o2-VdZ">
+                                        <rect key="frame" x="20" y="24" width="110.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" name="TextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登入後可追蹤喜愛的店家及發文喔！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4O-Zu-czm">
+                                        <rect key="frame" x="20" y="65" width="261.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="TextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="M4O-Zu-czm" firstAttribute="top" secondItem="GoO-o2-VdZ" secondAttribute="bottom" constant="20" id="78e-OI-ZHg"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Yq-8A-qVZ" secondAttribute="trailing" constant="20" id="Hm7-8v-4Lr"/>
+                                    <constraint firstItem="4Yq-8A-qVZ" firstAttribute="leading" secondItem="mmg-df-6aN" secondAttribute="leading" constant="20" id="IEe-Ok-773"/>
+                                    <constraint firstItem="z8h-m3-sXr" firstAttribute="top" secondItem="mmg-df-6aN" secondAttribute="top" constant="20" id="Kwo-AX-2da"/>
+                                    <constraint firstItem="z8h-m3-sXr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GoO-o2-VdZ" secondAttribute="trailing" constant="8" symbolic="YES" id="LFn-JE-BDM"/>
+                                    <constraint firstItem="4Yq-8A-qVZ" firstAttribute="top" secondItem="eC8-JP-pHy" secondAttribute="bottom" constant="20" id="M7L-kf-Csu"/>
+                                    <constraint firstItem="GoO-o2-VdZ" firstAttribute="top" secondItem="mmg-df-6aN" secondAttribute="top" constant="24" id="Tc2-XH-iSt"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="M4O-Zu-czm" secondAttribute="trailing" constant="20" symbolic="YES" id="c83-zf-fyT"/>
+                                    <constraint firstItem="eC8-JP-pHy" firstAttribute="leading" secondItem="mmg-df-6aN" secondAttribute="leading" constant="20" id="e9C-aA-hbM"/>
+                                    <constraint firstAttribute="trailing" secondItem="z8h-m3-sXr" secondAttribute="trailing" constant="20" id="nKV-X7-DyB"/>
+                                    <constraint firstAttribute="trailing" secondItem="eC8-JP-pHy" secondAttribute="trailing" constant="20" id="okR-nr-JRm"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Yq-8A-qVZ" secondAttribute="bottom" constant="20" id="p5N-4c-kWD"/>
+                                    <constraint firstItem="M4O-Zu-czm" firstAttribute="leading" secondItem="mmg-df-6aN" secondAttribute="leading" constant="20" id="wCi-PY-oU1"/>
+                                    <constraint firstItem="GoO-o2-VdZ" firstAttribute="leading" secondItem="mmg-df-6aN" secondAttribute="leading" constant="20" id="xVg-gC-Hxj"/>
+                                    <constraint firstAttribute="height" constant="200" id="yiI-J1-jof"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="LIL-ww-Nw4" firstAttribute="trailing" secondItem="mmg-df-6aN" secondAttribute="trailing" id="LNj-BO-e6n"/>
+                            <constraint firstItem="mmg-df-6aN" firstAttribute="leading" secondItem="LIL-ww-Nw4" secondAttribute="leading" id="Oqn-iX-mfi"/>
+                            <constraint firstItem="LIL-ww-Nw4" firstAttribute="bottom" secondItem="mmg-df-6aN" secondAttribute="bottom" constant="-200" id="fN3-TT-6sS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LIL-ww-Nw4"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="fN3-TT-6sS" id="wtx-w5-d9N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUm-YB-hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125" y="-196"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="24" height="24"/>
+        <namedColor name="TextColor">
+            <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

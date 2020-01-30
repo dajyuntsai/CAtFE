@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QbI-MA-33e">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Booking-->
+        <scene sceneID="lcP-0H-C0Z">
+            <objects>
+                <viewController storyboardIdentifier="ShopEventsViewController" id="QbI-MA-33e" customClass="ShopEventsViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qdC-cb-rAB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ray-DA-mYf"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Booking" image="booking" id="oue-7n-cAB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0F-9C-OsJ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2383" y="1467"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="booking" width="30" height="30"/>
+    </resources>
+</document>

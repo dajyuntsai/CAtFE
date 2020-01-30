@@ -25,7 +25,7 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func fbLogin(_ sender: Any) {
-        let presentVC = self.storyboard?.instantiateViewController(identifier: String(describing: FBLoginViewController.self)) as? FBLoginViewController
+        let presentVC = UIStoryboard.fbLogin.instantiateViewController(withIdentifier: FBLoginViewController.identifier) as? FBLoginViewController
         presentVC?.modalPresentationStyle = .overFullScreen
         self.present(presentVC!, animated: false, completion: nil)
     }
@@ -38,7 +38,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func shopLogin(_ sender: Any) {
-        let presentVC = self.storyboard?.instantiateViewController(identifier: String(describing: ShopLoginViewController.self)) as? ShopLoginViewController
+        let presentVC = UIStoryboard.shopLogin.instantiateViewController(identifier: ShopLoginViewController.identifier) as? ShopLoginViewController
         presentVC?.modalPresentationStyle = .formSheet
         self.present(presentVC!, animated: true, completion: nil)
     }
