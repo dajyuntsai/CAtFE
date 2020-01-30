@@ -34,6 +34,8 @@ class ShopSignUpContainView: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        database = Firestore.firestore()
+        
         initView()
     }
     
@@ -51,20 +53,27 @@ class ShopSignUpContainView: BaseViewController {
         let name = registerTextField[0].text!
         let account = registerTextField[1].text!
         let password = registerTextField[2].text!
-        Auth.auth().createUser(withEmail: account, password: password) { (user, error) in
-            if error == nil {
-                print("You have successfully signed up")
-                let userID = Auth.auth().currentUser!.uid
-                let data = ["user_email": account, "user_name": name, "user_id": userID, "notification:": self.isNeedNotification] as [String : Any]
-                self.database?.collection("users").document(userID).setData(data) { error in
-                    if let error = error {
-                        print(error)
+        let checkPsd = registerTextField[3].text!
+        if name == "" {
+            alert(message: "請輸入店家名稱", title: "錯誤")
+        } else if password != checkPsd {
+            alert(message: "請再次確認密碼", title: "錯誤")
+        } else {
+            Auth.auth().createUser(withEmail: account, password: password) { (user, error) in
+                if error == nil {
+                    print("You have successfully signed up")
+                    let userID = Auth.auth().currentUser!.uid
+                    let data = ["user_email": account, "user_name": name, "user_id": userID, "notification:": self.isNeedNotification] as [String : Any]
+                    self.database?.collection("users").document(userID).setData(data) { error in
+                        if let error = error {
+                            print(error)
+                        }
                     }
+                    self.backToRoot()
+                } else {
+                    print("Signed up failed")
+                    self.alert(message: error?.localizedDescription ?? "Unknown error", title: "Error")
                 }
-                self.backToRoot()
-            } else {
-                print("Signed up failed")
-                self.alert(message: error?.localizedDescription ?? "未知的錯誤", title: "錯誤")
             }
         }
     }

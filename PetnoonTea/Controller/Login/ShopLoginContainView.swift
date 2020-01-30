@@ -25,18 +25,12 @@ class ShopLoginContainView: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        database = Firestore.firestore()
+        
         initView()
     }
     
     func initView() {
-//        if loginLabel != nil {
-//            for index in 0..<loginList.count {
-//                loginLabel[index].text = loginList[index]
-//            }
-//        } else {
-//            return
-//        }
-        
         for index in 0..<loginList.count {
             loginLabel[index].text = loginList[index]
         }
@@ -61,7 +55,7 @@ class ShopLoginContainView: BaseViewController {
                     }
                     self.backToRoot()
                 } else {
-                    self.alert(message: error?.localizedDescription ?? "未知的錯誤", title: "錯誤")
+                    self.alert(message: error?.localizedDescription ?? "Unknown error", title: "Error")
                 }
             }
         }

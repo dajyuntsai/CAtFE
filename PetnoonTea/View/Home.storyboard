@@ -64,9 +64,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="88" height="64"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="filterBtn" destination="09e-X6-E9D" id="bly-pB-tbj"/>
                                         </connections>

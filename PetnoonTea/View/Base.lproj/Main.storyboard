@@ -15,14 +15,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-Pc-3Or">
-                                <rect key="frame" x="30" y="702" width="354" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-Pc-3Or">
+                                <rect key="frame" x="57" y="702" width="300" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ju4-e2-McQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="67.5" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="8fY-fg-dV1"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="iFo-6R-nyN"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="facebook"/>
                                         <connections>
@@ -30,22 +29,20 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvz-2J-3Kx">
-                                        <rect key="frame" x="95.5" y="0.0" width="67.5" height="60"/>
+                                        <rect key="frame" x="80" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="6FH-S2-Gma"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="VgF-II-FTA"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="apple"/>
                                         <connections>
                                             <action selector="appleSignIn:" destination="6XN-VN-tti" eventType="touchUpInside" id="B0g-pw-bmg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaK-tH-wHy">
-                                        <rect key="frame" x="191" y="0.0" width="67.5" height="60"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaK-tH-wHy">
+                                        <rect key="frame" x="160" y="0.0" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.58220970812182737" green="0.13761133830981137" blue="0.12274687641690474" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Pjh-uF-KWL"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="p7X-SM-Auj"/>
                                         </constraints>
                                         <state key="normal" title="Guest">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,12 +51,11 @@
                                             <action selector="guestLogin:" destination="6XN-VN-tti" eventType="touchUpInside" id="riL-Wc-ufy"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjR-MK-8sm">
-                                        <rect key="frame" x="286.5" y="0.0" width="67.5" height="60"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjR-MK-8sm">
+                                        <rect key="frame" x="240" y="0.0" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.28386534018822324" green="0.78111119923857864" blue="0.77125534233441595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="ACg-2q-CcE"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="vcn-w8-voY"/>
                                         </constraints>
                                         <state key="normal" title="Shop">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,7 +66,8 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="apU-T4-uer"/>
+                                    <constraint firstAttribute="width" constant="300" id="78t-O8-ezu"/>
+                                    <constraint firstAttribute="height" constant="60" id="gEg-80-zge"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetnoonTea" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhH-qZ-tLS">
@@ -91,10 +88,9 @@
                             <constraint firstItem="B3M-Pc-3Or" firstAttribute="top" secondItem="OhH-qZ-tLS" secondAttribute="bottom" constant="50" id="c3J-ef-nQo"/>
                             <constraint firstItem="rku-eh-GRI" firstAttribute="top" secondItem="Q6M-9f-3bO" secondAttribute="top" constant="30" id="eFA-vE-TsL"/>
                             <constraint firstItem="Q6M-9f-3bO" firstAttribute="trailing" secondItem="rku-eh-GRI" secondAttribute="trailing" id="iw3-dB-bGP"/>
-                            <constraint firstItem="Q6M-9f-3bO" firstAttribute="trailing" secondItem="B3M-Pc-3Or" secondAttribute="trailing" constant="30" id="mIm-Kf-Yip"/>
+                            <constraint firstItem="B3M-Pc-3Or" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="mwV-uv-kHR"/>
                             <constraint firstItem="OhH-qZ-tLS" firstAttribute="top" secondItem="rku-eh-GRI" secondAttribute="bottom" id="tmc-Pc-2PL"/>
                             <constraint firstItem="rku-eh-GRI" firstAttribute="leading" secondItem="Q6M-9f-3bO" secondAttribute="leading" id="uPn-aQ-1jb"/>
-                            <constraint firstItem="B3M-Pc-3Or" firstAttribute="leading" secondItem="Q6M-9f-3bO" secondAttribute="leading" constant="30" id="wb5-F9-yV0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q6M-9f-3bO"/>
                     </view>
