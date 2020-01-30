@@ -64,7 +64,7 @@ class ShopSignUpContainView: BaseViewController {
                 self.backToRoot()
             } else {
                 print("Signed up failed")
-                self.alert(message: error?.localizedDescription ?? "未知的錯誤", title: "錯誤")
+                self.alert(message: error?.localizedDescription ?? "Unknown error", title: "Error")
             }
         }
     }
