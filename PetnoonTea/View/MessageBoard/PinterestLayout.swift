@@ -15,9 +15,6 @@ protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat
-    func collectionView(collectionView: UICollectionView,
-                        heightForReplyBtnAt indexPath: IndexPath,
-                        with width: CGFloat) -> CGFloat
 }
 
 class PinterestLayout: UICollectionViewLayout {
@@ -32,7 +29,7 @@ class PinterestLayout: UICollectionViewLayout {
         let inset = collectionView!.contentInset
         return (collectionView!.bounds.width - (inset.left + inset.right))
     }
-    private var attributesCache = [UICollectionViewLayoutAttributes]()
+    private var attributesCache = [PinterestLayoutAttributes]()
     
     override func prepare() {
         if attributesCache.isEmpty {
@@ -56,16 +53,15 @@ class PinterestLayout: UICollectionViewLayout {
                 let photoHeight: CGFloat = (delegate?.collectionView(collectionView: collectionView!,
                                                                     heightForPhotoAt: indexPath,
                                                                     with: width))!
-                let replyBtnHeight: CGFloat = (delegate?.collectionView(collectionView: collectionView!,
-                                                                       heightForReplyBtnAt: indexPath,
-                                                                       with: width))!
-                let height: CGFloat = cellPadding + captionHeight + photoHeight + replyBtnHeight
+                let height: CGFloat = cellPadding + captionHeight + photoHeight + cellPadding
+//                    + 20 + 36 + 4 + 10// reply btn height + user img height + padding + 亂加
                 
                 let frame = CGRect(x: xOffsets[column], y: yOffsets[column], width: columnWidth, height: height)
                 let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
                 
                 // create layout attributes
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                let attributes = PinterestLayoutAttributes(forCellWith: indexPath)
+                attributes.photoHeight = photoHeight
                 attributes.frame = insetFrame
                 attributesCache.append(attributes)
                 
@@ -100,6 +96,7 @@ class PinterestLayout: UICollectionViewLayout {
 // UICollectionViewFlowLayout
 // abstract
 class PinterestLayoutAttributes: UICollectionViewLayoutAttributes {
+    
     var photoHeight: CGFloat = 0.0
     
     override func copy(with zone: NSZone? = nil) -> Any {

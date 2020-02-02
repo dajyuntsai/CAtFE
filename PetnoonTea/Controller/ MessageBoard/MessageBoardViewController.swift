@@ -32,7 +32,7 @@ class MessageBoardViewController: UIViewController {
     }
 }
 
-extension MessageBoardViewController: UICollectionViewDataSource {
+extension MessageBoardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let posts = posts {
             return posts.count
@@ -46,17 +46,22 @@ extension MessageBoardViewController: UICollectionViewDataSource {
         cell.post = self.posts?[indexPath.item]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        return
+    }
 }
 
 extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView, heightForCaptionAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
         if let post = posts?[indexPath.item] {
             let topPadding = CGFloat(8)
-            let bottomPadding = CGFloat(12)
+            let bottomPadding = CGFloat(16)
             let captionFont = UIFont.systemFont(ofSize: 15)
             let captionHeight = self.height(for: post.caption!, with: captionFont, width: width)
-            let height = topPadding + captionHeight + bottomPadding
-            
+            let profileImageHeight = CGFloat(36)
+            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 30
+            print(height)
             return height
         }
         return 0.0
@@ -66,22 +71,17 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         if let post = posts?[indexPath.item], let photo = post.image {
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let rect = AVMakeRect(aspectRatio: photo.size, insideRect: boundingRect)
-            let profileImageHeight = CGFloat(36)
             
-            return profileImageHeight + rect.size.height
+            return rect.size.height
         }
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, heightForReplyBtnAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
-        return 20
-    }
-    
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat{
         let nsstring = NSString(string: text)
-        let maxHeight = CGFloat(64.0)
-        let textAttributes = [NSAttributedString.Key.font : font]
-        let boundingRect = nsstring.boundingRect(with: CGSize(width: width, height: maxHeight), options: .usesLineFragmentOrigin, attributes: textAttributes, context: nil)
+        let textAttributes = [NSAttributedString.Key.font: font]
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingRect = nsstring.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: textAttributes, context: nil)
         return ceil(boundingRect.height)
     }
 }

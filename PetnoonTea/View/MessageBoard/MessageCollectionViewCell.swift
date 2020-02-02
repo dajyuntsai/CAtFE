@@ -31,11 +31,11 @@ class MessageCollectionViewCell: UICollectionViewCell {
         userImageView.layer.cornerRadius = 3.0
         userImageView.layer.masksToBounds = true
         
-        userNameLabel.text = "Buru"
+        userNameLabel.text = post.createdBy.username
         dateTimeLabel.text = post.timeAgo
         captionLabel.text = post.caption
         
-        postImageView.image = UIImage(named: "placeholder")
+        postImageView.image = post.image
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true
     }
