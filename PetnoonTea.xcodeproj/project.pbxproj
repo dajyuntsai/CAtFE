@@ -29,6 +29,9 @@
 		BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131C823E2EEC3004A669D /* RatedViewController.swift */; };
 		BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */; };
 		BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131CE23E2EF68004A669D /* MemberViewController.swift */; };
+		BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D123E55452004A669D /* PinterestLayout.swift */; };
+		BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */; };
+		BE9131D723E5E387004A669D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D623E5E387004A669D /* Post.swift */; };
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
@@ -98,6 +101,9 @@
 		BE9131C823E2EEC3004A669D /* RatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedViewController.swift; sourceTree = "<group>"; };
 		BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardViewController.swift; sourceTree = "<group>"; };
 		BE9131CE23E2EF68004A669D /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
+		BE9131D123E55452004A669D /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE9131D623E5E387004A669D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
@@ -241,6 +247,23 @@
 			path = Member;
 			sourceTree = "<group>";
 		};
+		BE9131D023E55427004A669D /* MessageBoard */ = {
+			isa = PBXGroup;
+			children = (
+				BE9131D123E55452004A669D /* PinterestLayout.swift */,
+				BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */,
+			);
+			path = MessageBoard;
+			sourceTree = "<group>";
+		};
+		BE9131D523E5E375004A669D /* MessageBoard */ = {
+			isa = PBXGroup;
+			children = (
+				BE9131D623E5E387004A669D /* Post.swift */,
+			);
+			path = MessageBoard;
+			sourceTree = "<group>";
+		};
 		BEE181D223E20E2100660AEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +281,7 @@
 		BEE181D323E20E2F00660AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BE9131D523E5E375004A669D /* MessageBoard */,
 				BEE181F823E240B100660AEB /* User */,
 				BEE181F723E2409E00660AEB /* HTTP */,
 			);
@@ -315,6 +339,7 @@
 		BEE181F323E239FB00660AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE9131D023E55427004A669D /* MessageBoard */,
 				BEE181F423E23A1900660AEB /* Home */,
 				BE66210623D3FE450053FD07 /* Main.storyboard */,
 				BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */,
@@ -664,6 +689,7 @@
 				BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */,
 				BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */,
 				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
+				BE9131D723E5E387004A669D /* Post.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
 				BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */,
 				BEE181FA23E240C300660AEB /* File.swift in Sources */,
@@ -679,7 +705,9 @@
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */,
+				BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */,
 				BEE181E823E2332800660AEB /* TabbarController.swift in Sources */,
+				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,
 				BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */,
 				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Booking-->
+        <!--Event-->
         <scene sceneID="lcP-0H-C0Z">
             <objects>
                 <viewController storyboardIdentifier="ShopEventsViewController" id="QbI-MA-33e" customClass="ShopEventsViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Ray-DA-mYf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Booking" image="booking" id="oue-7n-cAB"/>
+                    <tabBarItem key="tabBarItem" title="Event" image="event" id="oue-7n-cAB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0F-9C-OsJ" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +25,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="booking" width="30" height="30"/>
+        <image name="event" width="30" height="30"/>
     </resources>
 </document>

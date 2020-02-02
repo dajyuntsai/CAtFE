@@ -10,7 +10,7 @@
         <!--Member-->
         <scene sceneID="YoI-NL-Umb">
             <objects>
-                <viewController storyboardIdentifier="MemberViewController" id="XmX-GH-lig" customClass="MemberViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemberViewController" id="XmX-GH-lig" customClass="MemberViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dUW-ff-pc9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

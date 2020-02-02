@@ -10,7 +10,7 @@
         <!--Rated-->
         <scene sceneID="VNW-ao-cDd">
             <objects>
-                <viewController storyboardIdentifier="RatedViewController" id="4j3-lz-ETh" customClass="RatedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RatedViewController" id="4j3-lz-ETh" customClass="RatedViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ahf-mW-Pwf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
