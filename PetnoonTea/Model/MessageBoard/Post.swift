@@ -44,3 +44,54 @@ struct User {
     var username: String
     var profileImage: UIImage?
 }
+
+//{
+//    "Status": "Ok",
+//    "data": [
+//        {
+//            "name": "穿越九千公里交給你",
+//            "tel": "0972-299822",
+//            "address": "台北市松山區民權東路三段160巷19弄16號",
+//            "petType": "浣熊",
+//            "latitude": 121.548081,
+//            "longitude": 25.060198,
+//            "website": "",
+//            "fb_url": "https://www.facebook.com/travelled9000km/",
+//            "notes": ""
+//        },
+//        {
+//            "name": "WAKE n' BAKE",
+//            "tel": "02-2765-3225",
+//            "address": "台北市信義區永吉路30巷158弄18號",
+//            "petType": "貓",
+//            "latitude": 121.568043,
+//            "longitude": 25.042515,
+//            "website": "",
+//            "fb_url": "https://www.facebook.com/WakenBake.taipei/",
+//            "notes": ""
+//        },
+//        {
+//            "name": "貓欸Camulet貓咪主題餐廳",
+//            "tel": "02-8258-1127",
+//            "address": "新北市板橋區文化路一段270巷3弄6號",
+//            "petType": "貓",
+//            "latitude": 121.467761,
+//            "longitude": 25.021088,
+//            "website": "",
+//            "fb_url": "",
+//            "notes": ""
+//        }
+//    ]
+//}
+
+//GET http://domain/api/v1/restaurants/2/rating
+//{
+//    "Status": "Ok",
+//    "data": {
+//        "pet_friendly": 4,
+//        "price": 3,
+//        "env": 4,
+//        "delicious": 3,
+//        "traffic": 5
+//    }
+//}

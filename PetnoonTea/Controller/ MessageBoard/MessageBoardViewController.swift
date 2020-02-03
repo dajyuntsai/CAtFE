@@ -43,6 +43,9 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.cornerRadius = 10
         cell.post = self.posts?[indexPath.item]
         return cell
     }
@@ -60,7 +63,7 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
             let captionFont = UIFont.systemFont(ofSize: 15)
             let captionHeight = self.height(for: post.caption!, with: captionFont, width: width)
             let profileImageHeight = CGFloat(36)
-            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 30
+            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 50 // btn height + padding
             print(height)
             return height
         }

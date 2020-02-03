@@ -26,6 +26,12 @@ class MessageCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        userImageView.layer.cornerRadius = userImageView.frame.width / 2
+    }
+    
     func updateUI(){
         userImageView.image = UIImage(named: "home")
         userImageView.layer.cornerRadius = 3.0
