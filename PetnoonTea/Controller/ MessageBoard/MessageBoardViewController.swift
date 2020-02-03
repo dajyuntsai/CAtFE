@@ -64,7 +64,7 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
             let captionHeight = self.height(for: post.caption!, with: captionFont, width: width)
             let profileImageHeight = CGFloat(36)
             let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 50 // btn height + padding
-            print(height)
+            
             return height
         }
         return 0.0

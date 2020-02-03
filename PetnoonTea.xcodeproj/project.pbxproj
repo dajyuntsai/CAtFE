@@ -35,6 +35,11 @@
 		BE9131DF23E71E88004A669D /* PostMessageUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131DE23E71E88004A669D /* PostMessageUserTableViewCell.swift */; };
 		BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E023E72153004A669D /* PostMessageViewController.swift */; };
 		BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E223E7B2DD004A669D /* PostMessageContentTableViewCell.swift */; };
+		BE9131E523E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E423E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift */; };
+		BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E623E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift */; };
+		BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E823E81FAA004A669D /* PostMessageDetailViewController.swift */; };
+		BE9131EB23E82166004A669D /* PostMessageReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131EA23E82166004A669D /* PostMessageReplyTableViewCell.swift */; };
+		BE9131ED23E824DF004A669D /* PostMessageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */; };
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
@@ -110,6 +115,11 @@
 		BE9131DE23E71E88004A669D /* PostMessageUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageUserTableViewCell.swift; sourceTree = "<group>"; };
 		BE9131E023E72153004A669D /* PostMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageViewController.swift; sourceTree = "<group>"; };
 		BE9131E223E7B2DD004A669D /* PostMessageContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageContentTableViewCell.swift; sourceTree = "<group>"; };
+		BE9131E423E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessagePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		BE9131E623E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessagePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE9131E823E81FAA004A669D /* PostMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageDetailViewController.swift; sourceTree = "<group>"; };
+		BE9131EA23E82166004A669D /* PostMessageReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageReplyTableViewCell.swift; sourceTree = "<group>"; };
+		BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
@@ -242,6 +252,7 @@
 			children = (
 				BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */,
 				BE9131E023E72153004A669D /* PostMessageViewController.swift */,
+				BE9131E823E81FAA004A669D /* PostMessageDetailViewController.swift */,
 			);
 			path = " MessageBoard";
 			sourceTree = "<group>";
@@ -261,6 +272,10 @@
 				BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */,
 				BE9131DE23E71E88004A669D /* PostMessageUserTableViewCell.swift */,
 				BE9131E223E7B2DD004A669D /* PostMessageContentTableViewCell.swift */,
+				BE9131E423E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift */,
+				BE9131E623E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift */,
+				BE9131EA23E82166004A669D /* PostMessageReplyTableViewCell.swift */,
+				BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */,
 			);
 			path = MessageBoard;
 			sourceTree = "<group>";
@@ -695,8 +710,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE9131ED23E824DF004A669D /* PostMessageDetailTableViewCell.swift in Sources */,
 				BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */,
 				BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */,
+				BE9131E523E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift in Sources */,
 				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
 				BE9131D723E5E387004A669D /* Post.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
@@ -707,11 +724,13 @@
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
 				BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */,
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
+				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
+				BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */,
 				BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */,
@@ -720,6 +739,7 @@
 				BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */,
 				BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */,
 				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,
+				BE9131EB23E82166004A669D /* PostMessageReplyTableViewCell.swift in Sources */,
 				BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */,
 				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
 			);
@@ -896,7 +916,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5H82298CCW;
 				INFOPLIST_FILE = PetnoonTea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -905,6 +927,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 13.2;
 			};
 			name = Debug;
 		};
@@ -914,7 +937,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5H82298CCW;
 				INFOPLIST_FILE = PetnoonTea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -923,6 +948,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 13.2;
 			};
 			name = Release;
 		};

@@ -61,5 +61,9 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>App將存取相簿裡的照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App將取用相機</string>
 </dict>
 </plist>
