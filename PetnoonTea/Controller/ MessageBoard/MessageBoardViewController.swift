@@ -26,6 +26,13 @@ class MessageBoardViewController: UIViewController {
         }
     }
     
+    @IBAction func AddPostBtn(_ sender: Any) {
+        // TODO: 如果沒有登入就跳到登入頁
+        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageViewController.identifier) as? PostMessageViewController
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
+    }
+    
     func fetchPosts() {
         self.posts = Post.fetchPosts()
         self.collectionView?.reloadData()

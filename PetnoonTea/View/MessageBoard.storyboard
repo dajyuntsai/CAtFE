@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Message Board View Controller-->
+        <!--留言板-->
         <scene sceneID="abE-eQ-Ao9">
             <objects>
                 <viewController storyboardIdentifier="MessageBoardViewController" id="WUU-wD-1JS" customClass="MessageBoardViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
@@ -134,10 +134,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cSP-IC-zyS"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QRx-kk-fSW">
+                    <navigationItem key="navigationItem" title="留言板" id="QRx-kk-fSW">
                         <barButtonItem key="rightBarButtonItem" title="我要發文" style="plain" id="a4n-ah-hXy">
                             <connections>
-                                <segue destination="FxL-rX-0zs" kind="show" id="pNl-Fz-YCe"/>
+                                <action selector="AddPostBtn:" destination="WUU-wD-1JS" id="ZYQ-7X-y6q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -152,7 +152,7 @@
         <!--我要發文-->
         <scene sceneID="DgO-py-LmZ">
             <objects>
-                <viewController id="FxL-rX-0zs" customClass="PostMessageViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostMessageViewController" id="FxL-rX-0zs" customClass="PostMessageViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="shC-kA-Qzg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,6 +171,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="sendPostBtn:" destination="FxL-rX-0zs" eventType="touchUpInside" id="SRF-hp-5bu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -183,7 +186,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PEH-NP-nvk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="738"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostUserInfoCell" rowHeight="80" id="1T6-D3-SbH" customClass="PostMessageUserTableViewCell" customModule="PetnoonTea" customModuleProvider="target">

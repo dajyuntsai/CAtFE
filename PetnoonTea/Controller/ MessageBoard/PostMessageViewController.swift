@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostMessageViewController: UIViewController {
+class PostMessageViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let picker: UIImagePickerController = UIImagePickerController()
@@ -38,6 +38,13 @@ class PostMessageViewController: UIViewController {
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func sendPostBtn(_ sender: Any) {
+        // TODO: 打api, 如果發送成功
+        CustomProgressHUD.showSuccess(text: "發送成功")
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
 }
 
 extension PostMessageViewController: UITableViewDataSource {
