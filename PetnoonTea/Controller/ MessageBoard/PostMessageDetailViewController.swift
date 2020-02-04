@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PostMessageDetailViewController: UIViewController {
+class PostMessageDetailViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var posts: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +27,31 @@ extension PostMessageDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell", for: indexPath) as? PostMessageReplyTableViewCell else {
-            return UITableViewCell()
+        
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell", for: indexPath) as? PostMessageDetailTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.authorNameLabel?.text = posts!.createdBy.username
+            cell.postContentLabel?.text = posts!.caption
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostAddReplyCell", for: indexPath) as? PostMessageAddReplyTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell", for: indexPath) as? PostMessageReplyTableViewCell else {
+            return UITableViewCell() }
+            
+            cell.replayContentLabel.text = "一個留言"
+            return cell
         }
-        return cell
     }
 }
 
 extension PostMessageDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        let authorImage = UIImageView()
-        return view
-    }
+
 }

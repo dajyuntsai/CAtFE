@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PostMessagePhotoTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PostMessagePhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var photoList: [UIImage] = []
     
     var isReload: Bool = false {
@@ -22,10 +23,7 @@ class PostMessagePhotoTableViewCell: UITableViewCell, UICollectionViewDataSource
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.contentInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        initView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,7 +31,16 @@ class PostMessagePhotoTableViewCell: UITableViewCell, UICollectionViewDataSource
 
         // Configure the view for the selected state
     }
+    
+    func initView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    }
+}
 
+extension PostMessagePhotoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoList.count + 1
     }

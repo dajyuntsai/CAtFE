@@ -45,13 +45,22 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
         cell.post = self.posts?[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         return
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // ninn ninn test
+        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
+        let data = posts![indexPath.row]
+        presentVC?.posts = data
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
     }
 }
 
@@ -63,7 +72,7 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
             let captionFont = UIFont.systemFont(ofSize: 15)
             let captionHeight = self.height(for: post.caption!, with: captionFont, width: width)
             let profileImageHeight = CGFloat(36)
-            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 50 // btn height + padding
+            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 50// 亂加ㄉ
             
             return height
         }

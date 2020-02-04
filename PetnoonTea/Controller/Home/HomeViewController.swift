@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import GooglePlaces
 
+//google map api key: AIzaSyDoI1DZ1nqoX9qi_FyymLaoSelysQ3Q86A
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!

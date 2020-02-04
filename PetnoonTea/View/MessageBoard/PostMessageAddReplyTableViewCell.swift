@@ -1,21 +1,19 @@
 //
-//  PostMessageReplyTableViewCell.swift
+//  PostMessageAddReplyTableViewCell.swift
 //  PetnoonTea
 //
-//  Created by Ninn on 2020/2/3.
+//  Created by Ninn on 2020/2/4.
 //  Copyright © 2020 Ninn. All rights reserved.
 //
 
 import UIKit
 
-class PostMessageReplyTableViewCell: UITableViewCell {
+class PostMessageAddReplyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var replyDateTimeLabel: UILabel!
-    @IBOutlet weak var replayContentLabel: UILabel!
-    @IBOutlet weak var replayContentView: UIView!
-    
+    @IBOutlet weak var replyContentTextField: UITextField!
+    @IBAction func sendBtn(_ sender: Any) {
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +24,12 @@ class PostMessageReplyTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        // Configure the view for the selected state
     }
-
+    
     func initView() {
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
-        replayContentView.layer.cornerRadius = 10
+        
     }
+
 }
