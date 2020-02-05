@@ -16,15 +16,14 @@ class PostMessageViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         picker.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showSheetAlert), name: Notification.Name("showAlertSheet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPhotoSelectWay), name: Notification.Name("showPhotoSelectWay"), object: nil)
     }
     
-    @objc func showSheetAlert() {
+    @objc func showPhotoSelectWay() {
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "開啟相機拍照", style: .default) { (_) in
             self.onCameraBtnAction()
@@ -56,7 +55,7 @@ extension PostMessageViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell", for: indexPath) as? PostMessageUserTableViewCell else { return UITableViewCell() }
-            
+            cell.delegate = self
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else { return UITableViewCell() }
@@ -142,5 +141,14 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
     // 圖片picker控制器任務結束回呼
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension PostMessageViewController: SearchCafeDelegate {
+    func showSearchView(_ cell: PostMessageUserTableViewCell) {
+        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostAddLocationViewController.identifier) as? PostAddLocationViewController
+        presentVC?.modalPresentationStyle = .overFullScreen
+        presentVC?.delegate = cell
+        self.present(presentVC!, animated: true, completion: nil)
     }
 }

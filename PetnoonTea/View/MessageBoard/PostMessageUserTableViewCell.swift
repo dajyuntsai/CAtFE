@@ -8,11 +8,20 @@
 
 import UIKit
 
+protocol SearchCafeDelegate: AnyObject {
+    
+    func showSearchView(_ cell: PostMessageUserTableViewCell)
+}
+
 class PostMessageUserTableViewCell: UITableViewCell {
 
+    weak var delegate: SearchCafeDelegate?
+    
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBAction func AddLocationBtn(_ sender: Any) {
+    @IBOutlet weak var addLocation: UIButton!
+    @IBAction func addLocationBtn(_ sender: Any) {
+        self.delegate?.showSearchView(self)
     }
     
     override func awakeFromNib() {
@@ -26,5 +35,11 @@ class PostMessageUserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+}
 
+extension PostMessageUserTableViewCell: DisplayCafeNameDelegate {
+    func setCafeName(cafeName: String) {
+        
+        self.addLocation.setTitle(cafeName, for: .normal)
+    }
 }

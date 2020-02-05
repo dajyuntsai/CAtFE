@@ -210,10 +210,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8y-rG-cDl">
-                                                    <rect key="frame" x="352" y="25" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <rect key="frame" x="336" y="25" width="62" height="30"/>
+                                                    <state key="normal" title="新增地點"/>
                                                     <connections>
-                                                        <action selector="AddLocationBtn:" destination="1T6-D3-SbH" eventType="touchUpInside" id="ayO-g4-ge1"/>
+                                                        <action selector="addLocationBtn:" destination="1T6-D3-SbH" eventType="touchUpInside" id="ayO-g4-ge1"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -228,6 +228,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addLocation" destination="r8y-rG-cDl" id="5sX-JQ-N62"/>
                                             <outlet property="userImageView" destination="cSr-Tn-7lm" id="uiW-r9-bvr"/>
                                             <outlet property="userNameLabel" destination="mjC-J5-kH6" id="WBT-KI-PTP"/>
                                         </connections>
@@ -370,6 +371,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dO-nd-1yN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1667" y="1470"/>
+        </scene>
+        <!--Post Add Location View Controller-->
+        <scene sceneID="oIn-Aw-gnC">
+            <objects>
+                <viewController storyboardIdentifier="PostAddLocationViewController" id="UxQ-yc-FBk" customClass="PostAddLocationViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bly-RM-DcA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yn9-b0-Rva">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCafeCell" id="Oxc-Bp-ftA" customClass="LocationTableViewCell" customModule="PetnoonTea" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="37.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oxc-Bp-ftA" id="a8p-42-bsr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-g2-gRY">
+                                                    <rect key="frame" x="16" y="8" width="382" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="vMk-g2-gRY" secondAttribute="trailing" constant="16" id="3Ho-TY-Azk"/>
+                                                <constraint firstAttribute="bottom" secondItem="vMk-g2-gRY" secondAttribute="bottom" constant="8" id="TIW-0f-yZq"/>
+                                                <constraint firstItem="vMk-g2-gRY" firstAttribute="top" secondItem="a8p-42-bsr" secondAttribute="top" constant="8" id="W3s-Ll-W1N"/>
+                                                <constraint firstItem="vMk-g2-gRY" firstAttribute="leading" secondItem="a8p-42-bsr" secondAttribute="leading" constant="16" id="vnG-xG-5Vl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cafeNameLabel" destination="vMk-g2-gRY" id="eXP-h1-xDg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="psy-3O-5TF" firstAttribute="bottom" secondItem="yn9-b0-Rva" secondAttribute="bottom" id="7YM-3x-fIa"/>
+                            <constraint firstItem="yn9-b0-Rva" firstAttribute="top" secondItem="psy-3O-5TF" secondAttribute="top" id="KNV-GU-qTN"/>
+                            <constraint firstItem="psy-3O-5TF" firstAttribute="trailing" secondItem="yn9-b0-Rva" secondAttribute="trailing" id="aBY-cY-bMN"/>
+                            <constraint firstItem="yn9-b0-Rva" firstAttribute="leading" secondItem="psy-3O-5TF" secondAttribute="leading" id="nqO-A0-dJQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="psy-3O-5TF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kef-7m-9dR"/>
+                    <connections>
+                        <outlet property="tableView" destination="yn9-b0-Rva" id="kzZ-Ue-am6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAY-xf-dDm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2515.9420289855075" y="1469.8660714285713"/>
         </scene>
         <!--Post Message Detail View Controller-->
         <scene sceneID="ZSa-R8-bQm">

@@ -42,6 +42,8 @@
 		BE9131ED23E824DF004A669D /* PostMessageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */; };
 		BE9131F123E95188004A669D /* PostMessageAddReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F023E95187004A669D /* PostMessageAddReplyTableViewCell.swift */; };
 		BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */; };
+		BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F423E9A381004A669D /* PostAddLocationViewController.swift */; };
+		BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */; };
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
@@ -124,6 +126,8 @@
 		BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BE9131F023E95187004A669D /* PostMessageAddReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageAddReplyTableViewCell.swift; sourceTree = "<group>"; };
 		BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE9131F423E9A381004A669D /* PostAddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAddLocationViewController.swift; sourceTree = "<group>"; };
+		BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 				BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */,
 				BE9131E023E72153004A669D /* PostMessageViewController.swift */,
 				BE9131E823E81FAA004A669D /* PostMessageDetailViewController.swift */,
+				BE9131F423E9A381004A669D /* PostAddLocationViewController.swift */,
 			);
 			path = " MessageBoard";
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */,
 				BE9131F023E95187004A669D /* PostMessageAddReplyTableViewCell.swift */,
 				BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */,
+				BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */,
 			);
 			path = MessageBoard;
 			sourceTree = "<group>";
@@ -746,9 +752,11 @@
 				BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */,
 				BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */,
 				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,
+				BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */,
 				BE9131EB23E82166004A669D /* PostMessageReplyTableViewCell.swift in Sources */,
 				BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */,
 				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
+				BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */,
 				BE9131F123E95188004A669D /* PostMessageAddReplyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
