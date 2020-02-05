@@ -7,21 +7,21 @@
 //
 
 import Foundation
-
+// TODO: 補寫PUT & POST 擋店家名稱重複的邏輯
 enum CafeRequest: CAtFERequest {
     case cafeList // read
-    case updateCafeList // update
-    case createCafeList // create
-    case deleteCafeList // delete
+    case updateCafeList(Int, Cafe) // update
+    case createCafeList(Cafe) // create
+    case deleteCafeList(Int, Cafe) // delete
     
     var headers: [String : String] {
         switch self {
         case .cafeList:
             return [:]
         case .updateCafeList:
-            return [:]
+            return ["Content-Type":"application/json"]
         case .createCafeList:
-            return [:]
+            return ["Content-Type":"application/json"]
         case .deleteCafeList:
             return [:]
         }
@@ -31,11 +31,23 @@ enum CafeRequest: CAtFERequest {
         switch self {
         case .cafeList:
             return nil
-        case .updateCafeList:
+        case .updateCafeList( _, let cafe):
+            do {
+              let encode = try JSONEncoder().encode(cafe)
+                return encode
+            } catch {
+                print(error)
+            }
             return nil
-        case .createCafeList:
+        case .createCafeList(let cafe):
+            do {
+              let encode = try JSONEncoder().encode(cafe)
+                return encode
+            } catch {
+                print(error)
+            }
             return nil
-        case .deleteCafeList:
+        case .deleteCafeList( _, _):
             return nil
         }
     }
@@ -56,13 +68,13 @@ enum CafeRequest: CAtFERequest {
     var endPoint: String {
         switch self {
         case .cafeList:
-            return "/list?page=1&size=30"
-        case .updateCafeList:
-            return ""
+            return "/cafes/list?page=1&size=30"
+        case .updateCafeList(let id, _):
+            return "/cafes/\(id)"
         case .createCafeList:
-            return ""
-        case .deleteCafeList:
-            return ""
+            return "/cafes"
+        case .deleteCafeList(let id, _):
+            return "/cafes/\(id)"
         }
     }
 }
@@ -78,6 +90,54 @@ class CafeManager {
                 do {
                     let cafeData = try strongSelf.decoder.decode(CafeModel.self, from: data)
                     completion(.success(cafeData))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func updateCafeInList(cafeId: Int, cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
+        HTTPClient.shared.request(CafeRequest.updateCafeList(cafeId, cafeObj)) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let test = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(test)
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func createCafeInList(cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
+        HTTPClient.shared.request(CafeRequest.createCafeList(cafeObj)) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let test = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(test)
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func deleteCafeInList(cafeId: Int, cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
+        HTTPClient.shared.request(CafeRequest.deleteCafeList(cafeId, cafeObj)) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let test = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(test)
                 } catch {
                     completion(.failure(error))
                 }

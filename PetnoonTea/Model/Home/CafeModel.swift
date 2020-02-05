@@ -8,19 +8,19 @@
 
 import Foundation
 
-class CafeModel: Codable {
-    let data: [Cafe]
+struct CafeModel: Codable {
+    var data: [Cafe]
 }
 
-class Cafe: Codable {
-    let id: Int
-    let name: String
-    let tel: String
-    let address: String
-    let petType: String
-    let latitude: Double
-    let longitude: Double
-    let website: String
-    let facebook: String
-    let notes: String
+struct Cafe: Codable {
+    var id: Int
+    var name: String
+    var tel: String
+    var address: String
+    var petType: String
+    var latitude: Double
+    var longitude: Double
+    var website: String
+    var facebook: String
+    var notes: String
 }

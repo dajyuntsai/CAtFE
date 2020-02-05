@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Member-->
+        <!--Member View Controller-->
         <scene sceneID="YoI-NL-Umb">
             <objects>
                 <viewController storyboardIdentifier="MemberViewController" id="XmX-GH-lig" customClass="MemberViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Q1H-lS-Zs7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Member" image="palm" id="bIB-I6-Gjb"/>
+                    <tabBarItem key="tabBarItem" title="" image="palm" id="bIB-I6-Gjb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d52-3p-FTj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

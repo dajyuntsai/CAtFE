@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Rated-->
+        <!--Rated View Controller-->
         <scene sceneID="VNW-ao-cDd">
             <objects>
                 <viewController storyboardIdentifier="RatedViewController" id="4j3-lz-ETh" customClass="RatedViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="rZq-S4-ccR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Rated" image="crown" id="cU0-lk-DZ7"/>
+                    <tabBarItem key="tabBarItem" title="" image="crown" id="cU0-lk-DZ7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a9d-AZ-G3P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

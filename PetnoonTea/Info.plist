@@ -62,15 +62,17 @@
 		<string>fbshareextension</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>App將存取相簿裡的照片</string>
+	<string>允許App存取相簿裡的照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App將取用相機</string>
+	<string>允許App取用相機</string>
 	<key>BaseURL</key>
-	<string>http://stage1.softarts.cc/CAtFE/api/v1/cafes</string>
+	<string>http://stage1.softarts.cc/CAtFE/api/v1</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 </dict>
 </plist>
