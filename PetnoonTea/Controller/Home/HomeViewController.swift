@@ -7,14 +7,20 @@
 //
 
 import UIKit
-import GooglePlaces
+import MapKit
 
-//google map api key: AIzaSyDoI1DZ1nqoX9qi_FyymLaoSelysQ3Q86A
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var mapView: MKMapView!
     
     let width = UIScreen.main.bounds.width
+    let cafeManager = CafeManager()
+    var cafeList: [Cafe] = [] {
+        didSet {
+            self.createAnnotations(locations: cafeList)
+        }
+    }
     let filterList = ["離我最近", "寵物篩選", "新增店家", "隨便"]
     
     override func viewDidLoad() {
@@ -22,6 +28,7 @@ class HomeViewController: UIViewController {
 
         setUpTabBarItem()
         setUpCollectionView()
+        getCafeData()
     }
 
     func setUpCollectionView() {
@@ -35,6 +42,26 @@ class HomeViewController: UIViewController {
         let tabBarHome = self.tabBarController?.tabBar.items?[2]
         tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+    }
+    
+    func getCafeData() {
+        cafeManager.getCafeList { (result) in
+            switch result {
+            case .success(let cafeData):
+                self.cafeList = cafeData.data
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func createAnnotations(locations: [Cafe]) {
+        for location in locations {
+            let annotations = MKPointAnnotation()
+            annotations.title = location.name
+            annotations.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            mapView.addAnnotation(annotations)
+        }
     }
 }
 

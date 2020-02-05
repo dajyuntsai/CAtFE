@@ -56,28 +56,6 @@ class UserProvider {
         })
     }
     
-    func loginWithShop(fbToken: String, completion: @escaping (Result<Void>) -> Void) {
-        //        HTTPClient.shared.request(UserRequest.signin(fbToken), completion: { result in
-        //            switch result {
-        //            case .success(let data):
-        //                do {
-        //                    let userObject = try JSONDecoder().decode(SuccessParser<UserObject>.self, from: data)
-        //
-        //                    KeyChainManager.shared.token = userObject.data.accessToken
-        //                    let userId = userObject.data.user.id
-        //                    UserDefaults.standard.set(userId, forKey: "userId")
-        //                    KeyChainManager.shared.points = userObject.data.user.point
-        //                    completion(Result.success(()))
-        //
-        //                } catch {
-        //                    completion(Result.failure(error))
-        //                }
-        //            case .failure(let error):
-        //                completion(Result.failure(error))
-        //            }
-        //        })
-    }
-    
     func signUpWithShop() {
         
     }

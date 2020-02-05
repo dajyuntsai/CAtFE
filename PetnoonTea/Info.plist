@@ -65,5 +65,12 @@
 	<string>App將存取相簿裡的照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App將取用相機</string>
+	<key>BaseURL</key>
+	<string>http://stage1.softarts.cc/CAtFE/api/v1/cafes</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

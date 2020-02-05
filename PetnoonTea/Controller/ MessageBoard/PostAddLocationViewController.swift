@@ -20,8 +20,8 @@ class PostAddLocationViewController: BaseViewController {
     weak var delegate: DisplayCafeNameDelegate?
     
     let fullScreenSize = UIScreen.main.bounds.size
-    let cafeList = [Cafe(name: "臺北市"), Cafe(name: "新北市"), Cafe(name: "桃園市"), Cafe(name: "臺中市")]
-    var searchResults = [Cafe]()
+    let cafeList = [CafeName(name: "臺北市"), CafeName(name: "新北市"), CafeName(name: "桃園市"), CafeName(name: "臺中市")]
+    var searchResults = [CafeName]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ extension PostAddLocationViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let cafe: Cafe
+        let cafe: CafeName
         if searchController.isActive && searchController.searchBar.text != "" {
             cafe = searchResults[indexPath.row]
         } else {
@@ -88,6 +88,6 @@ extension PostAddLocationViewController: UISearchResultsUpdating {
     }
 }
 
-struct Cafe { // ninn ninn test
+struct CafeName { // ninn ninn test
     let name: String
 }

@@ -92,6 +92,7 @@
                     <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home" id="Eb8-Cl-vmi"/>
                     <connections>
                         <outlet property="collectionView" destination="CNo-n7-Wiv" id="hOb-Wh-lSy"/>
+                        <outlet property="mapView" destination="wf9-jr-bPj" id="FRw-Tm-rg8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foq-XP-TIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

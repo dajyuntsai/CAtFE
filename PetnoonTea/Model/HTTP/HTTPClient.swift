@@ -23,6 +23,9 @@ enum HTTPClientError: Error {
 enum HTTPMethod: String {
     case GET
     case POST
+    case PUT
+    case PATCH
+    case DELETE
 }
 
 enum HTTPHeaderField: String {
@@ -34,16 +37,16 @@ enum HTTPHeaderValue: String {
     case json = "application/json"
 }
 
-protocol Request {
+protocol CAtFERequest {
     var headers: [String: String] { get }
     var body: Data? { get }
     var method: String { get }
     var endPoint: String { get }
 }
 
-extension Request {
+extension CAtFERequest {
     func makeRequest() -> URLRequest {
-        let urlString = "" + endPoint
+        let urlString = Bundle.ValueForString(key: CAtFEConstant.urlKey) + endPoint
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers
@@ -60,8 +63,8 @@ class HTTPClient {
     private init() { }
 
     func request(
-        _ stRequest: Request, completion: @escaping (Result<Data>) -> Void) {
-        URLSession.shared.dataTask( with: stRequest.makeRequest(), completionHandler: { (data, response, error) in
+        _ catfeRequest: CAtFERequest, completion: @escaping (Result<Data>) -> Void) {
+        URLSession.shared.dataTask( with: catfeRequest.makeRequest(), completionHandler: { (data, response, error) in
             guard error == nil else {
                 return completion(Result.failure(error!))
             }

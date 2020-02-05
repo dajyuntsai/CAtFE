@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0A5C8A77ACC9214CC38945BA /* Pods_PetnoonTeaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D5F4B4117ADFC8AD050E1 /* Pods_PetnoonTeaTests.framework */; };
 		4CF7FD9C9A6AD1E34F5ED4F6 /* Pods_PetnoonTea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF797C30856BF95848EA312 /* Pods_PetnoonTea.framework */; };
+		BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5523EA608F0090BC7F /* CafeManager.swift */; };
+		BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5723EA625E0090BC7F /* CafeModel.swift */; };
+		BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5923EA65380090BC7F /* CAtFEConstant.swift */; };
+		BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -57,7 +61,7 @@
 		BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181EF23E2384500660AEB /* KingFisherWrapper.swift */; };
 		BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F123E238AD00660AEB /* UIColor+Extension.swift */; };
 		BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */; };
-		BEE181FA23E240C300660AEB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F923E240C300660AEB /* File.swift */; };
+		BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F923E240C300660AEB /* HTTPClient.swift */; };
 		BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEE181FB23E2420500660AEB /* GoogleService-Info.plist */; };
 		ECD23B413012D8922A589244 /* Pods_PetnoonTea_PetnoonTeaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F7D5C8074FE1438E5974CA /* Pods_PetnoonTea_PetnoonTeaUITests.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +91,10 @@
 		ABC69CF0F6868D91DBFFCC15 /* Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig"; path = "Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AD31ADD5AB6BFEA77017D927 /* Pods-PetnoonTea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea.debug.xcconfig"; path = "Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E06084F4158A106B00DFF3 /* Pods-PetnoonTeaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTeaTests.release.xcconfig"; path = "Target Support Files/Pods-PetnoonTeaTests/Pods-PetnoonTeaTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE076B5523EA608F0090BC7F /* CafeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeManager.swift; sourceTree = "<group>"; };
+		BE076B5723EA625E0090BC7F /* CafeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeModel.swift; sourceTree = "<group>"; };
+		BE076B5923EA65380090BC7F /* CAtFEConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAtFEConstant.swift; sourceTree = "<group>"; };
+		BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -141,7 +149,7 @@
 		BEE181EF23E2384500660AEB /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		BEE181F123E238AD00660AEB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		BEE181F923E240C300660AEB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		BEE181F923E240C300660AEB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		BEE181FB23E2420500660AEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D25939728DE3A44AB9C4C34E /* Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig"; path = "Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DAF797C30856BF95848EA312 /* Pods_PetnoonTea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetnoonTea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,10 +183,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE076B5423EA60780090BC7F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BE076B5523EA608F0090BC7F /* CafeManager.swift */,
+				BE076B5723EA625E0090BC7F /* CafeModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		BE1EDBD323E2E35E003C38D9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				BE66210923D3FE490053FD07 /* Assets.xcassets */,
+				BE076B5923EA65380090BC7F /* CAtFEConstant.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -317,6 +335,7 @@
 		BEE181D323E20E2F00660AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BE076B5423EA60780090BC7F /* Home */,
 				BE9131D523E5E375004A669D /* MessageBoard */,
 				BEE181F823E240B100660AEB /* User */,
 				BEE181F723E2409E00660AEB /* HTTP */,
@@ -359,6 +378,7 @@
 				BEE181EA23E2339D00660AEB /* UIViewController+Extension.swift */,
 				BEE181F123E238AD00660AEB /* UIColor+Extension.swift */,
 				BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */,
+				BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -402,7 +422,7 @@
 		BEE181F723E2409E00660AEB /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				BEE181F923E240C300660AEB /* File.swift */,
+				BEE181F923E240C300660AEB /* HTTPClient.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -730,14 +750,17 @@
 				BE9131D723E5E387004A669D /* Post.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
 				BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */,
-				BEE181FA23E240C300660AEB /* File.swift in Sources */,
+				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
+				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
+				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
 				BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */,
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
+				BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
@@ -752,6 +775,7 @@
 				BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */,
 				BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */,
 				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,
+				BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */,
 				BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */,
 				BE9131EB23E82166004A669D /* PostMessageReplyTableViewCell.swift in Sources */,
 				BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */,
