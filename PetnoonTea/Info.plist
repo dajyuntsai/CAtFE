@@ -66,7 +66,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>允許App取用相機</string>
 	<key>BaseURL</key>
-	<string>http://stage1.softarts.cc/CAtFE/api/v1</string>
+	<string>http://chickenpie.softarts.cc/CAtFE/api/v1/</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

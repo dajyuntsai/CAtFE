@@ -25,7 +25,7 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func fbLogin(_ sender: Any) {
-        let presentVC = UIStoryboard.fbLogin.instantiateViewController(withIdentifier: FBLoginViewController.identifier) as? FBLoginViewController
+        let presentVC = UIStoryboard.fbLogin.instantiateViewController(identifier: FBLoginViewController.identifier) as? FBLoginViewController
         presentVC?.modalPresentationStyle = .overFullScreen
         self.present(presentVC!, animated: false, completion: nil)
     }

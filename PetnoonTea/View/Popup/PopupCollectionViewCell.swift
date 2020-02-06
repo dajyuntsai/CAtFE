@@ -10,4 +10,12 @@ import UIKit
 
 class PopupCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
+    }
 }

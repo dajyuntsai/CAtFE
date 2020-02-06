@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol PetFilterDelegate: AnyObject {
+    func showPetCategory(_ cell: HomeFilterCollectionViewCell)
+}
+
 class HomeFilterCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: PetFilterDelegate?
     
     @IBOutlet weak var filterBtn: UIButton!
     @IBAction func filterButtonClick(_ sender: Any) {
+        self.delegate?.showPetCategory(self)
+    }
+    
+    func setData(title: String) {
+        filterBtn.setTitle(title, for: .normal)
     }
 }

@@ -173,18 +173,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.delegate = self
-        cell.filterBtn.setTitle(filterList[indexPath.row], for: .normal)
+        cell.setData(title: filterList[indexPath.row])
         return cell
-    }
-}
-
-extension HomeViewController: UICollectionViewDelegate { // 沒進???
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == 1 {
-            let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
-            presentVC!.modalPresentationStyle = .overFullScreen
-            presentVC!.present(presentVC!, animated: true, completion: nil)
-        }
     }
 }
 
@@ -198,7 +188,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 印出目前所在位置座標
         let currentLocation: CLLocation = locations[0] as CLLocation
-        let nowLocation = CLLocationCoordinate2D(latitude: 25.058734, longitude: 121.548898)
+        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
@@ -224,6 +214,11 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 
 extension HomeViewController: PetFilterDelegate {
     func showPetCategory(_ cell: HomeFilterCollectionViewCell) {
-        // TODO: custom animation
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        if indexPath.item == 1 {
+            let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
+            presentVC?.modalPresentationStyle = .overFullScreen
+            self.present(presentVC!, animated: false, completion: nil)
+        }
     }
 }

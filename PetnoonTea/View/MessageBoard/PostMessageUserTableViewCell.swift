@@ -9,7 +9,6 @@
 import UIKit
 
 protocol SearchCafeDelegate: AnyObject {
-    
     func showSearchView(_ cell: PostMessageUserTableViewCell)
 }
 

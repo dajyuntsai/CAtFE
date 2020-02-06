@@ -47,7 +47,7 @@ extension PostMessagePhotoTableViewCell: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as? PostMessagePhotoCollectionViewCell else { return UICollectionViewCell() }
-
+        
         if indexPath.row == photoList.count {
             cell.addPhotoBtn.isHidden = false
             cell.photoImageView.isHidden = true

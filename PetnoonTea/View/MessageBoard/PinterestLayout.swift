@@ -54,7 +54,6 @@ class PinterestLayout: UICollectionViewLayout {
                                                                     heightForPhotoAt: indexPath,
                                                                     with: width))!
                 let height: CGFloat = cellPadding + captionHeight + photoHeight + cellPadding
-//                    + 20 + 36 + 4 + 10// reply btn height + user img height + padding + 亂加
                 
                 let frame = CGRect(x: xOffsets[column], y: yOffsets[column], width: columnWidth, height: height)
                 let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)

@@ -10,7 +10,6 @@ import UIKit
 
 class PostMessagePhotoCollectionViewCell: UICollectionViewCell {
         
-    @IBOutlet weak var view: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBAction func addPhotoBtn(_ sender: Any) {
@@ -20,11 +19,8 @@ class PostMessagePhotoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        initView()
-    }
-    
-    func initView() {
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.gray.cgColor
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.gray.cgColor
+        
     }
 }

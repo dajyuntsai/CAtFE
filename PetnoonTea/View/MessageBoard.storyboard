@@ -292,46 +292,31 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGy-r7-Xyr">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmL-J7-haY">
+                                                                        <rect key="frame" x="59.5" y="51" width="31" height="48"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                                        <state key="normal" title="＋"/>
+                                                                        <connections>
+                                                                            <action selector="addPhotoBtn:" destination="o5i-2L-Ddo" eventType="touchUpInside" id="Ndh-vW-Dh6"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p9e-qD-9We">
                                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                                        <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmL-J7-haY">
-                                                                                <rect key="frame" x="59.5" y="51" width="31" height="48"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                                <state key="normal" title="＋"/>
-                                                                                <connections>
-                                                                                    <action selector="addPhotoBtn:" destination="o5i-2L-Ddo" eventType="touchUpInside" id="Ndh-vW-Dh6"/>
-                                                                                </connections>
-                                                                            </button>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p9e-qD-9We">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                                            </imageView>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="150" id="4nW-ba-pXb"/>
-                                                                            <constraint firstAttribute="height" constant="150" id="6O7-Dx-0mb"/>
-                                                                            <constraint firstItem="jmL-J7-haY" firstAttribute="centerY" secondItem="LGy-r7-Xyr" secondAttribute="centerY" id="GyQ-gg-VOq"/>
-                                                                            <constraint firstItem="p9e-qD-9We" firstAttribute="leading" secondItem="LGy-r7-Xyr" secondAttribute="leading" id="f0h-yA-P41"/>
-                                                                            <constraint firstItem="p9e-qD-9We" firstAttribute="top" secondItem="LGy-r7-Xyr" secondAttribute="top" id="lmE-yX-uBK"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="p9e-qD-9We" secondAttribute="bottom" id="v4Z-OP-C25"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="p9e-qD-9We" secondAttribute="trailing" id="yER-GF-PJt"/>
-                                                                            <constraint firstItem="jmL-J7-haY" firstAttribute="centerX" secondItem="LGy-r7-Xyr" secondAttribute="centerX" id="ydN-8Q-e4r"/>
-                                                                        </constraints>
-                                                                    </view>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="LGy-r7-Xyr" firstAttribute="leading" secondItem="c0x-rs-GUb" secondAttribute="leading" id="Jk1-0z-IOs"/>
-                                                                    <constraint firstItem="LGy-r7-Xyr" firstAttribute="top" secondItem="c0x-rs-GUb" secondAttribute="top" id="QIa-hF-l5K"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="LGy-r7-Xyr" secondAttribute="trailing" id="cZw-Xw-FNr"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="LGy-r7-Xyr" secondAttribute="bottom" id="q27-Qq-XV6"/>
+                                                                    <constraint firstItem="p9e-qD-9We" firstAttribute="top" secondItem="c0x-rs-GUb" secondAttribute="top" id="9pD-Uz-gSH"/>
+                                                                    <constraint firstItem="jmL-J7-haY" firstAttribute="centerX" secondItem="c0x-rs-GUb" secondAttribute="centerX" id="PhJ-nU-ER6"/>
+                                                                    <constraint firstItem="p9e-qD-9We" firstAttribute="centerY" secondItem="c0x-rs-GUb" secondAttribute="centerY" id="cev-Vc-zjp"/>
+                                                                    <constraint firstItem="p9e-qD-9We" firstAttribute="centerX" secondItem="c0x-rs-GUb" secondAttribute="centerX" id="h8G-L0-Dcc"/>
+                                                                    <constraint firstItem="p9e-qD-9We" firstAttribute="leading" secondItem="c0x-rs-GUb" secondAttribute="leading" id="qfb-Vr-MKd"/>
+                                                                    <constraint firstItem="jmL-J7-haY" firstAttribute="centerY" secondItem="c0x-rs-GUb" secondAttribute="centerY" id="tdS-b4-hxA"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="150" height="150"/>
                                                             <connections>
                                                                 <outlet property="addPhotoBtn" destination="jmL-J7-haY" id="7aC-A1-Uxz"/>
                                                                 <outlet property="photoImageView" destination="p9e-qD-9We" id="UVD-B9-WQB"/>
-                                                                <outlet property="view" destination="LGy-r7-Xyr" id="JRz-7i-qx2"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -385,14 +370,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCafeCell" id="Oxc-Bp-ftA" customClass="LocationTableViewCell" customModule="PetnoonTea" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="37"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="37.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oxc-Bp-ftA" id="a8p-42-bsr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-g2-gRY">
-                                                    <rect key="frame" x="16" y="8" width="382" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

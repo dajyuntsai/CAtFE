@@ -13,6 +13,7 @@
 		BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5723EA625E0090BC7F /* CafeModel.swift */; };
 		BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5923EA65380090BC7F /* CAtFEConstant.swift */; };
 		BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */; };
+		BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -22,6 +23,9 @@
 		BE1EDBD023E2DC49003C38D9 /* MessageBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBCF23E2DC49003C38D9 /* MessageBoard.storyboard */; };
 		BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD123E2DC57003C38D9 /* Member.storyboard */; };
 		BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */; };
+		BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5258F323EBC36400F8AC00 /* Popup.storyboard */; };
+		BE5258F723EBC4CA00F8AC00 /* PopupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5258F623EBC4CA00F8AC00 /* PopupCollectionViewCell.swift */; };
+		BE5258F923EBC58300F8AC00 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */; };
 		BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210023D3FE450053FD07 /* AppDelegate.swift */; };
 		BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210423D3FE450053FD07 /* LoginViewController.swift */; };
 		BE66210823D3FE450053FD07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210623D3FE450053FD07 /* Main.storyboard */; };
@@ -95,6 +99,7 @@
 		BE076B5723EA625E0090BC7F /* CafeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeModel.swift; sourceTree = "<group>"; };
 		BE076B5923EA65380090BC7F /* CAtFEConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAtFEConstant.swift; sourceTree = "<group>"; };
 		BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinaLikePopupViewController.swift; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -104,6 +109,9 @@
 		BE1EDBCF23E2DC49003C38D9 /* MessageBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageBoard.storyboard; sourceTree = "<group>"; };
 		BE1EDBD123E2DC57003C38D9 /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		BE5258F323EBC36400F8AC00 /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
+		BE5258F623EBC4CA00F8AC00 /* PopupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		BE6620FD23D3FE450053FD07 /* PetnoonTea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetnoonTea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66210023D3FE450053FD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE66210423D3FE450053FD07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +207,22 @@
 				BE076B5923EA65380090BC7F /* CAtFEConstant.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		BE5258F523EBC47300F8AC00 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				BE5258F623EBC4CA00F8AC00 /* PopupCollectionViewCell.swift */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
+		BE5258FA23EBC67B00F8AC00 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		BE6620F423D3FE450053FD07 = {
@@ -321,6 +345,7 @@
 		BEE181D223E20E2100660AEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BE5258FA23EBC67B00F8AC00 /* Popup */,
 				BEE181DF23E2326700660AEB /* Base */,
 				BEE181D523E20E6D00660AEB /* Login */,
 				BEE181DE23E2320C00660AEB /* Home */,
@@ -379,6 +404,7 @@
 				BEE181F123E238AD00660AEB /* UIColor+Extension.swift */,
 				BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */,
 				BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */,
+				BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -395,6 +421,7 @@
 		BEE181F323E239FB00660AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE5258F523EBC47300F8AC00 /* Popup */,
 				BE9131D023E55427004A669D /* MessageBoard */,
 				BEE181F423E23A1900660AEB /* Home */,
 				BE66210623D3FE450053FD07 /* Main.storyboard */,
@@ -407,6 +434,7 @@
 				BE1EDBD123E2DC57003C38D9 /* Member.storyboard */,
 				BE1EDBC823E2DBFE003C38D9 /* ShopEvent.storyboard */,
 				BE1EDBCA23E2DC11003C38D9 /* Rated.storyboard */,
+				BE5258F323EBC36400F8AC00 /* Popup.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -574,6 +602,7 @@
 				BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
+				BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */,
 				BE1EDBCD23E2DC22003C38D9 /* Home.storyboard in Resources */,
 				BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */,
 				BE66210A23D3FE490053FD07 /* Assets.xcassets in Resources */,
@@ -757,6 +786,7 @@
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
 				BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */,
+				BE5258F923EBC58300F8AC00 /* UICollectionViewCell+Extension.swift in Sources */,
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
@@ -769,11 +799,13 @@
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */,
 				BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */,
+				BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */,
 				BE9131DF23E71E88004A669D /* PostMessageUserTableViewCell.swift in Sources */,
 				BEE181E823E2332800660AEB /* TabbarController.swift in Sources */,
 				BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */,
 				BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */,
 				BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */,
+				BE5258F723EBC4CA00F8AC00 /* PopupCollectionViewCell.swift in Sources */,
 				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,
 				BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */,
 				BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */,
