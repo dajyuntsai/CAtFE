@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rsY-bq-VOf">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sina Like Popup View Controller-->
+        <scene sceneID="Gn0-e1-cFJ">
+            <objects>
+                <viewController storyboardIdentifier="SinaLikePopupView" id="rsY-bq-VOf" customClass="SinaLikePopupViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LaY-VY-Dfq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fPH-WW-X8L">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="v8O-Wb-BpK">
+                                    <size key="itemSize" width="171" height="174"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopupCollectionViewCell" id="RCL-nF-Xtz" customClass="PopupCollectionViewCell" customModule="PetnoonTea" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="171" height="174"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yxz-MQ-T85">
+                                            <rect key="frame" x="0.0" y="0.0" width="171" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="god-9B-op1">
+                                                    <rect key="frame" x="45.5" y="32.5" width="80" height="109.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Izv-5o-V6b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="80" id="Elv-OU-eWE"/>
+                                                                <constraint firstAttribute="height" constant="80" id="Obh-Yq-TaR"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選項" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gen-Kx-oLI">
+                                                            <rect key="frame" x="22.5" y="89" width="35" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" name="TextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="god-9B-op1" firstAttribute="centerX" secondItem="Yxz-MQ-T85" secondAttribute="centerX" id="aYZ-u7-i6n"/>
+                                                <constraint firstItem="god-9B-op1" firstAttribute="centerY" secondItem="Yxz-MQ-T85" secondAttribute="centerY" id="nba-nz-5p9"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="171" height="174"/>
+                                        <connections>
+                                            <outlet property="iconImageView" destination="god-9B-op1" id="O7w-XG-z1m"/>
+                                            <outlet property="iconLabel" destination="gen-Kx-oLI" id="8Lg-pP-lsH"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pIL-xV-M9S" firstAttribute="trailing" secondItem="fPH-WW-X8L" secondAttribute="trailing" id="AeJ-Ao-F00"/>
+                            <constraint firstItem="fPH-WW-X8L" firstAttribute="top" secondItem="pIL-xV-M9S" secondAttribute="top" id="KKy-ZN-1n3"/>
+                            <constraint firstItem="pIL-xV-M9S" firstAttribute="bottom" secondItem="fPH-WW-X8L" secondAttribute="bottom" id="Qcn-c3-0JG"/>
+                            <constraint firstItem="fPH-WW-X8L" firstAttribute="leading" secondItem="pIL-xV-M9S" secondAttribute="leading" id="gcQ-4h-Fgd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pIL-xV-M9S"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="fPH-WW-X8L" id="ntb-vR-w0A"/>
+                        <outlet property="flowLayout" destination="v8O-Wb-BpK" id="wvm-qK-yM7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPS-N4-2cg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.188405797101453" y="44.866071428571423"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="placeholder" width="987" height="777"/>
+        <namedColor name="TextColor">
+            <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

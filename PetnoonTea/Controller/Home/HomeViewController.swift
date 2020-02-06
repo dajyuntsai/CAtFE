@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
             self.createAnnotations(locations: cafeList)
         }
     }
-    let filterList = ["離我最近", "寵物篩選", "新增店家", "隨便"]
+    let filterList = ["離我最近", "寵物篩選", "新增店家", "Wifi"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,31 @@ class HomeViewController: UIViewController {
         setUpLocationAuthorization()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func setUpCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+    
+    func setUpTabBarItem() {
+        let tabBarHome = self.tabBarController?.tabBar.items?[2]
+        tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+    }
+    
     func initMapView() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         
+        mapView.delegate = self
         mapView.showsUserLocation = true
     }
     
@@ -79,25 +99,6 @@ class HomeViewController: UIViewController {
             // 開始定位自身位置
             locationManager.startUpdatingLocation()
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func setUpCollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.contentInset = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
-    }
-    
-    func setUpTabBarItem() {
-        let tabBarHome = self.tabBarController?.tabBar.items?[2]
-        tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
     
     func getCafeData() {
@@ -171,8 +172,19 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCollectionViewCell", for: indexPath) as? HomeFilterCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.delegate = self
         cell.filterBtn.setTitle(filterList[indexPath.row], for: .normal)
         return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate { // 沒進???
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 1 {
+            let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
+            presentVC!.modalPresentationStyle = .overFullScreen
+            presentVC!.present(presentVC!, animated: true, completion: nil)
+        }
     }
 }
 
@@ -182,14 +194,36 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeViewController: CLLocationManagerDelegate {
+extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 印出目前所在位置座標
-        let currentLocation :CLLocation = locations[0] as CLLocation
-        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
+        let currentLocation: CLLocation = locations[0] as CLLocation
+        let nowLocation = CLLocationCoordinate2D(latitude: 25.058734, longitude: 121.548898)
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
         mapView.setRegion(currentRegion, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "CatAnnotationView"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        annotationView?.annotation = annotation// 重要
+        annotationView?.image = UIImage(named: "catAnnotation")// 设置打头针的图片
+        annotationView?.sizeToFit()
+        annotationView?.centerOffset = CGPoint(x: 0, y: 0)// 设置大头针中心偏移量
+        annotationView?.canShowCallout = true// 设置弹框
+        annotationView?.calloutOffset = CGPoint(x: 10, y: 0)// 设置弹框的偏移量
+//        annotationView?.isDraggable = true// 设置大头针可以拖动
+        return annotationView
+    }
+}
+
+extension HomeViewController: PetFilterDelegate {
+    func showPetCategory(_ cell: HomeFilterCollectionViewCell) {
+        // TODO: custom animation
     }
 }
