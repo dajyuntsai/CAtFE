@@ -9,6 +9,8 @@
 import UIKit
 
 class CreateDetailTableViewCell: UITableViewCell {
+    
+    static let boolQuestion = "CreateDetailBoolTableViewCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
