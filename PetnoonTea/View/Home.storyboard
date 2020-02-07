@@ -44,6 +44,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09e-X6-E9D">
                                                     <rect key="frame" x="0.0" y="0.0" width="88" height="64"/>
                                                     <color key="backgroundColor" name="MainColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>

@@ -18,11 +18,13 @@ class HomeViewController: UIViewController {
     private let locationManager: CLLocationManager = CLLocationManager()
     let width = UIScreen.main.bounds.width
     let cafeManager = CafeManager()
+    var phone: String?
     var cafeList: [Cafe] = [] {
         didSet {
             self.createAnnotations(locations: cafeList, petType: "")
         }
     }
+    
     let filterList = ["離我最近", "寵物篩選", "新增店家", "Wifi"]
     
     override func viewDidLoad() {
@@ -164,6 +166,8 @@ class HomeViewController: UIViewController {
         for location in newPins {
             let annotations = MKPointAnnotation()
             annotations.title = location.name
+            annotations.subtitle = location.address
+            phone = location.tel
             annotations.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             mapView.addAnnotation(annotations)
         }
@@ -221,6 +225,53 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         annotationView?.calloutOffset = CGPoint(x: 10, y: 0)// 设置弹框的偏移量
 //        annotationView?.isDraggable = true// 设置大头针可以拖动
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let subTitle = UILabel()
+        subTitle.text = view.annotation?.subtitle ?? ""
+        subTitle.font = UIFont(name: "Helvetica-Neue", size: 14)
+        
+        for cafe in cafeList {
+            if view.annotation?.title == cafe.name {
+                self.phone = cafe.tel
+            }
+        }
+        
+        let infoBtn = UIButton(type: .detailDisclosure)
+        infoBtn.addTarget(self, action: #selector(infoDetail), for: .touchUpInside)
+        view.rightCalloutAccessoryView = infoBtn
+    }
+    
+    // - 導航 -
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//
+//    }
+    
+    @objc func infoDetail() {
+        let alertController = UIAlertController(title: "選擇功能", message: nil, preferredStyle: .actionSheet)
+        let callOutAction = UIAlertAction(title: phone, style: .default) { (_) in
+            self.callOutToCafe(phoneNumber: self.phone ?? "")
+        }
+        let guideAction = UIAlertAction(title: "導航路線", style: .default) { (_) in
+            self.guideToCafe()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(callOutAction)
+        alertController.addAction(guideAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func callOutToCafe(phoneNumber: String) {
+        if let url = URL(string: "tel://0981110200"),
+        UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func guideToCafe() {
+        
     }
 }
 

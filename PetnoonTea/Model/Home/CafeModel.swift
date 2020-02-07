@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct CafeModel: Codable {
     var data: [Cafe]
