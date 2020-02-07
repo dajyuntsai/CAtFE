@@ -21,6 +21,7 @@ private struct StoryboardCategory {
     static let messageBoard = "MessageBoard"
     static let member = "Member"
     static let popup = "Popup"
+    static let createCafe = "CreateCafe"
 }
 
 extension UIStoryboard {
@@ -34,6 +35,7 @@ extension UIStoryboard {
     static var messageBoard: UIStoryboard { return ptStoryboard(name: StoryboardCategory.messageBoard) }
     static var member: UIStoryboard { return ptStoryboard(name: StoryboardCategory.member) }
     static var popup: UIStoryboard { return ptStoryboard(name: StoryboardCategory.popup) }
+    static var createCafe: UIStoryboard { return ptStoryboard(name: StoryboardCategory.createCafe) }
     private static func ptStoryboard(name: String) -> UIStoryboard {
         return UIStoryboard(name: name, bundle: nil)
     }

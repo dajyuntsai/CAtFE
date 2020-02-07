@@ -15,6 +15,8 @@ class SinaLikePopupViewController: BaseViewController {
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
+    var selectedPet: ((String) -> Void)?
+    var petList: [String] = ["貓", "狗", "其他"]
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     
@@ -63,6 +65,7 @@ class SinaLikePopupViewController: BaseViewController {
         animator.addAnimations {
             cell.alpha = 1
             cell.transform = .identity
+            self.closeBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             self.collectionView.layoutIfNeeded()
         }
         animator.startAnimation(afterDelay: 0.2 * Double(indexPath.item))
@@ -84,19 +87,22 @@ class SinaLikePopupViewController: BaseViewController {
 
 extension SinaLikePopupViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3 // 一行只顯示三個
+        return petList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopupCollectionViewCell.identifier, for: indexPath) as? PopupCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.iconLabel.text = petList[indexPath.item]
         return cell
     }
 }
 
 extension SinaLikePopupViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.popViewController(animated: false)
+        selectedPet?(petList[indexPath.item])
         setFallAnimate()
     }
     

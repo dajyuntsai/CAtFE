@@ -44,6 +44,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBar.unselectedItemTintColor = .brown
         viewControllers = tabs.map({ $0.controller() })
 
         delegate = self

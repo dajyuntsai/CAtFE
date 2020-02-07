@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     let cafeManager = CafeManager()
     var cafeList: [Cafe] = [] {
         didSet {
-            self.createAnnotations(locations: cafeList)
+            self.createAnnotations(locations: cafeList, petType: "")
         }
     }
     let filterList = ["離我最近", "寵物篩選", "新增店家", "Wifi"]
@@ -149,8 +149,19 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func createAnnotations(locations: [Cafe]) {
-        for location in locations {
+    func createAnnotations(locations: [Cafe], petType: String) {
+        var newPins: [Cafe] = []
+        switch petType {
+        case "貓":
+            newPins = locations.filter({ $0.petType == "貓"})
+        case "狗":
+            newPins = locations.filter({ $0.petType == "狗"})
+        case "其他":
+            newPins = locations.filter({ $0.petType != "貓" && $0.petType != "狗"})
+        default:
+            newPins = locations
+        }
+        for location in newPins {
             let annotations = MKPointAnnotation()
             annotations.title = location.name
             annotations.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
@@ -188,7 +199,8 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 印出目前所在位置座標
         let currentLocation: CLLocation = locations[0] as CLLocation
-        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
+        let nowLocation = CLLocationCoordinate2D(latitude: 25.058734, longitude: 121.548898)
+//            currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude) // TODO: 改回來
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
@@ -217,6 +229,12 @@ extension HomeViewController: PetFilterDelegate {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         if indexPath.item == 1 {
             let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
+            presentVC?.selectedPet = { (title) in
+                cell.filterBtn.setTitle(title, for: .normal)
+                let allAnnotations = self.mapView.annotations
+                self.mapView.removeAnnotations(allAnnotations)
+                self.createAnnotations(locations: self.cafeList, petType: title)
+            }
             presentVC?.modalPresentationStyle = .overFullScreen
             self.present(presentVC!, animated: false, completion: nil)
         }
