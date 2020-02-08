@@ -273,111 +273,37 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func guideToCafe(destination: String) {
         geoCoder.geocodeAddressString("台北市信義區基隆路一段178號") { (place: [CLPlacemark]?, error) -> Void in
             let startLocation = place?.first
-            // 1.2 创建圆形的覆盖层数据模型
-            let circle1 = MKCircle(center: (startLocation?.location?.coordinate)!, radius: 100000)
-            // 1.3 添加覆盖层数据模型到地图上
-            self.mapView.addOverlay(circle1)
-
             self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, error) -> Void in
-                // 2. 拿到上海地标对象
                 let destination = place?.first
-                // 2.2 创建圆形的覆盖层数据模型
-                let circle2 = MKCircle(center: (destination?.location?.coordinate)!, radius: 100000)
-                // 2.3 添加覆盖层数据模型到地图上
-                self.mapView.addOverlay(circle2)
-
-                // 3 大头针
-                let annotation: MKPointAnnotation = MKPointAnnotation()
-                annotation.title = "上海"
-                annotation.coordinate = (place?.first?.location?.coordinate)!
-                self.mapView.addAnnotation(annotation)
-                //self.mapView.showAnnotations([annotation], animated: true)
-
-
-                //45. 调用获取导航线路数据信息的方法
-                self.getRouteMessage(startLocation!, endCLPL: destination!)
+                self.beginNav(startLocation!, endPLCL: destination!)
             }
         }
     }
     
     // - 導航 -
-    // MARK: - ① 根据两个地标，发送网络请求给苹果服务器获取导航数据，请求对应的行走路线信息
-    func getRouteMessage(_ startCLPL: CLPlacemark, endCLPL: CLPlacemark) {
-        // 建请求导航路线数据信息
-        let request: MKDirections.Request = MKDirections.Request()
-
-        // 创建起点:根据 CLPlacemark 地标对象创建 MKPlacemark 地标对象
-        let sourceMKPL: MKPlacemark = MKPlacemark(placemark: startCLPL)
-        request.source = MKMapItem(placemark: sourceMKPL)
-
-        let endMKPL: MKPlacemark = MKPlacemark(placemark: endCLPL)
-        request.destination = MKMapItem(placemark: endMKPL)
-
-        request.transportType = .automobile
-
-        // 1. 创建导航对象，根据请求，获取实际路线信息
-        let directions: MKDirections = MKDirections(request: request)
-
-        // 2. 调用方法, 开始发送请求,计算路线信息
-        directions.calculate { (response: MKDirections.Response?, error:Error?) in
-
-            if let error = error {
-                print("MKDirections.calculate err = \(error)")
-            }
-
-            if let response = response {
-                print(response)
-
-                // MARK: - ② 解析导航数据
-                // 遍历 routes （MKRoute对象）：因为有多种路线
-                for route: MKRoute in response.routes {
-
-                    // 添加覆盖层数据模型,路线对应的几何线路模型（由很多点组成）
-                    // 当我们添加一个覆盖层数据模型时, 系统绘自动查找对应的代理方法, 找到对应的覆盖层"视图"
-                    // 添加折线
-                    self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-
-                    print(route.advisoryNotices)
-                    print(route.name, route.distance, route.expectedTravelTime)
-                    // 遍历每一种路线的每一个步骤（MKRouteStep对象）
-                    for step in route.steps {
-                        print(step.instructions) // 打印步骤说明
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - ③ 添加导航路线到地图
-    // MARK: - 当添加一个覆盖层数据模型到地图上时, 地图会调用这个方法, 查找对应的覆盖层"视图"(渲染图层)
-    // 参数1（mapView）：地图    参数2（overlay）：覆盖层"数据模型"   returns: 覆盖层视图
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-
-        var resultRender = MKOverlayRenderer()
-
-        // 折线覆盖层
-        if overlay is MKPolyline{
-
-            // 创建折线渲染对象 (不同的覆盖层数据模型, 对应不同的覆盖层视图来显示)
-            let render: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
-
-            render.lineWidth = 6                // 设置线宽
-            render.strokeColor = UIColor.systemBlue    // 设置颜色
-
-            resultRender = render
-
-        }else if overlay is MKCircle {
-            // 圆形覆盖层
-            let circleRender: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
-
-            circleRender.fillColor = UIColor.lightGray // 设置填充颜色
-            circleRender.alpha = 0.3               // 设置透明色
-            circleRender.strokeColor = UIColor.blue
-            circleRender.lineWidth = 2
-
-            resultRender = circleRender
-        }
-        return resultRender
+    func beginNav(_ startPLCL: CLPlacemark, endPLCL: CLPlacemark) {
+        // 获取起点
+        let startplMK: MKPlacemark = MKPlacemark(placemark: startPLCL)
+        let startItem: MKMapItem = MKMapItem(placemark: startplMK)
+        
+        // 获取终点
+        let endplMK: MKPlacemark = MKPlacemark(placemark: endPLCL)
+        let endItem: MKMapItem = MKMapItem(placemark: endplMK)
+        
+        // 设置起点和终点
+        let mapItems: [MKMapItem] = [startItem, endItem]
+        
+        // 设置导航地图启动项参数字典
+        let dic: [String : AnyObject] = [
+            // 导航模式:驾驶
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving as AnyObject,
+            // 地图样式：标准样式
+            MKLaunchOptionsMapTypeKey: MKMapType.standard.rawValue as AnyObject,
+            // 显示交通：显示
+            MKLaunchOptionsShowsTrafficKey: true as AnyObject]
+        
+        // 根据 MKMapItem 的起点和终点组成数组, 通过导航地图启动项参数字典, 调用系统的地图APP进行导航
+        MKMapItem.openMaps(with: mapItems, launchOptions: dic)
     }
 }
 
