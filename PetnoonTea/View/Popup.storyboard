@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fPH-WW-X8L">
-                                <rect key="frame" x="0.0" y="862" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="862" width="414" height="350"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="cbB-0a-tm6"/>
+                                    <constraint firstAttribute="height" constant="350" id="cbB-0a-tm6"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="v8O-Wb-BpK">
                                     <size key="itemSize" width="171" height="174"/>
@@ -81,7 +81,7 @@
                         <constraints>
                             <constraint firstItem="pIL-xV-M9S" firstAttribute="bottom" secondItem="icr-u3-qrH" secondAttribute="bottom" constant="50" id="2zE-c6-fqF"/>
                             <constraint firstItem="pIL-xV-M9S" firstAttribute="trailing" secondItem="fPH-WW-X8L" secondAttribute="trailing" id="AeJ-Ao-F00"/>
-                            <constraint firstItem="pIL-xV-M9S" firstAttribute="bottom" secondItem="fPH-WW-X8L" secondAttribute="bottom" constant="-300" id="Qcn-c3-0JG"/>
+                            <constraint firstItem="pIL-xV-M9S" firstAttribute="bottom" secondItem="fPH-WW-X8L" secondAttribute="bottom" constant="-350" id="Qcn-c3-0JG"/>
                             <constraint firstItem="fPH-WW-X8L" firstAttribute="leading" secondItem="pIL-xV-M9S" secondAttribute="leading" id="gcQ-4h-Fgd"/>
                             <constraint firstItem="icr-u3-qrH" firstAttribute="centerX" secondItem="LaY-VY-Dfq" secondAttribute="centerX" id="sVB-2R-5Lc"/>
                         </constraints>

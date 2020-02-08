@@ -16,7 +16,7 @@ class SinaLikePopupViewController: BaseViewController {
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     var selectedPet: ((String) -> Void)?
-    var petList: [String] = ["貓", "狗", "其他"]
+    var petList: [String] = ["貓", "狗", "其他", "全部"]
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     
@@ -116,7 +116,13 @@ extension SinaLikePopupViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        flowLayout.sectionInset = UIEdgeInsets(top: 32, left: 16, bottom: 32, right: 16)
+        flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 16, bottom: 16, right: 16)
         return CGSize(width: width * 0.3, height: 120)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }

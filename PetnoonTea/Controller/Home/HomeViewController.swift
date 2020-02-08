@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     var selectedDest: String?
     var cafeList: [Cafe] = [] {
         didSet {
-            self.createAnnotations(locations: cafeList, petType: "")
+            self.createAnnotations(locations: cafeList)
         }
     }
     
@@ -126,6 +126,7 @@ class HomeViewController: UIViewController {
                         address: "台北市松山區敦化北路218號",
                         petType: "貓",
                         latitude: 25.0587, longitude: 121.549,
+                        wifi: false,
                         website: "",
                         facebook: "",
                         notes: "")
@@ -146,6 +147,7 @@ class HomeViewController: UIViewController {
                         address: "test",
                         petType: "test",
                         latitude: 25.058734, longitude: 121.548898,
+                        wifi: false,
                         website: "",
                         facebook: "",
                         notes: "")
@@ -166,6 +168,7 @@ class HomeViewController: UIViewController {
                         address: "test",
                         petType: "test",
                         latitude: 25.058734, longitude: 121.548898,
+                        wifi: false,
                         website: "",
                         facebook: "",
                         notes: "")
@@ -179,19 +182,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func createAnnotations(locations: [Cafe], petType: String) {
-        var newPins: [Cafe] = []
-        switch petType {
-        case "貓":
-            newPins = locations.filter({ $0.petType == "貓"})
-        case "狗":
-            newPins = locations.filter({ $0.petType == "狗"})
-        case "其他":
-            newPins = locations.filter({ $0.petType != "貓" && $0.petType != "狗"})
-        default:
-            newPins = locations
-        }
-        for location in newPins {
+    func createAnnotations(locations: [Cafe]) {
+        for location in locations {
             let annotations = MKPointAnnotation()
             annotations.title = location.name
             annotations.subtitle = location.address
@@ -307,18 +299,14 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     // - 導航 -
     func beginNav(_ startPLCL: CLPlacemark, endPLCL: CLPlacemark) {
-        // 获取起点
         let startplMK: MKPlacemark = MKPlacemark(placemark: startPLCL)
         let startItem: MKMapItem = MKMapItem(placemark: startplMK)
         
-        // 获取终点
         let endplMK: MKPlacemark = MKPlacemark(placemark: endPLCL)
         let endItem: MKMapItem = MKMapItem(placemark: endplMK)
         
-        // 设置起点和终点
         let mapItems: [MKMapItem] = [startItem, endItem]
         
-        // 设置导航地图启动项参数字典
         let dic: [String: AnyObject] = [
             // 导航模式:驾驶
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving as AnyObject,
@@ -335,16 +323,57 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 extension HomeViewController: PetFilterDelegate {
     func showPetCategory(_ cell: HomeFilterCollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        if indexPath.item == 1 {
-            let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
-            presentVC?.selectedPet = { (title) in
-                cell.filterBtn.setTitle(title, for: .normal)
-                let allAnnotations = self.mapView.annotations
-                self.mapView.removeAnnotations(allAnnotations)
-                self.createAnnotations(locations: self.cafeList, petType: title)
-            }
-            presentVC?.modalPresentationStyle = .overFullScreen
-            self.present(presentVC!, animated: false, completion: nil)
+        switch indexPath.item {
+        case 0:
+            nearestCafe(cell)
+        case 1:
+            petFilterClick(cell)
+        case 2:
+            createNewCafe(cell)
+        default:
+            wifiFilterClick(locations: cafeList)
         }
+
+    }
+
+    func nearestCafe(_ cell: HomeFilterCollectionViewCell) {
+
+    }
+
+    func petFilterClick(_ cell: HomeFilterCollectionViewCell) {
+        let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
+        presentVC?.selectedPet = { (title) in
+            cell.filterBtn.setTitle(title, for: .normal)
+            let allAnnotations = self.mapView.annotations
+            self.mapView.removeAnnotations(allAnnotations)
+            self.petFilterSelected(locations: self.cafeList, petType: title)
+        }
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.present(presentVC!, animated: false, completion: nil)
+    }
+
+    func petFilterSelected(locations: [Cafe], petType: String) {
+        var newPins: [Cafe] = []
+        switch petType {
+        case "貓":
+            newPins = locations.filter({ $0.petType == "貓"})
+        case "狗":
+            newPins = locations.filter({ $0.petType == "狗"})
+        case "其他":
+            newPins = locations.filter({ $0.petType != "貓" && $0.petType != "狗"})
+        default:
+            newPins = locations
+        }
+        createAnnotations(locations: newPins)
+    }
+
+    func createNewCafe(_ cell: HomeFilterCollectionViewCell) {
+
+    }
+
+    func wifiFilterClick(locations: [Cafe]) {
+        var newPins: [Cafe] = []
+        newPins = locations.filter({ $0.wifi == true})
+        createAnnotations(locations: newPins)
     }
 }
