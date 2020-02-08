@@ -18,6 +18,7 @@ enum FacebookError: String, Error {
 }
 
 class UserProvider {
+    let decoder = JSONDecoder()
     func loginWithFaceBook(from: UIViewController, completion: @escaping FacebookResponse) {
         LoginManager().logIn(permissions: ["email"], from: from, handler: { (result, error) in
             guard error == nil else { return completion(Result.failure(error!)) }
@@ -55,12 +56,50 @@ class UserProvider {
             }
         })
     }
-    
-    func signUpWithShop() {
-        
+
+    func emailSignUp(email: String, password: String, name: String, registerType: String,
+                     completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.register(email, password, name, registerType)) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let data):
+                do {
+                    let userObject = try strongSelf.decoder.decode(UserObject.self, from: data)
+//                    KeyChainManager.shared.token = userObject.accessToken
+                    completion(Result.success(()))
+                } catch {
+                    completion(Result.failure(error))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
     }
     
-    func loginWithApple() {
-        
+    func emailSignIn(email: String, password: String, registerType: String,
+                     completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.signIn(email, password, registerType)) { (result) in
+            switch result {
+            case .success:
+                do {
+//                    let userObject = try strongSelf.decoder.decode(UserObject.self, from: data)
+//                    KeyChainManager.shared.token = userObject.accessToken
+                    completion(Result.success(()))
+                } catch {
+                    completion(Result.failure(error))
+                    print(Result<Any>.failure(error))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
+
+    func fbSignIn() {
+
+    }
+
+    func appleSignIn() {
+
     }
 }

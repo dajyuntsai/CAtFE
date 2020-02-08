@@ -23,11 +23,13 @@ class BaseViewController: UIViewController {
 extension UIViewController {
     func backToRoot() {
         DispatchQueue.main.async {
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            let tabBar = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController") as? TabbarController
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = tabBar
+                    tabBar?.selectedIndex = 2
+                }
+            })
         }
-        let tabBar = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController") as? TabbarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabBar
-        tabBar?.selectedIndex = 2
     }
 }

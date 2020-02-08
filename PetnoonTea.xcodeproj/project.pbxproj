@@ -33,6 +33,9 @@
 		BE52590523EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE52590323EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib */; };
 		BE52590723EC5F9A00F8AC00 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */; };
 		BE52590B23EC662500F8AC00 /* CreateDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590A23EC662500F8AC00 /* CreateDetailTableViewCell.swift */; };
+		BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590C23EE58CD00F8AC00 /* UserRequest.swift */; };
+		BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590F23EE996300F8AC00 /* KeyChainManager.swift */; };
+		BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52591123EE9C6500F8AC00 /* UserObject.swift */; };
 		BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210023D3FE450053FD07 /* AppDelegate.swift */; };
 		BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210423D3FE450053FD07 /* LoginViewController.swift */; };
 		BE66210823D3FE450053FD07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210623D3FE450053FD07 /* Main.storyboard */; };
@@ -126,6 +129,9 @@
 		BE52590323EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailBoolTableViewCell.xib; sourceTree = "<group>"; };
 		BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		BE52590A23EC662500F8AC00 /* CreateDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTableViewCell.swift; sourceTree = "<group>"; };
+		BE52590C23EE58CD00F8AC00 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		BE52590F23EE996300F8AC00 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		BE52591123EE9C6500F8AC00 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		BE6620FD23D3FE450053FD07 /* PetnoonTea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetnoonTea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66210023D3FE450053FD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE66210423D3FE450053FD07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -480,6 +486,9 @@
 			isa = PBXGroup;
 			children = (
 				BEE181E223E232B900660AEB /* UserProvider.swift */,
+				BE52590C23EE58CD00F8AC00 /* UserRequest.swift */,
+				BE52590F23EE996300F8AC00 /* KeyChainManager.swift */,
+				BE52591123EE9C6500F8AC00 /* UserObject.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -519,7 +528,7 @@
 				BE6620FA23D3FE450053FD07 /* Frameworks */,
 				BE6620FB23D3FE450053FD07 /* Resources */,
 				54FF52AAE3377ABBE062785B /* [CP] Embed Pods Frameworks */,
-				1C05EB8E6F8033603A818776 /* [CP] Copy Pods Resources */,
+				BE52590E23EE783700F8AC00 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -558,7 +567,6 @@
 				BE66211B23D3FE490053FD07 /* Frameworks */,
 				BE66211C23D3FE490053FD07 /* Resources */,
 				A881AB5E93082497322EFEAB /* [CP] Embed Pods Frameworks */,
-				ADA4CE489F61A433DAF1BF06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -653,23 +661,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C05EB8E6F8033603A818776 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea/Pods-PetnoonTea-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		33F32CB814A7CA3CA8596726 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -726,22 +717,22 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ADA4CE489F61A433DAF1BF06 /* [CP] Copy Pods Resources */ = {
+		BE52590E23EE783700F8AC00 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+			);
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		CC46669A932B8FC51A6B5D9B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -805,6 +796,7 @@
 				BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */,
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
 				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
+				BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
 				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
@@ -817,9 +809,11 @@
 				BE52590B23EC662500F8AC00 /* CreateDetailTableViewCell.swift in Sources */,
 				BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
+				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
+				BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */,
 				BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */,

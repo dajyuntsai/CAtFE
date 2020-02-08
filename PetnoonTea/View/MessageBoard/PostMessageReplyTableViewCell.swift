@@ -15,8 +15,7 @@ class PostMessageReplyTableViewCell: UITableViewCell {
     @IBOutlet weak var replyDateTimeLabel: UILabel!
     @IBOutlet weak var replayContentLabel: UILabel!
     @IBOutlet weak var replayContentView: UIView!
-    
-    
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         

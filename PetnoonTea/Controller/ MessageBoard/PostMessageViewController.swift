@@ -119,7 +119,8 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
         self.callGetPhoneWithKind(2)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var selectedImageFromPicker: UIImage?
         if let pickedImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = pickedImage

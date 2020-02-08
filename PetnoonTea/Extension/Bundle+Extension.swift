@@ -10,12 +10,12 @@ import Foundation
 
 extension Bundle {
     // swiftlint:disable force_cast
-    static func ValueForString(key: String) -> String {
+    static func valueForString(key: String) -> String {
         
         return Bundle.main.infoDictionary![key] as! String
     }
 
-    static func ValueForInt32(key: String) -> Int32 {
+    static func valueForInt32(key: String) -> Int32 {
 
         return Bundle.main.infoDictionary![key] as! Int32
     }

@@ -16,6 +16,7 @@ class ShopLoginContainView: BaseViewController {
     @IBOutlet var loginLabel: [UILabel]!
     @IBOutlet var loginTextField: [UITextField]!
     var database: Firestore?
+    let userProvider = UserProvider()
     let loginList = ["登入帳號：", "登入密碼："]
     
     @IBAction func loginBtn(_ sender: Any) {
@@ -39,25 +40,30 @@ class ShopLoginContainView: BaseViewController {
     func checkLogin() {
         if loginTextField[0].text == "" || loginTextField[1].text == "" {
             alert(message: "請輸入登入信箱及密碼", title: "錯誤")
+        } else if !isValidEmail(loginTextField[0].text!) {
+            alert(message: "請輸入正確信箱", title: "錯誤")
         } else {
             let account = loginTextField[0].text!
             let password = loginTextField[1].text!
-            Auth.auth().signIn(withEmail: account, password: password) { (user, error) in
-                if error == nil {
-                    print("You have successfully login")
-                    
-                    let userID = Auth.auth().currentUser!.uid
-                    let data = ["user_email": account, "user_password": password, "user_id": userID]
-                    self.database?.collection("users").document(userID).setData(data) { error in
-                        if let error = error {
-                            print(error)
-                        }
-                    }
-                    self.backToRoot()
-                } else {
-                    self.alert(message: error?.localizedDescription ?? "Unknown error", title: "Error")
-                }
+            onCAtFESignIn(email: account, password: password, registerType: "email")
+        }
+    }
+
+    func onCAtFESignIn(email: String, password: String, registerType: String) {
+        userProvider.emailSignIn(email: email, password: password, registerType: registerType) { (result) in
+            switch result {
+            case .success:
+                CustomProgressHUD.showSuccess(text: "CAtFE 登入成功")
+                self.backToRoot()
+            case .failure:
+                CustomProgressHUD.showSuccess(text: "CAtFE 登入失敗")
             }
         }
+    }
+
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
 }

@@ -26,7 +26,7 @@ class MessageBoardViewController: UIViewController {
         }
     }
     
-    @IBAction func AddPostBtn(_ sender: Any) {
+    @IBAction func addPostBtn(_ sender: Any) {
         // TODO: 如果沒有登入就跳到登入頁
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageViewController.identifier) as? PostMessageViewController
         presentVC?.modalPresentationStyle = .overFullScreen
@@ -48,7 +48,8 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -57,7 +58,9 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         return
     }
     
@@ -72,7 +75,9 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
 }
 
 extension MessageBoardViewController: PinterestLayoutDelegate {
-    func collectionView(collectionView: UICollectionView, heightForCaptionAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
+    func collectionView(collectionView: UICollectionView,
+                        heightForCaptionAt indexPath: IndexPath,
+                        with width: CGFloat) -> CGFloat {
         if let post = posts?[indexPath.item] {
             let topPadding = CGFloat(8)
             let bottomPadding = CGFloat(16)
@@ -86,7 +91,9 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         return 0.0
     }
     
-    func collectionView(collectionView: UICollectionView, heightForPhotoAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
+    func collectionView(collectionView: UICollectionView,
+                        heightForPhotoAt indexPath: IndexPath,
+                        with width: CGFloat) -> CGFloat {
         if let post = posts?[indexPath.item], let photo = post.image {
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let rect = AVMakeRect(aspectRatio: photo.size, insideRect: boundingRect)
@@ -96,7 +103,7 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         return 0
     }
     
-    func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat{
+    func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {
         let nsstring = NSString(string: text)
         let textAttributes = [NSAttributedString.Key.font: font]
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)

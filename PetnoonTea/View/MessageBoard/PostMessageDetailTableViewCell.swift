@@ -56,7 +56,8 @@ extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollecti
         return 3
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell", for: indexPath) as? PostDetailPhotoCollectionViewCell else { return UICollectionViewCell() }
 
         return cell

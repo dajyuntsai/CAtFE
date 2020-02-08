@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UIButton_Extension: UIButton {
+extension UIButton {
 
     /*
     // Only override draw() if you perform custom drawing.

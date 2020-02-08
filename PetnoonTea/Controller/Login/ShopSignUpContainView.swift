@@ -15,11 +15,25 @@ class ShopSignUpContainView: BaseViewController {
 
     @IBOutlet var registerLabel: [UILabel]!
     @IBOutlet var registerTextField: [UITextField]!
+    @IBOutlet weak var notificationBtn: UISwitch!
+
+    let userProvider = UserProvider()
     var database: Firestore?
+    var isAdmin = false
     var isNeedNotification = false
-    let signUpList = ["店家名稱：", "註冊帳號：", "登入密碼：", "再次輸入密碼：", "是否需要傳送推播功能："]
+
+    let signUpList = ["顯示名稱：", "註冊帳號：", "登入密碼：", "再次輸入密碼：", "是否需要傳送推播功能：", "我是店家："]
     
-    @IBAction func switchBtn(_ sender: UISwitch) {
+    @IBAction func roleBtn(_ sender: UISwitch) {
+        if sender.isOn {
+            isAdmin = true
+        } else {
+            isAdmin = false
+            notificationBtn.setOn(!sender.isOn, animated: false)
+        }
+    }
+
+    @IBAction func notificationBtn(_ sender: UISwitch) {
         if sender.isOn {
             isNeedNotification = true
         } else {
@@ -55,25 +69,21 @@ class ShopSignUpContainView: BaseViewController {
         let password = registerTextField[2].text!
         let checkPsd = registerTextField[3].text!
         if name == "" {
-            alert(message: "請輸入店家名稱", title: "錯誤")
+            alert(message: "請輸入顯示名稱", title: "錯誤")
         } else if password != checkPsd {
             alert(message: "請再次確認密碼", title: "錯誤")
         } else {
-            Auth.auth().createUser(withEmail: account, password: password) { (user, error) in
-                if error == nil {
-                    print("You have successfully signed up")
-                    let userID = Auth.auth().currentUser!.uid
-                    let data = ["user_email": account, "user_name": name, "user_id": userID, "notification:": self.isNeedNotification] as [String : Any]
-                    self.database?.collection("users").document(userID).setData(data) { error in
-                        if let error = error {
-                            print(error)
-                        }
-                    }
-                    self.backToRoot()
-                } else {
-                    print("Signed up failed")
-                    self.alert(message: error?.localizedDescription ?? "Unknown error", title: "Error")
-                }
+            onCAtFESignUp(email: account, password: password, name: name, register: "email")
+        }
+    }
+
+    func onCAtFESignUp(email: String, password: String, name: String, register: String) {
+        userProvider.emailSignUp(email: email, password: password, name: name, registerType: register) { (result) in
+            switch result {
+            case .success:
+                CustomProgressHUD.showSuccess(text: "CAtFE 註冊成功")
+            case .failure:
+                CustomProgressHUD.showSuccess(text: "CAtFE 註冊失敗")
             }
         }
     }

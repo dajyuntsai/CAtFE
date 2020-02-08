@@ -137,7 +137,7 @@
                     <navigationItem key="navigationItem" title="留言板" id="QRx-kk-fSW">
                         <barButtonItem key="rightBarButtonItem" title="我要發文" style="plain" id="a4n-ah-hXy">
                             <connections>
-                                <action selector="AddPostBtn:" destination="WUU-wD-1JS" id="ZYQ-7X-y6q"/>
+                                <action selector="addPostBtn:" destination="WUU-wD-1JS" id="ZYQ-7X-y6q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

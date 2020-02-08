@@ -46,7 +46,7 @@ protocol CAtFERequest {
 
 extension CAtFERequest {
     func makeRequest() -> URLRequest {
-        let urlString = Bundle.ValueForString(key: CAtFEConstant.urlKey) + endPoint
+        let urlString = Bundle.valueForString(key: CAtFEConstant.urlKey) + endPoint
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers

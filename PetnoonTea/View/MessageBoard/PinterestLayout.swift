@@ -99,8 +99,9 @@ class PinterestLayoutAttributes: UICollectionViewLayoutAttributes {
     var photoHeight: CGFloat = 0.0
     
     override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = super.copy(with: zone) as! PinterestLayoutAttributes
-        copy.photoHeight = photoHeight
+        if let copy = super.copy(with: zone) as? PinterestLayoutAttributes {
+            copy.photoHeight = photoHeight
+        }
         return copy
     }
     
@@ -113,4 +114,3 @@ class PinterestLayoutAttributes: UICollectionViewLayoutAttributes {
         return false
     }
 }
-

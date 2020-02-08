@@ -7,21 +7,21 @@
 //
 
 import Foundation
-// TODO: 補寫PUT & POST 擋店家名稱重複的邏輯
+
 enum CafeRequest: CAtFERequest {
     case cafeList // read
     case updateCafeList(Int, Cafe) // update
     case createCafeList(Cafe) // create
     case deleteCafeList(Int, Cafe) // delete
     
-    var headers: [String : String] {
+    var headers: [String: String] {
         switch self {
         case .cafeList:
             return [:]
         case .updateCafeList:
-            return ["Content-Type":"application/json"]
+            return ["Content-Type": "application/json"]
         case .createCafeList:
-            return ["Content-Type":"application/json"]
+            return ["Content-Type": "application/json"]
         case .deleteCafeList:
             return [:]
         }
@@ -100,7 +100,7 @@ class CafeManager {
     }
     
     func updateCafeInList(cafeId: Int, cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
-        HTTPClient.shared.request(CafeRequest.updateCafeList(cafeId, cafeObj)) { [weak self] result in
+        HTTPClient.shared.request(CafeRequest.updateCafeList(cafeId, cafeObj)) { result in
             switch result {
             case .success(let data):
                 do {
@@ -116,7 +116,7 @@ class CafeManager {
     }
     
     func createCafeInList(cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
-        HTTPClient.shared.request(CafeRequest.createCafeList(cafeObj)) { [weak self] result in
+        HTTPClient.shared.request(CafeRequest.createCafeList(cafeObj)) { result in
             switch result {
             case .success(let data):
                 do {
@@ -132,7 +132,7 @@ class CafeManager {
     }
     
     func deleteCafeInList(cafeId: Int, cafeObj: Cafe, completion: @escaping (Result<CafeModel>) -> Void) {
-        HTTPClient.shared.request(CafeRequest.deleteCafeList(cafeId, cafeObj)) { [weak self] result in
+        HTTPClient.shared.request(CafeRequest.deleteCafeList(cafeId, cafeObj)) { result in
             switch result {
             case .success(let data):
                 do {

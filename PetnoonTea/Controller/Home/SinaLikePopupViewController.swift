@@ -90,7 +90,8 @@ extension SinaLikePopupViewController: UICollectionViewDataSource {
         return petList.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopupCollectionViewCell.identifier, for: indexPath) as? PopupCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -106,11 +107,15 @@ extension SinaLikePopupViewController: UICollectionViewDelegateFlowLayout {
         setFallAnimate()
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         setSpringAnimate(cell: cell, indexPath: indexPath)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         flowLayout.sectionInset = UIEdgeInsets(top: 32, left: 16, bottom: 32, right: 16)
         return CGSize(width: width * 0.3, height: 120)
     }

@@ -96,7 +96,7 @@ class HomeViewController: UIViewController {
                 "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟",
                 preferredStyle: .alert)
             let okAction = UIAlertAction(
-                title: "確認", style: .default, handler:nil)
+                title: "確認", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         }
@@ -120,7 +120,15 @@ class HomeViewController: UIViewController {
     
     func updateCafeData() {
         let cafeId = 4
-        let cafe = Cafe(id: cafeId, name: "貓下去敦北俱樂部", tel: "02-27177596", address: "台北市松山區敦化北路218號", petType: "貓", latitude: 25.0587, longitude: 121.549, website: "", facebook: "", notes: "")
+        let cafe = Cafe(id: cafeId,
+                        name: "貓下去敦北俱樂部",
+                        tel: "02-27177596",
+                        address: "台北市松山區敦化北路218號",
+                        petType: "貓",
+                        latitude: 25.0587, longitude: 121.549,
+                        website: "",
+                        facebook: "",
+                        notes: "")
         cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
             switch result {
             case .success:
@@ -132,7 +140,15 @@ class HomeViewController: UIViewController {
     }
     
     func createCafeData() {
-        let cafe = Cafe(id: 111, name: "test", tel: "test", address: "test", petType: "test", latitude: 25.058734, longitude: 121.548898, website: "", facebook: "", notes: "")
+        let cafe = Cafe(id: 111,
+                        name: "test",
+                        tel: "test",
+                        address: "test",
+                        petType: "test",
+                        latitude: 25.058734, longitude: 121.548898,
+                        website: "",
+                        facebook: "",
+                        notes: "")
         cafeManager.createCafeInList(cafeObj: cafe) { (result) in
             switch result {
             case .success:
@@ -144,7 +160,15 @@ class HomeViewController: UIViewController {
     }
     
     func deleteCafeData() {
-        let cafe = Cafe(id: 5, name: "test", tel: "test", address: "test", petType: "test", latitude: 25.058734, longitude: 121.548898, website: "", facebook: "", notes: "")
+        let cafe = Cafe(id: 5,
+                        name: "test",
+                        tel: "test",
+                        address: "test",
+                        petType: "test",
+                        latitude: 25.058734, longitude: 121.548898,
+                        website: "",
+                        facebook: "",
+                        notes: "")
         cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
             switch result {
             case .success:
@@ -187,7 +211,8 @@ extension HomeViewController: UICollectionViewDataSource {
         return filterList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCollectionViewCell", for: indexPath) as? HomeFilterCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -198,7 +223,9 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 40)
     }
 }
@@ -236,11 +263,9 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         subTitle.text = view.annotation?.subtitle ?? ""
         subTitle.font = UIFont(name: "Helvetica-Neue", size: 14)
         
-        for cafe in cafeList {
-            if view.annotation?.title == cafe.name {
-                self.phone = cafe.tel
-                self.selectedDest = cafe.address
-            }
+        for cafe in cafeList where view.annotation?.title == cafe.name {
+            self.phone = cafe.tel
+            self.selectedDest = cafe.address
         }
         
         let infoBtn = UIButton(type: .detailDisclosure)
@@ -271,9 +296,9 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func guideToCafe(destination: String) {
-        geoCoder.geocodeAddressString("台北市信義區基隆路一段178號") { (place: [CLPlacemark]?, error) -> Void in
+        geoCoder.geocodeAddressString("台北市信義區基隆路一段178號") { (place: [CLPlacemark]?, _) -> Void in
             let startLocation = place?.first
-            self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, error) -> Void in
+            self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, _) -> Void in
                 let destination = place?.first
                 self.beginNav(startLocation!, endPLCL: destination!)
             }
@@ -294,7 +319,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let mapItems: [MKMapItem] = [startItem, endItem]
         
         // 设置导航地图启动项参数字典
-        let dic: [String : AnyObject] = [
+        let dic: [String: AnyObject] = [
             // 导航模式:驾驶
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving as AnyObject,
             // 地图样式：标准样式

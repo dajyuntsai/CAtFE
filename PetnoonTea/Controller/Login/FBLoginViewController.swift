@@ -29,7 +29,7 @@ class FBLoginViewController: BaseViewController {
 
     @IBAction func fbLogin(_ sender: Any) {
         provider.loginWithFaceBook(from: self) { (result) in
-            switch result{
+            switch result {
             case .success(let token):
                 print("=======", token)
                 self.fbLoginSuccess()

@@ -52,7 +52,8 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
 
     // MARK: - UITabBarControllerDelegate
 
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          shouldSelect viewController: UIViewController) -> Bool {
 
         guard let navVC = viewController as? UINavigationController,
               navVC.viewControllers.first is MemberViewController

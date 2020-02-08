@@ -16,9 +16,11 @@ target 'PetnoonTea' do
     # Pods for testing
   end
 
-  pod 'GooglePlaces'
+  pod 'SwiftLint'
   pod 'Kingfisher'
   pod 'JGProgressHUD'
+  pod 'IQKeyboardManagerSwift'
+  pod 'KeychainAccess'
   
   pod 'Bolts'
   pod 'FBSDKCoreKit'

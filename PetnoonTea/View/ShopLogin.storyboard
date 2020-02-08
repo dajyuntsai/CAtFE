@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bV2-Am-jgf">
-                                <rect key="frame" x="36" y="60" width="342" height="34"/>
+                                <rect key="frame" x="36" y="107" width="342" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKL-hO-TDg">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="34"/>
@@ -88,7 +88,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hc9-A5-0ac">
-                                <rect key="frame" x="36" y="110" width="342" height="34"/>
+                                <rect key="frame" x="36" y="157" width="342" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejQ-FM-hPj">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="34"/>
@@ -104,7 +104,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-Zy-bRf">
-                                <rect key="frame" x="36" y="160" width="342" height="34"/>
+                                <rect key="frame" x="36" y="207" width="342" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grT-0E-zhN">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="34"/>
@@ -120,7 +120,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-cd-8Yd">
-                                <rect key="frame" x="36" y="210" width="342" height="34"/>
+                                <rect key="frame" x="36" y="257" width="342" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1w-2m-91l">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="34"/>
@@ -136,7 +136,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bX2-i1-qID">
-                                <rect key="frame" x="36" y="260" width="107" height="31"/>
+                                <rect key="frame" x="36" y="307" width="107" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QU8-1a-0cv">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="31"/>
@@ -147,13 +147,13 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gfs-t4-Jgm">
                                         <rect key="frame" x="58" y="0.0" width="51" height="31"/>
                                         <connections>
-                                            <action selector="switchBtn:" destination="jA2-If-x84" eventType="valueChanged" id="3ov-y2-jEY"/>
+                                            <action selector="notificationBtn:" destination="jA2-If-x84" eventType="valueChanged" id="3ov-y2-jEY"/>
                                         </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acO-YY-xSs">
-                                <rect key="frame" x="107" y="341" width="200" height="50"/>
+                                <rect key="frame" x="107" y="388" width="200" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="NkM-EK-hCg"/>
@@ -171,9 +171,29 @@
                                     <action selector="signUpBtn:" destination="jA2-If-x84" eventType="touchUpInside" id="CyO-E3-Tfj"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MrO-rn-0va">
+                                <rect key="frame" x="36" y="60" width="107" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqp-eM-8Fi">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="TextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KvK-pn-vLB">
+                                        <rect key="frame" x="58" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="notificationBtn:" destination="jA2-If-x84" eventType="valueChanged" id="JoE-J0-nLS"/>
+                                            <action selector="roleBtn:" destination="jA2-If-x84" eventType="valueChanged" id="7Xd-xn-UgL"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="bV2-Am-jgf" firstAttribute="top" secondItem="MrO-rn-0va" secondAttribute="bottom" constant="16" id="1C5-5y-ZkW"/>
+                            <constraint firstItem="MrO-rn-0va" firstAttribute="top" secondItem="gNl-pY-uh9" secondAttribute="top" constant="16" id="3yN-lJ-RiT"/>
                             <constraint firstItem="Lc8-Zy-bRf" firstAttribute="top" secondItem="Hc9-A5-0ac" secondAttribute="bottom" constant="16" id="4NT-M7-msx"/>
                             <constraint firstItem="bX2-i1-qID" firstAttribute="top" secondItem="gTe-cd-8Yd" secondAttribute="bottom" constant="16" id="7nv-Nj-unQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lc8-Zy-bRf" secondAttribute="trailing" constant="16" id="D0L-9s-4D3"/>
@@ -182,7 +202,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bV2-Am-jgf" secondAttribute="trailing" constant="16" id="L3N-L5-JqP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gTe-cd-8Yd" secondAttribute="trailing" constant="16" id="S4s-iv-4cG"/>
                             <constraint firstItem="bV2-Am-jgf" firstAttribute="leading" secondItem="Q5r-kL-xTz" secondAttribute="leadingMargin" constant="16" id="Tv8-re-n63"/>
-                            <constraint firstItem="bV2-Am-jgf" firstAttribute="top" secondItem="Q5r-kL-xTz" secondAttribute="topMargin" constant="16" id="Z1w-oR-ntS"/>
+                            <constraint firstItem="MrO-rn-0va" firstAttribute="leading" secondItem="Q5r-kL-xTz" secondAttribute="leadingMargin" constant="16" id="W53-s4-c2V"/>
                             <constraint firstItem="acO-YY-xSs" firstAttribute="centerX" secondItem="Q5r-kL-xTz" secondAttribute="centerX" id="Zdi-6v-pGj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hc9-A5-0ac" secondAttribute="trailing" constant="16" id="cPy-Cr-4ax"/>
                             <constraint firstItem="bX2-i1-qID" firstAttribute="leading" secondItem="Q5r-kL-xTz" secondAttribute="leadingMargin" constant="16" id="dhE-AF-mLv"/>
@@ -194,6 +214,7 @@
                         <viewLayoutGuide key="safeArea" id="gNl-pY-uh9"/>
                     </view>
                     <connections>
+                        <outlet property="notificationBtn" destination="gfs-t4-Jgm" id="5Sc-51-Um7"/>
                         <outletCollection property="registerLabel" destination="vKL-hO-TDg" collectionClass="NSMutableArray" id="CQD-il-RsU"/>
                         <outletCollection property="registerTextField" destination="BiQ-1F-91R" collectionClass="NSMutableArray" id="eqI-xc-n2c"/>
                         <outletCollection property="registerLabel" destination="ejQ-FM-hPj" collectionClass="NSMutableArray" id="HRg-EX-Hf9"/>
@@ -203,6 +224,7 @@
                         <outletCollection property="registerTextField" destination="LUh-Bv-LVy" collectionClass="NSMutableArray" id="t6X-uk-jGb"/>
                         <outletCollection property="registerTextField" destination="AFx-eJ-Y49" collectionClass="NSMutableArray" id="ODD-OB-Qqs"/>
                         <outletCollection property="registerTextField" destination="7fI-MB-qya" collectionClass="NSMutableArray" id="qXP-6c-ZFO"/>
+                        <outletCollection property="registerLabel" destination="wqp-eM-8Fi" collectionClass="NSMutableArray" id="bEE-1u-Lcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlQ-4n-kBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
