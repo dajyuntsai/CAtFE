@@ -7,7 +7,7 @@
 //
 
 import FBSDKLoginKit
-import Firebase
+import FBSDKCoreKit
 
 typealias FacebookResponse = (Result<String>) -> Void
 
@@ -41,20 +41,26 @@ class UserProvider {
                     CustomProgressHUD.showFailure(text: fbError.rawValue)
                     return completion(Result.failure(fbError))
                 }
-                
-                UserDefaults.standard.set(token, forKey: "FBtoken")
+                self.getDetails(fbToken: token)
                 completion(Result.success(token))
-                
-                let credential = FacebookAuthProvider.credential(withAccessToken: token)
-
-                Auth.auth().signIn(with: credential, completion: { (user, error) in
-                    if let error = error {
-                        print("Login error: \(error.localizedDescription)")
-                        return
-                    }
-                })
             }
         })
+    }
+
+    func getDetails(fbToken: String) {
+        let connection = GraphRequestConnection()
+        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "email, name"])) { (httpResponse, result, error) in
+            if error != nil {
+                NSLog(error.debugDescription)
+                return
+            }
+            if let result = result as? [String: String],
+                let email: String = result["email"],
+                let name: String = result["name"] {
+
+            }
+        }
+        connection.start()
     }
 
     func emailSignUp(email: String, password: String, name: String, registerType: String,
@@ -93,10 +99,6 @@ class UserProvider {
                 completion(Result.failure(error))
             }
         }
-    }
-
-    func fbSignIn() {
-
     }
 
     func appleSignIn() {
