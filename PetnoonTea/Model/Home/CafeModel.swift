@@ -21,6 +21,7 @@ struct Cafe: Codable {
     var petType: String
     var latitude: Double
     var longitude: Double
+    var wifi: Bool
     var website: String
     var facebook: String
     var notes: String
