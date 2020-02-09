@@ -546,7 +546,7 @@
 				BE6620FA23D3FE450053FD07 /* Frameworks */,
 				BE6620FB23D3FE450053FD07 /* Resources */,
 				54FF52AAE3377ABBE062785B /* [CP] Embed Pods Frameworks */,
-				BE52590E23EE783700F8AC00 /* ShellScript */,
+				BE725ACD23F041F7006B2DA7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -738,7 +738,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetnoonTea-PetnoonTeaUITests/Pods-PetnoonTea-PetnoonTeaUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BE52590E23EE783700F8AC00 /* ShellScript */ = {
+		BE725ACD23F041F7006B2DA7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
