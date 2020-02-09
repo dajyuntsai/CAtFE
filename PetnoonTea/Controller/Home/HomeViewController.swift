@@ -372,7 +372,9 @@ extension HomeViewController: PetFilterDelegate {
     }
 
     func createNewCafe(_ cell: HomeFilterCollectionViewCell) {
-
+        let presentVC = UIStoryboard.createCafe.instantiateViewController(identifier: CreateCafeViewController.identifier) as? CreateCafeViewController
+        presentVC?.modalPresentationStyle = .formSheet
+        self.present(presentVC!, animated: true, completion: nil)
     }
 
     func wifiFilterClick(locations: [Cafe]) {

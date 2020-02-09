@@ -1,17 +1,18 @@
 //
-//  CreateDetailTableViewCell.swift
+//  CreateDetailTextTableViewCell.swift
 //  PetnoonTea
 //
-//  Created by Ninn on 2020/2/6.
+//  Created by Ninn on 2020/2/9.
 //  Copyright © 2020 Ninn. All rights reserved.
 //
 
 import UIKit
 
-class CreateDetailTableViewCell: UITableViewCell {
-    
-    static let boolQuestion = "CreateDetailBoolTableViewCell"
+class CreateDetailTextTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var inputTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +23,5 @@ class CreateDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

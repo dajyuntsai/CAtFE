@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,17 +15,89 @@
                     <view key="view" contentMode="scaleToFill" id="dUW-ff-pc9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X22-cz-xOc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemberInfoTableViewCell" rowHeight="150" id="GU3-3M-s67" customClass="MemberInfoTableViewCell" customModule="PetnoonTea" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GU3-3M-s67" id="7gl-nV-oQX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chi Ning Wang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3s-fy-nqp">
+                                                    <rect key="frame" x="36" y="27" width="205" height="39"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                    <color key="textColor" name="TextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="JpP-D8-FBH">
+                                                    <rect key="frame" x="278" y="27" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="MAW-jh-oB1"/>
+                                                        <constraint firstAttribute="height" constant="100" id="poS-dL-5fh"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="積分：10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-8y-suQ">
+                                                    <rect key="frame" x="36" y="82" width="70" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="TextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追蹤：10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRV-re-Wp1">
+                                                    <rect key="frame" x="122" y="82" width="70" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="TextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sRV-re-Wp1" firstAttribute="top" secondItem="J3s-fy-nqp" secondAttribute="bottom" constant="16" id="3bj-Nx-MuU"/>
+                                                <constraint firstItem="J3s-fy-nqp" firstAttribute="top" secondItem="7gl-nV-oQX" secondAttribute="topMargin" constant="16" id="8fQ-lF-SPk"/>
+                                                <constraint firstItem="J3s-fy-nqp" firstAttribute="leading" secondItem="7gl-nV-oQX" secondAttribute="leadingMargin" constant="16" id="KSp-Cs-dCd"/>
+                                                <constraint firstItem="JpP-D8-FBH" firstAttribute="top" secondItem="7gl-nV-oQX" secondAttribute="topMargin" constant="16" id="Ndm-oz-Hm8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JpP-D8-FBH" secondAttribute="trailing" constant="16" id="bx2-5k-DaZ"/>
+                                                <constraint firstItem="sRV-re-Wp1" firstAttribute="leading" secondItem="iRI-8y-suQ" secondAttribute="trailing" constant="16" id="jHw-uN-XyP"/>
+                                                <constraint firstItem="iRI-8y-suQ" firstAttribute="top" secondItem="J3s-fy-nqp" secondAttribute="bottom" constant="16" id="qo6-q1-513"/>
+                                                <constraint firstItem="iRI-8y-suQ" firstAttribute="leading" secondItem="7gl-nV-oQX" secondAttribute="leadingMargin" constant="16" id="wek-LD-DPD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userFollowingLabel" destination="sRV-re-Wp1" id="Xhu-lY-gNS"/>
+                                            <outlet property="userImageView" destination="JpP-D8-FBH" id="mlR-Qe-uYy"/>
+                                            <outlet property="userNameLabel" destination="J3s-fy-nqp" id="KkE-FY-Fzd"/>
+                                            <outlet property="userPointLabel" destination="iRI-8y-suQ" id="Enf-Sg-1PO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Q1H-lS-Zs7" firstAttribute="bottom" secondItem="X22-cz-xOc" secondAttribute="bottom" id="LTK-gL-hJX"/>
+                            <constraint firstItem="X22-cz-xOc" firstAttribute="top" secondItem="Q1H-lS-Zs7" secondAttribute="top" id="U50-t0-eHN"/>
+                            <constraint firstItem="X22-cz-xOc" firstAttribute="leading" secondItem="Q1H-lS-Zs7" secondAttribute="leading" id="ffj-av-xQJ"/>
+                            <constraint firstItem="Q1H-lS-Zs7" firstAttribute="trailing" secondItem="X22-cz-xOc" secondAttribute="trailing" id="rxm-Xk-EJQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1H-lS-Zs7"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="palm" id="bIB-I6-Gjb"/>
+                    <connections>
+                        <outlet property="tableView" destination="X22-cz-xOc" id="nig-v1-E5t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d52-3p-FTj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="1467"/>
+            <point key="canvasLocation" x="1031.8840579710145" y="1466.5178571428571"/>
         </scene>
     </scenes>
     <resources>
         <image name="palm" width="30" height="30"/>
+        <image name="placeholder" width="987" height="777"/>
+        <namedColor name="TextColor">
+            <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

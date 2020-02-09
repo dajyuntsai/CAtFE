@@ -32,5 +32,8 @@ target 'PetnoonTea' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore’
+
+  # Pod for star rate
+  pod 'Cosmos'
   
 end

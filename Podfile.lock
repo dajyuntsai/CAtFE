@@ -170,6 +170,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - Cosmos (21.0.0)
   - FBSDKCoreKit (5.13.1):
     - FBSDKCoreKit/Basics (= 5.13.1)
     - FBSDKCoreKit/Core (= 5.13.1)
@@ -313,6 +314,7 @@ PODS:
 
 DEPENDENCIES:
   - Bolts
+  - Cosmos
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Analytics
@@ -332,6 +334,7 @@ SPEC REPOS:
     - abseil
     - Bolts
     - BoringSSL-GRPC
+    - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -364,6 +367,7 @@ SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
   FBSDKLoginKit: c7c6ffd9ca9ea45aee32361840af040ad8f6706a
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
@@ -392,6 +396,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: f9d73023d6580447dc6dc6d34431d2a2fd8c5253
+PODFILE CHECKSUM: 8f9447d200ed55f6f5ef72de3b6493de49649dca
 
 COCOAPODS: 1.8.4
