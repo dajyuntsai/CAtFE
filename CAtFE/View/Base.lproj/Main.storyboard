@@ -15,28 +15,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-Pc-3Or">
-                                <rect key="frame" x="57" y="702" width="300" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-Pc-3Or">
+                                <rect key="frame" x="57" y="582" width="300" height="200"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ju4-e2-McQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44N-0Y-RBd">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="8fY-fg-dV1"/>
+                                            <constraint firstAttribute="width" constant="300" id="PqC-pz-E1D"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="facebook"/>
-                                        <connections>
-                                            <action selector="fbLogin:" destination="6XN-VN-tti" eventType="touchUpInside" id="RGH-1q-K9V"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKw-6R-B20">
-                                        <rect key="frame" x="80" y="0.0" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="55" width="300" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="fsI-99-c2j"/>
+                                        </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaK-tH-wHy">
-                                        <rect key="frame" x="160" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="0.0" y="110" width="300" height="35"/>
                                         <color key="backgroundColor" red="0.58220970812182737" green="0.13761133830981137" blue="0.12274687641690474" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Pjh-uF-KWL"/>
+                                            <constraint firstAttribute="width" constant="300" id="nIz-zi-MRv"/>
                                         </constraints>
                                         <state key="normal" title="Guest">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,12 +44,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjR-MK-8sm">
-                                        <rect key="frame" x="240" y="0.0" width="60" height="60"/>
-                                        <color key="backgroundColor" red="0.28386534018822324" green="0.78111119923857864" blue="0.77125534233441595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="165" width="300" height="35"/>
+                                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="ACg-2q-CcE"/>
+                                            <constraint firstAttribute="width" constant="300" id="ArT-oe-1Zu"/>
                                         </constraints>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Login / Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -61,23 +59,23 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="78t-O8-ezu"/>
-                                    <constraint firstAttribute="height" constant="60" id="gEg-80-zge"/>
+                                    <constraint firstAttribute="height" constant="200" id="gEg-80-zge"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAtFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhH-qZ-tLS">
-                                <rect key="frame" x="162" y="622" width="90.5" height="30"/>
+                                <rect key="frame" x="162" y="502" width="90.5" height="30"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BURU" translatesAutoresizingMaskIntoConstraints="NO" id="rku-eh-GRI">
-                                <rect key="frame" x="0.0" y="74" width="414" height="548"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="428"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rku-eh-GRI" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="Amy-C2-cq9"/>
-                            <constraint firstItem="Q6M-9f-3bO" firstAttribute="bottom" secondItem="B3M-Pc-3Or" secondAttribute="bottom" constant="100" id="W7C-Cg-dMe"/>
+                            <constraint firstItem="Q6M-9f-3bO" firstAttribute="bottom" secondItem="B3M-Pc-3Or" secondAttribute="bottom" constant="80" id="W7C-Cg-dMe"/>
                             <constraint firstItem="OhH-qZ-tLS" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="Wrk-oG-Kg0"/>
                             <constraint firstItem="B3M-Pc-3Or" firstAttribute="top" secondItem="OhH-qZ-tLS" secondAttribute="bottom" constant="50" id="c3J-ef-nQo"/>
                             <constraint firstItem="rku-eh-GRI" firstAttribute="top" secondItem="Q6M-9f-3bO" secondAttribute="top" constant="30" id="eFA-vE-TsL"/>
@@ -90,6 +88,7 @@
                     </view>
                     <connections>
                         <outlet property="appleSignInView" destination="yKw-6R-B20" id="WBS-Ps-9WX"/>
+                        <outlet property="facebookLoginView" destination="44N-0Y-RBd" id="a79-jx-d3k"/>
                         <outlet property="guestBtn" destination="XaK-tH-wHy" id="3a4-LF-vzQ"/>
                         <outlet property="shopBtn" destination="wjR-MK-8sm" id="O0l-0S-CBm"/>
                     </connections>
@@ -101,6 +100,5 @@
     </scenes>
     <resources>
         <image name="BURU" width="743" height="908"/>
-        <image name="facebook" width="512" height="512"/>
     </resources>
 </document>

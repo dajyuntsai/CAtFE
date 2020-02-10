@@ -8,12 +8,17 @@
 
 import UIKit
 import AuthenticationServices
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LoginViewController: BaseViewController {
     
     @IBOutlet weak var guestBtn: UIButton!
     @IBOutlet weak var shopBtn: UIButton!
     @IBOutlet weak var appleSignInView: UIView!
+    @IBOutlet weak var facebookLoginView: UIView!
+
+    let userProvider = UserProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +27,38 @@ class LoginViewController: BaseViewController {
     }
     
     func initView() {
-        guestBtn.layer.cornerRadius = guestBtn.frame.width / 2
-        shopBtn.layer.cornerRadius = shopBtn.frame.width / 2
-        shopBtn.setImage(UIImage(named: "DOLA"), for: .normal)
+        guestBtn.layer.cornerRadius = 10
+        shopBtn.layer.cornerRadius = 10
+        appleSignInBtn()
+        facebookLoginBtn()
+    }
 
+    func appleSignInBtn() {
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(onAppleSignIn), for: .touchUpInside)
         authorizationButton.cornerRadius = 10
+        authorizationButton.translatesAutoresizingMaskIntoConstraints = false
         appleSignInView.addSubview(authorizationButton)
+        NSLayoutConstraint.activate([
+            authorizationButton.topAnchor.constraint(equalTo: appleSignInView.topAnchor, constant: 0),
+            authorizationButton.bottomAnchor.constraint(equalTo: appleSignInView.bottomAnchor, constant: 0),
+            authorizationButton.leadingAnchor.constraint(equalTo: appleSignInView.leadingAnchor, constant: 0),
+            authorizationButton.trailingAnchor.constraint(equalTo: appleSignInView.trailingAnchor, constant: 0)
+        ])
+    }
+
+    func facebookLoginBtn() {
+        let loginButton = FBLoginButton()
+        loginButton.delegate = self
+        loginButton.layer.cornerRadius = 30
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        facebookLoginView.addSubview(loginButton)
+        NSLayoutConstraint.activate([
+            loginButton.topAnchor.constraint(equalTo: facebookLoginView.topAnchor, constant: 0),
+            loginButton.bottomAnchor.constraint(equalTo: facebookLoginView.bottomAnchor, constant: 0),
+            loginButton.leadingAnchor.constraint(equalTo: facebookLoginView.leadingAnchor, constant: 0),
+            loginButton.trailingAnchor.constraint(equalTo: facebookLoginView.trailingAnchor, constant: 0)
+        ])
     }
 
     @IBAction func fbLogin(_ sender: Any) {
@@ -71,5 +100,35 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("=======Apple Sign In Error: \(error)")
+    }
+}
+
+extension LoginViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        userProvider.loginWithFaceBook(from: self) { (result) in
+            switch result {
+            case .success:
+                self.fbLoginSuccess()
+            case .failure( _):
+                CustomProgressHUD.showSuccess(text: "Facebook 登入失敗")
+            }
+        }
+    }
+
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+      // Do something when the user logout
+      print("Logged out")
+    }
+
+    func fbLoginSuccess() {
+        backToRoot()
+        CustomProgressHUD.showSuccess(text: "Facebook 登入成功")
+        let loginState = UserDefaults.standard
+        loginState.set(true, forKey: "loginState")
+        loginState.synchronize() // 資料即時存入，才不會有nil的問題
     }
 }
