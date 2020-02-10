@@ -39,20 +39,56 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-Av-UDv">
+                        <rect key="frame" x="252" y="0.0" width="30" height="44"/>
+                        <state key="normal" title="[]"/>
+                        <connections>
+                            <action selector="checkBoxBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MUc-DO-wPV"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公休" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-E0-pVC">
+                        <rect key="frame" x="290" y="0.0" width="35" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="TextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-74-twy">
+                        <rect key="frame" x="333" y="0.0" width="62" height="44"/>
+                        <state key="normal" title="全部套用">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="setAllBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LD3-46-RpM"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tNX-ew-eRE" firstAttribute="leading" secondItem="hHE-Zq-Usd" secondAttribute="trailing" constant="4" id="4yi-Y4-mud"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Eku-A2-8kH" secondAttribute="bottom" id="53p-fL-fvz"/>
+                    <constraint firstItem="U9Q-74-twy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6D8-GC-KbE"/>
+                    <constraint firstItem="U9Q-74-twy" firstAttribute="leading" secondItem="rxc-E0-pVC" secondAttribute="trailing" constant="8" id="7A0-9r-A4X"/>
                     <constraint firstItem="hHE-Zq-Usd" firstAttribute="leading" secondItem="Eku-A2-8kH" secondAttribute="trailing" constant="16" id="8S3-lP-tNj"/>
+                    <constraint firstItem="rxc-E0-pVC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SpB-4x-T5h"/>
                     <constraint firstItem="7eg-LM-Cdz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VbL-Nk-KfQ"/>
+                    <constraint firstItem="lUP-Av-UDv" firstAttribute="leading" secondItem="7eg-LM-Cdz" secondAttribute="trailing" constant="8" id="Yb1-Wg-q5f"/>
+                    <constraint firstAttribute="bottom" secondItem="rxc-E0-pVC" secondAttribute="bottom" id="byS-VA-cfR"/>
+                    <constraint firstAttribute="bottom" secondItem="U9Q-74-twy" secondAttribute="bottom" id="cO0-eo-yGu"/>
                     <constraint firstItem="hHE-Zq-Usd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lBp-g2-NmZ"/>
+                    <constraint firstItem="lUP-Av-UDv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qOx-jw-BFS"/>
                     <constraint firstItem="7eg-LM-Cdz" firstAttribute="leading" secondItem="tNX-ew-eRE" secondAttribute="trailing" constant="4" id="shN-Cs-Rim"/>
                     <constraint firstItem="tNX-ew-eRE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x4a-Je-6ea"/>
                     <constraint firstItem="Eku-A2-8kH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="xhb-32-kcO"/>
+                    <constraint firstItem="rxc-E0-pVC" firstAttribute="leading" secondItem="lUP-Av-UDv" secondAttribute="trailing" constant="8" id="xkt-de-Jdt"/>
+                    <constraint firstAttribute="bottom" secondItem="lUP-Av-UDv" secondAttribute="bottom" id="zoX-Lc-Pq7"/>
                     <constraint firstItem="Eku-A2-8kH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="zpg-2V-FyC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="endTimeTextField" destination="7eg-LM-Cdz" id="yaN-nv-uhm"/>
+                <outlet property="openTimeTextField" destination="hHE-Zq-Usd" id="9CI-fb-aNh"/>
+                <outlet property="titleLabel" destination="Eku-A2-8kH" id="soH-uU-gep"/>
+            </connections>
             <point key="canvasLocation" x="197.82608695652175" y="140.625"/>
         </tableViewCell>
     </objects>

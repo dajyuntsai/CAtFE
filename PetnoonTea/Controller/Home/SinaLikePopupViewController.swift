@@ -17,6 +17,7 @@ class SinaLikePopupViewController: BaseViewController {
     
     var selectedPet: ((String) -> Void)?
     var petList: [String] = ["貓", "狗", "其他", "全部"]
+    var iconList: [String] = ["cat", "bulldog", "chameleon", "cafe"]
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     
@@ -95,7 +96,7 @@ extension SinaLikePopupViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopupCollectionViewCell.identifier, for: indexPath) as? PopupCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.iconLabel.text = petList[indexPath.item]
+        cell.setData(title: petList[indexPath.item], icon: iconList[indexPath.row])
         return cell
     }
 }

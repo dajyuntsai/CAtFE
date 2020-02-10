@@ -32,5 +32,8 @@ class CreateDetailBoolTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func setData(title: String) {
+        descLabel.text = title
+    }
 }

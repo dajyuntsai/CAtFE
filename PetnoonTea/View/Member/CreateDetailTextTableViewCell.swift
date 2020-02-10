@@ -23,5 +23,8 @@ class CreateDetailTextTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func setData(title: String) {
+        titleLabel.text = title
+    }
 }

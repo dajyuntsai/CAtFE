@@ -42,6 +42,8 @@
 		BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */; };
 		BE66211823D3FE490053FD07 /* PetnoonTeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66211723D3FE490053FD07 /* PetnoonTeaTests.swift */; };
 		BE66212323D3FE490053FD07 /* PetnoonTeaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66212223D3FE490053FD07 /* PetnoonTeaUITests.swift */; };
+		BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */; };
+		BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */; };
 		BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */; };
 		BE9131C923E2EEC3004A669D /* RatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131C823E2EEC3004A669D /* RatedViewController.swift */; };
 		BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */; };
@@ -150,6 +152,8 @@
 		BE66211E23D3FE490053FD07 /* PetnoonTeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetnoonTeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66212223D3FE490053FD07 /* PetnoonTeaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetnoonTeaUITests.swift; sourceTree = "<group>"; };
 		BE66212423D3FE490053FD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailCheckBoxTableViewCell.swift; sourceTree = "<group>"; };
+		BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailCheckBoxTableViewCell.xib; sourceTree = "<group>"; };
 		BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopEventsViewController.swift; sourceTree = "<group>"; };
 		BE9131C823E2EEC3004A669D /* RatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedViewController.swift; sourceTree = "<group>"; };
 		BE9131CB23E2EF0F004A669D /* MessageBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				BEA99E0223EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift */,
 				BEA99E0323EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib */,
 				BEA99E0623EFFE0000F2CC69 /* MemberInfoTableViewCell.swift */,
+				BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */,
+				BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 				BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */,
 				BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */,
 				BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */,
+				BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */,
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
@@ -835,6 +842,7 @@
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
+				BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */,
 				BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */,
 				BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */,
 				BEA99E0423EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift in Sources */,

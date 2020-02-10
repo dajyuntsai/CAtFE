@@ -10,6 +10,14 @@ import UIKit
 
 class CreateDetailOpenTimeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var openTimeTextField: UITextField!
+    @IBOutlet weak var endTimeTextField: UITextField!
+    @IBAction func checkBoxBtn(_ sender: Any) {
+    }
+    @IBAction func setAllBtn(_ sender: Any) {
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +28,8 @@ class CreateDetailOpenTimeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func setData(title: String) {
+        titleLabel.text = title
+    }
 }

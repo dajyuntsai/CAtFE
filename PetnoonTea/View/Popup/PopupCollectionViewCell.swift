@@ -16,6 +16,11 @@ class PopupCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
+//        iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
+    }
+
+    func setData(title: String, icon: String) {
+        iconLabel.text = title
+        iconImageView.image = UIImage(named: icon)
     }
 }
