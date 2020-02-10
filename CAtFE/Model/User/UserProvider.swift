@@ -84,12 +84,29 @@ class UserProvider {
                         registerType: String,
                         avator: String,
                         completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.fbLogin(token, email, name, registerType, avator)) { (result) in
+        HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
             switch result {
             case .success:
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
+            }
+        }
+    }
+
+    func loginWithApple(token: String,
+                        email: String,
+                        name: String,
+                        registerType: String,
+                        avator: String,
+                        completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
+            switch result {
+            case .success:
+                completion(Result.success(()))
+            case .failure(let error):
+                completion(Result.failure(error))
+                print(error)
             }
         }
     }

@@ -16,25 +16,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-Pc-3Or">
-                                <rect key="frame" x="57" y="582" width="300" height="200"/>
+                                <rect key="frame" x="82" y="582" width="250" height="200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44N-0Y-RBd">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="PqC-pz-E1D"/>
+                                            <constraint firstAttribute="width" constant="250" id="PqC-pz-E1D"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKw-6R-B20">
-                                        <rect key="frame" x="0.0" y="55" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="55" width="250" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="fsI-99-c2j"/>
+                                            <constraint firstAttribute="width" constant="250" id="fsI-99-c2j"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaK-tH-wHy">
-                                        <rect key="frame" x="0.0" y="110" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="110" width="250" height="35"/>
                                         <color key="backgroundColor" red="0.58220970812182737" green="0.13761133830981137" blue="0.12274687641690474" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="nIz-zi-MRv"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="nIz-zi-MRv"/>
                                         </constraints>
                                         <state key="normal" title="Guest">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,10 +44,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjR-MK-8sm">
-                                        <rect key="frame" x="0.0" y="165" width="300" height="35"/>
+                                        <rect key="frame" x="0.0" y="165" width="250" height="35"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="ArT-oe-1Zu"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="ArT-oe-1Zu"/>
                                         </constraints>
                                         <state key="normal" title="Login / Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,7 +58,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="78t-O8-ezu"/>
+                                    <constraint firstAttribute="width" constant="250" id="78t-O8-ezu"/>
                                     <constraint firstAttribute="height" constant="200" id="gEg-80-zge"/>
                                 </constraints>
                             </stackView>

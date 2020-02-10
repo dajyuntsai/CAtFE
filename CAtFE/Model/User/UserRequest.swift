@@ -12,7 +12,7 @@ enum UserRequest: CAtFERequest {
     case userList
     case register(String, String, String, String)
     case signIn(String, String, String)
-    case fbLogin(String, String, String, String, String)
+    case loginWithAppleAndFB(String, String, String, String, String)
     
     var headers: [String: String] {
         switch self {
@@ -22,8 +22,8 @@ enum UserRequest: CAtFERequest {
             return ["Content-Type": "application/json"]
         case .signIn:
             return ["Content-Type": "application/json"]
-        case .fbLogin(let fbToken, _, _, _, _):
-            return ["Content-Type": "application/json", "Authorization": "\(fbToken)"]
+        case .loginWithAppleAndFB:
+            return ["Content-Type": "application/json"]
         }
     }
     
@@ -46,7 +46,7 @@ enum UserRequest: CAtFERequest {
                 "registerType": registerType
             ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .fbLogin(let token, let email, let name, let registerType, let avatar):
+        case .loginWithAppleAndFB(let token, let email, let name, let registerType, let avatar):
             let dict = [
                 "email": email,
                 "name": name,
@@ -66,7 +66,7 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .signIn:
             return HTTPMethod.POST.rawValue
-        case .fbLogin:
+        case .loginWithAppleAndFB:
             return HTTPMethod.PATCH.rawValue
         }
     }
@@ -79,7 +79,7 @@ enum UserRequest: CAtFERequest {
             return "/users/"
         case .signIn:
             return "/users/sessions"
-        case .fbLogin:
+        case .loginWithAppleAndFB:
             return "/users/"
         }
     }

@@ -50,7 +50,7 @@ class LoginViewController: BaseViewController {
     func facebookLoginBtn() {
         let loginButton = FBLoginButton()
         loginButton.delegate = self
-        loginButton.layer.cornerRadius = 30
+        loginButton.layer.cornerRadius = 10
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         facebookLoginView.addSubview(loginButton)
         NSLayoutConstraint.activate([
@@ -59,12 +59,6 @@ class LoginViewController: BaseViewController {
             loginButton.leadingAnchor.constraint(equalTo: facebookLoginView.leadingAnchor, constant: 0),
             loginButton.trailingAnchor.constraint(equalTo: facebookLoginView.trailingAnchor, constant: 0)
         ])
-    }
-
-    @IBAction func fbLogin(_ sender: Any) {
-        let presentVC = UIStoryboard.fbLogin.instantiateViewController(identifier: FBLoginViewController.identifier) as? FBLoginViewController
-        presentVC?.modalPresentationStyle = .overFullScreen
-        self.present(presentVC!, animated: false, completion: nil)
     }
     
     @IBAction func guestLogin(_ sender: Any) {
@@ -89,13 +83,30 @@ class LoginViewController: BaseViewController {
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        guard let idToken = appleIDCredential.identityToken else { return }
+
         let userIdentifier = appleIDCredential.user
-        let fullName = appleIDCredential.fullName
-        let email = appleIDCredential.email
-            let token = appleIDCredential.identityToken
-        print("User id is \(userIdentifier) \n token is \(String(describing: token)) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))") }
-        backToRoot()
+        let givenName = appleIDCredential.fullName?.givenName ?? "Apple Sign in: No givenName"
+        let familyName = appleIDCredential.fullName?.familyName ?? "Apple Sign in: No familyName"
+        let fullName = givenName +  " " + familyName
+        let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
+        let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"
+
+        userProvider.loginWithApple(token: appleToken,
+                                    email: email,
+                                    name: fullName,
+                                    registerType: "apple",
+                                    avator: "") { (result) in
+            switch result {
+            case .success:
+                self.appleLoginSuccess()
+                self.backToRoot()
+            case .failure(let error):
+                CustomProgressHUD.showFailure(text: "Apple Sign In 登入失敗")
+                print(error)
+            }
+        }
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
@@ -127,6 +138,14 @@ extension LoginViewController: LoginButtonDelegate {
     func fbLoginSuccess() {
         backToRoot()
         CustomProgressHUD.showSuccess(text: "Facebook 登入成功")
+        let loginState = UserDefaults.standard
+        loginState.set(true, forKey: "loginState")
+        loginState.synchronize() // 資料即時存入，才不會有nil的問題
+    }
+
+    func appleLoginSuccess() {
+        backToRoot()
+        CustomProgressHUD.showSuccess(text: "Apple Sign In 登入成功")
         let loginState = UserDefaults.standard
         loginState.set(true, forKey: "loginState")
         loginState.synchronize() // 資料即時存入，才不會有nil的問題

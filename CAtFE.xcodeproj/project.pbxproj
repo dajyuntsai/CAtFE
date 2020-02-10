@@ -74,7 +74,6 @@
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
-		BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */; };
 		BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E023E2328400660AEB /* BaseViewController.swift */; };
 		BEE181E323E232B900660AEB /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E223E232B900660AEB /* UserProvider.swift */; };
 		BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181E423E232C300660AEB /* HomeViewController.swift */; };
@@ -186,7 +185,6 @@
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
-		BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181E023E2328400660AEB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BEE181E223E232B900660AEB /* UserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		BEE181E423E232C300660AEB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -429,7 +427,6 @@
 				BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */,
 				BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */,
 				BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */,
-				BEE181DC23E21F3300660AEB /* FBLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -835,7 +832,6 @@
 				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
 				BE9131D723E5E387004A669D /* Post.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
-				BEE181DD23E21F3300660AEB /* FBLoginViewController.swift in Sources */,
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
 				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
 				BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */,
