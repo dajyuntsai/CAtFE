@@ -1,18 +1,18 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'PetnoonTea' do
+target 'CAtFE' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for PetnoonTea
+  # Pods for CAtFE
 
-  target 'PetnoonTeaTests' do
+  target 'CAtFETests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'PetnoonTeaUITests' do
+  target 'CAtFEUITests' do
     # Pods for testing
   end
 
