@@ -10,14 +10,14 @@
         <!--Tabbar Controller-->
         <scene sceneID="KBT-Yc-V0b">
             <objects>
-                <tabBarController storyboardIdentifier="TabbarController" automaticallyAdjustsScrollViewInsets="NO" id="SsS-j5-yJZ" customClass="TabbarController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabbarController" automaticallyAdjustsScrollViewInsets="NO" id="SsS-j5-yJZ" customClass="TabbarController" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1dG-1w-Txf">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="MainColor"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="MainColor"/>
                     </tabBar>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YjQ-cS-omk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -27,7 +27,7 @@
     </scenes>
     <resources>
         <namedColor name="MainColor">
-            <color red="0.83326062817258884" green="0.52586634394533849" blue="0.1530044198378889" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.76201618020304562" green="0.60958063289820208" blue="0.28694455562649868" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

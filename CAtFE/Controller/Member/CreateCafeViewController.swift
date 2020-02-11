@@ -23,6 +23,7 @@ struct CellContent {
 
 class CreateCafeViewController: BaseViewController {
 
+    let cafeManager = CafeManager()
     let contents: [CellContent] = [
         CellContent(type: .text, title: "店名（必填）"),
         CellContent(type: .text, title: "店家電話（必填）"),
@@ -75,6 +76,24 @@ class CreateCafeViewController: BaseViewController {
 
     func sendCafeData() {
         // TODO: Upload to api
+        let cafe = Cafe(id: 111,
+                        name: "test",
+                        tel: "test",
+                        address: "test",
+                        petType: "test",
+                        latitude: 25.058734, longitude: 121.548898,
+                        wifi: false,
+                        website: "",
+                        facebook: "",
+                        notes: "")
+        cafeManager.createCafeInList(cafeObj: cafe) { (result) in
+            switch result {
+            case .success:
+                print("新增成功")
+            case .failure(let error):
+                print("=======create", error)
+            }
+        }
     }
 }
 

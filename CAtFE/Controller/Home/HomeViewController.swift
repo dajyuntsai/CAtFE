@@ -10,11 +10,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
+protocol HandleMapSearch: AnyObject {
+    func dropPinZoomIn(placemark: MKPlacemark)
+}
+
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var createCafeBtnView: UIView!
+
+    var resultSearchController: UISearchController?
     private lazy var geoCoder: CLGeocoder = {
         return CLGeocoder()
     }()
@@ -23,24 +29,34 @@ class HomeViewController: UIViewController {
     let cafeManager = CafeManager()
     var phone: String?
     var selectedDest: String?
+    var selectedPin: MKPlacemark?
     var cafeList: [Cafe] = [] {
         didSet {
             self.createAnnotations(locations: cafeList)
         }
     }
     
-    let filterList = ["離我最近", "寵物篩選", "新增店家", "Wifi"]
-    
+    let filterList = ["離我最近", "寵物篩選", "Wifi"]
+    let iconList = ["", "filter", ""]
+
+    @IBAction func backToUserLocation(_ sender: Any) {
+        mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+    }
+
+    @IBAction func createCafeBtn(_ sender: Any) {
+        createNewCafe()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpTabBarItem()
         initMapView()
+        setSearchBar()
         setUpCollectionView()
         getCafeData()
         
 //        updateCafeData()
-//        createCafeData()
 //        deleteCafeData()
     }
     
@@ -76,6 +92,24 @@ class HomeViewController: UIViewController {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
+
+        createCafeBtnView.layer.cornerRadius = createCafeBtnView.frame.width / 2
+    }
+
+    func setSearchBar() {
+        let locationSearchTable = UIStoryboard.home.instantiateViewController(identifier: LocationSearchTable.identifier) as? LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        locationSearchTable!.mapView = mapView
+        locationSearchTable?.handleMapSearchDelegate = self
+
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.searchController = resultSearchController
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
     }
     
     func setUpLocationAuthorization() {
@@ -140,27 +174,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func createCafeData() {
-        let cafe = Cafe(id: 111,
-                        name: "test",
-                        tel: "test",
-                        address: "test",
-                        petType: "test",
-                        latitude: 25.058734, longitude: 121.548898,
-                        wifi: false,
-                        website: "",
-                        facebook: "",
-                        notes: "")
-        cafeManager.createCafeInList(cafeObj: cafe) { (result) in
-            switch result {
-            case .success:
-                print("新增成功")
-            case .failure(let error):
-                print("=======create", error)
-            }
-        }
-    }
-    
     func deleteCafeData() {
         let cafe = Cafe(id: 5,
                         name: "test",
@@ -192,6 +205,12 @@ class HomeViewController: UIViewController {
             mapView.addAnnotation(annotations)
         }
     }
+
+    func createNewCafe() {
+        let presentVC = UIStoryboard.createCafe.instantiateViewController(identifier: CreateCafeViewController.identifier) as? CreateCafeViewController
+        presentVC?.modalPresentationStyle = .formSheet
+        self.present(presentVC!, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -209,7 +228,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.delegate = self
-        cell.setData(title: filterList[indexPath.row])
+        cell.setData(title: filterList[indexPath.item], icon: iconList[indexPath.item])
         return cell
     }
 }
@@ -226,8 +245,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 印出目前所在位置座標
         let currentLocation: CLLocation = locations[0] as CLLocation
-        let nowLocation = CLLocationCoordinate2D(latitude: 25.058734, longitude: 121.548898)
-//            currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude) // TODO: 用手機build再改回來
+        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
@@ -286,7 +304,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func callOutToCafe(phoneNumber: String) {
-        if let url = URL(string: "tel://0981110200"),
+        if let url = URL(string: "tel://\(phoneNumber)"),
         UIApplication.shared.canOpenURL(url) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -333,8 +351,6 @@ extension HomeViewController: PetFilterDelegate {
             nearestCafe(cell)
         case 1:
             petFilterClick(cell)
-        case 2:
-            createNewCafe(cell)
         default:
             wifiFilterClick(locations: cafeList)
         }
@@ -372,15 +388,29 @@ extension HomeViewController: PetFilterDelegate {
         createAnnotations(locations: newPins)
     }
 
-    func createNewCafe(_ cell: HomeFilterCollectionViewCell) {
-        let presentVC = UIStoryboard.createCafe.instantiateViewController(identifier: CreateCafeViewController.identifier) as? CreateCafeViewController
-        presentVC?.modalPresentationStyle = .formSheet
-        self.present(presentVC!, animated: true, completion: nil)
-    }
-
     func wifiFilterClick(locations: [Cafe]) {
         var newPins: [Cafe] = []
         newPins = locations.filter({ $0.wifi == true})
         createAnnotations(locations: newPins)
+    }
+}
+
+extension HomeViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        // cache the pin
+        selectedPin = placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+        let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
 }
