@@ -256,6 +256,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let subTitle = UILabel()
+        subTitle.numberOfLines = 0
         subTitle.text = view.annotation?.subtitle ?? ""
         subTitle.font = UIFont(name: "Helvetica-Neue", size: 14)
         

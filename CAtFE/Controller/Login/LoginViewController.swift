@@ -50,14 +50,14 @@ class LoginViewController: BaseViewController {
     func facebookLoginBtn() {
         let loginButton = FBLoginButton()
         loginButton.delegate = self
-        loginButton.layer.cornerRadius = 10
+        facebookLoginView.layer.cornerRadius = 10
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         facebookLoginView.addSubview(loginButton)
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: facebookLoginView.topAnchor, constant: 0),
             loginButton.bottomAnchor.constraint(equalTo: facebookLoginView.bottomAnchor, constant: 0),
-            loginButton.leadingAnchor.constraint(equalTo: facebookLoginView.leadingAnchor, constant: 0),
-            loginButton.trailingAnchor.constraint(equalTo: facebookLoginView.trailingAnchor, constant: 0)
+            loginButton.leadingAnchor.constraint(equalTo: facebookLoginView.leadingAnchor, constant: 10),
+            loginButton.trailingAnchor.constraint(equalTo: facebookLoginView.trailingAnchor, constant: -10)
         ])
     }
     
@@ -85,7 +85,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         guard let idToken = appleIDCredential.identityToken else { return }
-
         let userIdentifier = appleIDCredential.user
         let givenName = appleIDCredential.fullName?.givenName ?? "Apple Sign in: No givenName"
         let familyName = appleIDCredential.fullName?.familyName ?? "Apple Sign in: No familyName"
