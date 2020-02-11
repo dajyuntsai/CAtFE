@@ -12,19 +12,30 @@ class MyMessagesViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
+    var messages = ["", "", "", "", ""]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
+
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+
+    @objc func loadData() {
+        // TODO: calling api
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
 extension MyMessagesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 30
     }
 
     func collectionView(_ collectionView: UICollectionView,

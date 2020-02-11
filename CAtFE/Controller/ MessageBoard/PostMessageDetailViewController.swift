@@ -12,12 +12,22 @@ class PostMessageDetailViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var posts: Post?
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
+
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+
+    @objc func loadData() {
+        // TODO: calling api
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

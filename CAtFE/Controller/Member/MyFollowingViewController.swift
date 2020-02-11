@@ -11,6 +11,7 @@ import UIKit
 class MyFollowingViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,21 @@ class MyFollowingViewController: BaseViewController {
         tableView.delegate = self
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+
     func updateUnfollowingCafe() {
         // TODO: Update data to api
+    }
+
+    @objc func loadData() {
+        // TODO: calling api
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

@@ -14,6 +14,7 @@ class MessageBoardViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var posts: [Post]?
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,8 @@ class MessageBoardViewController: UIViewController {
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
     }
     
     @IBAction func addPostBtn(_ sender: Any) {
@@ -36,6 +39,12 @@ class MessageBoardViewController: UIViewController {
     func fetchPosts() {
         self.posts = Post.fetchPosts()
         self.collectionView?.reloadData()
+    }
+
+    @objc func loadData() {
+        // TODO: calling api
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
