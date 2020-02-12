@@ -62,7 +62,6 @@
 		BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131CE23E2EF68004A669D /* MemberViewController.swift */; };
 		BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D123E55452004A669D /* PinterestLayout.swift */; };
 		BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */; };
-		BE9131D723E5E387004A669D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131D623E5E387004A669D /* Post.swift */; };
 		BE9131DF23E71E88004A669D /* PostMessageUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131DE23E71E88004A669D /* PostMessageUserTableViewCell.swift */; };
 		BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E023E72153004A669D /* PostMessageViewController.swift */; };
 		BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131E223E7B2DD004A669D /* PostMessageContentTableViewCell.swift */; };
@@ -184,7 +183,6 @@
 		BE9131CE23E2EF68004A669D /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		BE9131D123E55452004A669D /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		BE9131D323E5E21F004A669D /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
-		BE9131D623E5E387004A669D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BE9131DE23E71E88004A669D /* PostMessageUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageUserTableViewCell.swift; sourceTree = "<group>"; };
 		BE9131E023E72153004A669D /* PostMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageViewController.swift; sourceTree = "<group>"; };
 		BE9131E223E7B2DD004A669D /* PostMessageContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessageContentTableViewCell.swift; sourceTree = "<group>"; };
@@ -427,7 +425,6 @@
 		BE9131D523E5E375004A669D /* MessageBoard */ = {
 			isa = PBXGroup;
 			children = (
-				BE9131D623E5E387004A669D /* Post.swift */,
 				BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */,
 				BE5B246523F3BC140092FACA /* MessageModel.swift */,
 			);
@@ -872,7 +869,6 @@
 				BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */,
 				BE9131E523E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift in Sources */,
 				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
-				BE9131D723E5E387004A669D /* Post.swift in Sources */,
 				BE5B245C23F28A280092FACA /* MyFollowingViewController.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,

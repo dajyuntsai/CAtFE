@@ -87,6 +87,7 @@ class UserProvider {
         HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
             switch result {
             case .success:
+                KeyChainManager.shared.token = token // TODO: 寫這邊還是前面？？
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
@@ -103,6 +104,7 @@ class UserProvider {
         HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
             switch result {
             case .success:
+                KeyChainManager.shared.token = token
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
@@ -116,17 +118,10 @@ class UserProvider {
                      name: String,
                      registerType: String,
                      completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.register(email, password, name, registerType)) { [weak self] (result) in
-            guard let strongSelf = self else { return }
+        HTTPClient.shared.request(UserRequest.register(email, password, name, registerType)) { (result) in
             switch result {
-            case .success(let data):
-                do {
-                    let userObject = try strongSelf.decoder.decode(UserObject.self, from: data)
-//                    KeyChainManager.shared.token = userObject.accessToken
-                    completion(Result.success(()))
-                } catch {
-                    completion(Result.failure(error))
-                }
+            case .success:
+                completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
             }
@@ -136,14 +131,14 @@ class UserProvider {
     func emailSignIn(email: String,
                      password: String,
                      registerType: String,
-                     completion: @escaping (Result<Void>) -> Void) {
+                     completion: @escaping (Result<String>) -> Void) {
         HTTPClient.shared.request(UserRequest.signIn(email, password, registerType)) { (result) in
             switch result {
-            case .success:
+            case .success(let data):
                 do {
-//                    let userObject = try strongSelf.decoder.decode(UserObject.self, from: data)
-//                    KeyChainManager.shared.token = userObject.accessToken
-                    completion(Result.success(()))
+                    let token = try self.decoder.decode(String.self, from: data)
+                    KeyChainManager.shared.token = token
+                    completion(Result.success((token)))
                 } catch {
                     completion(Result.failure(error))
                 }

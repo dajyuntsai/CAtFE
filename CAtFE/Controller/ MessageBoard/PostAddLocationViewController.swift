@@ -20,13 +20,22 @@ class PostAddLocationViewController: BaseViewController {
     weak var delegate: DisplayCafeNameDelegate?
     
     let fullScreenSize = UIScreen.main.bounds.size
-    let cafeList = [CafeName(name: "臺北市"), CafeName(name: "新北市"), CafeName(name: "桃園市"), CafeName(name: "臺中市")]
-    var searchResults = [CafeName]()
+    let cafeManager = CafeManager()
+    var cafeList: [Cafe] = [] {
+        didSet {
+            DispatchQueue.main.async {
+//                self.getCafeLocations() // 有需要嗎？？
+                self.tableView.reloadData()
+            }
+        }
+    }
+    var searchResults = [Cafe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initView()
+        getCafeLocations()
     }
     
     func initView() {
@@ -40,6 +49,17 @@ class PostAddLocationViewController: BaseViewController {
         self.tableView.tableHeaderView = self.searchController.searchBar
     }
 
+    func getCafeLocations() {
+        cafeManager.getCafeList { (result) in
+            switch result {
+            case .success(let data):
+                self.cafeList = data.data
+            case.failure(let error):
+                print("======= Add Location error: \(error)")
+            }
+            
+        }
+    }
 }
 
 extension PostAddLocationViewController: UITableViewDataSource {
@@ -55,7 +75,7 @@ extension PostAddLocationViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let cafe: CafeName
+        let cafe: Cafe
         if searchController.isActive && searchController.searchBar.text != "" {
             cafe = searchResults[indexPath.row]
         } else {
@@ -86,8 +106,4 @@ extension PostAddLocationViewController: UISearchResultsUpdating {
         }
         tableView.reloadData()
     }
-}
-
-struct CafeName { // ninn ninn test
-    let name: String
 }

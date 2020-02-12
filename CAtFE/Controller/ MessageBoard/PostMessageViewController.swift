@@ -12,6 +12,7 @@ class PostMessageViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let picker: UIImagePickerController = UIImagePickerController()
+    let messageBoardManager = MessageBoardManager()
     var selectedPhotoList: [UIImage] = []
     
     override func viewDidLoad() {
@@ -39,11 +40,22 @@ class PostMessageViewController: BaseViewController {
     }
     
     @IBAction func sendPostBtn(_ sender: Any) {
-        // TODO: 打api, 如果發送成功
-        CustomProgressHUD.showSuccess(text: "發送成功")
-        self.navigationController?.popToRootViewController(animated: true)
+        createMessage()
     }
     
+    func createMessage() {
+//        guard let token = KeyChainManager.shared.token != nil else { return false }
+//        messageBoardManager.createMessageInList(token: token, messageObj: <#T##Message#>) { (result) in
+//            switch result {
+//            case .success(let data):
+//                CustomProgressHUD.showSuccess(text: "發送成功")
+//                self.navigationController?.popToRootViewController(animated: true)
+//            case .failure(let error):
+//                CustomProgressHUD.showFailure(text: "發送失敗")
+//                print("======= createMessage error: \(error)")
+//            }
+//        }
+    }
 }
 
 extension PostMessageViewController: UITableViewDataSource {
@@ -154,7 +166,7 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
 extension PostMessageViewController: SearchCafeDelegate {
     func showSearchView(_ cell: PostMessageUserTableViewCell) {
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostAddLocationViewController.identifier) as? PostAddLocationViewController
-        presentVC?.modalPresentationStyle = .overFullScreen
+        presentVC?.modalPresentationStyle = .formSheet
         presentVC?.delegate = cell
         self.present(presentVC!, animated: true, completion: nil)
     }

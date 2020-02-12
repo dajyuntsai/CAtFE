@@ -45,7 +45,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         
         pageControl.currentPage = 0
-        pageControl.numberOfPages = 3 // ninn ninn test: images.count
+        pageControl.numberOfPages = data?.photos.count ?? 0
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = .gray
         pageControl.hidesForSinglePage = true
@@ -72,7 +72,9 @@ extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell", for: indexPath) as? PostDetailPhotoCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell", for: indexPath) as? PostDetailPhotoCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         cell.postImageView.loadImage(data?.photos[indexPath.item].url)
         return cell
     }
