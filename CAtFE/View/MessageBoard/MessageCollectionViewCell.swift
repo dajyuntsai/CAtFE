@@ -20,30 +20,10 @@ class MessageCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var postImageViewHeightLayoutConstraint: NSLayoutConstraint!
     
-    var post: Post! {
-        didSet {
-            self.updateUI()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
-    }
-    
-    func updateUI(){
-        userImageView.image = UIImage(named: "home")
-        userImageView.layer.cornerRadius = 3.0
-        userImageView.layer.masksToBounds = true
-        
-        userNameLabel.text = post.createdBy.username
-        dateTimeLabel.text = post.timeAgo
-        captionLabel.text = post.caption
-        
-        postImageView.image = post.image
-        postImageView.layer.cornerRadius = 5.0
-        postImageView.layer.masksToBounds = true
     }
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes){
@@ -52,5 +32,17 @@ class MessageCollectionViewCell: UICollectionViewCell {
             // - change the image height
             postImageViewHeightLayoutConstraint.constant = attributes.photoHeight
         }
+    }
+
+    func setData(message: Message) {
+        userImageView.loadImage(message.user.avatar)
+        userNameLabel.text = message.user.name
+        dateTimeLabel.text = message.createAt
+        captionLabel.text = message.content
+        locationLabel.text = message.cafe.name
+
+        postImageView.loadImage(message.photos[0].url)
+        postImageView.layer.cornerRadius = 5.0
+        postImageView.layer.masksToBounds = true
     }
 }

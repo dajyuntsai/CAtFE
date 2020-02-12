@@ -13,20 +13,49 @@ import AVFoundation
 class MessageBoardViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var posts: [Post]?
+    @IBOutlet weak var addPostBtnView: UIView!
+    let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
+    var messageList: [Message] = [] {
+        didSet {
+            if messageList.isEmpty {
+                refreshControl.beginRefreshing()
+            } else {
+                DispatchQueue.main.async { // ?????
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.fetchPosts()
-        
+
+        initView()
+        getMessageList()
+    }
+
+    func initView() {
+        addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
+
         collectionView?.contentInset = UIEdgeInsets(top: 16, left: 4, bottom: 16, right: 4)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
+    }
+
+    func getMessageList() {
+        messageBoardManager.getMessageList { (result) in
+            switch result {
+            case .success(let messageData):
+                self.messageList = messageData.data
+            case .failure(let error):
+                print("======= getMessageList error: \(error)")
+            }
+        }
     }
     
     @IBAction func addPostBtn(_ sender: Any) {
@@ -35,14 +64,12 @@ class MessageBoardViewController: UIViewController {
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
-    
-    func fetchPosts() {
-        self.posts = Post.fetchPosts()
-        self.collectionView?.reloadData()
-    }
 
     @objc func loadData() {
-        // TODO: calling api
+        messageList.removeAll()
+        DispatchQueue.main.async {
+            self.getMessageList()
+        }
         self.collectionView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -50,11 +77,7 @@ class MessageBoardViewController: UIViewController {
 
 extension MessageBoardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let posts = posts {
-            return posts.count
-        } else {
-            return 0
-        }
+        return messageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -63,7 +86,7 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.layer.cornerRadius = 15
-        cell.post = self.posts?[indexPath.item]
+        cell.setData(message: messageList[indexPath.item])
         return cell
     }
     
@@ -76,8 +99,8 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // ninn ninn test
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
-        let data = posts![indexPath.row]
-        presentVC?.posts = data
+        let message = messageList[indexPath.row]
+        presentVC?.message = message
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -87,29 +110,35 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForCaptionAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        if let post = posts?[indexPath.item] {
-            let topPadding = CGFloat(8)
-            let bottomPadding = CGFloat(16)
-            let captionFont = UIFont.systemFont(ofSize: 15)
-            let captionHeight = self.height(for: post.caption!, with: captionFont, width: width)
-            let profileImageHeight = CGFloat(36)
-            let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding + 50// 亂加ㄉ
-            
-            return height
-        }
-        return 0.0
+        let post = messageList[indexPath.item]
+        let topPadding = CGFloat(8)
+        let bottomPadding = CGFloat(16)
+        let captionFont = UIFont.systemFont(ofSize: 15)
+        let captionHeight = self.height(for: post.content, with: captionFont, width: width)
+        let profileImageHeight = CGFloat(36)
+        let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
+
+        return height
     }
     
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        if let post = posts?[indexPath.item], let photo = post.image {
-            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-            let rect = AVMakeRect(aspectRatio: photo.size, insideRect: boundingRect)
-            
-            return rect.size.height
+        let post = messageList[indexPath.item]
+        let photo = URL(string: post.photos[0].url)!
+        let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+        let request = URLRequest(url: photo)
+        guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+            return 0.75
         }
-        return 0
+        var img: UIImage?
+        let imageView1 = UIImageView()
+        img = UIImage(data: imgData)!
+        imageView1.image = img
+        let photoSize = img?.size
+        let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
+
+        return rect.size.height
     }
     
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {

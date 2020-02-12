@@ -17,8 +17,9 @@ struct User: Codable {
     var registerType: String
     var name: String
     var email: String
-    var active: String
-    var roles: Int
+    var avatar: String
+    var active: Bool
+    var roles: String
     var createAt: String
 
     enum CodingKeys: String, CodingKey {
@@ -26,6 +27,7 @@ struct User: Codable {
         case registerType
         case name
         case email
+        case avatar
         case active
         case roles
         case createAt = "create_at"

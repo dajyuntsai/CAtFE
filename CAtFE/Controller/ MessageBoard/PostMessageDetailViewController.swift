@@ -11,7 +11,7 @@ import UIKit
 class PostMessageDetailViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var posts: Post?
+    var message: Message?
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -43,8 +43,7 @@ extension PostMessageDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell", for: indexPath) as? PostMessageDetailTableViewCell else {
                 return UITableViewCell()
             }
-            cell.authorNameLabel?.text = posts!.createdBy.username
-            cell.postContentLabel?.text = posts!.caption
+            cell.setData(data: message!)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostAddReplyCell", for: indexPath) as? PostMessageAddReplyTableViewCell else {

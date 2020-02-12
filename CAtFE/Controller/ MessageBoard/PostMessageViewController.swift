@@ -54,15 +54,21 @@ extension PostMessageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell", for: indexPath) as? PostMessageUserTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell", for: indexPath) as? PostMessageUserTableViewCell else {
+                return UITableViewCell()
+            }
             cell.delegate = self
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else {
+                return UITableViewCell()
+            }
             
             return cell
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell", for: indexPath) as? PostMessagePhotoTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell", for: indexPath) as? PostMessagePhotoTableViewCell else {
+                return UITableViewCell()
+            }
             cell.photoList = selectedPhotoList
             cell.isReload = true
             return cell

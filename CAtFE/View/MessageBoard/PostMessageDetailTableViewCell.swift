@@ -23,6 +23,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
         collectionView.setContentOffset(offset, animated: true)
     }
+    var data: Message?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,17 +50,30 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         pageControl.pageIndicatorTintColor = .gray
         pageControl.hidesForSinglePage = true
     }
+
+    func setData(data: Message) {
+        self.data = data
+        authorImageView.loadImage(data.user.avatar)
+        authorNameLabel.text = data.user.name
+        timeAgoLabel.text = data.user.createAt
+        locationLabel.text = data.cafe.name
+        postContentLabel.text = data.content
+    }
 }
 
 extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if (data?.photos.isEmpty)! {
+            return 0
+        } else {
+            return (data?.photos.count)!
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell", for: indexPath) as? PostDetailPhotoCollectionViewCell else { return UICollectionViewCell() }
-
+        cell.postImageView.loadImage(data?.photos[indexPath.item].url)
         return cell
     }
     

@@ -147,7 +147,7 @@ class HomeViewController: UIViewController {
             case .success(let cafeData):
                 self.cafeList = cafeData.data
             case .failure(let error):
-                print(error)
+                print("======= getCafeData error: \(error)")
             }
         }
     }

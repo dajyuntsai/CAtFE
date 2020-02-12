@@ -45,6 +45,8 @@
 		BE5B245E23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */; };
 		BE5B246023F2C52E0092FACA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */; };
 		BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */; };
+		BE5B246423F3AEE90092FACA /* MessageBoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */; };
+		BE5B246623F3BC140092FACA /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246523F3BC140092FACA /* MessageModel.swift */; };
 		BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210023D3FE450053FD07 /* AppDelegate.swift */; };
 		BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210423D3FE450053FD07 /* LoginViewController.swift */; };
 		BE66210823D3FE450053FD07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE66210623D3FE450053FD07 /* Main.storyboard */; };
@@ -159,6 +161,8 @@
 		BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowingViewTableViewCell.swift; sourceTree = "<group>"; };
 		BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewCell.swift; sourceTree = "<group>"; };
+		BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardManager.swift; sourceTree = "<group>"; };
+		BE5B246523F3BC140092FACA /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		BE6620FD23D3FE450053FD07 /* CAtFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAtFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66210023D3FE450053FD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE66210423D3FE450053FD07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				BE9131D623E5E387004A669D /* Post.swift */,
+				BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */,
+				BE5B246523F3BC140092FACA /* MessageModel.swift */,
 			);
 			path = MessageBoard;
 			sourceTree = "<group>";
@@ -887,6 +893,7 @@
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
 				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
 				BE36C41223F1B58A003C4BDB /* MemberCollectionViewCell.swift in Sources */,
+				BE5B246423F3AEE90092FACA /* MessageBoardManager.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
@@ -903,6 +910,7 @@
 				BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */,
 				BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */,
 				BE5B245A23F282E60092FACA /* MyMessagesViewController.swift in Sources */,
+				BE5B246623F3BC140092FACA /* MessageModel.swift in Sources */,
 				BE9131DF23E71E88004A669D /* PostMessageUserTableViewCell.swift in Sources */,
 				BEE181E823E2332800660AEB /* TabbarController.swift in Sources */,
 				BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */,
