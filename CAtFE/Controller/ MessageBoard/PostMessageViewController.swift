@@ -62,6 +62,7 @@ class PostMessageViewController: BaseViewController {
                     CustomProgressHUD.showSuccess(text: "發送成功")
                     self.navigationController?.popToRootViewController(animated: true)
                 case .failure(let error):
+                    CustomProgressHUD.showFailure(text: "發送失敗")
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
                         print("======= createMessage error: \(error)")
@@ -166,22 +167,25 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
             selectedImageFromPicker = pickedImage
             selectedPhotoList.append(selectedImageFromPicker!)
         }
-        // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
-        let uniqueString = NSUUID().uuidString
-        
+
         // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
         if let selectedImage = selectedImageFromPicker {
-            print("\(uniqueString), \(selectedImage)")
+            let imageData = selectedImage.pngData()
+            uploadImage(imageData: imageData!)
         }
         
         tableView.reloadData()
-        
         dismiss(animated: true, completion: nil)
     }
     
     // 圖片picker控制器任務結束回呼
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func uploadImage(imageData: Data) {
+        // TODO: 上傳到api
+        
     }
 }
 
