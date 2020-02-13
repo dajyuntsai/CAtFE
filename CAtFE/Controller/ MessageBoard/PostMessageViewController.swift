@@ -89,9 +89,6 @@ class PostMessageViewController: BaseViewController {
     }
     
     func onUpdateMessage() { // TODO: update message api
-        //        guard KeyChainManager.shared.token != nil else {
-        //            return onShowLogin()
-        //        }
         //        let token = KeyChainManager.shared.token ?? ""
         //        messageBoardManager.updateMessageInList(token: <#T##String#>,
         //                                                messageObj: <#T##Message#>,

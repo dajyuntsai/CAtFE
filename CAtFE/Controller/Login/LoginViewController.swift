@@ -62,6 +62,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func guestLogin(_ sender: Any) {
+        setLoginState(state: false)
         backToRoot() // 直接進首頁
     }
     
@@ -135,18 +136,20 @@ extension LoginViewController: LoginButtonDelegate {
     }
 
     func fbLoginSuccess() {
+        setLoginState(state: true)
         backToRoot()
         CustomProgressHUD.showSuccess(text: "Facebook 登入成功")
-        let loginState = UserDefaults.standard
-        loginState.set(true, forKey: "loginState")
-        loginState.synchronize() // 資料即時存入，才不會有nil的問題
     }
 
     func appleLoginSuccess() {
+        setLoginState(state: true)
         backToRoot()
         CustomProgressHUD.showSuccess(text: "Apple Sign In 登入成功")
+    }
+    
+    public func setLoginState(state: Bool) {
         let loginState = UserDefaults.standard
-        loginState.set(true, forKey: "loginState")
+        loginState.set(state, forKey: "loginState")
         loginState.synchronize() // 資料即時存入，才不會有nil的問題
     }
 }

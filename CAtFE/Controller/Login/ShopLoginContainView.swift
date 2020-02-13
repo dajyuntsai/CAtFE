@@ -53,6 +53,7 @@ class ShopLoginContainView: BaseViewController {
         userProvider.emailSignIn(email: email, password: password, registerType: registerType) { (result) in
             switch result {
             case .success:
+                UserDefaults.standard.set(true, forKey: "loginState")
                 CustomProgressHUD.showSuccess(text: "CAtFE 登入成功")
                 self.backToRoot()
             case .failure:

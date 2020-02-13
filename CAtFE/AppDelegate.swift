@@ -21,12 +21,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        let loginState = UserDefaults.standard.bool(forKey: "loginState")
+        let rootViewController: UIViewController?
+        if loginState {
+            rootViewController = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController")
+        } else {
+            rootViewController = UIStoryboard.main.instantiateViewController(identifier: LoginViewController.identifier)
+        }
+        window?.rootViewController = rootViewController
+//        window?.makeKeyAndVisible()
+        
+//        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         IQKeyboardManager.shared.enable = true
         
         FirebaseApp.configure()
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }

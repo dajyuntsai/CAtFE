@@ -10,11 +10,11 @@
         <!--Shop Events View Controller-->
         <scene sceneID="lcP-0H-C0Z">
             <objects>
-                <viewController storyboardIdentifier="ShopEventsViewController" id="QbI-MA-33e" customClass="ShopEventsViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopEventsViewController" id="QbI-MA-33e" customClass="ShopEventsViewController" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qdC-cb-rAB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Ray-DA-mYf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="event" id="oue-7n-cAB"/>

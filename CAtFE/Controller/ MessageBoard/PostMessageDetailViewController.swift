@@ -98,9 +98,16 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
         self.present(presentVC!, animated: true, completion: nil)
     }
     
-    func onDeleteMessage() {
-        
+    func onDeleteMessage() { // TODO: delete message api
+//        messageBoardManager.deleteMessageInList(token: <#T##String#>, messageObj: <#T##Message#>, msgId: <#T##Int#>) { (result) in
+//            switch result {
+//            case .success:
+//                CustomProgressHUD.showSuccess(text: "刪除成功")
+//            case .failure:
+//                CustomProgressHUD.showFailure(text: "刪除失敗")
+//            }
+//        }
+        self.navigationController?.popToRootViewController(animated: true)
     }
-    
 }
 

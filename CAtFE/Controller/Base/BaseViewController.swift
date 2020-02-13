@@ -24,12 +24,7 @@ extension UIViewController {
     func backToRoot() {
         DispatchQueue.main.async {
             let tabBar = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController") as? TabbarController
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: {
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = tabBar
-                    tabBar?.selectedIndex = 2
-                }
-            })
+            self.view.window?.rootViewController = tabBar
         }
     }
 }

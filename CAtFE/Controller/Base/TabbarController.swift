@@ -46,7 +46,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
 
         self.tabBar.unselectedItemTintColor = .brown
         viewControllers = tabs.map({ $0.controller() })
-
+        selectedIndex = 2
         delegate = self
     }
 
