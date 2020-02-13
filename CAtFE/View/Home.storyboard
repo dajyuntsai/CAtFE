@@ -207,7 +207,7 @@
         <image name="campass" width="512" height="512"/>
         <image name="home" width="84" height="83"/>
         <namedColor name="MainColor">
-            <color red="0.76201618020304562" green="0.60958063289820208" blue="0.28694455562649868" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

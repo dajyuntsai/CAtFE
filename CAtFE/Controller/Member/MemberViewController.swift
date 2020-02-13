@@ -15,7 +15,7 @@ class MemberViewController: UIViewController {
     private var mPageContentView: TabContentView!
     private var scrollView = UIScrollView()
 
-    private var titleList1 = ["我的留言", "追蹤的店家"]
+    private var titleList = ["我的留言", "追蹤的店家"]
 
     let conf = TabTitleConfig()
     let width = UIScreen.main.bounds.width
@@ -34,7 +34,7 @@ class MemberViewController: UIViewController {
 
     func initTabView() {
         let rectTitle = CGRect(x: 0, y: 36 + 150, width: width, height: 60)
-        mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList1, config: conf, delegate: self)
+        mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
 
         guard let myMessagesViewController = UIStoryboard.member.instantiateViewController(identifier: MyMessagesViewController.identifier) as? MyMessagesViewController else { return }

@@ -32,29 +32,29 @@ public class TabTitleConfig: NSObject {
     public var isNeedBottomSeparator: Bool = false
     
     // title space
-    public var titleSpacing: CGFloat = 20.0
+    public var titleSpacing: CGFloat = 50.0
     // titleView大小
     public var titleViewSize: CGSize = CGSize(width: UIScreen.main.bounds.width, height: 60)
     
     // title default color
     public var titleColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     // title select color
-    public var titleSelectedColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    public var titleSelectedColor: UIColor = UIColor(named: "MainColor")!
     // title font
-    public var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    public var titleFont: UIFont = UIFont.systemFont(ofSize: 18)
     
     public var titleViewStyle: TabTitleViewStyle = .tabTitleViewStyleUnderLine
     public var titleViewScrollStyle: TabTitleViewScrollStyle = .tabTitleViewScrollStyleDefault
     
     // Indicator style
-    public var indicatorStyle: TabIndicatorStyle = .tabIndicatorDefault
+    public var indicatorStyle: TabIndicatorStyle = .tabIndicatorFixed
     // Indicator legth, need to setting when fixed
     public var indictorWidth: CGFloat = 0
     
     // Indicator height
     public var underlineHeight: CGFloat = 2.0
     // Indicator color
-    public var underlineColor: UIColor = UIColor.MainColor ?? UIColor.black
+    public var underlineColor: UIColor = UIColor(named: "MainColor")!
     
     // bg cover
     public var coverColor: UIColor = UIColor.clear
