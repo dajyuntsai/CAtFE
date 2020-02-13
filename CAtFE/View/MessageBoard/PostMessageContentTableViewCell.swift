@@ -36,6 +36,10 @@ class PostMessageContentTableViewCell: UITableViewCell {
         
         cotentTextView.delegate = self
     }
+    
+    func setData(content: String) {
+        cotentTextView.text = content
+    }
 }
 
 extension PostMessageContentTableViewCell: UITextViewDelegate {

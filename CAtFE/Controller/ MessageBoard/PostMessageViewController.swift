@@ -16,6 +16,12 @@ class PostMessageViewController: BaseViewController {
     var selectedPhotoList: [UIImage] = []
     var cafeId: Int?
     var content: String?
+    var editMessage: Message?
+    var isEditMode = false {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +48,14 @@ class PostMessageViewController: BaseViewController {
     }
     
     @IBAction func sendPostBtn(_ sender: Any) {
-        createMessage()
+        if isEditMode {
+            onUpdateMessage()
+        } else {
+            onCreateMessage()
+        }
     }
     
-    func createMessage() {
+    func onCreateMessage() {
         guard KeyChainManager.shared.token != nil else {
             return onShowLogin()
         }
@@ -77,6 +87,23 @@ class PostMessageViewController: BaseViewController {
         authVC.modalPresentationStyle = .overCurrentContext
         present(authVC, animated: false, completion: nil)
     }
+    
+    func onUpdateMessage() { // TODO: update message api
+        //        guard KeyChainManager.shared.token != nil else {
+        //            return onShowLogin()
+        //        }
+        //        let token = KeyChainManager.shared.token ?? ""
+        //        messageBoardManager.updateMessageInList(token: <#T##String#>,
+        //                                                messageObj: <#T##Message#>,
+        //                                                msgId: <#T##Int#>) { (result) in
+        //                                                    switch result {
+        //                                                    case .success(_):
+        //                                                        <#code#>
+        //                                                    case .failure(_):
+        //                                                        <#code#>
+        //                                                    }
+        //        }
+    }
 }
 
 extension PostMessageViewController: UITableViewDataSource {
@@ -90,22 +117,36 @@ extension PostMessageViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell", for: indexPath) as? PostMessageUserTableViewCell else {
                 return UITableViewCell()
             }
-            cell.delegate = self
+            if isEditMode {
+                cell.setData(data: editMessage!)
+            } else {
+                cell.delegate = self
+            }
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else {
                 return UITableViewCell()
             }
-            cell.content = { (content) in
-                self.content = content
+            if isEditMode {
+                cell.setData(content: editMessage!.content)
+            } else {
+                cell.content = { (content) in
+                    self.content = content
+                }
             }
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell", for: indexPath) as? PostMessagePhotoTableViewCell else {
                 return UITableViewCell()
             }
-            cell.photoList = selectedPhotoList
-            cell.isReload = true
+            if isEditMode {
+                cell.isEditMode = true
+                cell.editPhotoList = editMessage?.photos
+                cell.isReload = true
+            } else {
+                cell.photoList = selectedPhotoList
+                cell.isReload = true
+            }
             return cell
         default:
             return UITableViewCell()
@@ -189,7 +230,7 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
     }
 }
 
-extension PostMessageViewController: SearchCafeDelegate {
+extension PostMessageViewController: TopViewOfCresteMessageDelegate {
     func showSearchView(_ cell: PostMessageUserTableViewCell) {
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostAddLocationViewController.identifier) as? PostAddLocationViewController
         presentVC?.modalPresentationStyle = .formSheet

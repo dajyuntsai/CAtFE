@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol TopViewOfDetailMessageDelegate: AnyObject {
+    func showEditView(_ cell: PostMessageDetailTableViewCell)
+}
+
 class PostMessageDetailTableViewCell: UITableViewCell {
+    
+    weak var delegate: TopViewOfDetailMessageDelegate?
     
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -17,6 +23,10 @@ class PostMessageDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var postContentLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBAction func editBtn(_ sender: Any) {
+        self.delegate?.showEditView(self)
+    }
+    
     @IBAction func pageControlChange(_ sender: UIPageControl) {
         let currentPageNumber = sender.currentPage
         let width = collectionView.frame.width

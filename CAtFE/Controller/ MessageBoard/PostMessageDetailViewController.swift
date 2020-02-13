@@ -13,6 +13,7 @@ class PostMessageDetailViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var message: Message?
     let refreshControl = UIRefreshControl()
+    let messageBoardManager = MessageBoardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,15 @@ class PostMessageDetailViewController: BaseViewController {
     }
 
     @objc func loadData() {
-        // TODO: calling api
+        // TODO: calling api for loading reply
         self.tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func onShowLogin() {
+        guard let authVC = UIStoryboard.main.instantiateInitialViewController() else { return }
+        authVC.modalPresentationStyle = .overCurrentContext
+        present(authVC, animated: false, completion: nil)
     }
 }
 
@@ -43,6 +50,7 @@ extension PostMessageDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell", for: indexPath) as? PostMessageDetailTableViewCell else {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.setData(data: message!)
             return cell
         case 1:
@@ -64,3 +72,35 @@ extension PostMessageDetailViewController: UITableViewDataSource {
 extension PostMessageDetailViewController: UITableViewDelegate {
 
 }
+
+extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
+    func showEditView(_ cell: PostMessageDetailTableViewCell) {
+        let alertController = UIAlertController(title: "選擇功能", message: nil, preferredStyle: .actionSheet)
+        let callOutAction = UIAlertAction(title: "編輯", style: .default) { (_) in
+            self.onEditMessage()
+        }
+        let guideAction = UIAlertAction(title: "刪除", style: .destructive) { (_) in
+            self.onDeleteMessage()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(callOutAction)
+        alertController.addAction(guideAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func onEditMessage() {
+        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageViewController.identifier) as? PostMessageViewController
+        presentVC?.modalPresentationStyle = .formSheet
+        presentVC?.loadViewIfNeeded()
+        presentVC?.isEditMode = true
+        presentVC!.editMessage = message
+        self.present(presentVC!, animated: true, completion: nil)
+    }
+    
+    func onDeleteMessage() {
+        
+    }
+    
+}
+

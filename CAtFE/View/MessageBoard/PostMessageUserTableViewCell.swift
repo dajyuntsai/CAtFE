@@ -8,17 +8,18 @@
 
 import UIKit
 
-protocol SearchCafeDelegate: AnyObject {
+protocol TopViewOfCresteMessageDelegate: AnyObject {
     func showSearchView(_ cell: PostMessageUserTableViewCell)
 }
 
 class PostMessageUserTableViewCell: UITableViewCell {
 
-    weak var delegate: SearchCafeDelegate?
+    weak var delegate: TopViewOfCresteMessageDelegate?
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var addLocation: UIButton!
+    
     @IBAction func addLocationBtn(_ sender: Any) {
         self.delegate?.showSearchView(self)
     }
@@ -33,6 +34,12 @@ class PostMessageUserTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setData(data: Message) {
+        userImageView.loadImage(data.user.avatar)
+        userNameLabel.text = data.user.name
+        addLocation.setTitle(data.cafe.name, for: .normal)
     }
 }
 

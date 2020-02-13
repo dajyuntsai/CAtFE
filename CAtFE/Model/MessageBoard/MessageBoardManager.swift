@@ -11,8 +11,8 @@ import Foundation
 enum MessageBoardRequest: CAtFERequest {
     case allMessage
     case myMessage(String)
-    case createMessage(String, Int, String, [Photos])
-    case updateMessage(String, Message, Int)
+    case createMessage(String, Int, String, [Photos]) // (token, cafeId, content, photos)
+    case updateMessage(String, Int, Int, String, [Photos]) // (token, msgId, cafeId, content, photos)
     case deleteMessage(String, Message, Int)
 
     var headers: [String: String] {
@@ -23,7 +23,7 @@ enum MessageBoardRequest: CAtFERequest {
             return ["X-Auth-Token": "\(token)"]
         case .createMessage(let token, _, _, _):
             return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
-        case .updateMessage(let token, _, _):
+        case .updateMessage(let token, _, _, _, _):
             return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
         case .deleteMessage(let token, _, _):
             return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
@@ -43,14 +43,14 @@ enum MessageBoardRequest: CAtFERequest {
                 "photos": photos
                 ] as [String : Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .updateMessage(_, let message, _):
-            do {
-              let encode = try JSONEncoder().encode(message)
-                return encode
-            } catch {
-                print(error)
-            }
-            return nil
+        case .updateMessage(_, let msgId, let cafeId, let content, let photos):
+            let dict = [
+                "msgId": msgId,
+                "cafeID": cafeId,
+                "content": content,
+                "photos": photos
+                ] as [String : Any]
+            return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .deleteMessage:
             return nil
         }
@@ -79,8 +79,8 @@ enum MessageBoardRequest: CAtFERequest {
             return "/cafes/messageBoard"
         case .createMessage:
             return "/cafes/messageBoard"
-        case .updateMessage(_, _, let id):
-            return "/cafes/messageBoard/\(id)"
+        case .updateMessage(_, let msgId, _, _, _):
+            return "/cafes/messageBoard/\(msgId)"
         case .deleteMessage(_, _, let id):
             return "/cafes/messageBoard/\(id)"
         }
@@ -143,10 +143,12 @@ class MessageBoardManager {
     }
 
     func updateMessageInList(token: String,
-                             messageObj: Message,
                              msgId: Int,
+                             cafeId: Int,
+                             content: String,
+                             photos: [Photos],
                              completion: @escaping (Result<MessageModel>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, messageObj, msgId)) { (result) in
+        HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, cafeId, content, photos)) { (result) in
             switch result {
             case .success(let data):
                 do {
