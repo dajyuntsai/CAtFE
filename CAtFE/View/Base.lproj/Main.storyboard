@@ -103,7 +103,7 @@
     <resources>
         <image name="BURU" width="743" height="908"/>
         <namedColor name="MainColor">
-            <color red="0.83300000429153442" green="0.52600002288818359" blue="0.15299999713897705" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

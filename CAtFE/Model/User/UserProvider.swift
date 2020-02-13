@@ -131,14 +131,14 @@ class UserProvider {
     func emailSignIn(email: String,
                      password: String,
                      registerType: String,
-                     completion: @escaping (Result<String>) -> Void) {
+                     completion: @escaping (Result<APIResponse>) -> Void) {
         HTTPClient.shared.request(UserRequest.signIn(email, password, registerType)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let token = try self.decoder.decode(String.self, from: data)
-                    KeyChainManager.shared.token = token
-                    completion(Result.success((token)))
+                    let response = try self.decoder.decode(APIResponse.self, from: data)
+                    KeyChainManager.shared.token = response.token
+                    completion(Result.success((response)))
                 } catch {
                     completion(Result.failure(error))
                 }

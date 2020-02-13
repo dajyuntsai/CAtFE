@@ -11,6 +11,7 @@ import UIKit
 class PostMessageContentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cotentTextView: UITextView!
+    var content: ((String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,6 +56,13 @@ extension PostMessageContentTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let postContent = (cotentTextView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = postContent.count
-        return numberOfChars < 300    // 300 Limit Value
+        return numberOfChars < 250    // 250 Limit Value
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if !textView.isEmpty {
+            let inputContent = textView.text!
+            content?(inputContent)
+        }
     }
 }

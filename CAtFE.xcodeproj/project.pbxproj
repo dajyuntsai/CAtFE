@@ -28,6 +28,7 @@
 		BE36C40E23F195C9003C4BDB /* TabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40B23F195C9003C4BDB /* TabContentView.swift */; };
 		BE36C40F23F195C9003C4BDB /* TabTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40C23F195C9003C4BDB /* TabTitleView.swift */; };
 		BE36C41223F1B58A003C4BDB /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C41023F1B58A003C4BDB /* MemberCollectionViewCell.swift */; };
+		BE4FD7D823F4F739004E190A /* UITextView +Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4FD7D723F4F739004E190A /* UITextView +Extension.swift */; };
 		BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5258F323EBC36400F8AC00 /* Popup.storyboard */; };
 		BE5258F723EBC4CA00F8AC00 /* PopupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5258F623EBC4CA00F8AC00 /* PopupCollectionViewCell.swift */; };
 		BE5258F923EBC58300F8AC00 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */; };
@@ -143,6 +144,7 @@
 		BE36C40B23F195C9003C4BDB /* TabContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabContentView.swift; sourceTree = "<group>"; };
 		BE36C40C23F195C9003C4BDB /* TabTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTitleView.swift; sourceTree = "<group>"; };
 		BE36C41023F1B58A003C4BDB /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE4FD7D723F4F739004E190A /* UITextView +Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView +Extension.swift"; sourceTree = "<group>"; };
 		BE5258F323EBC36400F8AC00 /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		BE5258F623EBC4CA00F8AC00 /* PopupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				BE5258F823EBC58300F8AC00 /* UICollectionViewCell+Extension.swift */,
 				BE5258FF23EC5A1600F8AC00 /* UITableView+Extension.swift */,
 				BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */,
+				BE4FD7D723F4F739004E190A /* UITextView +Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */,
 				BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */,
 				BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */,
+				BE4FD7D823F4F739004E190A /* UITextView +Extension.swift in Sources */,
 				BEA99E0423EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift in Sources */,
 				BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,

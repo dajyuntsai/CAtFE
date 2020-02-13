@@ -33,3 +33,13 @@ struct User: Codable {
         case createAt = "create_at"
     }
 }
+
+struct APIResponse: Codable {
+    let status: String
+    let token: String
+    
+    enum CodingKeys: String, CodingKey {
+        case status = "Status"
+        case token
+    }
+}

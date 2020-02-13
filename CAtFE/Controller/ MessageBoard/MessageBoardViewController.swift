@@ -97,7 +97,6 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // ninn ninn test
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
         let message = messageList[indexPath.row]
         presentVC?.message = message
@@ -125,20 +124,26 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
         let post = messageList[indexPath.item]
-        let photo = URL(string: post.photos[0].url)!
-        let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-        let request = URLRequest(url: photo)
-        guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
-            return 0.75
+        let havePhoto = post.photos.count
+        
+        if havePhoto == 0 {
+            return 30
+        } else {
+            let photo = URL(string: post.photos[0].url)!
+            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+            let request = URLRequest(url: photo)
+            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+                return 0.75
+            }
+            var img: UIImage?
+            let imageView1 = UIImageView()
+            img = UIImage(data: imgData)!
+            imageView1.image = img
+            let photoSize = img?.size
+            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
+            
+            return rect.size.height
         }
-        var img: UIImage?
-        let imageView1 = UIImageView()
-        img = UIImage(data: imgData)!
-        imageView1.image = img
-        let photoSize = img?.size
-        let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
-
-        return rect.size.height
     }
     
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {

@@ -11,7 +11,7 @@ import Foundation
 enum MessageBoardRequest: CAtFERequest {
     case allMessage
     case myMessage(String)
-    case createMessage(String, Message)
+    case createMessage(String, Int, String, [Photos])
     case updateMessage(String, Message, Int)
     case deleteMessage(String, Message, Int)
 
@@ -21,7 +21,7 @@ enum MessageBoardRequest: CAtFERequest {
             return [:]
         case .myMessage(let token):
             return ["X-Auth-Token": "\(token)"]
-        case .createMessage(let token, _):
+        case .createMessage(let token, _, _, _):
             return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
         case .updateMessage(let token, _, _):
             return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
@@ -36,14 +36,13 @@ enum MessageBoardRequest: CAtFERequest {
             return nil
         case .myMessage:
             return nil
-        case .createMessage(_, let message):
-            do {
-              let encode = try JSONEncoder().encode(message)
-                return encode
-            } catch {
-                print(error)
-            }
-            return nil
+        case .createMessage(_, let cafeId, let content, let photos):
+            let dict = [
+                "cafeID": cafeId,
+                "content": content,
+                "photos": photos
+                ] as [String : Any]
+            return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .updateMessage(_, let message, _):
             do {
               let encode = try JSONEncoder().encode(message)
@@ -124,9 +123,11 @@ class MessageBoardManager {
     }
 
     func createMessageInList(token: String,
-                             messageObj: Message,
+                             cafeID: Int,
+                             content: String,
+                             photos: [Photos],
                              completion: @escaping (Result<MessageModel>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.createMessage(token, messageObj)) { (result) in
+        HTTPClient.shared.request(MessageBoardRequest.createMessage(token, cafeID, content, photos)) { (result) in
             switch result {
             case .success(let data):
                 do {

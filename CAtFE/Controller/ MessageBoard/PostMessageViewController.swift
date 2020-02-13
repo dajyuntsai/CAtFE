@@ -14,6 +14,8 @@ class PostMessageViewController: BaseViewController {
     let picker: UIImagePickerController = UIImagePickerController()
     let messageBoardManager = MessageBoardManager()
     var selectedPhotoList: [UIImage] = []
+    var cafeId: Int?
+    var content: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +46,35 @@ class PostMessageViewController: BaseViewController {
     }
     
     func createMessage() {
-//        guard let token = KeyChainManager.shared.token != nil else { return false }
-//        messageBoardManager.createMessageInList(token: token, messageObj: <#T##Message#>) { (result) in
-//            switch result {
-//            case .success(let data):
-//                CustomProgressHUD.showSuccess(text: "發送成功")
-//                self.navigationController?.popToRootViewController(animated: true)
-//            case .failure(let error):
-//                CustomProgressHUD.showFailure(text: "發送失敗")
-//                print("======= createMessage error: \(error)")
-//            }
-//        }
+        guard KeyChainManager.shared.token != nil else {
+            return onShowLogin()
+        }
+        let token = KeyChainManager.shared.token ?? ""
+        if content == nil {
+            alert(message: "請輸入內容")
+        } else {
+            messageBoardManager.createMessageInList(token: token,
+                                                    cafeID: cafeId ?? 6,
+                                                    content: content!,
+                                                    photos: []) { (result) in
+                switch result {
+                case .success(_):
+                    CustomProgressHUD.showSuccess(text: "發送成功")
+                    self.navigationController?.popToRootViewController(animated: true)
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                        print("======= createMessage error: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    func onShowLogin() {
+        guard let authVC = UIStoryboard.main.instantiateInitialViewController() else { return }
+        authVC.modalPresentationStyle = .overCurrentContext
+        present(authVC, animated: false, completion: nil)
     }
 }
 
@@ -75,7 +95,9 @@ extension PostMessageViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else {
                 return UITableViewCell()
             }
-            
+            cell.content = { (content) in
+                self.content = content
+            }
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell", for: indexPath) as? PostMessagePhotoTableViewCell else {
@@ -168,6 +190,10 @@ extension PostMessageViewController: SearchCafeDelegate {
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostAddLocationViewController.identifier) as? PostAddLocationViewController
         presentVC?.modalPresentationStyle = .formSheet
         presentVC?.delegate = cell
+        presentVC?.cafeId = { id in
+            self.cafeId = id
+        }
         self.present(presentVC!, animated: true, completion: nil)
     }
 }
+

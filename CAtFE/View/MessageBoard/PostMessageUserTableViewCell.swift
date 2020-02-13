@@ -38,7 +38,6 @@ class PostMessageUserTableViewCell: UITableViewCell {
 
 extension PostMessageUserTableViewCell: DisplayCafeNameDelegate {
     func setCafeName(cafeName: String) {
-        
         self.addLocation.setTitle(cafeName, for: .normal)
     }
 }

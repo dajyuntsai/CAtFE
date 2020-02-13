@@ -18,6 +18,7 @@ class PostAddLocationViewController: BaseViewController {
     var searchController: UISearchController!
     
     weak var delegate: DisplayCafeNameDelegate?
+    var cafeId: ((Int) -> Void)?
     
     let fullScreenSize = UIScreen.main.bounds.size
     let cafeManager = CafeManager()
@@ -88,7 +89,10 @@ extension PostAddLocationViewController: UITableViewDataSource {
 
 extension PostAddLocationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.setCafeName(cafeName: cafeList[indexPath.row].name)
+        let data = cafeList[indexPath.row]
+        self.delegate?.setCafeName(cafeName: data.name)        
+        cafeId?(cafeList[indexPath.row].id)
+        
         self.dismiss(animated: true, completion: nil)
     }
 }

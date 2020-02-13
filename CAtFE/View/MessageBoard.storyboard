@@ -246,7 +246,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8y-rG-cDl">
-                                                    <rect key="frame" x="336" y="25" width="62" height="30"/>
+                                                    <rect key="frame" x="336" y="34" width="62" height="30"/>
                                                     <state key="normal" title="新增地點">
                                                         <color key="titleColor" name="TextColor"/>
                                                     </state>
@@ -254,15 +254,25 @@
                                                         <action selector="addLocationBtn:" destination="1T6-D3-SbH" eventType="touchUpInside" id="ayO-g4-ge1"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yd-Pc-zML">
+                                                    <rect key="frame" x="378" y="16" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="5WD-E3-Uck"/>
+                                                        <constraint firstAttribute="width" constant="20" id="K3Q-Qx-hFC"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="ellipsis" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cSr-Tn-7lm" firstAttribute="top" secondItem="Eb0-Fv-4zr" secondAttribute="top" constant="16" id="2he-2N-yNK"/>
                                                 <constraint firstItem="mjC-J5-kH6" firstAttribute="leading" secondItem="cSr-Tn-7lm" secondAttribute="trailing" constant="16" id="DnY-Ig-mlJ"/>
                                                 <constraint firstItem="cSr-Tn-7lm" firstAttribute="leading" secondItem="Eb0-Fv-4zr" secondAttribute="leading" constant="16" id="R2f-5Q-mwZ"/>
+                                                <constraint firstItem="r8y-rG-cDl" firstAttribute="bottom" secondItem="cSr-Tn-7lm" secondAttribute="bottom" id="YFy-z9-cB9"/>
+                                                <constraint firstItem="7Yd-Pc-zML" firstAttribute="top" secondItem="cSr-Tn-7lm" secondAttribute="top" id="coF-hg-v3N"/>
                                                 <constraint firstAttribute="trailing" secondItem="r8y-rG-cDl" secondAttribute="trailing" constant="16" id="dJa-cc-7cw"/>
                                                 <constraint firstItem="mjC-J5-kH6" firstAttribute="centerY" secondItem="Eb0-Fv-4zr" secondAttribute="centerY" id="i6L-yb-yNO"/>
                                                 <constraint firstAttribute="bottom" secondItem="cSr-Tn-7lm" secondAttribute="bottom" constant="16" id="qHt-wf-iTh"/>
-                                                <constraint firstItem="r8y-rG-cDl" firstAttribute="centerY" secondItem="Eb0-Fv-4zr" secondAttribute="centerY" id="vyI-Ih-lmH"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Yd-Pc-zML" secondAttribute="trailing" constant="16" id="uxJ-JO-5u4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -732,6 +742,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis" catalog="system" width="64" height="18"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="home" width="84" height="83"/>
         <image name="message" catalog="system" width="64" height="56"/>

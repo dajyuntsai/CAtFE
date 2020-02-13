@@ -56,7 +56,10 @@ class ShopLoginContainView: BaseViewController {
                 CustomProgressHUD.showSuccess(text: "CAtFE 登入成功")
                 self.backToRoot()
             case .failure:
-                CustomProgressHUD.showSuccess(text: "CAtFE 登入失敗")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    CustomProgressHUD.showFailure(text: "CAtFE 登入失敗")
+                }
             }
         }
     }

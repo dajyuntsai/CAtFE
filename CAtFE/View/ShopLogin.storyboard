@@ -11,7 +11,7 @@
         <!--Shop Login View Controller-->
         <scene sceneID="X17-9B-fR4">
             <objects>
-                <viewController storyboardIdentifier="ShopLoginViewController" id="VHH-Lz-6TQ" customClass="ShopLoginViewController" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopLoginViewController" id="VHH-Lz-6TQ" customClass="ShopLoginViewController" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbO-oI-Loi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +66,7 @@
         <!--Shop Sign Up Contain View-->
         <scene sceneID="GrD-wE-wi5">
             <objects>
-                <viewController id="jA2-If-x84" customClass="ShopSignUpContainView" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jA2-If-x84" customClass="ShopSignUpContainView" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q5r-kL-xTz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="789"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +234,7 @@
         <!--Shop Login Contain View-->
         <scene sceneID="ifa-9n-ccn">
             <objects>
-                <viewController id="l0p-5X-AO5" customClass="ShopLoginContainView" customModule="PetnoonTea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l0p-5X-AO5" customClass="ShopLoginContainView" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h0K-lj-KdB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="789"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

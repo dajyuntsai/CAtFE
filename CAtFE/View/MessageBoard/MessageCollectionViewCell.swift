@@ -41,7 +41,9 @@ class MessageCollectionViewCell: UICollectionViewCell {
         captionLabel.text = message.content
         locationLabel.text = message.cafe.name
 
-        postImageView.loadImage(message.photos[0].url)
+        if message.photos.count != 0 {
+            postImageView.loadImage(message.photos[0].url)
+        }
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true
     }
