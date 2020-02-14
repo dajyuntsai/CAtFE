@@ -18,7 +18,6 @@ extension UIColor {
     static let TextColor = themeColor(.textColor)
         
     private static func themeColor(_ color: ThemeColor) -> UIColor? {
-
         return UIColor(named: color.rawValue)
     }
 

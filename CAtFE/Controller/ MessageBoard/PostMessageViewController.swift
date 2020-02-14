@@ -199,7 +199,7 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         var selectedImageFromPicker: UIImage?
         if let pickedImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = pickedImage
@@ -223,7 +223,6 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
     
     func uploadImage(imageData: Data) {
         // TODO: 上傳到api
-        
     }
 }
 
@@ -238,4 +237,3 @@ extension PostMessageViewController: TopViewOfCresteMessageDelegate {
         self.present(presentVC!, animated: true, completion: nil)
     }
 }
-

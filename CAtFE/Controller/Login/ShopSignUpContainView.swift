@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseFirestore
 
 class ShopSignUpContainView: BaseViewController {
 
@@ -18,7 +15,6 @@ class ShopSignUpContainView: BaseViewController {
     @IBOutlet weak var notificationBtn: UISwitch!
 
     let userProvider = UserProvider()
-    var database: Firestore?
     var isAdmin = false
     var isNeedNotification = false
 
@@ -47,8 +43,6 @@ class ShopSignUpContainView: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        database = Firestore.firestore()
         
         initView()
     }

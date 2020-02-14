@@ -7,15 +7,11 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseFirestore
 
 class ShopLoginContainView: BaseViewController {
 
     @IBOutlet var loginLabel: [UILabel]!
     @IBOutlet var loginTextField: [UITextField]!
-    var database: Firestore?
     let userProvider = UserProvider()
     let loginList = ["登入帳號：", "登入密碼："]
     
@@ -25,8 +21,6 @@ class ShopLoginContainView: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        database = Firestore.firestore()
         
         initView()
     }

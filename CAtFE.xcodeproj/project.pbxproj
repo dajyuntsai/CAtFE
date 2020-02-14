@@ -78,6 +78,14 @@
 		BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */; };
 		BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F423E9A381004A669D /* PostAddLocationViewController.swift */; };
 		BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */; };
+		BE94EB4323F6549900FA4604 /* DetailScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4223F6549900FA4604 /* DetailScoreViewController.swift */; };
+		BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4423F654D400FA4604 /* ScoreForCafeViewController.swift */; };
+		BE94EB4823F6856D00FA4604 /* RatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4723F6856D00FA4604 /* RatedModel.swift */; };
+		BE94EB4B23F686B500FA4604 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4923F686B500FA4604 /* UserTableViewCell.swift */; };
+		BE94EB4C23F686B500FA4604 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE94EB4A23F686B500FA4604 /* UserTableViewCell.xib */; };
+		BE94EB4F23F6872700FA4604 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4D23F6872700FA4604 /* NoteTableViewCell.swift */; };
+		BE94EB5023F6872700FA4604 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE94EB4E23F6872700FA4604 /* NoteTableViewCell.xib */; };
+		BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -203,6 +211,14 @@
 		BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE9131F423E9A381004A669D /* PostAddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAddLocationViewController.swift; sourceTree = "<group>"; };
 		BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		BE94EB4223F6549900FA4604 /* DetailScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScoreViewController.swift; sourceTree = "<group>"; };
+		BE94EB4423F654D400FA4604 /* ScoreForCafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreForCafeViewController.swift; sourceTree = "<group>"; };
+		BE94EB4723F6856D00FA4604 /* RatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedModel.swift; sourceTree = "<group>"; };
+		BE94EB4923F686B500FA4604 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		BE94EB4A23F686B500FA4604 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		BE94EB4D23F6872700FA4604 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		BE94EB4E23F6872700FA4604 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
+		BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeWebsiteViewController.swift; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +308,10 @@
 			isa = PBXGroup;
 			children = (
 				BE4FD7DC23F572CE004E190A /* RatedTableViewCell.swift */,
+				BE94EB4923F686B500FA4604 /* UserTableViewCell.swift */,
+				BE94EB4A23F686B500FA4604 /* UserTableViewCell.xib */,
+				BE94EB4D23F6872700FA4604 /* NoteTableViewCell.swift */,
+				BE94EB4E23F6872700FA4604 /* NoteTableViewCell.xib */,
 			);
 			path = Rated;
 			sourceTree = "<group>";
@@ -395,6 +415,9 @@
 			children = (
 				BE4FD7DE23F5A41C004E190A /* RatedViewController.swift */,
 				BE9131C823E2EEC3004A669D /* ComprehensiveRatedViewController.swift */,
+				BE94EB4223F6549900FA4604 /* DetailScoreViewController.swift */,
+				BE94EB4423F654D400FA4604 /* ScoreForCafeViewController.swift */,
+				BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */,
 			);
 			path = Rated;
 			sourceTree = "<group>";
@@ -449,6 +472,14 @@
 			path = MessageBoard;
 			sourceTree = "<group>";
 		};
+		BE94EB4623F6854800FA4604 /* Rated */ = {
+			isa = PBXGroup;
+			children = (
+				BE94EB4723F6856D00FA4604 /* RatedModel.swift */,
+			);
+			path = Rated;
+			sourceTree = "<group>";
+		};
 		BEE181D223E20E2100660AEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +500,7 @@
 				BE076B5423EA60780090BC7F /* Home */,
 				BE9131D523E5E375004A669D /* MessageBoard */,
 				BEE181F823E240B100660AEB /* User */,
+				BE94EB4623F6854800FA4604 /* Rated */,
 				BEE181F723E2409E00660AEB /* HTTP */,
 			);
 			path = Model;
@@ -531,11 +563,11 @@
 		BEE181F323E239FB00660AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BE4FD7DB23F572AE004E190A /* Rated */,
 				BE52590123EC5B0900F8AC00 /* Member */,
 				BE5258F523EBC47300F8AC00 /* Popup */,
 				BE9131D023E55427004A669D /* MessageBoard */,
 				BEE181F423E23A1900660AEB /* Home */,
+				BE4FD7DB23F572AE004E190A /* Rated */,
 				BE66210623D3FE450053FD07 /* Main.storyboard */,
 				BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */,
 				BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */,
@@ -719,10 +751,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE94EB5023F6872700FA4604 /* NoteTableViewCell.xib in Resources */,
 				BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */,
 				BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */,
 				BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */,
 				BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */,
+				BE94EB4C23F686B500FA4604 /* UserTableViewCell.xib in Resources */,
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
@@ -893,9 +927,11 @@
 				BE5B245C23F28A280092FACA /* MyFollowingViewController.swift in Sources */,
 				BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */,
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
+				BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */,
 				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
 				BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
+				BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */,
 				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
@@ -905,9 +941,11 @@
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEA99E0723EFFE0000F2CC69 /* MemberInfoTableViewCell.swift in Sources */,
+				BE94EB4823F6856D00FA4604 /* RatedModel.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
 				BE4FD7DA23F5512B004E190A /* SettingViewController.swift in Sources */,
 				BE4FD7DD23F572CE004E190A /* RatedTableViewCell.swift in Sources */,
+				BE94EB4B23F686B500FA4604 /* UserTableViewCell.swift in Sources */,
 				BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
 				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
@@ -922,10 +960,12 @@
 				BE4FD7D823F4F739004E190A /* UITextView +Extension.swift in Sources */,
 				BEA99E0423EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift in Sources */,
 				BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */,
+				BE94EB4323F6549900FA4604 /* DetailScoreViewController.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE36C40F23F195C9003C4BDB /* TabTitleView.swift in Sources */,
 				BE9131C923E2EEC3004A669D /* ComprehensiveRatedViewController.swift in Sources */,
 				BE9131D223E55452004A669D /* PinterestLayout.swift in Sources */,
+				BE94EB4F23F6872700FA4604 /* NoteTableViewCell.swift in Sources */,
 				BE5B245E23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift in Sources */,
 				BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */,
 				BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */,

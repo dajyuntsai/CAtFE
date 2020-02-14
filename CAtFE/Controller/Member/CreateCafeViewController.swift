@@ -89,9 +89,9 @@ class CreateCafeViewController: BaseViewController {
         cafeManager.createCafeInList(cafeObj: cafe) { (result) in
             switch result {
             case .success:
-                print("新增成功")
-            case .failure(let error):
-                print("=======create", error)
+                CustomProgressHUD.showSuccess(text: "新增成功，待審核")
+            case .failure(_):
+                CustomProgressHUD.showFailure(text: "新增失敗")
             }
         }
     }

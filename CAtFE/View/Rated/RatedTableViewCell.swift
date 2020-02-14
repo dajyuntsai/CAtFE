@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol RatedCellBtnDelegate: AnyObject {
+    func showDetailRadar(_ cell: RatedTableViewCell)
+    func getBtnState(_ cell: RatedTableViewCell, _ btnState: Bool)
+}
+
 class RatedTableViewCell: UITableViewCell {
+    
+    weak var delegate: RatedCellBtnDelegate?
 
     var followBtnState = false
     @IBOutlet weak var ratedIcon: UIImageView!
@@ -26,10 +33,11 @@ class RatedTableViewCell: UITableViewCell {
             followBtn.backgroundColor = .gray
         }
         followBtnState = !followBtnState
+        delegate?.getBtnState(self, followBtnState)
     }
     
     @IBAction func scoreBtnClick(_ sender: Any) {
-        
+        delegate?.showDetailRadar(self)
     }
     
     override func awakeFromNib() {
@@ -46,4 +54,8 @@ class RatedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setData(data: Bool) {
+        let stateColor = data == true ? .gray : UIColor(named: "MainColor")
+        followBtn.backgroundColor = stateColor
+    }
 }

@@ -86,7 +86,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         guard let idToken = appleIDCredential.identityToken else { return }
-        let userIdentifier = appleIDCredential.user
+//        let userIdentifier = appleIDCredential.user
         let givenName = appleIDCredential.fullName?.givenName ?? "Apple Sign in: No givenName"
         let familyName = appleIDCredential.fullName?.familyName ?? "Apple Sign in: No familyName"
         let fullName = givenName +  " " + familyName

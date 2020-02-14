@@ -26,12 +26,8 @@ target 'CAtFE' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Database'
-  pod 'Firebase/Firestore’
+  # Pod for chart
+  pod 'AAInfographics'
 
   # Pod for star rate
   pod 'Cosmos'

@@ -17,6 +17,8 @@ class ComprehensiveRatedViewController: BaseViewController {
         }
     }
     
+    var ratedModel: RatedModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,16 +45,31 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
         default:
             cell.ratedIcon.isHidden = true
         }
+        cell.delegate = self
         return cell
     }
 }
 
 extension ComprehensiveRatedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 進入雷達圖
+        // TODO: 進入點店家網站
+        performSegue(withIdentifier: "showWebView", sender: self)
+    }
+}
+
+extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
+    func showDetailRadar(_ cell: RatedTableViewCell) {
+        let presentVC = UIStoryboard.rated.instantiateViewController(identifier: DetailScoreViewController.identifier) as? DetailScoreViewController
+        presentVC?.modalPresentationStyle = .fullScreen
+        self.show(presentVC!, sender: nil)
+    }
+    
+    func getBtnState(_ cell: RatedTableViewCell, _ btnState: Bool) {
+//        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        tableView.reloadData()
     }
 }
