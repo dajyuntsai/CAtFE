@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" constant="30" id="N0W-hG-FVL"/>
                                             <constraint firstAttribute="width" constant="30" id="loG-He-uYH"/>
                                         </constraints>
-                                        <state key="normal" image="cogwheel"/>
+                                        <state key="normal" image="settings"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -81,7 +81,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1H-lS-Zs7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="palm" id="bIB-I6-Gjb"/>
+                    <tabBarItem key="tabBarItem" title="" image="unselect_contact" selectedImage="select_contact" id="bIB-I6-Gjb"/>
                     <connections>
                         <outlet property="userImageView" destination="JpP-D8-FBH" id="rWh-0T-qmB"/>
                     </connections>
@@ -283,9 +283,10 @@
     </scenes>
     <resources>
         <image name="chevron.down" catalog="system" width="64" height="36"/>
-        <image name="cogwheel" width="512" height="512"/>
-        <image name="palm" width="30" height="30"/>
         <image name="placeholder" width="987" height="777"/>
+        <image name="select_contact" width="512" height="512"/>
+        <image name="settings" width="512" height="512"/>
+        <image name="unselect_contact" width="512" height="512"/>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

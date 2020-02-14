@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Ray-DA-mYf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="event" id="oue-7n-cAB"/>
+                    <tabBarItem key="tabBarItem" title="" image="unselect_calendar" selectedImage="select_calendar" id="oue-7n-cAB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0F-9C-OsJ" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +25,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="event" width="30" height="30"/>
+        <image name="select_calendar" width="512" height="512"/>
+        <image name="unselect_calendar" width="512" height="512"/>
     </resources>
 </document>
