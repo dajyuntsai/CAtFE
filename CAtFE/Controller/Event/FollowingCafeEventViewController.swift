@@ -12,6 +12,7 @@ import Social
 class FollowingCafeEventViewController: BaseViewController {
     
     let refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var createPostBtn: UIButton!
     @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var createBtnBottomConstraint: NSLayoutConstraint!
@@ -89,7 +90,14 @@ extension FollowingCafeEventViewController: UITableViewDataSource {
 }
 
 extension FollowingCafeEventViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
+            as? PostMessageDetailViewController
+        presentVC?.message = message[indexPath.row]
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
+    }
 }
 
 extension FollowingCafeEventViewController: GoodCommentShareDelegate {
@@ -114,6 +122,21 @@ extension FollowingCafeEventViewController: GoodCommentShareDelegate {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+    func getEditView(_ cell: FollowingCafeTableViewCell) {
+        let alertController = UIAlertController(title: "選擇功能", message: nil, preferredStyle: .actionSheet)
+        let callOutAction = UIAlertAction(title: "編輯", style: .default) { (_) in
+//            self.onEditMessage()
+        }
+        let guideAction = UIAlertAction(title: "刪除", style: .destructive) { (_) in
+//            self.onDeleteMessage()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(callOutAction)
+        alertController.addAction(guideAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func getMessageList() { // 假的
         let messageBoardManager = MessageBoardManager()
         messageBoardManager.getMessageList { (result) in
@@ -124,5 +147,19 @@ extension FollowingCafeEventViewController: GoodCommentShareDelegate {
                 print("======= 測試資料 error: \(error)")
             }
         }
+    }
+    
+    func onEditMessage() {
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageViewController.identifier)
+            as? PostMessageViewController
+        presentVC?.modalPresentationStyle = .formSheet
+        presentVC?.loadViewIfNeeded()
+        presentVC?.isEditMode = true
+        self.present(presentVC!, animated: true, completion: nil)
+    }
+    
+    func onDeleteMessage() { // TODO: delete message api
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

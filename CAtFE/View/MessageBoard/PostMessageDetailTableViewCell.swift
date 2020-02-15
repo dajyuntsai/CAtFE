@@ -57,7 +57,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         pageControl.currentPage = 0
         pageControl.numberOfPages = data?.photos.count ?? 0
         pageControl.currentPageIndicatorTintColor = .white
-        pageControl.pageIndicatorTintColor = .gray
+        pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
         pageControl.hidesForSinglePage = true
     }
 

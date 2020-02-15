@@ -11,4 +11,9 @@ import UIKit
 class EventPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var eventPhotoImageView: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.cornerRadius = 20
+    }
 }
