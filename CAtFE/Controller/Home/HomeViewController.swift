@@ -110,7 +110,7 @@ class HomeViewController: UIViewController {
         searchBar.placeholder = "Search for places"
         navigationItem.searchController = resultSearchController
         resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
+        resultSearchController?.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
     }
     

@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol GoodCommentShareDelegate: AnyObject {
+    func getCommentView(_ cell: FollowingCafeTableViewCell)
+    func getShareView(_ cell: FollowingCafeTableViewCell)
+}
+
 class FollowingCafeTableViewCell: UITableViewCell {
 
+    weak var delegate: GoodCommentShareDelegate?
     var goodBtnState = false
     let photoList = ["", ""]
     
@@ -36,9 +42,11 @@ class FollowingCafeTableViewCell: UITableViewCell {
     }
     
     @IBAction func commentBtnClick(_ sender: Any) {
+        delegate?.getCommentView(self)
     }
     
     @IBAction func shareBtnClick(_ sender: Any) {
+        delegate?.getShareView(self)
     }
     
     override func awakeFromNib() {

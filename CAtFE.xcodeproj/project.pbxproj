@@ -25,6 +25,7 @@
 		BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD123E2DC57003C38D9 /* Member.storyboard */; };
 		BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */; };
 		BE365F1623F794D70088A9C8 /* EventPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE365F1523F794D70088A9C8 /* EventPhotoCollectionViewCell.swift */; };
+		BE365F1823F7C3830088A9C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE365F1723F7C3830088A9C8 /* Social.framework */; };
 		BE36C40D23F195C9003C4BDB /* TabTitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40A23F195C9003C4BDB /* TabTitleConfig.swift */; };
 		BE36C40E23F195C9003C4BDB /* TabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40B23F195C9003C4BDB /* TabContentView.swift */; };
 		BE36C40F23F195C9003C4BDB /* TabTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40C23F195C9003C4BDB /* TabTitleView.swift */; };
@@ -155,6 +156,7 @@
 		BE1EDBD123E2DC57003C38D9 /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		BE365F1523F794D70088A9C8 /* EventPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE365F1723F7C3830088A9C8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BE36C40623F12FFA003C4BDB /* CAtFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CAtFE.entitlements; sourceTree = "<group>"; };
 		BE36C40A23F195C9003C4BDB /* TabTitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTitleConfig.swift; sourceTree = "<group>"; };
 		BE36C40B23F195C9003C4BDB /* TabContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabContentView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007BE556723722CECD558892 /* Pods_CAtFE.framework in Frameworks */,
+				BE365F1823F7C3830088A9C8 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +638,7 @@
 		CD33BE274028B22DB88B81B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE365F1723F7C3830088A9C8 /* Social.framework */,
 				E065BEE50E0A784EADFD48F9 /* Pods_CAtFE.framework */,
 				5079CD61E468EBA4484F3812 /* Pods_CAtFE_CAtFEUITests.framework */,
 				FFFE1D31C68FE1393EB66E92 /* Pods_CAtFETests.framework */,

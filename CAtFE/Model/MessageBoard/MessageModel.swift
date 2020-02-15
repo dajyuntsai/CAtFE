@@ -9,16 +9,16 @@
 import Foundation
 
 struct MessageModel: Codable {
-    var data: [Message]
+    let data: [Message]
 }
 
 struct Message: Codable {
-    var id: Int
-    var content: String
-    var cafe: Cafe
-    var user: User
-    var photos: [Photos]
-    var createAt: String
+    let id: Int
+    let content: String
+    let cafe: Cafe
+    let user: User
+    let photos: [Photos]
+    let createAt: String
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,7 +31,7 @@ struct Message: Codable {
 }
 
 struct Photos: Codable {
-    var id: Int
-    var url: String
-    var isPrimary: Bool
+    let id: Int
+    let url: String
+    let isPrimary: Bool
 }

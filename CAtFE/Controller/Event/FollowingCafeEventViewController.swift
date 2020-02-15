@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Social
 
 class FollowingCafeEventViewController: BaseViewController {
     
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var createPostBtn: UIButton!
     @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var createBtnBottomConstraint: NSLayoutConstraint!
@@ -17,6 +19,18 @@ class FollowingCafeEventViewController: BaseViewController {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
+        }
+    }
+    var message: [Message] = [] {
+        didSet {
+            if message.isEmpty {
+                refreshControl.beginRefreshing()
+            } else {
+                DispatchQueue.main.async { // ?????
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            }
         }
     }
     @IBAction func createEventBtn(_ sender: Any) {
@@ -27,6 +41,7 @@ class FollowingCafeEventViewController: BaseViewController {
         super.viewDidLoad()
         
         initView()
+        getMessageList()
     }
     
     func initView() {
@@ -35,6 +50,9 @@ class FollowingCafeEventViewController: BaseViewController {
         createPostBtn.layer.cornerRadius = createPostBtn.frame.width / 2
         createBtnBottomConstraint.constant = -height * 0.28
         createBtnRightConstraint.constant = width * 0.05
+        
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     func showCreatePostView() {
@@ -43,6 +61,15 @@ class FollowingCafeEventViewController: BaseViewController {
             as? PostMessageViewController
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
+    }
+    
+    @objc func loadData() {
+        message.removeAll()
+        DispatchQueue.main.async {
+            self.getMessageList()
+        }
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -56,10 +83,46 @@ extension FollowingCafeEventViewController: UITableViewDataSource {
                                                        for: indexPath) as? FollowingCafeTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         return cell
     }
 }
 
 extension FollowingCafeEventViewController: UITableViewDelegate {
     
+}
+
+extension FollowingCafeEventViewController: GoodCommentShareDelegate {
+    func getCommentView(_ cell: FollowingCafeTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
+            as? PostMessageDetailViewController
+        presentVC?.message = message[indexPath.row]
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
+    }
+    
+    func getShareView(_ cell: FollowingCafeTableViewCell) {
+        let secondActivityItem: NSURL = NSURL(string: "http://www.google.com")! // TODO: 修改分享網址
+        let activityViewController: UIActivityViewController = UIActivityViewController(
+            activityItems: [secondActivityItem], applicationActivities: nil)
+        
+        // This lines is for the popover you need to show in iPad
+        activityViewController.popoverPresentationController?.sourceView = self.view
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func getMessageList() { // 假的
+        let messageBoardManager = MessageBoardManager()
+        messageBoardManager.getMessageList { (result) in
+            switch result {
+            case .success(let messageData):
+                self.message = messageData.data
+            case .failure(let error):
+                print("======= 測試資料 error: \(error)")
+            }
+        }
+    }
 }
