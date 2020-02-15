@@ -93,7 +93,8 @@ extension SinaLikePopupViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopupCollectionViewCell.identifier, for: indexPath) as? PopupCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopupCollectionViewCell.identifier,
+                                                            for: indexPath) as? PopupCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.setData(title: petList[indexPath.item], icon: iconList[indexPath.row])

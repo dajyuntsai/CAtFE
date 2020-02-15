@@ -284,9 +284,9 @@
     <resources>
         <image name="chevron.down" catalog="system" width="64" height="36"/>
         <image name="placeholder" width="987" height="777"/>
-        <image name="select_contact" width="512" height="512"/>
+        <image name="select_contact" width="40" height="40"/>
         <image name="settings" width="512" height="512"/>
-        <image name="unselect_contact" width="512" height="512"/>
+        <image name="unselect_contact" width="30" height="30"/>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

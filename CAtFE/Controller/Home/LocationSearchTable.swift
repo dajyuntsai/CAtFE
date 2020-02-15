@@ -33,7 +33,8 @@ extension LocationSearchTable: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationSearchTableViewCell.identifier, for: indexPath) as? LocationSearchTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationSearchTableViewCell.identifier,
+                                                       for: indexPath) as? LocationSearchTableViewCell else {
             return UITableViewCell()
         }
         let selectedItem = matchingItems[indexPath.row].placemark

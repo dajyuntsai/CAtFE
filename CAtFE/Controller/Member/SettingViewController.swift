@@ -32,8 +32,6 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
-    
 }
 
 extension SettingViewController: UITableViewDataSource {

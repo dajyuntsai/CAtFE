@@ -69,7 +69,9 @@ class DetailScoreViewController: BaseViewController {
     }
     
     @objc func showRatedStarView() {
-        let presentVC = UIStoryboard.rated.instantiateViewController(identifier: ScoreForCafeViewController.identifier) as? ScoreForCafeViewController
+        let presentVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ScoreForCafeViewController.identifier)
+            as? ScoreForCafeViewController
         presentVC?.modalPresentationStyle = .fullScreen
         self.show(presentVC!, sender: nil)
     }

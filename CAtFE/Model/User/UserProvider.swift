@@ -49,8 +49,8 @@ class UserProvider {
 
     func getUserDataFromFB(fbToken: String) {
         let connection = GraphRequestConnection()
-        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "email, name, id"])) {
-            (httpResponse, result, error) in
+        connection.add(GraphRequest(graphPath: "/me",
+                                    parameters: ["fields": "email, name, id"])) { (_, result, error) in
             if error != nil {
                 NSLog(error.debugDescription)
                 return

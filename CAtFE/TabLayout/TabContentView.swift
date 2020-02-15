@@ -10,7 +10,10 @@ import UIKit
 
 @objc public protocol TabContentViewDelegate: NSObjectProtocol {
     // change titleView state when scroll contentView
-    func scrollPageContentView(_ pageContentView: TabContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int)
+    func scrollPageContentView(_ pageContentView: TabContentView,
+                               progress: CGFloat,
+                               originalIndex: Int,
+                               targetIndex: Int)
     // get offet of contentView
     @objc optional func getPageContentView(_ pageContentView: TabContentView, offsetX: CGFloat)
 }
@@ -20,7 +23,7 @@ public class TabContentView: UIView {
     // contentView是否可以滾動
     var mScrollSwitch: Bool
     
-    private let mContentViewDelegate: TabContentViewDelegate?
+    weak var mContentViewDelegate: TabContentViewDelegate?
     
     private let mParentVC: UIViewController
     private let mChildVCs: [UIViewController]?
@@ -33,7 +36,12 @@ public class TabContentView: UIView {
     // 點擊title來滾動頁面
     private var mIsClickTitle: Bool = false
     
-    public init(frame: CGRect, parentVC: UIViewController, childVCs: [UIViewController]?, childViews: [UIView], delegate: TabContentViewDelegate?, scrollSwitch: Bool = true) {
+    public init(frame: CGRect,
+                parentVC: UIViewController,
+                childVCs: [UIViewController]?,
+                childViews: [UIView],
+                delegate: TabContentViewDelegate?,
+                scrollSwitch: Bool = true) {
         mScrollSwitch = scrollSwitch
         if delegate == nil && scrollSwitch == true {
             mScrollSwitch = false
@@ -43,8 +51,8 @@ public class TabContentView: UIView {
         mChildVCs = childVCs
         var getViews = childViews
         if getViews.count == 0 && childVCs != nil {
-            for vc in childVCs! {
-                getViews.append(vc.view)
+            for VCs in childVCs! {
+                getViews.append(VCs.view)
             }
         }
         mChildViews = getViews
@@ -68,7 +76,8 @@ public class TabContentView: UIView {
         mScrollView.delegate = self
         
         let viewCount = mChildVCs != nil ? mChildVCs!.count : mChildViews.count
-        mScrollView.contentSize = CGSize(width: mScrollView.frame.width * CGFloat(viewCount), height: mScrollView.frame.size.height)
+        mScrollView.contentSize = CGSize(width: mScrollView.frame.width * CGFloat(viewCount),
+                                         height: mScrollView.frame.size.height)
         if !mScrollSwitch {
             mScrollView.isScrollEnabled = false
         }
@@ -77,17 +86,17 @@ public class TabContentView: UIView {
     
     private func initContent() {
         var tempX: CGFloat = 0
-        func addContent(view : UIView){
+        func addContent(view: UIView) {
             view.frame = CGRect(origin: CGPoint(x: tempX, y: 0), size: self.frame.size)
             mScrollView.addSubview(view)
             tempX += self.frame.size.width
         }
         if let childVCs = mChildVCs {
-            for vc in childVCs{
-                mParentVC.addChild(vc)
-                addContent(view: vc.view)
+            for VCs in childVCs {
+                mParentVC.addChild(VCs)
+                addContent(view: VCs.view)
             }
-        }else {
+        } else {
             for view in mChildViews {
                 addContent(view: view)
             }
@@ -102,7 +111,7 @@ public extension TabContentView {
         let offset = CGFloat(index) * mScrollView.frame.size.width
         UIView.animate(withDuration: 0.2, animations: {
             weakSelf?.mScrollView.contentOffset = CGPoint(x: offset, y: 0)
-        }) { (_) in
+        }) { _ in
             if let delegate = weakSelf?.mContentViewDelegate {
                 if delegate.responds(to: #selector(TabContentViewDelegate.getPageContentView(_:offsetX:))) {
                     delegate.getPageContentView!(weakSelf!, offsetX: offset)
@@ -161,6 +170,8 @@ extension TabContentView: UIScrollViewDelegate {
             }
         }
         
-        mContentViewDelegate?.scrollPageContentView(self, progress: progress, originalIndex: originalIndex, targetIndex: targetIndex)
+        mContentViewDelegate?.scrollPageContentView(self, progress: progress,
+                                                    originalIndex: originalIndex,
+                                                    targetIndex: targetIndex)
     }
 }

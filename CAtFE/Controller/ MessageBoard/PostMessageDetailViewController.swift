@@ -47,20 +47,23 @@ extension PostMessageDetailViewController: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell", for: indexPath) as? PostMessageDetailTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell",
+                                                           for: indexPath) as? PostMessageDetailTableViewCell else {
                 return UITableViewCell()
             }
             cell.delegate = self
             cell.setData(data: message!)
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostAddReplyCell", for: indexPath) as? PostMessageAddReplyTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostAddReplyCell",
+                                                           for: indexPath) as? PostMessageAddReplyTableViewCell else {
                 return UITableViewCell()
             }
             
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell", for: indexPath) as? PostMessageReplyTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell",
+                                                           for: indexPath) as? PostMessageReplyTableViewCell else {
             return UITableViewCell() }
             
             cell.replayContentLabel.text = "一個留言"
@@ -90,7 +93,9 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
     }
     
     func onEditMessage() {
-        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageViewController.identifier) as? PostMessageViewController
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageViewController.identifier)
+            as? PostMessageViewController
         presentVC?.modalPresentationStyle = .formSheet
         presentVC?.loadViewIfNeeded()
         presentVC?.isEditMode = true
@@ -110,4 +115,3 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
-

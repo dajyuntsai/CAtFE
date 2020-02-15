@@ -21,7 +21,7 @@ public class TabTitleView: UIView {
     private var mSelectedBtn: UIButton?
     
     private let mTitleConfig: TabTitleConfig
-    private let mTitleViewDelegate: TabTitleViewDelegate
+    weak var mTitleViewDelegate: TabTitleViewDelegate?
     
     // title array
     private let mTitleArr: [String]
@@ -36,7 +36,11 @@ public class TabTitleView: UIView {
     // total width of scrollview
     private var mContentWidth: CGFloat = 0.0
     
-    public init(frame: CGRect, titleArr: [String], config: TabTitleConfig, delegate: TabTitleViewDelegate, selectedIndex: Int = 0) {
+    public init(frame: CGRect,
+                titleArr: [String],
+                config: TabTitleConfig,
+                delegate: TabTitleViewDelegate,
+                selectedIndex: Int = 0) {
         mTitleArr = titleArr
         mTitleConfig = config
         mTitleViewDelegate = delegate
@@ -72,7 +76,8 @@ public class TabTitleView: UIView {
     }
     
     private func initBottomSeparator() {
-        let bottom = UIView(frame: CGRect.init(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1))
+        let bottom = UIView(frame: CGRect.init(x: 0, y: self.frame.size.height - 1,
+                                               width: self.frame.size.width, height: 1))
         self.addSubview(bottom)
         bottom.backgroundColor = UIColor.lightGray
     }
@@ -106,14 +111,17 @@ public class TabTitleView: UIView {
             
             let tempW = mContentWidth / CGFloat(mTitleArr.count)
             for (index, value) in mTitleArr.enumerated() { // ?
-                mScrollView.addSubview(createBtn(frame: CGRect(x: tempX, y: 0, width: tempW, height: btnH), index: index, value: value))
+                mScrollView.addSubview(createBtn(frame: CGRect(x: tempX, y: 0,
+                                                               width: tempW, height: btnH), index: index, value: value))
                 tempX += tempW
             }
         } else {
             mScrollView.contentSize = CGSize(width: mContentWidth, height: mScrollView.frame.size.height)
             
             for (index, value) in mTitleArr.enumerated() {
-                mScrollView.addSubview(createBtn(frame: CGRect(x: tempX, y: 0, width: mBtnWidthArr[index], height: btnH), index: index, value: value))
+                mScrollView.addSubview(createBtn(frame: CGRect(x: tempX, y: 0,
+                                                               width: mBtnWidthArr[index], height: btnH),
+                                                 index: index, value: value))
                 tempX += mBtnWidthArr[index]
             }
         }
@@ -128,7 +136,8 @@ public class TabTitleView: UIView {
                 width = mTitleConfig.indictorWidth
             }
         }
-        mIndicatorView = UIView(frame: CGRect(x: 0, y: self.frame.size.height - mTitleConfig.underlineHeight, width: width, height: mTitleConfig.underlineHeight))
+        mIndicatorView = UIView(frame: CGRect(x: 0, y: self.frame.size.height - mTitleConfig.underlineHeight,
+                                              width: width, height: mTitleConfig.underlineHeight))
         mScrollView.insertSubview(mIndicatorView!, at: 0)
         mIndicatorView?.center = CGPoint(x: mBtnArr[0].center.x, y: mIndicatorView!.center.y)
         mIndicatorView?.backgroundColor = mTitleConfig.underlineColor
@@ -188,7 +197,9 @@ public class TabTitleView: UIView {
         }
     }
     
-    private func setIndicatorViewTransformWithProgress(_ progress: CGFloat, originalBtn: UIButton, targetBtn: UIButton) {
+    private func setIndicatorViewTransformWithProgress(_ progress: CGFloat,
+                                                       originalBtn: UIButton,
+                                                       targetBtn: UIButton) {
         switch mTitleConfig.titleViewScrollStyle {
         case .tabTitleViewScrollStyleDefault:
             indicatorTransDefaultWithProgress(progress, originalBtn: originalBtn, targetBtn: targetBtn)
@@ -292,7 +303,7 @@ public class TabTitleView: UIView {
         if mTitleConfig.titleViewStyle != .tabTitleViewStyleDefault {
             setIndicatorViewTransformWithTargetBtn(sender)
         }
-        mTitleViewDelegate.selectPageTitleView(self, withIndex: mSelectedIndex)
+        mTitleViewDelegate?.selectPageTitleView(self, withIndex: mSelectedIndex)
     }
 }
 
@@ -322,14 +333,20 @@ extension TabTitleView {
 
 extension TabTitleView {
     private func widthWithString(_ str: String, font: UIFont) -> CGFloat {
-        return str.boundingRect(with: CGSize.zero, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil).size.width
+        return str.boundingRect(with: CGSize.zero,
+                                options: .usesLineFragmentOrigin,
+                                attributes: [NSAttributedString.Key.font: font],
+                                context: nil).size.width
     }
     
     private func heightWithString(_ str: String, font: UIFont) -> CGFloat {
-        return str.boundingRect(with: CGSize.zero, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil).size.height
+        return str.boundingRect(with: CGSize.zero,
+                                options: .usesLineFragmentOrigin,
+                                attributes: [NSAttributedString.Key.font: font],
+                                context: nil).size.height
     }
     
-    private func getRGBWithColor(_ color: UIColor) -> (r: CGFloat, g: CGFloat, b: CGFloat) {
+    private func getRGBWithColor(_ color: UIColor) -> (red: CGFloat, green: CGFloat, blue: CGFloat) {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -337,4 +354,3 @@ extension TabTitleView {
         return (red, green, blue)
     }
 }
-

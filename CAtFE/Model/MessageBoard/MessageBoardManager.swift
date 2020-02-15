@@ -41,7 +41,7 @@ enum MessageBoardRequest: CAtFERequest {
                 "cafeID": cafeId,
                 "content": content,
                 "photos": photos
-                ] as [String : Any]
+                ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .updateMessage(_, let msgId, let cafeId, let content, let photos):
             let dict = [
@@ -49,7 +49,7 @@ enum MessageBoardRequest: CAtFERequest {
                 "cafeID": cafeId,
                 "content": content,
                 "photos": photos
-                ] as [String : Any]
+                ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .deleteMessage:
             return nil

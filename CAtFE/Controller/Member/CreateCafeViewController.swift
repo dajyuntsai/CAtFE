@@ -90,7 +90,7 @@ class CreateCafeViewController: BaseViewController {
             switch result {
             case .success:
                 CustomProgressHUD.showSuccess(text: "新增成功，待審核")
-            case .failure(_):
+            case .failure:
                 CustomProgressHUD.showFailure(text: "新增失敗")
             }
         }
@@ -106,31 +106,36 @@ extension CreateCafeViewController: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0, 1, 2, 3, 13, 21:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailTextTableViewCell.identifier, for: indexPath) as? CreateDetailTextTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailTextTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailTextTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell
         case 5, 6, 7, 8, 9:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier, for: indexPath) as? CreateDetailStarTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailStarTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell
         case 10, 11, 12:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailBoolTableViewCell.identifier, for: indexPath) as? CreateDetailBoolTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailBoolTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailBoolTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell
         case 4:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailCheckBoxTableViewCell.identifier, for: indexPath) as? CreateDetailCheckBoxTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailCheckBoxTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailCheckBoxTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailOpenTimeTableViewCell.identifier, for: indexPath) as? CreateDetailOpenTimeTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailOpenTimeTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailOpenTimeTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: contents[indexPath.row].title)

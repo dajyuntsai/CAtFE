@@ -29,7 +29,9 @@ class PostMessageViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         picker.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(showPhotoSelectWay), name: Notification.Name("showPhotoSelectWay"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showPhotoSelectWay),
+                                               name: Notification.Name("showPhotoSelectWay"), object: nil)
     }
     
     @objc func showPhotoSelectWay() {
@@ -68,7 +70,7 @@ class PostMessageViewController: BaseViewController {
                                                     content: content!,
                                                     photos: []) { (result) in
                 switch result {
-                case .success(_):
+                case .success:
                     CustomProgressHUD.showSuccess(text: "發送成功")
                     self.navigationController?.popToRootViewController(animated: true)
                 case .failure(let error):
@@ -111,7 +113,8 @@ extension PostMessageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell", for: indexPath) as? PostMessageUserTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostUserInfoCell",
+                                                           for: indexPath) as? PostMessageUserTableViewCell else {
                 return UITableViewCell()
             }
             if isEditMode {
@@ -121,7 +124,8 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell", for: indexPath) as? PostMessageContentTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostContentCell",
+                                                           for: indexPath) as? PostMessageContentTableViewCell else {
                 return UITableViewCell()
             }
             if isEditMode {
@@ -133,7 +137,8 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             return cell
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell", for: indexPath) as? PostMessagePhotoTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhotoCell",
+                                                           for: indexPath) as? PostMessagePhotoTableViewCell else {
                 return UITableViewCell()
             }
             if isEditMode {
@@ -228,7 +233,9 @@ extension PostMessageViewController: UIImagePickerControllerDelegate, UINavigati
 
 extension PostMessageViewController: TopViewOfCresteMessageDelegate {
     func showSearchView(_ cell: PostMessageUserTableViewCell) {
-        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostAddLocationViewController.identifier) as? PostAddLocationViewController
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostAddLocationViewController.identifier)
+            as? PostAddLocationViewController
         presentVC?.modalPresentationStyle = .formSheet
         presentVC?.delegate = cell
         presentVC?.cafeId = { id in

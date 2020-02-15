@@ -97,7 +97,9 @@ class HomeViewController: UIViewController {
     }
 
     func setSearchBar() {
-        let locationSearchTable = UIStoryboard.home.instantiateViewController(identifier: LocationSearchTable.identifier) as? LocationSearchTable
+        let locationSearchTable = UIStoryboard.home
+            .instantiateViewController(identifier: LocationSearchTable.identifier)
+            as? LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         locationSearchTable!.mapView = mapView
@@ -207,7 +209,9 @@ class HomeViewController: UIViewController {
     }
 
     func createNewCafe() {
-        let presentVC = UIStoryboard.createCafe.instantiateViewController(identifier: CreateCafeViewController.identifier) as? CreateCafeViewController
+        let presentVC = UIStoryboard.createCafe
+            .instantiateViewController(identifier: CreateCafeViewController.identifier)
+            as? CreateCafeViewController
         presentVC?.modalPresentationStyle = .formSheet
         self.present(presentVC!, animated: true, completion: nil)
     }
@@ -224,7 +228,8 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCollectionViewCell", for: indexPath) as? HomeFilterCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCollectionViewCell",
+                                                            for: indexPath) as? HomeFilterCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.delegate = self
@@ -245,7 +250,8 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 印出目前所在位置座標
         let currentLocation: CLLocation = locations[0] as CLLocation
-        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
+        let nowLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude,
+                                                 longitude: currentLocation.coordinate.longitude)
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
@@ -362,7 +368,9 @@ extension HomeViewController: PetFilterDelegate {
     }
 
     func petFilterClick(_ cell: HomeFilterCollectionViewCell) {
-        let presentVC = UIStoryboard.popup.instantiateViewController(identifier: SinaLikePopupViewController.identifier) as? SinaLikePopupViewController
+        let presentVC = UIStoryboard.popup
+            .instantiateViewController(identifier: SinaLikePopupViewController.identifier)
+            as? SinaLikePopupViewController
         presentVC?.selectedPet = { (title) in
             cell.filterBtn.setTitle(title, for: .normal)
             let allAnnotations = self.mapView.annotations

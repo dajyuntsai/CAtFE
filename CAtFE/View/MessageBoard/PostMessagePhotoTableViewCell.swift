@@ -42,7 +42,9 @@ class PostMessagePhotoTableViewCell: UITableViewCell {
     }
 }
 
-extension PostMessagePhotoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PostMessagePhotoTableViewCell: UICollectionViewDataSource,
+UICollectionViewDelegate,
+UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if isEditMode {
@@ -55,24 +57,28 @@ extension PostMessagePhotoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as? PostMessagePhotoCollectionViewCell else { return UICollectionViewCell() }
-        
+        cell.delegate = self
         if isEditMode { // TODO: refactor
             guard let editPhotoList = editPhotoList else { return UICollectionViewCell() }
             if indexPath.row == editPhotoList.count {
                 cell.addPhotoBtn.isHidden = false
                 cell.photoImageView.isHidden = true
+                cell.deletePhotoBtn.isHidden = true
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
+                cell.deletePhotoBtn.isHidden = false
                 cell.photoImageView.loadImage(editPhotoList[indexPath.item].url)
             }
         } else {
             if indexPath.row == photoList.count {
                 cell.addPhotoBtn.isHidden = false
                 cell.photoImageView.isHidden = true
+                cell.deletePhotoBtn.isHidden = true
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
+                cell.deletePhotoBtn.isHidden = false
                 cell.photoImageView.image = photoList[indexPath.item]
             }
         }
@@ -83,5 +89,11 @@ extension PostMessagePhotoTableViewCell: UICollectionViewDataSource, UICollectio
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 150)
+    }
+}
+
+extension PostMessagePhotoTableViewCell: DeletePhotoDelegate {
+    func removePhoto(_ cell: PostMessagePhotoCollectionViewCell) {
+        
     }
 }

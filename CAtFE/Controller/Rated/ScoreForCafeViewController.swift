@@ -52,19 +52,22 @@ extension ScoreForCafeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as? UserTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier,
+                                                           for: indexPath) as? UserTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData()
             return cell
         case 1, 2, 3, 4, 5:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier, for: indexPath) as? CreateDetailStarTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier,
+                                                           for: indexPath) as? CreateDetailStarTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData(title: starList[indexPath.row].title)
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier,
+                                                           for: indexPath) as? NoteTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData()

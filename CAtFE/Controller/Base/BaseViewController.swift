@@ -23,7 +23,8 @@ class BaseViewController: UIViewController {
 extension UIViewController {
     func backToRoot() {
         DispatchQueue.main.async {
-            let tabBar = UIStoryboard.tabBar.instantiateViewController(identifier: "TabbarController") as? TabbarController
+            let tabBar = UIStoryboard.tabBar
+                .instantiateViewController(identifier: "TabbarController") as? TabbarController
             self.view.window?.rootViewController = tabBar
         }
     }

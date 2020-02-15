@@ -32,7 +32,8 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RatedTableViewCell.identifier, for: indexPath) as? RatedTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RatedTableViewCell.identifier,
+                                                       for: indexPath) as? RatedTableViewCell else {
             return UITableViewCell()
         }
         switch indexPath.row {
@@ -63,7 +64,9 @@ extension ComprehensiveRatedViewController: UITableViewDelegate {
 
 extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
     func showDetailRadar(_ cell: RatedTableViewCell) {
-        let presentVC = UIStoryboard.rated.instantiateViewController(identifier: DetailScoreViewController.identifier) as? DetailScoreViewController
+        let presentVC = UIStoryboard.rated
+            .instantiateViewController(identifier: DetailScoreViewController.identifier)
+            as? DetailScoreViewController
         presentVC?.modalPresentationStyle = .fullScreen
         self.show(presentVC!, sender: nil)
     }

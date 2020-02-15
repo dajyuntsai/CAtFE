@@ -26,7 +26,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
     }
     
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes){
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         if let attributes = layoutAttributes as? PinterestLayoutAttributes {
             // - change the image height

@@ -60,7 +60,9 @@ class MessageBoardViewController: UIViewController {
     
     @IBAction func addPostBtn(_ sender: Any) {
         // TODO: 如果沒有登入就跳到登入頁
-        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageViewController.identifier) as? PostMessageViewController
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageViewController.identifier)
+            as? PostMessageViewController
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -82,7 +84,9 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell",
+                                                            for: indexPath) as? MessageCollectionViewCell else {
+                                                                return UICollectionViewCell() }
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.layer.cornerRadius = 15
@@ -97,7 +101,9 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
+            as? PostMessageDetailViewController
         let message = messageList[indexPath.row]
         presentVC?.message = message
         presentVC?.modalPresentationStyle = .overFullScreen
@@ -132,7 +138,8 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
             let photo = URL(string: post.photos[0].url)!
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let request = URLRequest(url: photo)
-            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest,
+                                                                            returning: nil) else {
                 return 0.75
             }
             var img: UIImage?
@@ -150,7 +157,9 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         let nsstring = NSString(string: text)
         let textAttributes = [NSAttributedString.Key.font: font]
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingRect = nsstring.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: textAttributes, context: nil)
+        let boundingRect = nsstring.boundingRect(with: constraintRect,
+                                                 options: .usesLineFragmentOrigin,
+                                                 attributes: textAttributes, context: nil)
         return ceil(boundingRect.height)
     }
 }

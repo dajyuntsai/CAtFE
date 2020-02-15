@@ -11,4 +11,3 @@ import Foundation
 class RatedModel: Codable {
     
 }
-

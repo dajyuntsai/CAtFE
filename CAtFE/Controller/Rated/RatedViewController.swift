@@ -29,12 +29,24 @@ class RatedViewController: UIViewController {
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
         
-        guard let comprehensiveVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
-        guard let petVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
-        guard let priceVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
-        guard let ambienceVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
-        guard let deliciousVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
-        guard let convenienceVC = UIStoryboard.rated.instantiateViewController(identifier: ComprehensiveRatedViewController.identifier) as? ComprehensiveRatedViewController else { return }
+        guard let comprehensiveVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
+        guard let petVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
+        guard let priceVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
+        guard let ambienceVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
+        guard let deliciousVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
+        guard let convenienceVC = UIStoryboard.rated
+            .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
+            as? ComprehensiveRatedViewController else { return }
         
         let controllers = [comprehensiveVC,
                            petVC, priceVC,

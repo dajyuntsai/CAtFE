@@ -24,6 +24,7 @@
 		BE1EDBD023E2DC49003C38D9 /* MessageBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBCF23E2DC49003C38D9 /* MessageBoard.storyboard */; };
 		BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD123E2DC57003C38D9 /* Member.storyboard */; };
 		BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */; };
+		BE365F1623F794D70088A9C8 /* EventPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE365F1523F794D70088A9C8 /* EventPhotoCollectionViewCell.swift */; };
 		BE36C40D23F195C9003C4BDB /* TabTitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40A23F195C9003C4BDB /* TabTitleConfig.swift */; };
 		BE36C40E23F195C9003C4BDB /* TabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40B23F195C9003C4BDB /* TabContentView.swift */; };
 		BE36C40F23F195C9003C4BDB /* TabTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36C40C23F195C9003C4BDB /* TabTitleView.swift */; };
@@ -86,6 +87,9 @@
 		BE94EB4F23F6872700FA4604 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB4D23F6872700FA4604 /* NoteTableViewCell.swift */; };
 		BE94EB5023F6872700FA4604 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE94EB4E23F6872700FA4604 /* NoteTableViewCell.xib */; };
 		BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */; };
+		BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */; };
+		BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */; };
+		BE94EB5923F6AB8B00FA4604 /* PostEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -150,6 +154,7 @@
 		BE1EDBCF23E2DC49003C38D9 /* MessageBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageBoard.storyboard; sourceTree = "<group>"; };
 		BE1EDBD123E2DC57003C38D9 /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		BE1EDBD423E2E77A003C38D9 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		BE365F1523F794D70088A9C8 /* EventPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE36C40623F12FFA003C4BDB /* CAtFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CAtFE.entitlements; sourceTree = "<group>"; };
 		BE36C40A23F195C9003C4BDB /* TabTitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTitleConfig.swift; sourceTree = "<group>"; };
 		BE36C40B23F195C9003C4BDB /* TabContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabContentView.swift; sourceTree = "<group>"; };
@@ -219,6 +224,9 @@
 		BE94EB4D23F6872700FA4604 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		BE94EB4E23F6872700FA4604 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
 		BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeWebsiteViewController.swift; sourceTree = "<group>"; };
+		BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeEventViewController.swift; sourceTree = "<group>"; };
+		BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeTableViewCell.swift; sourceTree = "<group>"; };
+		BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEventViewController.swift; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -402,12 +410,14 @@
 			path = CAtFEUITests;
 			sourceTree = "<group>";
 		};
-		BE9131C423E2EE54004A669D /* ShopEvent */ = {
+		BE9131C423E2EE54004A669D /* Event */ = {
 			isa = PBXGroup;
 			children = (
 				BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */,
+				BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */,
+				BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */,
 			);
-			path = ShopEvent;
+			path = Event;
 			sourceTree = "<group>";
 		};
 		BE9131C723E2EEAE004A669D /* Rated */ = {
@@ -480,6 +490,15 @@
 			path = Rated;
 			sourceTree = "<group>";
 		};
+		BE94EB5523F699EB00FA4604 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */,
+				BE365F1523F794D70088A9C8 /* EventPhotoCollectionViewCell.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		BEE181D223E20E2100660AEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,7 +508,7 @@
 				BE9131CA23E2EEFB004A669D /*  MessageBoard */,
 				BE9131CD23E2EF58004A669D /* Member */,
 				BE9131C723E2EEAE004A669D /* Rated */,
-				BE9131C423E2EE54004A669D /* ShopEvent */,
+				BE9131C423E2EE54004A669D /* Event */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -563,11 +582,12 @@
 		BEE181F323E239FB00660AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BE52590123EC5B0900F8AC00 /* Member */,
-				BE5258F523EBC47300F8AC00 /* Popup */,
-				BE9131D023E55427004A669D /* MessageBoard */,
 				BEE181F423E23A1900660AEB /* Home */,
+				BE9131D023E55427004A669D /* MessageBoard */,
+				BE52590123EC5B0900F8AC00 /* Member */,
 				BE4FD7DB23F572AE004E190A /* Rated */,
+				BE94EB5523F699EB00FA4604 /* Event */,
+				BE5258F523EBC47300F8AC00 /* Popup */,
 				BE66210623D3FE450053FD07 /* Main.storyboard */,
 				BE66210B23D3FE490053FD07 /* LaunchScreen.storyboard */,
 				BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */,
@@ -934,6 +954,7 @@
 				BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */,
 				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
+				BE94EB5923F6AB8B00FA4604 /* PostEventViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
 				BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */,
 				BE5258F923EBC58300F8AC00 /* UICollectionViewCell+Extension.swift in Sources */,
@@ -942,6 +963,7 @@
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEA99E0723EFFE0000F2CC69 /* MemberInfoTableViewCell.swift in Sources */,
 				BE94EB4823F6856D00FA4604 /* RatedModel.swift in Sources */,
+				BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,
 				BE4FD7DA23F5512B004E190A /* SettingViewController.swift in Sources */,
 				BE4FD7DD23F572CE004E190A /* RatedTableViewCell.swift in Sources */,
@@ -950,6 +972,7 @@
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
 				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
 				BE36C41223F1B58A003C4BDB /* MemberCollectionViewCell.swift in Sources */,
+				BE365F1623F794D70088A9C8 /* EventPhotoCollectionViewCell.swift in Sources */,
 				BE5B246423F3AEE90092FACA /* MessageBoardManager.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
@@ -975,6 +998,7 @@
 				BEE181E823E2332800660AEB /* TabbarController.swift in Sources */,
 				BE9131E323E7B2DD004A669D /* PostMessageContentTableViewCell.swift in Sources */,
 				BE9131E123E72153004A669D /* PostMessageViewController.swift in Sources */,
+				BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */,
 				BE9131F323E95A6C004A669D /* PostDetailPhotoCollectionViewCell.swift in Sources */,
 				BE5258F723EBC4CA00F8AC00 /* PopupCollectionViewCell.swift in Sources */,
 				BE9131D423E5E21F004A669D /* MessageCollectionViewCell.swift in Sources */,

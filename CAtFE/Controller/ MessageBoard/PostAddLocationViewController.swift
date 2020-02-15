@@ -72,7 +72,8 @@ extension PostAddLocationViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCafeCell", for: indexPath) as? LocationTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCafeCell",
+                                                       for: indexPath) as? LocationTableViewCell else {
             return UITableViewCell()
         }
         

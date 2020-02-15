@@ -1,5 +1,5 @@
 //
-//  MemberViewController.swift
+//  ShopEventsViewController.swift
 //  CAtFE
 //
 //  Created by Ninn on 2020/1/30.
@@ -8,43 +8,41 @@
 
 import UIKit
 
-class MemberViewController: UIViewController {
+class ShopEventsViewController: UIViewController {
 
-    @IBOutlet weak var userImageView: UIImageView!
     private var mPageTitleView: TabTitleView!
     private var mPageContentView: TabContentView!
     private var scrollView = UIScrollView()
-
-    private var titleList = ["我的留言", "追蹤的店家"]
-
+    private var titleList = ["我追蹤的", "熱門", "為你推薦"]
     let conf = TabTitleConfig()
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initView()
-        initTabView()
     }
 
-    func initView() { // TODO: 往上滑的時候消失
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2
-    }
-
-    func initTabView() {
-        let rectTitle = CGRect(x: 0, y: 36 + 150, width: width, height: 60)
+    func initView() {
+        let rectTitle = CGRect(x: 0, y: 90, width: width, height: 60)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
-
-        guard let myMessagesViewController = UIStoryboard.member
-            .instantiateViewController(identifier: MyMessagesViewController.identifier)
-            as? MyMessagesViewController else { return }
-        guard let myFollowingViewController = UIStoryboard.member
-            .instantiateViewController(identifier: MyFollowingViewController.identifier)
-            as? MyFollowingViewController else { return }
-        let controllers = [myMessagesViewController, myFollowingViewController]
-        let rectContent = CGRect(x: 0, y: 246, width: width, height: height)
+        
+        guard let myFollowingVC = UIStoryboard.shopEvent
+            .instantiateViewController(identifier: FollowingCafeEventViewController.identifier)
+            as? FollowingCafeEventViewController else { return }
+        guard let hotVC = UIStoryboard.shopEvent
+            .instantiateViewController(identifier: FollowingCafeEventViewController.identifier)
+            as? FollowingCafeEventViewController else { return }
+        guard let recommandVC = UIStoryboard.shopEvent
+            .instantiateViewController(identifier: FollowingCafeEventViewController.identifier)
+            as? FollowingCafeEventViewController else { return }
+        
+        let controllers = [myFollowingVC,
+                           hotVC,
+                           recommandVC]
+        let rectContent = CGRect(x: 0, y: 150, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],
@@ -53,13 +51,13 @@ class MemberViewController: UIViewController {
     }
 }
 
-extension MemberViewController: TabTitleViewDelegate {
+extension ShopEventsViewController: TabTitleViewDelegate {
     func selectPageTitleView(_ pageTitleView: TabTitleView, withIndex index: Int) {
         mPageContentView.setPageContentViewWithIndex(index)
     }
 }
 
-extension MemberViewController: TabContentViewDelegate {
+extension ShopEventsViewController: TabContentViewDelegate {
     func scrollPageContentView(_ pageContentView: TabContentView,
                                progress: CGFloat,
                                originalIndex: Int,

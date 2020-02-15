@@ -67,7 +67,9 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func shopLogin(_ sender: Any) {
-        let presentVC = UIStoryboard.shopLogin.instantiateViewController(identifier: ShopLoginViewController.identifier) as? ShopLoginViewController
+        let presentVC = UIStoryboard.shopLogin
+            .instantiateViewController(identifier: ShopLoginViewController.identifier)
+            as? ShopLoginViewController
         presentVC?.modalPresentationStyle = .formSheet
         self.present(presentVC!, animated: true, completion: nil)
     }
@@ -83,7 +85,8 @@ class LoginViewController: BaseViewController {
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         guard let idToken = appleIDCredential.identityToken else { return }
 //        let userIdentifier = appleIDCredential.user
