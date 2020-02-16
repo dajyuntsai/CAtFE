@@ -21,11 +21,16 @@ class MemberViewController: UIViewController {
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
 
+    @IBAction func settingBtn(_ sender: Any) {
+        onUsetSetting()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initView()
         initTabView()
+        initBarBtn()
     }
 
     func initView() { // TODO: 往上滑的時候消失
@@ -33,7 +38,7 @@ class MemberViewController: UIViewController {
     }
 
     func initTabView() {
-        let rectTitle = CGRect(x: 0, y: 36 + 150, width: width, height: 60)
+        let rectTitle = CGRect(x: 0, y: height * 0.1 + 150, width: width, height: 50)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
 
@@ -44,12 +49,36 @@ class MemberViewController: UIViewController {
             .instantiateViewController(identifier: MyFollowingViewController.identifier)
             as? MyFollowingViewController else { return }
         let controllers = [myMessagesViewController, myFollowingViewController]
-        let rectContent = CGRect(x: 0, y: 246, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height * 0.1 + 150 + 50, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],
                                           delegate: self)
         self.view.addSubview(mPageContentView)
+    }
+    
+    func initBarBtn() {
+        if let image = UIImage(named: "settings") {
+            let smallImage = resizeImage(image: image, width: 28)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: smallImage.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(onUsetSetting))
+        }
+    }
+    
+    @objc func onUsetSetting() {
+        let presentVC = UIStoryboard.member
+            .instantiateViewController(identifier: SettingViewController.identifier)
+            as? SettingViewController
+        self.show(presentVC!, sender: nil)
+    }
+    
+    func resizeImage(image: UIImage, width: CGFloat) -> UIImage {
+            let size = CGSize(width: width, height:
+                image.size.height * width / image.size.width)
+            let renderer = UIGraphicsImageRenderer(size: size)
+            let newImage = renderer.image { (context) in
+                image.draw(in: renderer.format.bounds)
+            }
+            return newImage
     }
 }
 

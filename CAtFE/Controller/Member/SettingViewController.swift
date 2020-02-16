@@ -13,7 +13,7 @@ struct Settings {
     let details: [String]
 }
 
-class SettingViewController: UIViewController {
+class SettingViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -25,12 +25,23 @@ class SettingViewController: UIViewController {
     let settingList: [Settings] = [
         Settings(title: "個人資料", details: ["頭像", "名稱"]),
         Settings(title: "推播通知", details: []),
-        Settings(title: "版本", details: [])]
+        Settings(title: "版本", details: []),
+        Settings(title: "登出", details: [])]
     var isExpendDataList: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUptTableView()
+        
+        for _ in settingList {
+            isExpendDataList.append(false)
+        }
+    }
+    
+    func setUptTableView() {
+        tableView.registerHeaderWithNib(identifier: String(describing: SectionView.self), bundle: nil)
+        tableView.registerCellWithNib(identifier: String(describing: UserInfoTableViewCell.self), bundle: nil)
     }
 }
 
@@ -48,10 +59,64 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoTableViewCell.identifier,
+                                                           for: indexPath) as? UserInfoTableViewCell else {
+                                                            return UITableViewCell()
+            }
+            let data = settingList[indexPath.section].details[indexPath.row]
+            if indexPath.row == 0 {
+                cell.userNameTextField.isHidden = true
+            } else {
+                cell.userImageView.isHidden = true
+            }
+            cell.setData(data: data)
+            return cell
+        default:
+            return UITableViewCell()
+        }
+        
     }
 }
 
 extension SettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            return 150
+        } else {
+            return 70
+        }
+    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionView = tableView
+            .dequeueReusableHeaderFooterView(withIdentifier: String(describing: SectionView.self))
+            as? SectionView else {
+            return UIView()
+        }
+        
+        if section == 2 || section == 3 {
+            sectionView.expandBtn.isHidden = true
+        }
+        
+        sectionView.isExpand = self.isExpendDataList[section]
+        sectionView.buttonTag = section
+        sectionView.delegate = self
+        
+        sectionView.setData(data: settingList[section])
+        return sectionView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70
+    }
+}
+
+extension SettingViewController: SectionViewDelegate {
+    func sectionView(_ sectionView: SectionView, _ didPressTag: Int, _ isExpand: Bool) {
+        self.isExpendDataList[didPressTag] = !isExpand
+        self.tableView.reloadSections(IndexSet(integer: didPressTag), with: .automatic)
+    }
 }

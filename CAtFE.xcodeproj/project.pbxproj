@@ -15,6 +15,8 @@
 		BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5923EA65380090BC7F /* CAtFEConstant.swift */; };
 		BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */; };
 		BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */; };
+		BE18E09723F950FE006F004C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09623F950FE006F004C /* SectionView.swift */; };
+		BE18E09923F9511A006F004C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E09823F9511A006F004C /* SectionView.xib */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -113,6 +115,8 @@
 		BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F923E240C300660AEB /* HTTPClient.swift */; };
 		BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEE181FB23E2420500660AEB /* GoogleService-Info.plist */; };
 		BEF7A7A123F9032F00EB6D2D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */; };
+		BEF7A7A523F946F300EB6D2D /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7A7A323F946F300EB6D2D /* UserInfoTableViewCell.swift */; };
+		BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF7A7A423F946F300EB6D2D /* UserInfoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +151,8 @@
 		BE076B5923EA65380090BC7F /* CAtFEConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAtFEConstant.swift; sourceTree = "<group>"; };
 		BE076B5B23EA657A0090BC7F /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinaLikePopupViewController.swift; sourceTree = "<group>"; };
+		BE18E09623F950FE006F004C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		BE18E09823F9511A006F004C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -252,6 +258,8 @@
 		BEE181F923E240C300660AEB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		BEE181FB23E2420500660AEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		BEF7A7A323F946F300EB6D2D /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		BEF7A7A423F946F300EB6D2D /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
 		D25939728DE3A44AB9C4C34E /* Pods-CAtFE-CAtFEUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAtFE-CAtFEUITests.debug.xcconfig"; path = "Target Support Files/Pods-CAtFE-CAtFEUITests/Pods-CAtFE-CAtFEUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAF3C73CF6BCC880676DAA /* Pods-CAtFETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAtFETests.debug.xcconfig"; path = "Target Support Files/Pods-CAtFETests/Pods-CAtFETests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB99CA14BD9A645E7BE71283 /* Pods-CAtFE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAtFE.release.xcconfig"; path = "Target Support Files/Pods-CAtFE/Pods-CAtFE.release.xcconfig"; sourceTree = "<group>"; };
@@ -340,19 +348,10 @@
 		BE52590123EC5B0900F8AC00 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				BE52590223EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift */,
-				BE52590323EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib */,
-				BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */,
-				BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */,
-				BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */,
-				BEA99DFF23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.xib */,
-				BEA99E0223EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift */,
-				BEA99E0323EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib */,
-				BEA99E0623EFFE0000F2CC69 /* MemberInfoTableViewCell.swift */,
-				BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */,
-				BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */,
-				BE36C41023F1B58A003C4BDB /* MemberCollectionViewCell.swift */,
-				BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */,
+				BEF7A7A323F946F300EB6D2D /* UserInfoTableViewCell.swift */,
+				BEF7A7A423F946F300EB6D2D /* UserInfoTableViewCell.xib */,
+				BE18E09623F950FE006F004C /* SectionView.swift */,
+				BE18E09823F9511A006F004C /* SectionView.xib */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -615,6 +614,19 @@
 			children = (
 				BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */,
 				BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */,
+				BE52590223EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift */,
+				BE52590323EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib */,
+				BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */,
+				BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */,
+				BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */,
+				BEA99DFF23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.xib */,
+				BEA99E0223EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift */,
+				BEA99E0323EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib */,
+				BEA99E0623EFFE0000F2CC69 /* MemberInfoTableViewCell.swift */,
+				BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */,
+				BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */,
+				BE36C41023F1B58A003C4BDB /* MemberCollectionViewCell.swift */,
+				BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -786,7 +798,9 @@
 				BE94EB4C23F686B500FA4604 /* UserTableViewCell.xib in Resources */,
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
+				BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
+				BE18E09923F9511A006F004C /* SectionView.xib in Resources */,
 				BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */,
 				BE1EDBCD23E2DC22003C38D9 /* Home.storyboard in Resources */,
 				BEA99E0123EFE59E00F2CC69 /* CreateDetailStarTableViewCell.xib in Resources */,
@@ -963,6 +977,8 @@
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
 				BE94EB5923F6AB8B00FA4604 /* PostEventViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
+				BE18E09723F950FE006F004C /* SectionView.swift in Sources */,
+				BEF7A7A523F946F300EB6D2D /* UserInfoTableViewCell.swift in Sources */,
 				BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */,
 				BE5258F923EBC58300F8AC00 /* UICollectionViewCell+Extension.swift in Sources */,
 				BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */,

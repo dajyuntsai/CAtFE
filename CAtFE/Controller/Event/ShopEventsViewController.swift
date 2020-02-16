@@ -25,7 +25,7 @@ class ShopEventsViewController: UIViewController {
     }
 
     func initView() {
-        let rectTitle = CGRect(x: 0, y: 90, width: width, height: 60)
+        let rectTitle = CGRect(x: 0, y: height * 0.1, width: width, height: 50)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
         
@@ -42,7 +42,7 @@ class ShopEventsViewController: UIViewController {
         let controllers = [myFollowingVC,
                            hotVC,
                            recommandVC]
-        let rectContent = CGRect(x: 0, y: 150, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height * 0.1 + 60, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],

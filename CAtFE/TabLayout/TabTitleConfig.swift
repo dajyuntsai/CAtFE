@@ -34,14 +34,14 @@ public class TabTitleConfig: NSObject {
     // title space
     public var titleSpacing: CGFloat = 50.0
     // titleView大小
-    public var titleViewSize: CGSize = CGSize(width: UIScreen.main.bounds.width, height: 60)
+    public var titleViewSize: CGSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
     
     // title default color
     public var titleColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     // title select color
     public var titleSelectedColor: UIColor = UIColor(named: "MainColor")!
     // title font
-    public var titleFont: UIFont = UIFont.systemFont(ofSize: 18)
+    public var titleFont: UIFont = UIFont.systemFont(ofSize: 17)
     
     public var titleViewStyle: TabTitleViewStyle = .tabTitleViewStyleUnderLine
     public var titleViewScrollStyle: TabTitleViewScrollStyle = .tabTitleViewScrollStyleDefault

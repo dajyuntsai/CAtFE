@@ -94,7 +94,7 @@ extension FollowingCafeEventViewController: UITableViewDelegate {
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-        presentVC?.message = message[indexPath.row]
+//        presentVC?.message = message[indexPath.row]
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
