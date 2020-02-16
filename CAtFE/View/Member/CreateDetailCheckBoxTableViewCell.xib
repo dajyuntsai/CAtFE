@@ -23,59 +23,74 @@
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-aH-d3s">
-                        <rect key="frame" x="86" y="11" width="30" height="22"/>
-                        <state key="normal" title="[]"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-aH-d3s" customClass="DLRadioButton">
+                        <rect key="frame" x="86" y="5.5" width="30" height="33"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="貓 ">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-sS-piZ">
-                        <rect key="frame" x="213" y="11" width="30" height="22"/>
-                        <state key="normal" title="[]"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-sS-piZ" customClass="DLRadioButton">
+                        <rect key="frame" x="162" y="5.5" width="44" height="33"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="其他  ">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="貓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkD-eo-hcH">
-                        <rect key="frame" x="124" y="11" width="17.5" height="22"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-O9-xVc" customClass="DLRadioButton">
+                        <rect key="frame" x="124" y="5.5" width="30" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo9-rd-1xT">
-                        <rect key="frame" x="187.5" y="11" width="17.5" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPr-iM-miZ">
-                        <rect key="frame" x="251" y="11" width="35" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-O9-xVc">
-                        <rect key="frame" x="149.5" y="11" width="30" height="22"/>
-                        <state key="normal" title="[]"/>
+                        <state key="normal" title="狗 ">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="B4y-aH-d3s" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="72h-vZ-SYH"/>
-                    <constraint firstItem="ESA-O9-xVc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="B0b-87-F9o"/>
+                    <constraint firstItem="ESA-O9-xVc" firstAttribute="leading" secondItem="B4y-aH-d3s" secondAttribute="trailingMargin" constant="16" id="1vY-KT-Wq5"/>
+                    <constraint firstItem="ESA-O9-xVc" firstAttribute="centerY" secondItem="zyn-wj-F8Q" secondAttribute="centerY" id="2Pj-0u-bIE"/>
                     <constraint firstItem="zyn-wj-F8Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DyR-tf-TMI"/>
-                    <constraint firstItem="BkD-eo-hcH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="FOD-ys-L7B"/>
                     <constraint firstItem="zyn-wj-F8Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="J07-WY-vKX"/>
                     <constraint firstItem="B4y-aH-d3s" firstAttribute="leading" secondItem="zyn-wj-F8Q" secondAttribute="trailing" constant="8" id="VKb-dM-lFt"/>
-                    <constraint firstItem="UPr-iM-miZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Vub-uE-z2c"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="ESA-O9-xVc" secondAttribute="bottom" id="W1s-bg-fT1"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zyn-wj-F8Q" secondAttribute="bottom" id="baA-gh-3kb"/>
-                    <constraint firstItem="y3v-sS-piZ" firstAttribute="leading" secondItem="Lo9-rd-1xT" secondAttribute="trailing" constant="8" id="dFh-A8-ah6"/>
-                    <constraint firstItem="BkD-eo-hcH" firstAttribute="leading" secondItem="B4y-aH-d3s" secondAttribute="trailing" constant="8" id="h8p-he-Mzv"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="UPr-iM-miZ" secondAttribute="bottom" id="iSz-OD-hiB"/>
-                    <constraint firstItem="Lo9-rd-1xT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="j7E-pi-ZLC"/>
-                    <constraint firstItem="y3v-sS-piZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qbq-JR-sTq"/>
-                    <constraint firstItem="ESA-O9-xVc" firstAttribute="leading" secondItem="BkD-eo-hcH" secondAttribute="trailing" constant="8" id="rHa-CL-efd"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="y3v-sS-piZ" secondAttribute="bottom" id="sLH-2r-TtP"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="B4y-aH-d3s" secondAttribute="bottom" id="skU-qb-g2L"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="BkD-eo-hcH" secondAttribute="bottom" id="uNN-16-Zcj"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Lo9-rd-1xT" secondAttribute="bottom" id="uXP-6M-1Uf"/>
-                    <constraint firstItem="Lo9-rd-1xT" firstAttribute="leading" secondItem="ESA-O9-xVc" secondAttribute="trailing" constant="8" id="uzc-aC-yrW"/>
-                    <constraint firstItem="UPr-iM-miZ" firstAttribute="leading" secondItem="y3v-sS-piZ" secondAttribute="trailing" constant="8" id="xUQ-Oc-R8M"/>
+                    <constraint firstItem="y3v-sS-piZ" firstAttribute="centerY" secondItem="zyn-wj-F8Q" secondAttribute="centerY" id="bo4-O3-ywe"/>
+                    <constraint firstItem="B4y-aH-d3s" firstAttribute="centerY" secondItem="zyn-wj-F8Q" secondAttribute="centerY" id="j1j-rr-Oq0"/>
+                    <constraint firstItem="y3v-sS-piZ" firstAttribute="leading" secondItem="ESA-O9-xVc" secondAttribute="trailingMargin" constant="16" id="j8g-Yc-o9a"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -89,6 +104,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="MainColor">
+            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -17,70 +17,69 @@
                 <rect key="frame" x="0.0" y="0.0" width="403" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eku-A2-8kH">
-                        <rect key="frame" x="36" y="11" width="42" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNX-ew-eRE">
-                        <rect key="frame" x="165" y="11.5" width="8" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-LM-Cdz">
-                        <rect key="frame" x="177" y="5" width="67" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-Zq-Usd">
-                        <rect key="frame" x="94" y="5" width="67" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-Av-UDv">
-                        <rect key="frame" x="252" y="0.0" width="30" height="44"/>
-                        <state key="normal" title="[]"/>
-                        <connections>
-                            <action selector="checkBoxBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MUc-DO-wPV"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公休" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxc-E0-pVC">
-                        <rect key="frame" x="290" y="0.0" width="35" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="TextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-74-twy">
-                        <rect key="frame" x="333" y="0.0" width="62" height="44"/>
-                        <state key="normal" title="全部套用">
-                            <color key="titleColor" name="TextColor"/>
-                        </state>
-                        <connections>
-                            <action selector="setAllBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LD3-46-RpM"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RaT-Sp-gec">
+                        <rect key="frame" x="36" y="8" width="331" height="28"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eku-A2-8kH">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-Zq-Usd">
+                                <rect key="frame" x="52" y="0.0" width="70" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNX-ew-eRE">
+                                <rect key="frame" x="130" y="0.0" width="8.5" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-LM-Cdz">
+                                <rect key="frame" x="146.5" y="0.0" width="70" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-Av-UDv" customClass="DLRadioButton">
+                                <rect key="frame" x="224.5" y="0.0" width="31.5" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="休 ">
+                                    <color key="titleColor" name="TextColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                        <color key="value" name="MainColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" name="MainColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="checkBoxBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MUc-DO-wPV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-74-twy">
+                                <rect key="frame" x="264" y="0.0" width="67" height="28"/>
+                                <state key="normal" title="全部套用">
+                                    <color key="titleColor" name="TextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="setAllBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LD3-46-RpM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="tNX-ew-eRE" firstAttribute="leading" secondItem="hHE-Zq-Usd" secondAttribute="trailing" constant="4" id="4yi-Y4-mud"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Eku-A2-8kH" secondAttribute="bottom" id="53p-fL-fvz"/>
-                    <constraint firstItem="U9Q-74-twy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6D8-GC-KbE"/>
-                    <constraint firstItem="U9Q-74-twy" firstAttribute="leading" secondItem="rxc-E0-pVC" secondAttribute="trailing" constant="8" id="7A0-9r-A4X"/>
-                    <constraint firstItem="hHE-Zq-Usd" firstAttribute="leading" secondItem="Eku-A2-8kH" secondAttribute="trailing" constant="16" id="8S3-lP-tNj"/>
-                    <constraint firstItem="rxc-E0-pVC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SpB-4x-T5h"/>
-                    <constraint firstItem="7eg-LM-Cdz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VbL-Nk-KfQ"/>
-                    <constraint firstItem="lUP-Av-UDv" firstAttribute="leading" secondItem="7eg-LM-Cdz" secondAttribute="trailing" constant="8" id="Yb1-Wg-q5f"/>
-                    <constraint firstAttribute="bottom" secondItem="rxc-E0-pVC" secondAttribute="bottom" id="byS-VA-cfR"/>
-                    <constraint firstAttribute="bottom" secondItem="U9Q-74-twy" secondAttribute="bottom" id="cO0-eo-yGu"/>
-                    <constraint firstItem="hHE-Zq-Usd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lBp-g2-NmZ"/>
-                    <constraint firstItem="lUP-Av-UDv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qOx-jw-BFS"/>
-                    <constraint firstItem="7eg-LM-Cdz" firstAttribute="leading" secondItem="tNX-ew-eRE" secondAttribute="trailing" constant="4" id="shN-Cs-Rim"/>
-                    <constraint firstItem="tNX-ew-eRE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x4a-Je-6ea"/>
-                    <constraint firstItem="Eku-A2-8kH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="xhb-32-kcO"/>
-                    <constraint firstItem="rxc-E0-pVC" firstAttribute="leading" secondItem="lUP-Av-UDv" secondAttribute="trailing" constant="8" id="xkt-de-Jdt"/>
-                    <constraint firstAttribute="bottom" secondItem="lUP-Av-UDv" secondAttribute="bottom" id="zoX-Lc-Pq7"/>
-                    <constraint firstItem="Eku-A2-8kH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="zpg-2V-FyC"/>
+                    <constraint firstItem="RaT-Sp-gec" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Cgf-Ep-kCD"/>
+                    <constraint firstItem="RaT-Sp-gec" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="hES-9o-MVZ"/>
+                    <constraint firstAttribute="bottom" secondItem="RaT-Sp-gec" secondAttribute="bottom" constant="8" id="sIS-TK-Nd0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RaT-Sp-gec" secondAttribute="trailing" constant="16" id="x7R-aK-qNZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -93,6 +92,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="MainColor">
+            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

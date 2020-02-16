@@ -7,6 +7,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - Cosmos (21.0.0)
+  - DLRadioButton (1.4.12)
   - FBSDKCoreKit (5.13.1):
     - FBSDKCoreKit/Basics (= 5.13.1)
     - FBSDKCoreKit/Core (= 5.13.1)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - AAInfographics
   - Bolts
   - Cosmos
+  - DLRadioButton
   - FBSDKCoreKit
   - FBSDKLoginKit
   - IQKeyboardManagerSwift
@@ -42,6 +44,7 @@ SPEC REPOS:
     - AAInfographics
     - Bolts
     - Cosmos
+    - DLRadioButton
     - FBSDKCoreKit
     - FBSDKLoginKit
     - IQKeyboardManagerSwift
@@ -54,6 +57,7 @@ SPEC CHECKSUMS:
   AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
   FBSDKLoginKit: c7c6ffd9ca9ea45aee32361840af040ad8f6706a
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
@@ -62,6 +66,6 @@ SPEC CHECKSUMS:
   Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: 3b9fb795d638c4849e998e9255ee982327bcdd91
+PODFILE CHECKSUM: 998fb5ab33f4450bd3f0d8af43fc432a52a9c556
 
 COCOAPODS: 1.8.4

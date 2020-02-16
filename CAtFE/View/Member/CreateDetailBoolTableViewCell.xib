@@ -23,52 +23,64 @@
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-a9-BI9">
-                        <rect key="frame" x="90" y="11" width="46" height="22"/>
-                        <state key="normal" title="Button"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-a9-BI9" customClass="DLRadioButton">
+                        <rect key="frame" x="90" y="5.5" width="30" height="33"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="是 ">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="noBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MiZ-J5-0CG"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-xk-t32">
-                        <rect key="frame" x="152" y="11" width="46" height="22"/>
-                        <state key="normal" title="Button"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-xk-t32" customClass="DLRadioButton">
+                        <rect key="frame" x="128" y="5.5" width="30" height="33"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="否 ">
+                            <color key="titleColor" name="TextColor"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                <color key="value" name="MainColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="yesBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Zp2-dM-wiP"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqT-Qb-Maq">
-                        <rect key="frame" x="214" y="11" width="46" height="22"/>
-                        <state key="normal" title="Button"/>
-                        <connections>
-                            <action selector="sosoBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OhI-Zo-Zf1"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="5rq-bY-tkZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7jk-yx-ahM"/>
-                    <constraint firstItem="fqT-Qb-Maq" firstAttribute="leading" secondItem="SRa-xk-t32" secondAttribute="trailing" constant="16" id="Gdk-9v-ad9"/>
+                    <constraint firstItem="OLc-a9-BI9" firstAttribute="centerY" secondItem="5rq-bY-tkZ" secondAttribute="centerY" id="CDX-Qp-wm9"/>
                     <constraint firstItem="OLc-a9-BI9" firstAttribute="leading" secondItem="5rq-bY-tkZ" secondAttribute="trailing" constant="16" id="HgR-3V-fQF"/>
-                    <constraint firstItem="OLc-a9-BI9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="OI6-Ts-pNH"/>
-                    <constraint firstItem="fqT-Qb-Maq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="OcD-tB-Mwt"/>
-                    <constraint firstItem="SRa-xk-t32" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ToW-Qd-VHA"/>
                     <constraint firstItem="5rq-bY-tkZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="dlg-Vf-Ovp"/>
                     <constraint firstItem="5rq-bY-tkZ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="dyS-pT-tX3"/>
-                    <constraint firstItem="SRa-xk-t32" firstAttribute="leading" secondItem="OLc-a9-BI9" secondAttribute="trailing" constant="16" id="fCG-G1-Iod"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="fqT-Qb-Maq" secondAttribute="bottom" id="mIJ-Kr-tk1"/>
-                    <constraint firstItem="SRa-xk-t32" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="nYp-Iq-rHQ"/>
-                    <constraint firstItem="OLc-a9-BI9" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="xWU-Tx-fB1"/>
+                    <constraint firstItem="SRa-xk-t32" firstAttribute="leading" secondItem="OLc-a9-BI9" secondAttribute="trailingMargin" constant="16" id="fCG-G1-Iod"/>
+                    <constraint firstItem="SRa-xk-t32" firstAttribute="centerY" secondItem="OLc-a9-BI9" secondAttribute="centerY" id="kQb-Y1-Zil"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descLabel" destination="5rq-bY-tkZ" id="r6f-zE-5uc"/>
-                <outlet property="sosoBtn" destination="fqT-Qb-Maq" id="FKj-Q1-KKf"/>
             </connections>
             <point key="canvasLocation" x="134.78260869565219" y="53.571428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="MainColor">
+            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

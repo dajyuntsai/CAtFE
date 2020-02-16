@@ -12,6 +12,7 @@ class CreateDetailTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
+    var userInput: ((String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +27,14 @@ class CreateDetailTextTableViewCell: UITableViewCell {
 
     func setData(title: String) {
         titleLabel.text = title
+    }
+}
+
+extension CreateDetailTextTableViewCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if !textField.isEmpty {
+            let inputContent = textField.text!
+            userInput?(inputContent)
+        }
     }
 }

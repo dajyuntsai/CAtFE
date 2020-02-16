@@ -32,4 +32,6 @@ target 'CAtFE' do
   # Pod for star rate
   pod 'Cosmos'
   
+  # Pod for radio button & check box
+  pod 'DLRadioButton'
 end

@@ -36,7 +36,7 @@ class CreateCafeViewController: BaseViewController {
         CellContent(type: .star, title: "餐點好吃"),
         CellContent(type: .star, title: "交通便利"),
         CellContent(type: .bool, title: "有提供 wifi"),
-        CellContent(type: .bool, title: "插座多"),
+        CellContent(type: .bool, title: "有插座"),
         CellContent(type: .bool, title: "是否限時"),
         CellContent(type: .text, title: "最低消費金額"),
         CellContent(type: .openTime, title: "週一"),
@@ -75,7 +75,6 @@ class CreateCafeViewController: BaseViewController {
     }
 
     func sendCafeData() {
-        // TODO: Upload to api
         let cafe = Cafe(id: 111,
                         petType: "test",
                         name: "test",
@@ -87,7 +86,7 @@ class CreateCafeViewController: BaseViewController {
         cafeManager.createCafeInList(cafeObj: cafe) { (result) in
             switch result {
             case .success:
-                CustomProgressHUD.showSuccess(text: "新增成功，待審核")
+                CustomProgressHUD.showSuccess(text: "新增成功")
             case .failure:
                 CustomProgressHUD.showFailure(text: "新增失敗")
             }
