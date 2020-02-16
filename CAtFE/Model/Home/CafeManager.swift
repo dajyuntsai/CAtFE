@@ -68,7 +68,7 @@ enum CafeRequest: CAtFERequest {
     var endPoint: String {
         switch self {
         case .cafeList:
-            return "/cafes/list?page=1&size=30"
+            return "/cafes/"
         case .updateCafeList(let id, _):
             return "/cafes/\(id)"
         case .createCafeList:

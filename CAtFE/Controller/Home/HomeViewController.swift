@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
     private let locationManager: CLLocationManager = CLLocationManager()
     let width = UIScreen.main.bounds.width
     let cafeManager = CafeManager()
+    var userLocation: CLLocationCoordinate2D?
     var phone: String?
     var selectedDest: String?
     var selectedPin: MKPlacemark?
@@ -53,7 +54,8 @@ class HomeViewController: UIViewController {
         setUpTabBarItem()
         initMapView()
         setSearchBar()
-        setUpCollectionView()
+//        setUpCollectionView()
+        setNavigationItem()
         getCafeData()
         
 //        updateCafeData()
@@ -83,6 +85,27 @@ class HomeViewController: UIViewController {
         let tabBarHome = self.tabBarController?.tabBar.items?[2]
         tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+    }
+    
+    func setNavigationItem() {
+        let filterBtn = UIBarButtonItem(image: UIImage(named: "filter"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(test))
+        self.navigationItem.rightBarButtonItem  = filterBtn
+    }
+    
+    @objc func test() {
+        let presentVC = UIStoryboard.popup
+            .instantiateViewController(identifier: SinaLikePopupViewController.identifier)
+            as? SinaLikePopupViewController
+        presentVC?.selectedPet = { (title) in
+            let allAnnotations = self.mapView.annotations
+            self.mapView.removeAnnotations(allAnnotations)
+            self.petFilterSelected(locations: self.cafeList, petType: title)
+        }
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.present(presentVC!, animated: false, completion: nil)
     }
     
     func initMapView() {
@@ -147,7 +170,7 @@ class HomeViewController: UIViewController {
         cafeManager.getCafeList { (result) in
             switch result {
             case .success(let cafeData):
-                self.cafeList = cafeData.data
+                self.cafeList = cafeData.results
             case .failure(let error):
                 print("======= getCafeData error: \(error)")
             }
@@ -157,14 +180,12 @@ class HomeViewController: UIViewController {
     func updateCafeData() {
         let cafeId = 4
         let cafe = Cafe(id: cafeId,
+                        petType: "貓",
                         name: "貓下去敦北俱樂部",
                         tel: "02-27177596",
                         address: "台北市松山區敦化北路218號",
-                        petType: "貓",
                         latitude: 25.0587, longitude: 121.549,
-                        wifi: false,
-                        website: "",
-                        facebook: "",
+                        fbUrl: "",
                         notes: "")
         cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
             switch result {
@@ -178,14 +199,12 @@ class HomeViewController: UIViewController {
     
     func deleteCafeData() {
         let cafe = Cafe(id: 5,
+                        petType: "test",
                         name: "test",
                         tel: "test",
                         address: "test",
-                        petType: "test",
                         latitude: 25.058734, longitude: 121.548898,
-                        wifi: false,
-                        website: "",
-                        facebook: "",
+                        fbUrl: "",
                         notes: "")
         cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
             switch result {
@@ -255,7 +274,8 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let currentLocationSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
-        mapView.setRegion(currentRegion, animated: true)
+        userLocation = nowLocation
+//        mapView.setRegion(currentRegion, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -316,7 +336,7 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
-    func guideToCafe(destination: String) {
+    func guideToCafe(destination: String) { // TODO: 改user定位
         geoCoder.geocodeAddressString("台北市信義區基隆路一段178號") { (place: [CLPlacemark]?, _) -> Void in
             let startLocation = place?.first
             self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, _) -> Void in
@@ -385,11 +405,11 @@ extension HomeViewController: PetFilterDelegate {
         var newPins: [Cafe] = []
         switch petType {
         case "貓":
-            newPins = locations.filter({ $0.petType == "貓"})
+            newPins = locations.filter({ $0.petType == "CAT"})
         case "狗":
-            newPins = locations.filter({ $0.petType == "狗"})
+            newPins = locations.filter({ $0.petType == "DOG"})
         case "其他":
-            newPins = locations.filter({ $0.petType != "貓" && $0.petType != "狗"})
+            newPins = locations.filter({ $0.petType != "CAT" && $0.petType != "DOG"})
         default:
             newPins = locations
         }
@@ -397,9 +417,9 @@ extension HomeViewController: PetFilterDelegate {
     }
 
     func wifiFilterClick(locations: [Cafe]) {
-        var newPins: [Cafe] = []
-        newPins = locations.filter({ $0.wifi == true})
-        createAnnotations(locations: newPins)
+//        var newPins: [Cafe] = []
+//        newPins = locations.filter({ $0.wifi == true})
+//        createAnnotations(locations: newPins)
     }
 }
 

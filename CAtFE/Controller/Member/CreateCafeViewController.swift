@@ -77,14 +77,12 @@ class CreateCafeViewController: BaseViewController {
     func sendCafeData() {
         // TODO: Upload to api
         let cafe = Cafe(id: 111,
+                        petType: "test",
                         name: "test",
                         tel: "test",
                         address: "test",
-                        petType: "test",
                         latitude: 25.058734, longitude: 121.548898,
-                        wifi: false,
-                        website: "",
-                        facebook: "",
+                        fbUrl: "",
                         notes: "")
         cafeManager.createCafeInList(cafeObj: cafe) { (result) in
             switch result {

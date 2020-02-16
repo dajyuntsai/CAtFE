@@ -9,19 +9,29 @@
 import Foundation
 
 struct CafeModel: Codable {
-    var data: [Cafe]
+    let results: [Cafe]
 }
 
 struct Cafe: Codable {
-    var id: Int
-    var name: String
-    var tel: String
-    var address: String
-    var petType: String
-    var latitude: Double
-    var longitude: Double
-    var wifi: Bool
-    var website: String
-    var facebook: String
-    var notes: String
+    let id: Int
+    let petType: String
+    let name: String
+    let tel: String
+    let address: String
+    let latitude: Double
+    let longitude: Double
+    let fbUrl: String
+    let notes: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case petType = "pet_type"
+        case name
+        case tel
+        case address
+        case latitude
+        case longitude
+        case fbUrl = "fb_url"
+        case notes
+    }
 }

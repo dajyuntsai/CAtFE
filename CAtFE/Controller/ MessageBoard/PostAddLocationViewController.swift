@@ -54,7 +54,7 @@ class PostAddLocationViewController: BaseViewController {
         cafeManager.getCafeList { (result) in
             switch result {
             case .success(let data):
-                self.cafeList = data.data
+                self.cafeList = data.results
             case.failure(let error):
                 print("======= Add Location error: \(error)")
             }

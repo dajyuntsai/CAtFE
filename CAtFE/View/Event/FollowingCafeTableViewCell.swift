@@ -74,7 +74,7 @@ class FollowingCafeTableViewCell: UITableViewCell {
         }
         
         pageControl.currentPage = 0
-        pageControl.numberOfPages = 3
+        pageControl.numberOfPages = photoList.count - 1
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
         pageControl.hidesForSinglePage = true
@@ -102,6 +102,7 @@ class FollowingCafeTableViewCell: UITableViewCell {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
             nextPageView()
         }
+        self.pageControl.currentPage = imageIndex
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -144,6 +145,6 @@ extension FollowingCafeTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+        pageControl.currentPage = Int(scrollView.contentOffset.x) / (Int(width) % (photoList.count - 1))
     }
 }

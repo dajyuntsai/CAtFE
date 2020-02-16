@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Rated View Controller-->
+        <!--排行榜-->
         <scene sceneID="29K-dE-F3q">
             <objects>
                 <viewController storyboardIdentifier="RatedViewController" id="anu-yq-Tjk" customClass="RatedViewController" customModule="CAtFE" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="kAU-Yg-jza"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rKc-RN-d61"/>
+                    <navigationItem key="navigationItem" title="排行榜" id="rKc-RN-d61"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNw-lq-yfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
