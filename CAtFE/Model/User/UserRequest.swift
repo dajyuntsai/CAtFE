@@ -11,7 +11,7 @@ import Foundation
 enum UserRequest: CAtFERequest {
     case userList
     case register(String, String, String, String)
-    case signIn(String, String, String)
+    case login(String, String, String)
     case loginWithAppleAndFB(String, String, String, String, String)
     
     var headers: [String: String] {
@@ -20,7 +20,7 @@ enum UserRequest: CAtFERequest {
             return [:]
         case .register:
             return ["Content-Type": "application/json"]
-        case .signIn:
+        case .login:
             return ["Content-Type": "application/json"]
         case .loginWithAppleAndFB:
             return ["Content-Type": "application/json"]
@@ -39,7 +39,7 @@ enum UserRequest: CAtFERequest {
                 "registerType": registerType
             ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .signIn(let email, let password, let registerType):
+        case .login(let email, let password, let registerType):
             let dict = [
                 "email": email,
                 "password": password,
@@ -64,7 +64,7 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.GET.rawValue
         case .register:
             return HTTPMethod.POST.rawValue
-        case .signIn:
+        case .login:
             return HTTPMethod.POST.rawValue
         case .loginWithAppleAndFB:
             return HTTPMethod.PATCH.rawValue
@@ -74,11 +74,11 @@ enum UserRequest: CAtFERequest {
     var endPoint: String {
         switch self {
         case .userList:
-            return "/users/list?page=1&size=30"
+            return "/users/"
         case .register:
             return "/users/"
-        case .signIn:
-            return "/users/sessions"
+        case .login:
+            return "/users/login/"
         case .loginWithAppleAndFB:
             return "/users/"
         }

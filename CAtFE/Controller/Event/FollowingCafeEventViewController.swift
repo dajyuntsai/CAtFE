@@ -8,11 +8,15 @@
 
 import UIKit
 import Social
+import AVKit
+import YPImagePicker
 
 class FollowingCafeEventViewController: BaseViewController {
     
     let refreshControl = UIRefreshControl()
-    
+    let selectedImageV = UIImageView()
+    var selectedItems = [YPMediaItem]()
+    var selectedPhotos: [UIImage] = []
     @IBOutlet weak var createPostBtn: UIButton!
     @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var createBtnBottomConstraint: NSLayoutConstraint!
@@ -35,7 +39,7 @@ class FollowingCafeEventViewController: BaseViewController {
         }
     }
     @IBAction func createEventBtn(_ sender: Any) {
-        showCreatePostView()
+        showPicker()
     }
     
     override func viewDidLoad() {
@@ -54,6 +58,54 @@ class FollowingCafeEventViewController: BaseViewController {
         
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
+    }
+    
+    func showPicker() {
+        self.selectedPhotos.removeAll()
+        
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photoAndVideo
+        config.shouldSaveNewPicturesToAlbum = false
+        config.video.compression = AVAssetExportPresetMediumQuality
+        config.startOnScreen = .library
+        config.screens = [.library, .photo]
+        config.wordings.libraryTitle = "Gallery"
+        config.hidesStatusBar = false
+        config.hidesBottomBar = false
+        config.maxCameraZoomFactor = 2.0
+        config.library.maxNumberOfItems = 5
+        config.gallery.hidesRemoveButton = false
+        config.library.preselectedItems = selectedItems
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            if cancelled {
+                picker.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    self.selectedPhotos.append(photo.image)
+                    self.selectedImageV.image = photo.image
+                case .video(let video):
+                    self.selectedImageV.image = video.thumbnail
+                    
+                    let assetURL = video.url
+                    let playerVC = AVPlayerViewController()
+                    let player = AVPlayer(playerItem: AVPlayerItem(url: assetURL))
+                    playerVC.player = player
+                    
+                    picker.dismiss(animated: true, completion: { [weak self] in
+                        self?.present(playerVC, animated: true, completion: nil)
+                    })
+                }
+            }
+            self.showCreatePostView()
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
     
     func showCreatePostView() {

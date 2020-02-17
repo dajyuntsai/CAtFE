@@ -22,6 +22,7 @@ class SettingViewController: BaseViewController {
         }
     }
     
+    let height = UIScreen.main.bounds.height
     let settingList: [Settings] = [
         Settings(title: "個人資料", details: ["頭像", "名稱"]),
         Settings(title: "推播通知", details: []),
@@ -110,7 +111,7 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70
+        return 60 //height / 12
     }
 }
 

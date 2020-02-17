@@ -15,9 +15,6 @@ protocol TopViewOfCresteMessageDelegate: AnyObject {
 class PostMessageUserTableViewCell: UITableViewCell {
 
     weak var delegate: TopViewOfCresteMessageDelegate?
-    
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var addLocation: UIButton!
     
     @IBAction func addLocationBtn(_ sender: Any) {
@@ -27,7 +24,6 @@ class PostMessageUserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,8 +33,6 @@ class PostMessageUserTableViewCell: UITableViewCell {
     }
     
     func setData(data: Message) {
-        userImageView.loadImage(data.user.avatar)
-        userNameLabel.text = data.user.name
         addLocation.setTitle(data.cafe.name, for: .normal)
     }
 }

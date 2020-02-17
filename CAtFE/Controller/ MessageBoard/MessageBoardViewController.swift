@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import YPImagePicker
 
 class MessageBoardViewController: UIViewController {
 
@@ -16,6 +17,9 @@ class MessageBoardViewController: UIViewController {
     @IBOutlet weak var addPostBtnView: UIView!
     let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
+    let selectedImageV = UIImageView()
+    var selectedItems = [YPMediaItem]()
+    var selectedPhotos: [UIImage] = []
     var messageList: [Message] = [] {
         didSet {
             if messageList.isEmpty {
@@ -60,11 +64,60 @@ class MessageBoardViewController: UIViewController {
     
     @IBAction func addPostBtn(_ sender: Any) {
         // TODO: 如果沒有登入就跳到登入頁
-        let presentVC = UIStoryboard.messageBoard
-            .instantiateViewController(identifier: PostMessageViewController.identifier)
-            as? PostMessageViewController
-        presentVC?.modalPresentationStyle = .overFullScreen
-        self.show(presentVC!, sender: nil)
+        showPicker()
+    }
+    
+    func showPicker() {
+        self.selectedPhotos.removeAll()
+        
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photoAndVideo
+        config.shouldSaveNewPicturesToAlbum = false
+        config.video.compression = AVAssetExportPresetMediumQuality
+        config.startOnScreen = .library
+        config.screens = [.library, .photo]
+        config.wordings.libraryTitle = "Gallery"
+        config.hidesStatusBar = false
+        config.hidesBottomBar = false
+        config.maxCameraZoomFactor = 2.0
+        config.library.maxNumberOfItems = 5
+        config.gallery.hidesRemoveButton = false
+        config.library.preselectedItems = selectedItems
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            if cancelled {
+                picker.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    self.selectedPhotos.append(photo.image)
+                    self.selectedImageV.image = photo.image
+                case .video(let video):
+                    self.selectedImageV.image = video.thumbnail
+                        
+                        let assetURL = video.url
+                        let playerVC = AVPlayerViewController()
+                        let player = AVPlayer(playerItem: AVPlayerItem(url: assetURL))
+                        playerVC.player = player
+                    
+                        picker.dismiss(animated: true, completion: { [weak self] in
+                            self?.present(playerVC, animated: true, completion: nil)
+                        })
+                }
+            }
+            let presentVC = UIStoryboard.messageBoard
+                .instantiateViewController(identifier: PostMessageViewController.identifier)
+                as? PostMessageViewController
+            presentVC?.selectedPhotoList = self.selectedPhotos
+            presentVC?.modalPresentationStyle = .overFullScreen
+            self.show(presentVC!, sender: nil)
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
 
     @objc func loadData() {

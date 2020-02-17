@@ -26,10 +26,6 @@ class PostMessageContentTableViewCell: UITableViewCell {
     }
 
     func initContentView() {
-        cotentTextView.layer.borderWidth = 1
-        cotentTextView.layer.borderColor = UIColor.gray.cgColor
-        cotentTextView.layer.cornerRadius = 10
-        
         cotentTextView.text = "輸入留言"
         cotentTextView.textColor = UIColor.lightGray
         cotentTextView.returnKeyType = .done

@@ -132,7 +132,7 @@ class UserProvider {
                      password: String,
                      registerType: String,
                      completion: @escaping (Result<APIResponse>) -> Void) {
-        HTTPClient.shared.request(UserRequest.signIn(email, password, registerType)) { (result) in
+        HTTPClient.shared.request(UserRequest.login(email, password, registerType)) { (result) in
             switch result {
             case .success(let data):
                 do {

@@ -38,7 +38,7 @@ class PostMessagePhotoTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.contentInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 
@@ -50,35 +50,34 @@ UICollectionViewDelegateFlowLayout {
         if isEditMode {
             return (editPhotoList?.count ?? 0) + 1
         } else {
-            return photoList.count + 1
+            return photoList.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as? PostMessagePhotoCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell",
+                                                            for: indexPath) as? PostMessagePhotoCollectionViewCell else {
+                                                                return UICollectionViewCell()
+        }
         cell.delegate = self
         if isEditMode { // TODO: refactor
             guard let editPhotoList = editPhotoList else { return UICollectionViewCell() }
             if indexPath.row == editPhotoList.count {
                 cell.addPhotoBtn.isHidden = false
                 cell.photoImageView.isHidden = true
-                cell.deletePhotoBtn.isHidden = true
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
-                cell.deletePhotoBtn.isHidden = false
                 cell.photoImageView.loadImage(editPhotoList[indexPath.item].url)
             }
         } else {
             if indexPath.row == photoList.count {
                 cell.addPhotoBtn.isHidden = false
                 cell.photoImageView.isHidden = true
-                cell.deletePhotoBtn.isHidden = true
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
-                cell.deletePhotoBtn.isHidden = false
                 cell.photoImageView.image = photoList[indexPath.item]
             }
         }

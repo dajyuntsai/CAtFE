@@ -34,4 +34,7 @@ target 'CAtFE' do
   
   # Pod for radio button & check box
   pod 'DLRadioButton'
+
+  # Pod for IG like select photo
+  pod 'YPImagePicker'
 end

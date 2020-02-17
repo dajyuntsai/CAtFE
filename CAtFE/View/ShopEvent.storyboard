@@ -204,7 +204,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXw-R0-Bcm">
-                                <rect key="frame" x="348" y="546" width="50" height="50"/>
+                                <rect key="frame" x="348" y="796" width="50" height="50"/>
                                 <color key="backgroundColor" name="MainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="8XS-NG-xLO"/>
@@ -226,7 +226,7 @@
                             <constraint firstItem="xMa-mH-k0Z" firstAttribute="leading" secondItem="cyF-Ns-xqr" secondAttribute="leading" id="Nr8-V0-y8P"/>
                             <constraint firstItem="cyF-Ns-xqr" firstAttribute="trailing" secondItem="xMa-mH-k0Z" secondAttribute="trailing" id="Uap-bV-G5t"/>
                             <constraint firstItem="cyF-Ns-xqr" firstAttribute="trailing" secondItem="xXw-R0-Bcm" secondAttribute="trailing" constant="16" id="geO-QC-rtH"/>
-                            <constraint firstItem="xXw-R0-Bcm" firstAttribute="bottom" secondItem="yat-gQ-uFq" secondAttribute="bottom" constant="-300" id="xOW-oe-eEG"/>
+                            <constraint firstItem="xXw-R0-Bcm" firstAttribute="bottom" secondItem="xMa-mH-k0Z" secondAttribute="bottom" constant="-16" id="xOW-oe-eEG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cyF-Ns-xqr"/>
                     </view>
