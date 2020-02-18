@@ -69,7 +69,7 @@ class SinaLikePopupViewController: BaseViewController {
             self.closeBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             self.collectionView.layoutIfNeeded()
         }
-        animator.startAnimation(afterDelay: 0.2 * Double(indexPath.item))
+        animator.startAnimation(afterDelay: 0.1 * Double(indexPath.item))
     }
     
     func setFallAnimate() { // TODO: 做掉下去的動畫

@@ -10,8 +10,8 @@ import Foundation
 
 enum UserRequest: CAtFERequest {
     case userList
-    case register(String, String, String, String)
-    case login(String, String, String)
+    case register(String, String, String)
+    case login(String, String)
     case loginWithAppleAndFB(String, String, String, String, String)
     
     var headers: [String: String] {
@@ -31,19 +31,20 @@ enum UserRequest: CAtFERequest {
         switch self {
         case .userList:
             return nil
-        case .register(let email, let password, let name, let registerType):
+        case .register(let email, let password, let name):
             let dict = [
                 "email": email,
                 "password": password,
                 "name": name,
-                "registerType": registerType
-            ]
+                "active": true,
+                "avatar": "https://ppt.cc/f5Rfex@.png",
+                "point": 0
+                ] as [String : Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .login(let email, let password, let registerType):
+        case .login(let email, let password):
             let dict = [
                 "email": email,
-                "password": password,
-                "registerType": registerType
+                "password": password
             ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .loginWithAppleAndFB(let token, let email, let name, let registerType, let avatar):

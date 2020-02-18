@@ -27,6 +27,7 @@ class UserInfoTableViewCell: UITableViewCell {
     }
     
     func setData(data: String) {
+        userNameTextField.placeholder = KeyChainManager.shared.name
         titleLabel.text = data
         userImageView.image = UIImage(named: "placeholder")
     }

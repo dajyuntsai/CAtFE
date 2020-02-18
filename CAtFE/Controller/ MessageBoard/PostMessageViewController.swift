@@ -14,10 +14,11 @@ class PostMessageViewController: BaseViewController {
     let picker: UIImagePickerController = UIImagePickerController()
     let messageBoardManager = MessageBoardManager()
     let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
     var selectedPhotoList: [UIImage] = []
     var cafeId: Int?
     var content: String?
-    var editMessage: Message?
+    var editMessage: CafeComment?
     var isEditMode = false {
         didSet {
             tableView.reloadData()
@@ -30,15 +31,36 @@ class PostMessageViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        initView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func initView() {
+        tableView.contentInset = UIEdgeInsets(top: height * 0.07, left: 0, bottom: 0, right: 0)
         initBarBtn()
+        initBackBtn()
+    }
+    
+    func initBackBtn() {
+        let backBtn = UIButton()
+        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.07, height: width * 0.07)
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
+        backBtn.setImage(UIImage(named: "arrow"), for: .normal)
+        backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        self.view.addSubview(backBtn)
     }
     
     func initBarBtn() {
-        let sendBtn = UIBarButtonItem(title: "發佈",
-                                      style: .plain,
-                                      target: self,
-                                      action: #selector(sendPostBtn))
-        self.navigationItem.rightBarButtonItem = sendBtn
+        let saveBtn = UIButton()
+        saveBtn.frame = CGRect(x: width - (width * 0.05 + width * 0.07), y: height * 0.07, width: width * 0.07, height: width * 0.07)
+        saveBtn.setImage(UIImage(named: "pin"), for: .normal)
+        saveBtn.addTarget(self, action: #selector(sendPostBtn), for: .touchUpInside)
+        self.view.addSubview(saveBtn)
     }
     
     func onCreateMessage() {
@@ -47,7 +69,7 @@ class PostMessageViewController: BaseViewController {
         }
         let token = KeyChainManager.shared.token ?? ""
         if content == nil {
-            alert(message: "請輸入內容")
+            alert(message: "請輸入內容", handler: nil)
         } else {
             messageBoardManager.createMessageInList(token: token,
                                                     cafeID: cafeId ?? 6,
@@ -95,6 +117,10 @@ class PostMessageViewController: BaseViewController {
             onCreateMessage()
         }
     }
+    
+    @objc func back() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 extension PostMessageViewController: UITableViewDataSource {
@@ -111,7 +137,7 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             if isEditMode {
                 cell.isEditMode = true
-                cell.editPhotoList = editMessage?.photos
+                cell.editPhotoList = editMessage?.postPhotos
                 cell.isReload = true
             } else {
                 cell.photoList = selectedPhotoList
@@ -152,7 +178,7 @@ extension PostMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 180 //height / 4
+            return height / 5
         case 1:
             return height / 4
         case 2:

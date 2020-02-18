@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Cosmos
 
 class CreateDetailStarTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView!
+    var starCount: ((Double) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        cosmosView.settings.fillMode = .full
+        cosmosView.didTouchCosmos = { rating in
+            self.starCount?(rating)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -78,6 +78,7 @@
                     <navigationItem key="navigationItem" id="5hi-8U-MPY"/>
                     <connections>
                         <outlet property="userImageView" destination="JpP-D8-FBH" id="rWh-0T-qmB"/>
+                        <outlet property="userName" destination="J3s-fy-nqp" id="xab-Xh-iDf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d52-3p-FTj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

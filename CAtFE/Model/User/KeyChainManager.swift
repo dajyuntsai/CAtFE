@@ -13,6 +13,8 @@ class KeyChainManager {
     static let shared = KeyChainManager()
     private let service: Keychain
     private let serverTokenKey: String = "CAtFEToken"
+    private let userName: String = "userName"
+    private let userAvatar: String = "userAvatar"
     private init() {
         service = Keychain(service: Bundle.main.bundleIdentifier!)
     }
@@ -40,6 +42,32 @@ class KeyChainManager {
                 }
             }
             return nil
+        }
+    }
+    
+    var name: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: userName)
+        }
+
+        get {
+            guard let userName = UserDefaults.standard.string(forKey: userName) else {
+                return nil
+            }
+            return userName
+        }
+    }
+    
+    var avatar: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: userAvatar)
+        }
+
+        get {
+            guard let avatar = UserDefaults.standard.string(forKey: userAvatar) else {
+                return nil
+            }
+            return avatar
         }
     }
 }

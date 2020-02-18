@@ -13,7 +13,7 @@ class CreateDetailTextTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
     var userInput: ((String) -> Void)?
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,7 +24,7 @@ class CreateDetailTextTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
     func setData(title: String) {
         titleLabel.text = title
     }

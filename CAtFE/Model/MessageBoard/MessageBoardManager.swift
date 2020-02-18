@@ -74,7 +74,7 @@ enum MessageBoardRequest: CAtFERequest {
     var endPoint: String {
         switch self {
         case .allMessage:
-            return "/cafes/messageBoard/list"
+            return "/cafes/"
         case .myMessage:
             return "/cafes/messageBoard"
         case .createMessage:
@@ -89,12 +89,12 @@ enum MessageBoardRequest: CAtFERequest {
 
 class MessageBoardManager {
     let decoder = JSONDecoder()
-    func getMessageList(completion: @escaping (Result<MessageModel>) -> Void) {
+    func getMessageList(completion: @escaping (Result<CafeModel>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.allMessage) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let messageData = try self.decoder.decode(MessageModel.self, from: data)
+                    let messageData = try self.decoder.decode(CafeModel.self, from: data)
                     completion(.success(messageData))
                 } catch {
                     completion(.failure(error))
@@ -106,12 +106,12 @@ class MessageBoardManager {
     }
 
     func getMyMessageList(token: String,
-                          completion: @escaping (Result<MessageModel>) -> Void) {
+                          completion: @escaping (Result<Message>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.myMessage(token)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let myMessage = try self.decoder.decode(MessageModel.self, from: data)
+                    let myMessage = try self.decoder.decode(Message.self, from: data)
                     completion(.success(myMessage))
                 } catch {
                     completion(.failure(error))
@@ -126,12 +126,12 @@ class MessageBoardManager {
                              cafeID: Int,
                              content: String,
                              photos: [Photos],
-                             completion: @escaping (Result<MessageModel>) -> Void) {
+                             completion: @escaping (Result<Message>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.createMessage(token, cafeID, content, photos)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let messageData = try self.decoder.decode(MessageModel.self, from: data)
+                    let messageData = try self.decoder.decode(Message.self, from: data)
                     completion(.success(messageData))
                 } catch {
                     completion(.failure(error))
@@ -147,12 +147,12 @@ class MessageBoardManager {
                              cafeId: Int,
                              content: String,
                              photos: [Photos],
-                             completion: @escaping (Result<MessageModel>) -> Void) {
+                             completion: @escaping (Result<Message>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, cafeId, content, photos)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let updateMessage = try self.decoder.decode(MessageModel.self, from: data)
+                    let updateMessage = try self.decoder.decode(Message.self, from: data)
                     completion(.success(updateMessage))
                 } catch {
                     completion(.failure(error))
@@ -166,12 +166,12 @@ class MessageBoardManager {
     func deleteMessageInList(token: String,
                              messageObj: Message,
                              msgId: Int,
-                             completion: @escaping (Result<MessageModel>) -> Void) {
+                             completion: @escaping (Result<Message>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.deleteMessage(token, messageObj, msgId)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let deleteMessage = try self.decoder.decode(MessageModel.self, from: data)
+                    let deleteMessage = try self.decoder.decode(Message.self, from: data)
                     completion(.success(deleteMessage))
                 } catch {
                     completion(.failure(error))

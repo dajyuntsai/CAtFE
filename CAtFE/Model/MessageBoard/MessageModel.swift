@@ -8,25 +8,23 @@
 
 import Foundation
 
-struct MessageModel: Codable {
-    let data: [Message]
-}
-
 struct Message: Codable {
     let id: Int
-    let content: String
-    let cafe: Cafe
-    let user: User
+    let comment: String
+//    let cafe: Cafe
+//    let user: User
     let photos: [Photos]
     let createAt: String
+    let updatedAt: String
 
     enum CodingKeys: String, CodingKey {
         case id
-        case content
-        case cafe
-        case user
+        case comment
+//        case cafe
+//        case user
         case photos
-        case createAt = "create_at"
+        case createAt = "created_at"
+        case updatedAt = "updated_at"
     }
 }
 
@@ -34,4 +32,13 @@ struct Photos: Codable {
     let id: Int
     let url: String
     let isPrimary: Bool
+}
+
+struct CafeComment {
+    let cafeName: String
+    let userName: String
+    let userImage: String
+    let timeAgo: String
+    let postPhotos: [String]
+    let content: String
 }

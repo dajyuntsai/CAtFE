@@ -28,4 +28,11 @@ extension UIViewController {
             self.view.window?.rootViewController = tabBar
         }
     }
+    
+    func backToLoginView() {
+        let presentVC = UIStoryboard.main
+            .instantiateViewController(identifier: LoginViewController.identifier) as? LoginViewController
+        presentVC?.modalPresentationStyle = .fullScreen
+        self.present(presentVC!, animated: true, completion: nil)
+    }
 }

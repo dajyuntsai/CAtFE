@@ -12,10 +12,11 @@ class PostMessagePhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
     var photoList: [UIImage] = []
     var isEditMode = false
-    var editPhotoList: [Photos]?
-    
+    var editPhotoList: [String]?
     var isReload: Bool = false {
         didSet {
             collectionView.reloadData()
@@ -60,7 +61,6 @@ UICollectionViewDelegateFlowLayout {
                                                             for: indexPath) as? PostMessagePhotoCollectionViewCell else {
                                                                 return UICollectionViewCell()
         }
-        cell.delegate = self
         if isEditMode { // TODO: refactor
             guard let editPhotoList = editPhotoList else { return UICollectionViewCell() }
             if indexPath.row == editPhotoList.count {
@@ -69,7 +69,7 @@ UICollectionViewDelegateFlowLayout {
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
-                cell.photoImageView.loadImage(editPhotoList[indexPath.item].url)
+                cell.photoImageView.loadImage(editPhotoList[indexPath.item])
             }
         } else {
             if indexPath.row == photoList.count {
@@ -87,12 +87,6 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
-    }
-}
-
-extension PostMessagePhotoTableViewCell: DeletePhotoDelegate {
-    func removePhoto(_ cell: PostMessagePhotoCollectionViewCell) {
-        
+        return CGSize(width: 150, height: height / 5)
     }
 }

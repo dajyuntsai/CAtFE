@@ -116,11 +116,11 @@ class UserProvider {
     func emailSignUp(email: String,
                      password: String,
                      name: String,
-                     registerType: String,
                      completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.register(email, password, name, registerType)) { (result) in
+        HTTPClient.shared.request(UserRequest.register(email, password, name)) { (result) in
             switch result {
             case .success:
+                KeyChainManager.shared.name = name
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
@@ -128,17 +128,16 @@ class UserProvider {
         }
     }
     
-    func emailSignIn(email: String,
-                     password: String,
-                     registerType: String,
-                     completion: @escaping (Result<APIResponse>) -> Void) {
-        HTTPClient.shared.request(UserRequest.login(email, password, registerType)) { (result) in
+    func emailLogin(email: String,
+                    password: String,
+                    completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.login(email, password)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let response = try self.decoder.decode(APIResponse.self, from: data)
-                    KeyChainManager.shared.token = response.token
-                    completion(Result.success((response)))
+//                    let response = try self.decoder.decode(APIResponse.self, from: data)
+//                    KeyChainManager.shared.token = response.token
+                    completion(Result.success(()))
                 } catch {
                     completion(Result.failure(error))
                 }

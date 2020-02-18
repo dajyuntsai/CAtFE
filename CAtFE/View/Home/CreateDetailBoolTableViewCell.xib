@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rq-bY-tkZ">
-                        <rect key="frame" x="32" y="11" width="42" height="22"/>
+                        <rect key="frame" x="16" y="11" width="42" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-a9-BI9" customClass="DLRadioButton">
-                        <rect key="frame" x="90" y="5.5" width="30" height="33"/>
+                        <rect key="frame" x="74" y="5.5" width="30" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="是 ">
                             <color key="titleColor" name="TextColor"/>
@@ -42,7 +42,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-xk-t32" customClass="DLRadioButton">
-                        <rect key="frame" x="128" y="5.5" width="30" height="33"/>
+                        <rect key="frame" x="112" y="5.5" width="30" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="否 ">
                             <color key="titleColor" name="TextColor"/>
@@ -64,7 +64,7 @@
                     <constraint firstItem="5rq-bY-tkZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7jk-yx-ahM"/>
                     <constraint firstItem="OLc-a9-BI9" firstAttribute="centerY" secondItem="5rq-bY-tkZ" secondAttribute="centerY" id="CDX-Qp-wm9"/>
                     <constraint firstItem="OLc-a9-BI9" firstAttribute="leading" secondItem="5rq-bY-tkZ" secondAttribute="trailing" constant="16" id="HgR-3V-fQF"/>
-                    <constraint firstItem="5rq-bY-tkZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="dlg-Vf-Ovp"/>
+                    <constraint firstItem="5rq-bY-tkZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dlg-Vf-Ovp"/>
                     <constraint firstItem="5rq-bY-tkZ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="dyS-pT-tX3"/>
                     <constraint firstItem="SRa-xk-t32" firstAttribute="leading" secondItem="OLc-a9-BI9" secondAttribute="trailingMargin" constant="16" id="fCG-G1-Iod"/>
                     <constraint firstItem="SRa-xk-t32" firstAttribute="centerY" secondItem="OLc-a9-BI9" secondAttribute="centerY" id="kQb-Y1-Zil"/>
@@ -79,7 +79,7 @@
     </objects>
     <resources>
         <namedColor name="MainColor">
-            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

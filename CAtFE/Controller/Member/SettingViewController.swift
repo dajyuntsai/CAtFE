@@ -25,7 +25,7 @@ class SettingViewController: BaseViewController {
     let height = UIScreen.main.bounds.height
     let settingList: [Settings] = [
         Settings(title: "個人資料", details: ["頭像", "名稱"]),
-        Settings(title: "推播通知", details: []),
+//        Settings(title: "推播通知", details: []),
         Settings(title: "版本", details: []),
         Settings(title: "登出", details: [])]
     var isExpendDataList: [Bool] = []
@@ -98,8 +98,13 @@ extension SettingViewController: UITableViewDelegate {
             return UIView()
         }
         
-        if section == 2 || section == 3 {
+        if section == 1 || section == 2 {
             sectionView.expandBtn.isHidden = true
+        }
+        
+        if section == 2 {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(logout))
+            sectionView.addGestureRecognizer(gesture)
         }
         
         sectionView.isExpand = self.isExpendDataList[section]
@@ -112,6 +117,12 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60 //height / 12
+    }
+    
+    @objc func logout() {
+        KeyChainManager.shared.token = nil
+        KeyChainManager.shared.name = nil
+        self.backToRoot()
     }
 }
 

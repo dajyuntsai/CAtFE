@@ -19,12 +19,13 @@ enum CellType {
 struct CellContent {
     var type: CellType
     var title: String
+    var value: Any?
 }
 
 class CreateCafeViewController: BaseViewController {
 
     let cafeManager = CafeManager()
-    let contents: [CellContent] = [
+    var contents: [CellContent] = [
         CellContent(type: .text, title: "店名（必填）"),
         CellContent(type: .text, title: "店家電話（必填）"),
         CellContent(type: .text, title: "店家地址（必填）"),
@@ -65,7 +66,7 @@ class CreateCafeViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 32, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         
         tableView.registerCellWithNib(identifier: String(describing: CreateDetailTextTableViewCell.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: CreateDetailStarTableViewCell.self), bundle: nil)
@@ -75,22 +76,22 @@ class CreateCafeViewController: BaseViewController {
     }
 
     func sendCafeData() {
-        let cafe = Cafe(id: 111,
-                        petType: "test",
-                        name: "test",
-                        tel: "test",
-                        address: "test",
-                        latitude: 25.058734, longitude: 121.548898,
-                        fbUrl: "",
-                        notes: "")
-        cafeManager.createCafeInList(cafeObj: cafe) { (result) in
-            switch result {
-            case .success:
-                CustomProgressHUD.showSuccess(text: "新增成功")
-            case .failure:
-                CustomProgressHUD.showFailure(text: "新增失敗")
-            }
-        }
+//        let cafe = Cafe(id: 111,
+//                        petType: "test",
+//                        name: "test",
+//                        tel: "test",
+//                        address: "test",
+//                        latitude: 25.058734, longitude: 121.548898,
+//                        fbUrl: "",
+//                        notes: "")
+//        cafeManager.createCafeInList(cafeObj: cafe) { (result) in
+//            switch result {
+//            case .success:
+//                CustomProgressHUD.showSuccess(text: "新增成功")
+//            case .failure:
+//                CustomProgressHUD.showFailure(text: "新增失敗")
+//            }
+//        }
     }
 }
 
@@ -104,15 +105,21 @@ extension CreateCafeViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0, 1, 2, 3, 13, 21:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailTextTableViewCell.identifier,
-                                                           for: indexPath) as? CreateDetailTextTableViewCell else {
+                for: indexPath) as? CreateDetailTextTableViewCell else {
                 return UITableViewCell()
+            }
+            cell.userInput = { (text) in
+                self.contents[indexPath.row].value = text
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell
         case 5, 6, 7, 8, 9:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier,
-                                                           for: indexPath) as? CreateDetailStarTableViewCell else {
+                for: indexPath) as? CreateDetailStarTableViewCell else {
                 return UITableViewCell()
+            }
+            cell.starCount = { (rating) in
+                self.contents[indexPath.row].value = rating
             }
             cell.setData(title: contents[indexPath.row].title)
             return cell

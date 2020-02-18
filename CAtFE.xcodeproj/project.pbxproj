@@ -17,6 +17,7 @@
 		BE076B9C23EBA49E0090BC7F /* SinaLikePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */; };
 		BE18E09723F950FE006F004C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09623F950FE006F004C /* SectionView.swift */; };
 		BE18E09923F9511A006F004C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E09823F9511A006F004C /* SectionView.xib */; };
+		BE18E09F23FC51B0006F004C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09E23FC51B0006F004C /* Date+Extension.swift */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -92,7 +93,6 @@
 		BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */; };
 		BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */; };
 		BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */; };
-		BE94EB5923F6AB8B00FA4604 /* PostEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -153,6 +153,7 @@
 		BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinaLikePopupViewController.swift; sourceTree = "<group>"; };
 		BE18E09623F950FE006F004C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		BE18E09823F9511A006F004C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
+		BE18E09E23FC51B0006F004C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -235,7 +236,6 @@
 		BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeWebsiteViewController.swift; sourceTree = "<group>"; };
 		BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeEventViewController.swift; sourceTree = "<group>"; };
 		BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeTableViewCell.swift; sourceTree = "<group>"; };
-		BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEventViewController.swift; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -419,7 +419,6 @@
 			children = (
 				BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */,
 				BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */,
-				BE94EB5823F6AB8B00FA4604 /* PostEventViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -571,6 +570,7 @@
 				BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */,
 				BE4FD7D723F4F739004E190A /* UITextView+Extension.swift */,
 				BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */,
+				BE18E09E23FC51B0006F004C /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -975,7 +975,6 @@
 				BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */,
 				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
 				BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */,
-				BE94EB5923F6AB8B00FA4604 /* PostEventViewController.swift in Sources */,
 				BEE181E523E232C300660AEB /* HomeViewController.swift in Sources */,
 				BE18E09723F950FE006F004C /* SectionView.swift in Sources */,
 				BEF7A7A523F946F300EB6D2D /* UserInfoTableViewCell.swift in Sources */,
@@ -993,6 +992,7 @@
 				BE94EB4B23F686B500FA4604 /* UserTableViewCell.swift in Sources */,
 				BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
+				BE18E09F23FC51B0006F004C /* Date+Extension.swift in Sources */,
 				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
 				BE36C41223F1B58A003C4BDB /* MemberCollectionViewCell.swift in Sources */,
 				BEF7A7A123F9032F00EB6D2D /* UITextField+Extension.swift in Sources */,

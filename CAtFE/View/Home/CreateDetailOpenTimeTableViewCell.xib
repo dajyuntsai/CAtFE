@@ -18,32 +18,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RaT-Sp-gec">
-                        <rect key="frame" x="36" y="8" width="331" height="28"/>
+                        <rect key="frame" x="16" y="8" width="371" height="28"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eku-A2-8kH">
-                                <rect key="frame" x="0.0" y="0.0" width="44" height="28"/>
+                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-Zq-Usd">
-                                <rect key="frame" x="52" y="0.0" width="70" height="28"/>
+                                <rect key="frame" x="57.5" y="0.0" width="78.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNX-ew-eRE">
-                                <rect key="frame" x="130" y="0.0" width="8.5" height="28"/>
+                                <rect key="frame" x="144" y="0.0" width="9.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-LM-Cdz">
-                                <rect key="frame" x="146.5" y="0.0" width="70" height="28"/>
+                                <rect key="frame" x="161.5" y="0.0" width="78.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-Av-UDv" customClass="DLRadioButton">
-                                <rect key="frame" x="224.5" y="0.0" width="31.5" height="28"/>
+                                <rect key="frame" x="248" y="0.0" width="35" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="休 ">
                                     <color key="titleColor" name="TextColor"/>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-74-twy">
-                                <rect key="frame" x="264" y="0.0" width="67" height="28"/>
+                                <rect key="frame" x="291" y="0.0" width="80" height="28"/>
                                 <state key="normal" title="全部套用">
                                     <color key="titleColor" name="TextColor"/>
                                 </state>
@@ -76,10 +76,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RaT-Sp-gec" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Cgf-Ep-kCD"/>
+                    <constraint firstItem="RaT-Sp-gec" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Cgf-Ep-kCD"/>
                     <constraint firstItem="RaT-Sp-gec" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="hES-9o-MVZ"/>
                     <constraint firstAttribute="bottom" secondItem="RaT-Sp-gec" secondAttribute="bottom" constant="8" id="sIS-TK-Nd0"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RaT-Sp-gec" secondAttribute="trailing" constant="16" id="x7R-aK-qNZ"/>
+                    <constraint firstAttribute="trailing" secondItem="RaT-Sp-gec" secondAttribute="trailing" constant="16" id="x7R-aK-qNZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -93,7 +93,7 @@
     </objects>
     <resources>
         <namedColor name="MainColor">
-            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

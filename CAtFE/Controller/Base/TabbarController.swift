@@ -44,7 +44,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tabBar.unselectedItemTintColor = .brown
+        self.tabBar.unselectedItemTintColor = .black
         viewControllers = tabs.map({ $0.controller() })
         selectedIndex = 2
         delegate = self

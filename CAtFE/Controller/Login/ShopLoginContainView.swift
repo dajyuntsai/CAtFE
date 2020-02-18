@@ -33,9 +33,9 @@ class ShopLoginContainView: BaseViewController {
     
     func checkLogin() {
         if loginTextField[0].text == "" || loginTextField[1].text == "" {
-            alert(message: "請輸入登入信箱及密碼", title: "錯誤")
+            alert(message: "請輸入登入信箱及密碼", title: "錯誤", handler: nil)
         } else if !isValidEmail(loginTextField[0].text!) {
-            alert(message: "請輸入正確信箱", title: "錯誤")
+            alert(message: "請輸入正確信箱", title: "錯誤", handler: nil)
         } else {
             let account = loginTextField[0].text!
             let password = loginTextField[1].text!
@@ -44,7 +44,7 @@ class ShopLoginContainView: BaseViewController {
     }
 
     func onCAtFESignIn(email: String, password: String, registerType: String) {
-        userProvider.emailSignIn(email: email, password: password, registerType: registerType) { (result) in
+        userProvider.emailLogin(email: email, password: password) { (result) in
             switch result {
             case .success:
                 UserDefaults.standard.set(true, forKey: "loginState")

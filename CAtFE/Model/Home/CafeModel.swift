@@ -22,6 +22,7 @@ struct Cafe: Codable {
     let longitude: Double
     let fbUrl: String
     let notes: String
+    let cafeComments: [Message]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -33,5 +34,6 @@ struct Cafe: Codable {
         case longitude
         case fbUrl = "fb_url"
         case notes
+        case cafeComments = "cafe_comments"
     }
 }

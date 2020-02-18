@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyn-wj-F8Q">
-                        <rect key="frame" x="36" y="11" width="42" height="22"/>
+                        <rect key="frame" x="16" y="11" width="42" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-aH-d3s" customClass="DLRadioButton">
-                        <rect key="frame" x="86" y="5.5" width="30" height="33"/>
+                        <rect key="frame" x="66" y="5.5" width="30" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="貓 ">
                             <color key="titleColor" name="TextColor"/>
@@ -43,7 +43,7 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-sS-piZ" customClass="DLRadioButton">
-                        <rect key="frame" x="162" y="5.5" width="44" height="33"/>
+                        <rect key="frame" x="142" y="5.5" width="44" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="其他  ">
                             <color key="titleColor" name="TextColor"/>
@@ -62,7 +62,7 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-O9-xVc" customClass="DLRadioButton">
-                        <rect key="frame" x="124" y="5.5" width="30" height="33"/>
+                        <rect key="frame" x="104" y="5.5" width="30" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="狗 ">
                             <color key="titleColor" name="TextColor"/>
@@ -85,7 +85,7 @@
                     <constraint firstItem="ESA-O9-xVc" firstAttribute="leading" secondItem="B4y-aH-d3s" secondAttribute="trailingMargin" constant="16" id="1vY-KT-Wq5"/>
                     <constraint firstItem="ESA-O9-xVc" firstAttribute="centerY" secondItem="zyn-wj-F8Q" secondAttribute="centerY" id="2Pj-0u-bIE"/>
                     <constraint firstItem="zyn-wj-F8Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DyR-tf-TMI"/>
-                    <constraint firstItem="zyn-wj-F8Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="J07-WY-vKX"/>
+                    <constraint firstItem="zyn-wj-F8Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="J07-WY-vKX"/>
                     <constraint firstItem="B4y-aH-d3s" firstAttribute="leading" secondItem="zyn-wj-F8Q" secondAttribute="trailing" constant="8" id="VKb-dM-lFt"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zyn-wj-F8Q" secondAttribute="bottom" id="baA-gh-3kb"/>
                     <constraint firstItem="y3v-sS-piZ" firstAttribute="centerY" secondItem="zyn-wj-F8Q" secondAttribute="centerY" id="bo4-O3-ywe"/>
@@ -105,7 +105,7 @@
     </objects>
     <resources>
         <namedColor name="MainColor">
-            <color red="0.76200002431869507" green="0.61000001430511475" blue="0.28700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

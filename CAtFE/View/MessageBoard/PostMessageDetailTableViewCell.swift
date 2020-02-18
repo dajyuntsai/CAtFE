@@ -33,7 +33,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
         collectionView.setContentOffset(offset, animated: true)
     }
-    var data: Message?
+    var data: CafeComment?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,32 +51,31 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.contentInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-        
+                
         pageControl.currentPage = 0
-        pageControl.numberOfPages = data?.photos.count ?? 0
+        pageControl.numberOfPages = 2
+//            data?.postPhotos.count ?? 1
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
         pageControl.hidesForSinglePage = true
     }
 
-    func setData(data: Message) {
+    func setData(data: CafeComment) {
         self.data = data
-        authorImageView.loadImage(data.user.avatar)
-        authorNameLabel.text = data.user.name
-        timeAgoLabel.text = data.user.createAt
-        locationLabel.text = data.cafe.name
+        authorImageView.loadImage(data.userImage)
+        authorNameLabel.text = data.userName
+        locationLabel.text = data.cafeName
         postContentLabel.text = data.content
+        timeAgoLabel.text = data.timeAgo
     }
 }
 
 extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (data?.photos.isEmpty)! {
+        if (data?.postPhotos.isEmpty)! {
             return 0
         } else {
-            return (data?.photos.count)!
+            return (data?.postPhotos.count)!
         }
     }
     
@@ -86,7 +85,7 @@ extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollecti
                                                             for: indexPath) as? PostDetailPhotoCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.postImageView.loadImage(data?.photos[indexPath.item].url)
+        cell.postImageView.loadImage(data?.postPhotos[indexPath.item])
         return cell
     }
     

@@ -32,8 +32,8 @@ class PostMessageUserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(data: Message) {
-        addLocation.setTitle(data.cafe.name, for: .normal)
+    func setData(data: CafeComment) {
+//        addLocation.setTitle(data.cafe.name, for: .normal) //TODO: 打開
     }
 }
 

@@ -29,7 +29,9 @@ class FollowingCafeEventViewController: BaseViewController {
     var message: [Message] = [] {
         didSet {
             if message.isEmpty {
-                refreshControl.beginRefreshing()
+                DispatchQueue.main.async {
+                    self.refreshControl.beginRefreshing()
+                }
             } else {
                 DispatchQueue.main.async { // ?????
                     self.tableView.reloadData()
@@ -70,6 +72,7 @@ class FollowingCafeEventViewController: BaseViewController {
         config.startOnScreen = .library
         config.screens = [.library, .photo]
         config.wordings.libraryTitle = "Gallery"
+        config.showsCrop = .rectangle(ratio: (16/9))
         config.hidesStatusBar = false
         config.hidesBottomBar = false
         config.maxCameraZoomFactor = 2.0
@@ -158,7 +161,7 @@ extension FollowingCafeEventViewController: GoodCommentShareDelegate {
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-        presentVC?.message = message[indexPath.row]
+//        presentVC?.message = message[indexPath.row]
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -193,8 +196,11 @@ extension FollowingCafeEventViewController: GoodCommentShareDelegate {
         let messageBoardManager = MessageBoardManager()
         messageBoardManager.getMessageList { (result) in
             switch result {
-            case .success(let messageData):
-                self.message = messageData.data
+            case .success(let cafeData):
+                self.message.removeAll()
+                for messages in cafeData.results {
+                    self.message = messages.cafeComments
+                }
             case .failure(let error):
                 print("======= 測試資料 error: \(error)")
             }

@@ -11,4 +11,16 @@ import UIKit
 class PostDetailPhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        postImageView.layer.cornerRadius = 15
+        cellBackgroundView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cellBackgroundView.layer.shadowColor = UIColor.lightGray.cgColor
+        cellBackgroundView.layer.shadowOpacity = 0.5
+        cellBackgroundView.layer.shadowRadius = 2
+        cellBackgroundView.layer.cornerRadius = 15
+    }
 }

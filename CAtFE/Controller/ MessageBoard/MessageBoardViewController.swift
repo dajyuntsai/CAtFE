@@ -15,23 +15,27 @@ class MessageBoardViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addPostBtnView: UIView!
+    let height = UIScreen.main.bounds.height
     let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
     let selectedImageV = UIImageView()
     var selectedItems = [YPMediaItem]()
     var selectedPhotos: [UIImage] = []
-    var messageList: [Message] = [] {
+    var cafeResults: [Cafe] = [] {
         didSet {
-            if messageList.isEmpty {
-                refreshControl.beginRefreshing()
+            if cafeResults.isEmpty {
+                DispatchQueue.main.async {
+                    self.refreshControl.beginRefreshing()
+                }
             } else {
-                DispatchQueue.main.async { // ?????
+                DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
                 }
             }
         }
     }
+    var cafeComments: [CafeComment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +43,22 @@ class MessageBoardViewController: UIViewController {
         initView()
         getMessageList()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        getMessageList()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
     func initView() {
         addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
 
-        collectionView?.contentInset = UIEdgeInsets(top: 16, left: 4, bottom: 16, right: 4)
+        collectionView?.contentInset = UIEdgeInsets(top: height * 0.05, left: 8, bottom: 8, right: 8)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
@@ -54,16 +69,46 @@ class MessageBoardViewController: UIViewController {
     func getMessageList() {
         messageBoardManager.getMessageList { (result) in
             switch result {
-            case .success(let messageData):
-                self.messageList = messageData.data
+            case .success(let cafeData):
+                self.cafeResults.removeAll()
+                self.cafeResults = cafeData.results
+                self.getCommentDetail(data: cafeData.results)
             case .failure(let error):
                 print("======= getMessageList error: \(error)")
             }
         }
     }
     
+    func getCommentDetail(data: [Cafe]) {
+        self.cafeComments.removeAll()
+        for comments in data {
+            for comment in comments.cafeComments {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+                guard let date = dateFormatter.date(from: comment.createAt) else { return }
+                let timeAgo = date.timeAgoSinceDate()
+                let commentInfo = CafeComment(cafeName: comments.name,
+                                              userName: "bubu",
+                                              userImage: "https://timesofindia.indiatimes.com/thumb/msid-67586673,width-800,height-600,resizemode-4/67586673.jpg",
+                                              timeAgo: timeAgo,
+                                              postPhotos: ["https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg", "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_weight_other/1800x1200_cat_weight_other.jpg?resize=600px:*"],
+                                              content: comment.comment)
+                self.cafeComments.append(commentInfo)
+            }
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
     @IBAction func addPostBtn(_ sender: Any) {
-        // TODO: 如果沒有登入就跳到登入頁
+//        if KeyChainManager.shared.token != nil {
+//            showPicker()
+//        } else {
+//            alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
+//                self.backToLoginView()
+//            }
+//        }
         showPicker()
     }
     
@@ -121,18 +166,15 @@ class MessageBoardViewController: UIViewController {
     }
 
     @objc func loadData() {
-        messageList.removeAll()
-        DispatchQueue.main.async {
-            self.getMessageList()
-        }
-        self.collectionView.reloadData()
+        cafeResults.removeAll()
+        self.getMessageList()
         refreshControl.endRefreshing()
     }
 }
 
 extension MessageBoardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messageList.count
+        return cafeComments.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -140,25 +182,16 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell",
                                                             for: indexPath) as? MessageCollectionViewCell else {
                                                                 return UICollectionViewCell() }
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.gray.cgColor
-        cell.layer.cornerRadius = 15
-        cell.setData(message: messageList[indexPath.item])
+            
+        cell.setData(message: cafeComments[indexPath.item])
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-        return
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-        let message = messageList[indexPath.row]
-        presentVC?.message = message
+        presentVC?.cafeComments = cafeComments[indexPath.row]
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -168,7 +201,7 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForCaptionAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = messageList[indexPath.item]
+        let post = cafeComments[indexPath.item]
         let topPadding = CGFloat(8)
         let bottomPadding = CGFloat(16)
         let captionFont = UIFont.systemFont(ofSize: 15)
@@ -182,13 +215,13 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = messageList[indexPath.item]
-        let havePhoto = post.photos.count
+        let post = cafeComments[indexPath.item]
+        let havePhoto = post.postPhotos.count
         
         if havePhoto == 0 {
             return 30
         } else {
-            let photo = URL(string: post.photos[0].url)!
+            let photo = URL(string: post.postPhotos[0])!
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let request = URLRequest(url: photo)
             guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest,

@@ -10,6 +10,7 @@ import UIKit
 
 class MemberViewController: UIViewController {
 
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     private var mPageTitleView: TabTitleView!
     private var mPageContentView: TabContentView!
@@ -35,6 +36,7 @@ class MemberViewController: UIViewController {
 
     func initView() { // TODO: 往上滑的時候消失
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
+        userName.text = KeyChainManager.shared.name
     }
 
     func initTabView() {
@@ -75,7 +77,7 @@ class MemberViewController: UIViewController {
             let size = CGSize(width: width, height:
                 image.size.height * width / image.size.width)
             let renderer = UIGraphicsImageRenderer(size: size)
-            let newImage = renderer.image { (context) in
+            let newImage = renderer.image { _ in
                 image.draw(in: renderer.format.bounds)
             }
             return newImage

@@ -52,10 +52,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         setUpTabBarItem()
-        initMapView()
         setSearchBar()
+        initMapView()
 //        setUpCollectionView()
-        setNavigationItem()
         getCafeData()
         
 //        updateCafeData()
@@ -87,15 +86,7 @@ class HomeViewController: UIViewController {
         tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
     
-    func setNavigationItem() {
-        let filterBtn = UIBarButtonItem(image: UIImage(named: "filter"),
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(test))
-        self.navigationItem.rightBarButtonItem  = filterBtn
-    }
-    
-    @objc func test() {
+    @objc func petFilterBtn() {
         let presentVC = UIStoryboard.popup
             .instantiateViewController(identifier: SinaLikePopupViewController.identifier)
             as? SinaLikePopupViewController
@@ -118,12 +109,22 @@ class HomeViewController: UIViewController {
 
         createCafeBtnView.layer.cornerRadius = createCafeBtnView.frame.width / 2
     }
+    
+    func createNaviRightBtn() {
+        let filterBtn = UIBarButtonItem(image: UIImage(named: "filter"),
+        style: .plain,
+        target: self,
+        action: #selector(petFilterBtn))
+        navigationItem.rightBarButtonItem = filterBtn
+    }
 
     func setSearchBar() {
         let locationSearchTable = UIStoryboard.home
             .instantiateViewController(identifier: LocationSearchTable.identifier)
             as? LocationSearchTable
+        
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchBar.delegate = self
         resultSearchController?.searchResultsUpdater = locationSearchTable
         locationSearchTable!.mapView = mapView
         locationSearchTable?.handleMapSearchDelegate = self
@@ -131,10 +132,12 @@ class HomeViewController: UIViewController {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
-        navigationItem.searchController = resultSearchController
+        navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
+        
+        createNaviRightBtn()
     }
     
     func setUpLocationAuthorization() {
@@ -186,7 +189,8 @@ class HomeViewController: UIViewController {
                         address: "台北市松山區敦化北路218號",
                         latitude: 25.0587, longitude: 121.549,
                         fbUrl: "",
-                        notes: "")
+                        notes: "",
+                        cafeComments: [])
         cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
             switch result {
             case .success:
@@ -205,7 +209,8 @@ class HomeViewController: UIViewController {
                         address: "test",
                         latitude: 25.058734, longitude: 121.548898,
                         fbUrl: "",
-                        notes: "")
+                        notes: "",
+                        cafeComments: [])
         cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
             switch result {
             case .success:
@@ -232,7 +237,8 @@ class HomeViewController: UIViewController {
             .instantiateViewController(identifier: CreateCafeViewController.identifier)
             as? CreateCafeViewController
         presentVC?.modalPresentationStyle = .formSheet
-        self.present(presentVC!, animated: true, completion: nil)
+//        self.present(presentVC!, animated: true, completion: nil)
+        self.show(presentVC!, sender: nil)
     }
 }
 
@@ -440,5 +446,19 @@ extension HomeViewController: HandleMapSearch {
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        self.petFilterBtn()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.createNaviRightBtn()
     }
 }
