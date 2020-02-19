@@ -116,7 +116,7 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return height / 12
+        return 70 // height / 12
     }
     
     @objc func logout() {

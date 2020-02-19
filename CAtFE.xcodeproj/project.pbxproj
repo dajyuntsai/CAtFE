@@ -20,6 +20,7 @@
 		BE18E09F23FC51B0006F004C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09E23FC51B0006F004C /* Date+Extension.swift */; };
 		BE18E0A223FD2897006F004C /* ServeyTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */; };
 		BE18E0A323FD2897006F004C /* ServeyTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */; };
+		BE18E0A523FD4E3A006F004C /* CreateCafeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -158,6 +159,7 @@
 		BE18E09E23FC51B0006F004C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeyTitleTableViewCell.swift; sourceTree = "<group>"; };
 		BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServeyTitleTableViewCell.xib; sourceTree = "<group>"; };
+		BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCafeModel.swift; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			children = (
 				BE076B5523EA608F0090BC7F /* CafeManager.swift */,
 				BE076B5723EA625E0090BC7F /* CafeModel.swift */,
+				BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				BE94EB4B23F686B500FA4604 /* UserTableViewCell.swift in Sources */,
 				BE076B5623EA608F0090BC7F /* CafeManager.swift in Sources */,
 				BEE181EE23E237B000660AEB /* JGProgressHUDWrapper.swift in Sources */,
+				BE18E0A523FD4E3A006F004C /* CreateCafeModel.swift in Sources */,
 				BE18E09F23FC51B0006F004C /* Date+Extension.swift in Sources */,
 				BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */,
 				BE36C41223F1B58A003C4BDB /* MemberCollectionViewCell.swift in Sources */,
