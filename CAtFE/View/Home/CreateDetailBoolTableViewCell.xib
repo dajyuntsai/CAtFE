@@ -18,14 +18,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rq-bY-tkZ">
-                        <rect key="frame" x="16" y="11" width="42" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="16" y="11" width="37.5" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-a9-BI9" customClass="DLRadioButton">
-                        <rect key="frame" x="74" y="5.5" width="30" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="69.5" y="7" width="30" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="是 ">
                             <color key="titleColor" name="TextColor"/>
                         </state>
@@ -42,8 +42,8 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-xk-t32" customClass="DLRadioButton">
-                        <rect key="frame" x="112" y="5.5" width="30" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="107.5" y="7" width="30" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="否 ">
                             <color key="titleColor" name="TextColor"/>
                         </state>

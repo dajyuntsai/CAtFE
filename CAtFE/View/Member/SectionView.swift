@@ -29,6 +29,10 @@ class SectionView: UITableViewHeaderFooterView {
         titleLabel.text = data.title
     }
     
+    func setServey(data: Categorys) {
+        titleLabel.text = data.title
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // ?????

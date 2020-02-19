@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU3-ii-FJ3">
-                        <rect key="frame" x="16" y="11" width="42" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="16" y="11" width="37.5" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-Q7-lY6" customClass="CosmosView" customModule="Cosmos">
-                        <rect key="frame" x="74" y="9.5" width="165" height="25"/>
+                        <rect key="frame" x="69.5" y="9.5" width="165" height="25"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="GoldStar"/>
@@ -39,7 +39,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yPl-Q7-lY6" firstAttribute="leading" secondItem="tU3-ii-FJ3" secondAttribute="trailing" constant="16" id="Aie-T3-gK5"/>
+                    <constraint firstItem="yPl-Q7-lY6" firstAttribute="leading" secondItem="tU3-ii-FJ3" secondAttribute="trailing" constant="16" id="ZjX-3O-Xw9"/>
                     <constraint firstItem="tU3-ii-FJ3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aNd-XX-w68"/>
                     <constraint firstItem="tU3-ii-FJ3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ajB-u0-QI8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="tU3-ii-FJ3" secondAttribute="bottom" id="fQh-Rj-xAa"/>

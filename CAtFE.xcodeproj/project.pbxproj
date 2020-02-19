@@ -18,6 +18,8 @@
 		BE18E09723F950FE006F004C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09623F950FE006F004C /* SectionView.swift */; };
 		BE18E09923F9511A006F004C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E09823F9511A006F004C /* SectionView.xib */; };
 		BE18E09F23FC51B0006F004C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E09E23FC51B0006F004C /* Date+Extension.swift */; };
+		BE18E0A223FD2897006F004C /* ServeyTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */; };
+		BE18E0A323FD2897006F004C /* ServeyTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -154,6 +156,8 @@
 		BE18E09623F950FE006F004C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		BE18E09823F9511A006F004C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		BE18E09E23FC51B0006F004C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeyTitleTableViewCell.swift; sourceTree = "<group>"; };
+		BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServeyTitleTableViewCell.xib; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -450,7 +454,6 @@
 			isa = PBXGroup;
 			children = (
 				BE9131CE23E2EF68004A669D /* MemberViewController.swift */,
-				BE5258FD23EC583600F8AC00 /* CreateCafeViewController.swift */,
 				BE5B245923F282E60092FACA /* MyMessagesViewController.swift */,
 				BE5B245B23F28A280092FACA /* MyFollowingViewController.swift */,
 				BE4FD7D923F5512B004E190A /* SettingViewController.swift */,
@@ -545,6 +548,7 @@
 				BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */,
 				BEE181E423E232C300660AEB /* HomeViewController.swift */,
 				BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */,
+				BE5258FD23EC583600F8AC00 /* CreateCafeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -627,6 +631,8 @@
 				BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */,
 				BE36C41023F1B58A003C4BDB /* MemberCollectionViewCell.swift */,
 				BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */,
+				BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */,
+				BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -794,6 +800,7 @@
 				BE1EDBD223E2DC57003C38D9 /* Member.storyboard in Resources */,
 				BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */,
 				BE66210D23D3FE490053FD07 /* LaunchScreen.storyboard in Resources */,
+				BE18E0A323FD2897006F004C /* ServeyTitleTableViewCell.xib in Resources */,
 				BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */,
 				BE94EB4C23F686B500FA4604 /* UserTableViewCell.xib in Resources */,
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
@@ -1005,6 +1012,7 @@
 				BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */,
 				BE9131E723E7E0B7004A669D /* PostMessagePhotoCollectionViewCell.swift in Sources */,
 				BE4FD7D823F4F739004E190A /* UITextView+Extension.swift in Sources */,
+				BE18E0A223FD2897006F004C /* ServeyTitleTableViewCell.swift in Sources */,
 				BEA99E0423EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift in Sources */,
 				BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */,
 				BE94EB4323F6549900FA4604 /* DetailScoreViewController.swift in Sources */,

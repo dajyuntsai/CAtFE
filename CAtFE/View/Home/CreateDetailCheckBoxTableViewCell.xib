@@ -18,14 +18,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyn-wj-F8Q">
-                        <rect key="frame" x="16" y="11" width="42" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="16" y="11" width="37.5" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-aH-d3s" customClass="DLRadioButton">
-                        <rect key="frame" x="66" y="5.5" width="30" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="61.5" y="7" width="30" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="貓 ">
                             <color key="titleColor" name="TextColor"/>
                         </state>
@@ -43,8 +43,8 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-sS-piZ" customClass="DLRadioButton">
-                        <rect key="frame" x="142" y="5.5" width="44" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="137.5" y="7" width="39" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="其他  ">
                             <color key="titleColor" name="TextColor"/>
                         </state>
@@ -62,8 +62,8 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-O9-xVc" customClass="DLRadioButton">
-                        <rect key="frame" x="104" y="5.5" width="30" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="99.5" y="7" width="30" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="狗 ">
                             <color key="titleColor" name="TextColor"/>
                         </state>
