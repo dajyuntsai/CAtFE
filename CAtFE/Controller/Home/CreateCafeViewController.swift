@@ -37,8 +37,9 @@ class CreateCafeViewController: BaseViewController {
               CellContent(type: .star, title: "餐點好吃"),
               CellContent(type: .star, title: "交通便利"),
               CellContent(type: .text, title: "備註：")])]
-    let cafeManager = CafeManager()
     var isExpendDataList: [Bool] = [true, false, false, false]
+    var timePickerText = ""
+    let cafeManager = CafeManager()
     @IBOutlet weak var tableView: UITableView!
     @IBAction func sendCafeBtn(_ sender: Any) {
         sendCafeData()
@@ -67,6 +68,13 @@ class CreateCafeViewController: BaseViewController {
         tableView.registerCellWithNib(identifier: String(describing: ServeyTitleTableViewCell.self), bundle: nil)
     }
 
+    func showTimePicker() -> UIDatePicker {
+        let timePicker = UIDatePicker()
+        timePicker.datePickerMode = .time
+        timePicker.addTarget(self, action: #selector(didTimePickerChanged), for: .valueChanged)
+        return timePicker
+    }
+    
     func sendCafeData() {
 //        let cafe = Cafe(id: 111,
 //                        petType: "test",
@@ -84,6 +92,14 @@ class CreateCafeViewController: BaseViewController {
 //                CustomProgressHUD.showFailure(text: "新增失敗")
 //            }
 //        }
+        print(categoryList)
+    }
+    
+    @objc func didTimePickerChanged(sender: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        timeFormatter.timeStyle = .short
+        timePickerText = timeFormatter.string(from: sender.date)
     }
 }
 
@@ -102,50 +118,69 @@ extension CreateCafeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch categoryList[indexPath.section].cellContent[indexPath.row].type {
+        let cellIndexPath = categoryList[indexPath.section].cellContent[indexPath.row]
+        switch cellIndexPath.type {
         case .text:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailTextTableViewCell.identifier,
-                for: indexPath) as? CreateDetailTextTableViewCell else {
+                                                           for: indexPath) as? CreateDetailTextTableViewCell else {
                 return UITableViewCell()
+            }
+            if indexPath.section == 0 && indexPath.row == 1 {
+                cell.inputTextField.keyboardType = .numberPad
             }
             cell.userInput = { (text) in
                 self.categoryList[indexPath.section].cellContent[indexPath.row].value = text
             }
-            cell.setData(title: categoryList[indexPath.section].cellContent[indexPath.row].title)
+            cell.setData(title: cellIndexPath.title)
             return cell
         case .checkBox:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailCheckBoxTableViewCell.identifier,
                                                            for: indexPath) as? CreateDetailCheckBoxTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setData(title: categoryList[indexPath.section].cellContent[indexPath.row].title)
+            cell.petSelected = { petType in
+                self.categoryList[indexPath.section].cellContent[indexPath.row].value = petType
+            }
+            cell.setData(title: cellIndexPath.title)
             return cell
         case .bool:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailBoolTableViewCell.identifier,
                                                            for: indexPath) as? CreateDetailBoolTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setData(title: categoryList[indexPath.section].cellContent[indexPath.row].title)
+            // TODO: 只能單選
+            cell.boolBtn = { check in
+                self.categoryList[indexPath.section].cellContent[indexPath.row].value = check
+            }
+            cell.setData(title: cellIndexPath.title)
             return cell
         case .star:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier,
-                for: indexPath) as? CreateDetailStarTableViewCell else {
+                                                           for: indexPath) as? CreateDetailStarTableViewCell else {
                 return UITableViewCell()
             }
             cell.starCount = { (rating) in
                 self.categoryList[indexPath.section].cellContent[indexPath.row].value = rating
             }
-            cell.setData(title: categoryList[indexPath.section].cellContent[indexPath.row].title)
+            cell.setData(title: cellIndexPath.title)
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailOpenTimeTableViewCell.identifier,
                                                            for: indexPath) as? CreateDetailOpenTimeTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setData(title: categoryList[indexPath.section].cellContent[indexPath.row].title)
+            cell.delegate = self
+            cell.openTimeTextField.inputView = showTimePicker()
+            cell.endTimeTextField.inputView = showTimePicker()
+            cell.selectedTime = { selectedTime in
+                self.categoryList[indexPath.section].cellContent[indexPath.row].value.append(selectedTime)
+            }
+            cell.isRest = { rest in
+                self.categoryList[indexPath.section].cellContent[indexPath.row].value = rest
+            }
+            cell.setData(title: cellIndexPath.title)
             return cell
         }
-
     }
 }
 
@@ -178,5 +213,11 @@ extension CreateCafeViewController: SectionViewDelegate {
     func sectionView(_ sectionView: SectionView, _ didPressTag: Int, _ isExpand: Bool) {
         self.isExpendDataList[didPressTag] = !isExpand
         self.tableView.reloadSections(IndexSet(integer: didPressTag), with: .automatic)
+    }
+}
+
+extension CreateCafeViewController: TimePickerDidChangeDelegate {
+    func textFieldDidChange(textField: UITextField) {
+        textField.text = timePickerText
     }
 }

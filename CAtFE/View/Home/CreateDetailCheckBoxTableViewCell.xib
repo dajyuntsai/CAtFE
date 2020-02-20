@@ -41,6 +41,9 @@
                                 <real key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="catBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s4X-VQ-2fc"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-sS-piZ" customClass="DLRadioButton">
                         <rect key="frame" x="137.5" y="7" width="39" height="30"/>
@@ -60,6 +63,9 @@
                                 <real key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="otherBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MgP-6y-o5j"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-O9-xVc" customClass="DLRadioButton">
                         <rect key="frame" x="99.5" y="7" width="30" height="30"/>
@@ -79,6 +85,9 @@
                                 <real key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="dogBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZuS-Jh-PIT"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

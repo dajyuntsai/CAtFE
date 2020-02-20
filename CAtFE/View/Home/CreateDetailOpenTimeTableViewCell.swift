@@ -8,19 +8,30 @@
 
 import UIKit
 
-class CreateDetailOpenTimeTableViewCell: UITableViewCell {
+protocol TimePickerDidChangeDelegate: AnyObject {
+    
+    func textFieldDidChange(textField: UITextField)
+}
 
+class CreateDetailOpenTimeTableViewCell: UITableViewCell {
+    
+    weak var delegate: TimePickerDidChangeDelegate?
+    var isRest: (([Bool]) -> Void)?
+    var selectedTime: (([String]) -> Void)?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var openTimeTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
-    @IBAction func checkBoxBtn(_ sender: Any) {
+    @IBAction func restBtn(_ sender: Any) {
+        isRest?([true])
     }
     @IBAction func setAllBtn(_ sender: Any) {
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        openTimeTextField.delegate = self
+        endTimeTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,5 +42,15 @@ class CreateDetailOpenTimeTableViewCell: UITableViewCell {
 
     func setData(title: String) {
         titleLabel.text = title
+    }
+}
+
+extension CreateDetailOpenTimeTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.textFieldDidChange(textField: textField)
+        if !textField.isEmpty {
+            let inputContent = textField.text!
+            selectedTime?([inputContent])
+        }
     }
 }

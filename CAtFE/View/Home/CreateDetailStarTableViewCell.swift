@@ -13,14 +13,15 @@ class CreateDetailStarTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
-    var starCount: ((Double) -> Void)?
+    var starCount: (([Double]) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        cosmosView.rating = 0
         cosmosView.settings.fillMode = .full
         cosmosView.didTouchCosmos = { rating in
-            self.starCount?(rating)
+            self.starCount?([rating])
         }
     }
 

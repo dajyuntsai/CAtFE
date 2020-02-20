@@ -89,6 +89,11 @@ extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollecti
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        return CGSize(width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height / 3)
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }

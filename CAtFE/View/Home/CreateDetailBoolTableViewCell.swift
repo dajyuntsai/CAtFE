@@ -7,19 +7,33 @@
 //
 
 import UIKit
+import DLRadioButton
 
 class CreateDetailBoolTableViewCell: UITableViewCell {
     
+    var boolBtn: (([Bool]) -> Void)?
     @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var sosoBtn: UIButton!
     
-    @IBAction func noBtn(_ sender: Any) {
+    @IBAction func noBtn(_ radioButton: DLRadioButton) {
+        boolBtn?([false])
+        if (radioButton.isMultipleSelectionEnabled) {
+            for button in radioButton.selectedButtons() {
+                print(String(format: "%@ is selected.\n", button.titleLabel!.text!));
+            }
+        } else {
+            print(String(format: "%@ is selected.\n", radioButton.selected()!.titleLabel!.text!));
+        }
     }
     
-    @IBAction func yesBtn(_ sender: Any) {
-    }
-    
-    @IBAction func sosoBtn(_ sender: Any) {
+    @IBAction func yesBtn(_ radioButton: DLRadioButton) {
+        boolBtn?([true])
+        if (radioButton.isMultipleSelectionEnabled) {
+            for button in radioButton.selectedButtons() {
+                print(String(format: "%@ is selected.\n", button.titleLabel!.text!));
+            }
+        } else {
+            print(String(format: "%@ is selected.\n", radioButton.selected()!.titleLabel!.text!));
+        }
     }
     
     override func awakeFromNib() {
@@ -35,5 +49,15 @@ class CreateDetailBoolTableViewCell: UITableViewCell {
 
     func setData(title: String) {
         descLabel.text = title
+    }
+    
+    @objc private func logSelectedButton(radioButton : DLRadioButton) {
+        if (radioButton.isMultipleSelectionEnabled) {
+            for button in radioButton.selectedButtons() {
+                print(String(format: "%@ is selected.\n", button.titleLabel!.text!));
+            }
+        } else {
+            print(String(format: "%@ is selected.\n", radioButton.selected()!.titleLabel!.text!));
+        }
     }
 }

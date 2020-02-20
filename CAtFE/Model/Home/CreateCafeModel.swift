@@ -19,7 +19,7 @@ enum CellType {
 struct CellContent {
     var type: CellType
     var title: String
-    var value: Any?
+    var value: [Any] = []
 }
 
 struct Categorys {
