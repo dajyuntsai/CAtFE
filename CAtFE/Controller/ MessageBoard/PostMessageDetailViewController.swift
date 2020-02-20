@@ -49,6 +49,7 @@ class PostMessageDetailViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     

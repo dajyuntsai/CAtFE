@@ -15,6 +15,8 @@ class MessageBoardViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addPostBtnView: UIView!
+    @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
+    let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
@@ -56,6 +58,7 @@ class MessageBoardViewController: UIViewController {
     }
 
     func initView() {
+        createBtnRightConstraint.constant = width * 0.05
         addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
 
         collectionView?.contentInset = UIEdgeInsets(top: height * 0.05, left: 8, bottom: 8, right: 8)

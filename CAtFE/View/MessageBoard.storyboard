@@ -193,6 +193,7 @@
                     <connections>
                         <outlet property="addPostBtnView" destination="ggM-h9-cMB" id="xhS-C4-PmH"/>
                         <outlet property="collectionView" destination="Ya7-As-4G7" id="K1E-GB-NBt"/>
+                        <outlet property="createBtnRightConstraint" destination="fci-Qa-29j" id="7Fo-Ee-sTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2M-Be-Qhy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

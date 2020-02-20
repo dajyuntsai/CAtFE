@@ -12,6 +12,9 @@ class MemberViewController: UIViewController {
 
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var pointBgView: UIView!
+    @IBOutlet weak var followingBgView: UIView!
     private var mPageTitleView: TabTitleView!
     private var mPageContentView: TabContentView!
     private var scrollView = UIScrollView()
@@ -21,10 +24,6 @@ class MemberViewController: UIViewController {
     let conf = TabTitleConfig()
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
-
-    @IBAction func settingBtn(_ sender: Any) {
-        onUsetSetting()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +32,44 @@ class MemberViewController: UIViewController {
         initTabView()
         initBarBtn()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        userImageView.layer.cornerRadius = userImageView.frame.width / 2
+    }
 
     func initView() { // TODO: 往上滑的時候消失
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2
+        userViewHeight.constant = height / 5
         userName.text = KeyChainManager.shared.name
+        
+        pointBgView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        pointBgView.layer.shadowColor = UIColor.lightGray.cgColor
+        pointBgView.layer.shadowOpacity = 0.5
+        pointBgView.layer.shadowRadius = 2
+        pointBgView.layer.cornerRadius = 15
+        
+        followingBgView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        followingBgView.layer.shadowColor = UIColor.lightGray.cgColor
+        followingBgView.layer.shadowOpacity = 0.5
+        followingBgView.layer.shadowRadius = 2
+        followingBgView.layer.cornerRadius = 15
     }
 
     func initTabView() {
-        let rectTitle = CGRect(x: 0, y: height * 0.1 + 150, width: width, height: 50)
+        let rectTitle = CGRect(x: 0, y: height / 5 + (width / 4) + 16, width: width, height: 50)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
 
@@ -51,7 +80,7 @@ class MemberViewController: UIViewController {
             .instantiateViewController(identifier: MyFollowingViewController.identifier)
             as? MyFollowingViewController else { return }
         let controllers = [myMessagesViewController, myFollowingViewController]
-        let rectContent = CGRect(x: 0, y: height * 0.1 + 150 + 50, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height / 5 + (width / 4) + 16 + 50, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],
@@ -60,10 +89,11 @@ class MemberViewController: UIViewController {
     }
     
     func initBarBtn() {
-        if let image = UIImage(named: "settings") {
-            let smallImage = resizeImage(image: image, width: 28)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: smallImage.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(onUsetSetting))
-        }
+        let smallImage = resizeImage(image: UIImage(named: "settings")!, width: 28)
+        let settingBtn = UIButton(frame: CGRect(x: width * 0.9, y: width * 0.1, width: width * 0.07, height: width * 0.07))
+        settingBtn.setImage(smallImage, for: .normal)
+        settingBtn.addTarget(self, action: #selector(onUsetSetting), for: .touchUpInside)
+        self.view.addSubview(settingBtn)
     }
     
     @objc func onUsetSetting() {

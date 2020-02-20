@@ -13,6 +13,8 @@ import YPImagePicker
 
 class FollowingCafeEventViewController: BaseViewController {
     
+    let width = UIScreen.main.bounds.width
+    let height = UIScreen.main.bounds.height
     let refreshControl = UIRefreshControl()
     let selectedImageV = UIImageView()
     var selectedItems = [YPMediaItem]()
@@ -52,8 +54,6 @@ class FollowingCafeEventViewController: BaseViewController {
     }
     
     func initView() {
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         createPostBtn.layer.cornerRadius = createPostBtn.frame.width / 2
         createBtnBottomConstraint.constant = -height * 0.28
         createBtnRightConstraint.constant = width * 0.05
