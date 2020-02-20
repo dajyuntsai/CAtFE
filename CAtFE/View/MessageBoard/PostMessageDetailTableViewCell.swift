@@ -21,17 +21,15 @@ class PostMessageDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var timeAgoLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postContentLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
     @IBAction func editBtn(_ sender: Any) {
         self.delegate?.showEditView(self)
     }
     
     @IBAction func pageControlChange(_ sender: UIPageControl) {
-        let currentPageNumber = sender.currentPage
-        let width = collectionView.frame.width
-        let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
-        collectionView.setContentOffset(offset, animated: true)
+//        let currentPageNumber = sender.currentPage
+//        let width = collectionView.frame.width
+//        let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
+//        collectionView.setContentOffset(offset, animated: true)
     }
     var data: CafeComment?
     
@@ -48,16 +46,6 @@ class PostMessageDetailTableViewCell: UITableViewCell {
 
     func initView() {
         authorImageView.layer.cornerRadius = authorImageView.frame.width / 2
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-                
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = 2
-//            data?.postPhotos.count ?? 1
-        pageControl.currentPageIndicatorTintColor = .white
-        pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
-        pageControl.hidesForSinglePage = true
     }
 
     func setData(data: CafeComment) {
@@ -92,9 +80,5 @@ extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         return CGSize(width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height / 3)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
 }

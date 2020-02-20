@@ -17,11 +17,24 @@ class PostMessageDetailViewController: BaseViewController {
         }
     }
     var cafeComments: CafeComment?
+    var headerView = UIView()
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
     let backBtn = UIButton()
     let refreshControl = UIRefreshControl()
+    let pageControl = UIPageControl()
     let messageBoardManager = MessageBoardManager()
+    var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0,
+                                                            width: UIScreen.main.bounds.width,
+                                                            height: UIScreen.main.bounds.height / 3),
+                                              collectionViewLayout: flowLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +55,8 @@ class PostMessageDetailViewController: BaseViewController {
     func initView() {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        tableView.contentInset = UIEdgeInsets(top: height * 0.07, left: 0, bottom: 0, right: 0)
         initBackBtn()
+        initHeader()
     }
     
     func initBackBtn() {
@@ -51,6 +64,38 @@ class PostMessageDetailViewController: BaseViewController {
         backBtn.setImage(UIImage(named: "arrow"), for: .normal)
         backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
         self.view.addSubview(backBtn)
+    }
+    
+    func initHeader() {
+        headerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height / 3))
+        tableView.tableHeaderView = headerView
+        headerView.addSubview(collectionView)
+        headerView.addSubview(pageControl)
+        
+        setUpCollectionView()
+        setUpPageControl()
+    }
+    
+    func setUpCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .clear
+        collectionView.registerCellWithNib(identifier: String(describing: PostDetailPhotoCollectionViewCell.self), bundle: nil)
+    }
+    
+    func setUpPageControl() {
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 2
+//            data?.postPhotos.count ?? 1
+        pageControl.currentPageIndicatorTintColor = .white
+        pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
+        pageControl.hidesForSinglePage = true
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pageControl.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 4),
+            pageControl.centerXAnchor.constraint(equalTo: headerView.centerXAnchor)
+        ])
     }
 
     @objc func loadData() {
@@ -153,5 +198,34 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
 //            }
 //        }
         self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension PostMessageDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostDetailPhotoCollectionViewCell.identifier,
+                                                            for: indexPath) as? PostDetailPhotoCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setData(data: (cafeComments?.postPhotos[indexPath.item])!)
+        return cell
+    }
+}
+
+extension PostMessageDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: width, height: height / 3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
 }

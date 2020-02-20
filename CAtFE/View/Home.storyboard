@@ -203,7 +203,7 @@
     </scenes>
     <resources>
         <image name="campass" width="512" height="512"/>
-        <image name="home" width="100" height="171"/>
+        <image name="home" width="50" height="86"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

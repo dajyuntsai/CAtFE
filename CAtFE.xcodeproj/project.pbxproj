@@ -21,6 +21,7 @@
 		BE18E0A223FD2897006F004C /* ServeyTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */; };
 		BE18E0A323FD2897006F004C /* ServeyTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */; };
 		BE18E0A523FD4E3A006F004C /* CreateCafeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */; };
+		BE18E0A723FE6464006F004C /* PostDetailPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE18E0A623FE6463006F004C /* PostDetailPhotoCollectionViewCell.xib */; };
 		BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */; };
 		BE1EDBC523E2DBD9003C38D9 /* FBLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */; };
 		BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */; };
@@ -160,6 +161,7 @@
 		BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeyTitleTableViewCell.swift; sourceTree = "<group>"; };
 		BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServeyTitleTableViewCell.xib; sourceTree = "<group>"; };
 		BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCafeModel.swift; sourceTree = "<group>"; };
+		BE18E0A623FE6463006F004C /* PostDetailPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		BE1EDBC223E2DA4A003C38D9 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		BE1EDBC423E2DBD9003C38D9 /* FBLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FBLogin.storyboard; sourceTree = "<group>"; };
 		BE1EDBC623E2DBEE003C38D9 /* ShopLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopLogin.storyboard; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				BE9131EC23E824DF004A669D /* PostMessageDetailTableViewCell.swift */,
 				BE9131F023E95187004A669D /* PostMessageAddReplyTableViewCell.swift */,
 				BE9131F223E95A6B004A669D /* PostDetailPhotoCollectionViewCell.swift */,
+				BE18E0A623FE6463006F004C /* PostDetailPhotoCollectionViewCell.xib */,
 				BE9131F623E9A3B8004A669D /* LocationTableViewCell.swift */,
 			);
 			path = MessageBoard;
@@ -807,6 +810,7 @@
 				BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */,
 				BE94EB4C23F686B500FA4604 /* UserTableViewCell.xib in Resources */,
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
+				BE18E0A723FE6464006F004C /* PostDetailPhotoCollectionViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
 				BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,

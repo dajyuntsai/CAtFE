@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostDetailPhotoCollectionViewCell" customModule="CAtFE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPF-ir-wJE">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="RcV-Qn-0fe">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RcV-Qn-0fe" secondAttribute="bottom" constant="8" id="53o-pZ-Su1"/>
+                        <constraint firstItem="RcV-Qn-0fe" firstAttribute="top" secondItem="qPF-ir-wJE" secondAttribute="top" id="G9F-JZ-bbq"/>
+                        <constraint firstItem="RcV-Qn-0fe" firstAttribute="leading" secondItem="qPF-ir-wJE" secondAttribute="leading" id="NRa-0v-hMN"/>
+                        <constraint firstAttribute="trailing" secondItem="RcV-Qn-0fe" secondAttribute="trailing" id="lBu-tx-Ndi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qPF-ir-wJE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xad-b5-WAv"/>
+                <constraint firstItem="qPF-ir-wJE" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Z7p-40-n2A"/>
+                <constraint firstItem="qPF-ir-wJE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="heU-tX-38L"/>
+                <constraint firstItem="qPF-ir-wJE" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="i2s-RJ-llc"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="cellBackgroundView" destination="qPF-ir-wJE" id="qCj-7o-cMa"/>
+                <outlet property="postImageView" destination="RcV-Qn-0fe" id="09O-IL-6s7"/>
+            </connections>
+            <point key="canvasLocation" x="50.724637681159422" y="11.71875"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="placeholder" width="987" height="777"/>
+    </resources>
+</document>
