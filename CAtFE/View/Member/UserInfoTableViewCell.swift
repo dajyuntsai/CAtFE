@@ -10,9 +10,18 @@ import UIKit
 
 class UserInfoTableViewCell: UITableViewCell {
 
+    var isChangeAvatar = false
+    var isChangeName = false
+    var newName = ""
+    var selectedPhoto: UIImage?
+    var changeUserName: ((String) -> Void)?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameTextField: UITextField!
+    @IBAction func cameraBtn(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("showPhotoSelectWay"), object: nil)
+        isChangeAvatar = true
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,12 +32,30 @@ class UserInfoTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func setData(data: String) {
-        userNameTextField.placeholder = KeyChainManager.shared.name
         titleLabel.text = data
-        userImageView.image = UIImage(named: "placeholder")
+        if isChangeName {
+            userNameTextField.placeholder = newName
+        } else {
+            userNameTextField.placeholder = KeyChainManager.shared.name
+        }
+        
+        if isChangeAvatar { // TODO: 更新到後端
+            userImageView.image = selectedPhoto
+        } else {
+            userImageView.loadImage(KeyChainManager.shared.avatar)
+        }
+    }
+}
+
+extension UserInfoTableViewCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if !textField.isEmpty {
+            newName = textField.text!
+            changeUserName?(newName) // TODO: 更新到後端
+            isChangeName = true
+        }
     }
 }

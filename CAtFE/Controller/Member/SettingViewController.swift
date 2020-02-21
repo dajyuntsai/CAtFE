@@ -9,8 +9,16 @@
 import UIKit
 
 struct Settings {
+    let type: SectionType
     let title: String
     let details: [String]
+}
+
+enum SectionType {
+    case expand
+    case cell
+    case logout
+    case createCafe
 }
 
 class SettingViewController: BaseViewController {
@@ -22,17 +30,23 @@ class SettingViewController: BaseViewController {
         }
     }
     
-    let height = UIScreen.main.bounds.height
     let settingList: [Settings] = [
-        Settings(title: "個人資料", details: ["頭像", "名稱"]),
-//        Settings(title: "推播通知", details: []),
-        Settings(title: "版本", details: []),
-        Settings(title: "登出", details: [])]
+    Settings(type: .expand, title: "個人資料", details: ["頭像", "名稱"]),
+    Settings(type: .createCafe, title: "新增店家", details: []),
+    Settings(type: .cell, title: "版本", details: []),
+    Settings(type: .logout, title: "登出", details: [])]
+    let height = UIScreen.main.bounds.height
+    let picker: UIImagePickerController = UIImagePickerController()
+    var selectedPhoto: UIImage?
     var isExpendDataList: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        picker.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(showPhotoSelectWay), name: Notification.Name("showPhotoSelectWay"), object: nil)
+
+        
         setUptTableView()
         
         for _ in settingList {
@@ -43,6 +57,21 @@ class SettingViewController: BaseViewController {
     func setUptTableView() {
         tableView.registerHeaderWithNib(identifier: String(describing: SectionView.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: UserInfoTableViewCell.self), bundle: nil)
+    }
+    
+    @objc func showPhotoSelectWay() {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "開啟相機拍照", style: .default) { (_) in
+            self.onCameraBtnAction()
+        }
+        let libraryAction = UIAlertAction(title: "從相簿中選擇", style: .default) { (_) in
+            self.onPhotoBtnAction()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cameraAction)
+        controller.addAction(libraryAction)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
     }
 }
 
@@ -73,6 +102,10 @@ extension SettingViewController: UITableViewDataSource {
             } else {
                 cell.userImageView.isHidden = true
             }
+            cell.selectedPhoto = selectedPhoto
+            cell.changeUserName = { (name) in
+                cell.userNameTextField.text = name
+            }
             cell.setData(data: data)
             return cell
         default:
@@ -97,26 +130,30 @@ extension SettingViewController: UITableViewDelegate {
             as? SectionView else {
             return UIView()
         }
+        sectionView.setData(data: settingList[section])
         
-        if section == 1 || section == 2 {
+        switch settingList[section].type {
+        case .expand:
+            sectionView.isExpand = self.isExpendDataList[section]
+            sectionView.buttonTag = section
+            sectionView.delegate = self
+        case .createCafe:
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(createCafe))
+            sectionView.addGestureRecognizer(gesture)
             sectionView.expandBtn.isHidden = true
-        }
-        
-        if section == 2 {
+        case .logout:
             let gesture = UITapGestureRecognizer(target: self, action: #selector(logout))
             sectionView.addGestureRecognizer(gesture)
+            sectionView.expandBtn.isHidden = true
+        default:
+            sectionView.expandBtn.isHidden = true
+            
         }
-        
-        sectionView.isExpand = self.isExpendDataList[section]
-        sectionView.buttonTag = section
-        sectionView.delegate = self
-        
-        sectionView.setData(data: settingList[section])
         return sectionView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60 // height / 12
+        return height / 12
     }
     
     @objc func logout() {
@@ -128,11 +165,74 @@ extension SettingViewController: UITableViewDelegate {
         presentVC?.modalPresentationStyle = .fullScreen
         self.present(presentVC!, animated: true, completion: nil)
     }
+    
+    @objc func createCafe() {
+        let presentVC = UIStoryboard.createCafe.instantiateViewController(withIdentifier: CreateCafeViewController.identifier) as? CreateCafeViewController
+        presentVC?.modalPresentationStyle = .formSheet
+        self.present(presentVC!, animated: true, completion: nil)
+    }
 }
 
 extension SettingViewController: SectionViewDelegate {
     func sectionView(_ sectionView: SectionView, _ didPressTag: Int, _ isExpand: Bool) {
         self.isExpendDataList[didPressTag] = !isExpand
         self.tableView.reloadSections(IndexSet(integer: didPressTag), with: .automatic)
+    }
+}
+
+extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    /// 開啟相機或相簿
+    /// - Parameter kind: 1 = 相機, 2 = 相簿
+    func callGetPhoneWithKind(_ kind: Int) {
+        switch kind {
+        case 1:
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+                picker.sourceType = UIImagePickerController.SourceType.camera
+                picker.allowsEditing = true // 可對照片作編輯
+                self.present(picker, animated: true, completion: nil)
+            } else {
+                alert(message: "沒有相機鏡頭！", title: "慟！", handler: nil)
+            }
+        default:
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
+                picker.sourceType = UIImagePickerController.SourceType.photoLibrary
+                picker.allowsEditing = true // 可對照片作編輯
+                self.present(picker, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    // 相機
+    func onCameraBtnAction() {
+        self.callGetPhoneWithKind(1)
+    }
+    
+    // 相簿
+    func onPhotoBtnAction() {
+        self.callGetPhoneWithKind(2)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let pickedImage = info[.originalImage] as? UIImage {
+            selectedImageFromPicker = pickedImage
+            selectedPhoto = selectedImageFromPicker
+        }
+        // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
+        let uniqueString = NSUUID().uuidString
+        
+        // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
+        if let selectedImage = selectedImageFromPicker {
+            print("\(uniqueString), \(selectedImage)")
+        }
+        tableView.reloadData()
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // 圖片picker控制器任務結束回呼
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
