@@ -105,14 +105,13 @@ class MessageBoardViewController: UIViewController {
     }
     
     @IBAction func addPostBtn(_ sender: Any) {
-//        if KeyChainManager.shared.token != nil {
-//            showPicker()
-//        } else {
-//            alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
-//                self.backToLoginView()
-//            }
-//        }
-        showPicker()
+        if KeyChainManager.shared.token != nil {
+            showPicker()
+        } else {
+            alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
+                self.backToLoginView()
+            }
+        }
     }
     
     func showPicker() {

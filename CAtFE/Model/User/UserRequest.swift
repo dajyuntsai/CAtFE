@@ -12,6 +12,7 @@ enum UserRequest: CAtFERequest {
     case userList
     case register(String, String, String)
     case login(String, String)
+    case userInfo(String)
     case loginWithAppleAndFB(String, String, String, String, String)
     
     var headers: [String: String] {
@@ -19,11 +20,13 @@ enum UserRequest: CAtFERequest {
         case .userList:
             return [:]
         case .register:
-            return ["Content-Type": "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: "application/json"]
         case .login:
-            return ["Content-Type": "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: "application/json"]
+        case .userInfo(let accessToken):
+            return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         case .loginWithAppleAndFB:
-            return ["Content-Type": "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: "application/json"]
         }
     }
     
@@ -39,7 +42,7 @@ enum UserRequest: CAtFERequest {
                 "active": true,
                 "avatar": "https://ppt.cc/f5Rfex@.png",
                 "point": 0
-                ] as [String : Any]
+                ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .login(let email, let password):
             let dict = [
@@ -47,6 +50,8 @@ enum UserRequest: CAtFERequest {
                 "password": password
             ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        case .userInfo:
+            return nil
         case .loginWithAppleAndFB(let token, let email, let name, let registerType, let avatar):
             let dict = [
                 "email": email,
@@ -67,6 +72,8 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .login:
             return HTTPMethod.POST.rawValue
+        case .userInfo:
+            return HTTPMethod.GET.rawValue
         case .loginWithAppleAndFB:
             return HTTPMethod.PATCH.rawValue
         }
@@ -80,6 +87,8 @@ enum UserRequest: CAtFERequest {
             return "/users/"
         case .login:
             return "/users/login/"
+        case .userInfo:
+            return "/users/me/"
         case .loginWithAppleAndFB:
             return "/users/"
         }

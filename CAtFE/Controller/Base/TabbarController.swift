@@ -59,6 +59,18 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
               navVC.viewControllers.first is MemberViewController
         else { return true }
 
+        guard KeyChainManager.shared.token != nil else {
+
+            if let authVC = UIStoryboard.main.instantiateInitialViewController() {
+
+                authVC.modalPresentationStyle = .overCurrentContext
+
+                present(authVC, animated: false, completion: nil)
+            }
+
+            return false
+        }
+
         return true
     }
 }

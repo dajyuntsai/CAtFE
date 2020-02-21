@@ -122,7 +122,11 @@ extension SettingViewController: UITableViewDelegate {
     @objc func logout() {
         KeyChainManager.shared.token = nil
         KeyChainManager.shared.name = nil
-        self.backToRoot()
+        KeyChainManager.shared.email = nil
+        KeyChainManager.shared.avatar = nil
+        let presentVC = UIStoryboard.main.instantiateViewController(identifier: LoginViewController.identifier) as? LoginViewController
+        presentVC?.modalPresentationStyle = .fullScreen
+        self.present(presentVC!, animated: true, completion: nil)
     }
 }
 

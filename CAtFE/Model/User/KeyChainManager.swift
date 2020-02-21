@@ -14,7 +14,10 @@ class KeyChainManager {
     private let service: Keychain
     private let serverTokenKey: String = "CAtFEToken"
     private let userName: String = "userName"
+    private let userEmail: String = "userEmail"
     private let userAvatar: String = "userAvatar"
+    private let userPoint: String = "userPoint"
+    
     private init() {
         service = Keychain(service: Bundle.main.bundleIdentifier!)
     }
@@ -58,6 +61,19 @@ class KeyChainManager {
         }
     }
     
+    var email: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: userEmail)
+        }
+
+        get {
+            guard let userEmail = UserDefaults.standard.string(forKey: userEmail) else {
+                return nil
+            }
+            return userEmail
+        }
+    }
+    
     var avatar: String? {
         set {
             UserDefaults.standard.set(newValue, forKey: userAvatar)
@@ -70,4 +86,17 @@ class KeyChainManager {
             return avatar
         }
     }
+    
+//    var point: Int? {
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: userPoint)
+//        }
+//
+//        get {
+//            guard let point = UserDefaults.standard.integer(forKey: userPoint) else {
+//                return nil
+//            }
+//            return point
+//        }
+//    }
 }

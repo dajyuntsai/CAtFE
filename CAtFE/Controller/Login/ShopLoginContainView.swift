@@ -47,6 +47,7 @@ class ShopLoginContainView: BaseViewController {
         userProvider.emailLogin(email: email, password: password) { (result) in
             switch result {
             case .success:
+                self.getUserInfo()
                 UserDefaults.standard.set(true, forKey: "loginState")
                 CustomProgressHUD.showSuccess(text: "CAtFE 登入成功")
                 self.backToRoot()
@@ -55,6 +56,22 @@ class ShopLoginContainView: BaseViewController {
                     self.dismiss(animated: true, completion: nil)
                     CustomProgressHUD.showFailure(text: "CAtFE 登入失敗")
                 }
+            }
+        }
+    }
+    
+    func getUserInfo() {
+        guard let token = KeyChainManager.shared.token else {
+            return }
+        userProvider.getUserInfo(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                KeyChainManager.shared.name = data.user.name
+                KeyChainManager.shared.email = data.user.email
+                KeyChainManager.shared.avatar = data.user.avatar
+//                KeyChainManager.shared.point = data.point
+            case .failure:
+                CustomProgressHUD.showFailure(text: "載入使用者資料失敗")
             }
         }
     }

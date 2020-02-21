@@ -29,3 +29,12 @@ class User: Codable {
         case point
     }
 }
+
+class LoginResponse: Codable {
+    var access: String
+    var refresh: String
+}
+
+class UserInfo: Codable {
+    var user: User
+}

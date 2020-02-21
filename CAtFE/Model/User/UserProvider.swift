@@ -120,7 +120,6 @@ class UserProvider {
         HTTPClient.shared.request(UserRequest.register(email, password, name)) { (result) in
             switch result {
             case .success:
-                KeyChainManager.shared.name = name
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
@@ -130,14 +129,30 @@ class UserProvider {
     
     func emailLogin(email: String,
                     password: String,
-                    completion: @escaping (Result<Void>) -> Void) {
+                    completion: @escaping (Result<LoginResponse>) -> Void) {
         HTTPClient.shared.request(UserRequest.login(email, password)) { (result) in
             switch result {
             case .success(let data):
                 do {
-//                    let response = try self.decoder.decode(APIResponse.self, from: data)
-//                    KeyChainManager.shared.token = response.token
-                    completion(Result.success(()))
+                    let response = try self.decoder.decode(LoginResponse.self, from: data)
+                    KeyChainManager.shared.token = response.access
+                    completion(Result.success(response))
+                } catch {
+                    completion(Result.failure(error))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
+    
+    func getUserInfo(token: String, completion: @escaping (Result<UserInfo>) -> Void) {
+        HTTPClient.shared.request(UserRequest.userInfo(token)) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let response = try self.decoder.decode(UserInfo.self, from: data)
+                    completion(Result.success(response))
                 } catch {
                     completion(Result.failure(error))
                 }

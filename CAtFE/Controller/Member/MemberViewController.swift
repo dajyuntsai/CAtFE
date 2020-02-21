@@ -54,6 +54,7 @@ class MemberViewController: UIViewController {
     func initView() { // TODO: 往上滑的時候消失
         userViewHeight.constant = height / 5
         userName.text = KeyChainManager.shared.name
+        userImageView.loadImage(KeyChainManager.shared.avatar)
         
         pointBgView.layer.shadowOffset = CGSize(width: 2, height: 2)
         pointBgView.layer.shadowColor = UIColor.lightGray.cgColor
