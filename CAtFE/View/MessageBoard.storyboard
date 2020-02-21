@@ -377,14 +377,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCafeCell" id="Oxc-Bp-ftA" customClass="LocationTableViewCell" customModule="CAtFE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oxc-Bp-ftA" id="a8p-42-bsr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-g2-gRY">
-                                                    <rect key="frame" x="16" y="8" width="382" height="21.5"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -668,7 +668,7 @@
     </scenes>
     <resources>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
-        <image name="home" width="50" height="86"/>
+        <image name="home" width="80" height="137"/>
         <image name="photo-camera" width="512" height="512"/>
         <image name="placeholder" width="987" height="777"/>
         <image name="select_write" width="40" height="40"/>

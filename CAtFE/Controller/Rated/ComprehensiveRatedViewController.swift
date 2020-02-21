@@ -19,10 +19,35 @@ class ComprehensiveRatedViewController: BaseViewController {
     
     var ratedModel: RatedModel?
     
+    let animation = Animation()
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        initView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func initView() {
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func loadData() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -52,13 +77,17 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
 }
 
 extension ComprehensiveRatedViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: 進入點店家網站
         performSegue(withIdentifier: "showWebView", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        animation.setTableViewSpringAnimate(cell: cell, indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.height / 6
     }
 }
 

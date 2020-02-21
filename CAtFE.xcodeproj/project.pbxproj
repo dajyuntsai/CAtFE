@@ -97,6 +97,7 @@
 		BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */; };
 		BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */; };
 		BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */; };
+		BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934923FFAB9E000A4A04 /* Animation.swift */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -244,6 +245,7 @@
 		BE94EB5123F68F9200FA4604 /* CafeWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeWebsiteViewController.swift; sourceTree = "<group>"; };
 		BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeEventViewController.swift; sourceTree = "<group>"; };
 		BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeTableViewCell.swift; sourceTree = "<group>"; };
+		BEA3934923FFAB9E000A4A04 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				BE4FD7D723F4F739004E190A /* UITextView+Extension.swift */,
 				BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */,
 				BE18E09E23FC51B0006F004C /* Date+Extension.swift */,
+				BEA3934923FFAB9E000A4A04 /* Animation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 				BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */,
 				BE5B246023F2C52E0092FACA /* LocationSearchTable.swift in Sources */,
 				BE52590423EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift in Sources */,
+				BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */,
 				BE9131F123E95188004A669D /* PostMessageAddReplyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

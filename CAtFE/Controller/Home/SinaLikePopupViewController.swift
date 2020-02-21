@@ -20,6 +20,7 @@ class SinaLikePopupViewController: BaseViewController {
     var iconList: [String] = ["cat", "bulldog", "chameleon", "cafe"]
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
+    let animation = Animation()
     
     @IBAction func closePopupView(_ sender: Any) {
         UIViewPropertyAnimator.runningPropertyAnimator(
@@ -55,35 +56,6 @@ class SinaLikePopupViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.layer.cornerRadius = 10
     }
-    
-    // - Animation support -
-    
-    func setSpringAnimate(cell: UICollectionViewCell, indexPath: IndexPath) {
-        let spring = UISpringTimingParameters(dampingRatio: 0.5, initialVelocity: CGVector(dx: 1.0, dy: 0.2))
-        let animator = UIViewPropertyAnimator(duration: 1, timingParameters: spring)
-        cell.alpha = 0
-        cell.transform = CGAffineTransform(translationX: 0, y: height * 0.2)
-        animator.addAnimations {
-            cell.alpha = 1
-            cell.transform = .identity
-            self.closeBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-            self.collectionView.layoutIfNeeded()
-        }
-        animator.startAnimation(afterDelay: 0.1 * Double(indexPath.item))
-    }
-    
-    func setFallAnimate() { // TODO: 做掉下去的動畫
-        UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.5,
-            delay: 0.2,
-            options: .curveEaseOut,
-            animations: {
-                self.collectionView.alpha = 0
-        },
-            completion: { _ in
-                self.dismiss(animated: false, completion: nil)
-        })
-    }
 }
 
 extension SinaLikePopupViewController: UICollectionViewDataSource {
@@ -106,13 +78,15 @@ extension SinaLikePopupViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.navigationController?.popViewController(animated: false)
         selectedPet?(petList[indexPath.item])
-        setFallAnimate()
+        animation.setFallAnimate(viewController: self)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
-        setSpringAnimate(cell: cell, indexPath: indexPath)
+        animation.setCollectionViewSpringAnimate(cell: cell, indexPath: indexPath)
+        self.closeBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        self.collectionView.layoutIfNeeded()
     }
 
     func collectionView(_ collectionView: UICollectionView,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 protocol RatedCellBtnDelegate: AnyObject {
     func showDetailRadar(_ cell: RatedTableViewCell)
@@ -18,21 +19,21 @@ class RatedTableViewCell: UITableViewCell {
     weak var delegate: RatedCellBtnDelegate?
 
     var followBtnState = false
+    @IBOutlet weak var backgroungView: UIView!
     @IBOutlet weak var ratedIcon: UIImageView!
     @IBOutlet weak var cafeImageView: UIImageView!
     @IBOutlet weak var cafeNameLabel: UILabel!
     @IBOutlet weak var cafeScoreLabel: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     @IBOutlet weak var scoreBtn: UIButton!
+    @IBOutlet weak var starView: CosmosView!
     @IBAction func followBtnClick(_ sender: Any) {
-        if followBtnState {
-            followBtn.setTitle("追蹤", for: .normal)
-            followBtn.backgroundColor = UIColor(named: "MainColor")
-        } else {
-            followBtn.setTitle("追蹤中", for: .normal)
-            followBtn.backgroundColor = .gray
-        }
         followBtnState = !followBtnState
+        if followBtnState {
+            followBtn.setImage(UIImage(named: "select_pin"), for: .normal)
+        } else {
+            followBtn.setImage(UIImage(named: "unselect_pin"), for: .normal)
+        }
         delegate?.getBtnState(self, followBtnState)
     }
     
@@ -40,12 +41,25 @@ class RatedTableViewCell: UITableViewCell {
         delegate?.showDetailRadar(self)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        cafeImageView.layer.cornerRadius = cafeImageView.frame.width / 2
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cafeImageView.layer.cornerRadius = cafeImageView.frame.width / 2
+        starView.settings.updateOnTouch = false
+        
         followBtn.layer.cornerRadius = 10
         scoreBtn.layer.cornerRadius = 10
+        
+        backgroungView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        backgroungView.layer.shadowColor = UIColor.lightGray.cgColor
+        backgroungView.layer.shadowOpacity = 0.5
+        backgroungView.layer.shadowRadius = 2
+        backgroungView.layer.cornerRadius = 15
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
