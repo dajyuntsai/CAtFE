@@ -32,7 +32,7 @@ class DetailScoreViewController: BaseViewController {
                                     y: 20,
                                     width: chartWidth,
                                     height: chartHeight)
-        aaChartView!.contentHeight = chartHeight / 2
+        aaChartView!.contentHeight = chartWidth
         view.addSubview(aaChartView!)
         aaChartView!.scrollEnabled = false
         aaChartModel = configurePentagonRadarChart()

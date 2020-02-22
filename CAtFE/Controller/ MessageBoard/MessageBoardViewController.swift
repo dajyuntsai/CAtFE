@@ -16,6 +16,7 @@ class MessageBoardViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addPostBtnView: UIView!
     @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var createBtnBottomConstraint: NSLayoutConstraint!
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     let messageBoardManager = MessageBoardManager()
@@ -37,7 +38,7 @@ class MessageBoardViewController: UIViewController {
             }
         }
     }
-    var cafeComments: [CafeComment] = []
+    var cafeComments: [Comments] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class MessageBoardViewController: UIViewController {
 
     func initView() {
         createBtnRightConstraint.constant = width * 0.05
+        createBtnBottomConstraint.constant = width * 0.05
         addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
 
         collectionView?.contentInset = UIEdgeInsets(top: height * 0.05, left: 8, bottom: 8, right: 8)
@@ -83,22 +85,30 @@ class MessageBoardViewController: UIViewController {
     }
     
     func getCommentDetail(data: [Cafe]) {
-        self.cafeComments.removeAll()
+        
+        var commentTemp: [Comments] = []
         for comments in data {
             for comment in comments.cafeComments {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-                guard let date = dateFormatter.date(from: comment.createAt) else { return }
+                guard let date = dateFormatter.date(from: comment.updatedAt) else { return }
                 let timeAgo = date.timeAgoSinceDate()
-                let commentInfo = CafeComment(cafeName: comments.name,
-                                              userName: "bubu",
-                                              userImage: "https://timesofindia.indiatimes.com/thumb/msid-67586673,width-800,height-600,resizemode-4/67586673.jpg",
-                                              timeAgo: timeAgo,
-                                              postPhotos: ["https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg", "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_weight_other/1800x1200_cat_weight_other.jpg?resize=600px:*"],
-                                              content: comment.comment)
-                self.cafeComments.append(commentInfo)
+                let updateTime = date.timeIntervalSince1970
+                let commentInfo = Comments(
+                    messageId: comment.id,
+                    cafeName: comments.name,
+                    userName: comment.user?.name ?? "不能縮ㄉ秘密",
+                    userImage: comment.user?.avatar ?? "https://ppt.cc/f5Rfex@.png",
+                    timeAgo: timeAgo,
+                    updateTime: updateTime,
+                    postPhotos: ["https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg", "https://www.petmd.com/sites/default/files/Tabby-cat-yawning-and-showing-all-his-teeth.jpg", "https://media.wired.com/photos/5cdefc28b2569892c06b2ae4/master/w_2560%2Cc_limit/Culture-Grumpy-Cat-487386121-2.jpg"],
+                    content: comment.comment,
+                    commentReplies: comment.cafeCommentReplies)
+                commentTemp.append(commentInfo)
             }
         }
+        let sortedComments = commentTemp.sorted { $0.updateTime > $1.updateTime }
+        self.cafeComments = sortedComments
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -193,7 +203,7 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-        presentVC?.cafeComments = cafeComments[indexPath.row]
+        presentVC?.cafeComments = cafeComments[indexPath.item]
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -248,6 +258,6 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         let boundingRect = nsstring.boundingRect(with: constraintRect,
                                                  options: .usesLineFragmentOrigin,
                                                  attributes: textAttributes, context: nil)
-        return ceil(boundingRect.height)
+        return ceil(boundingRect.height) + 30
     }
 }

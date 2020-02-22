@@ -18,7 +18,7 @@ class PostMessageViewController: BaseViewController {
     var selectedPhotoList: [UIImage] = []
     var cafeId: Int?
     var content: String?
-    var editMessage: CafeComment?
+    var editMessage: Comments?
     var isEditMode = false {
         didSet {
             tableView.reloadData()
@@ -58,7 +58,7 @@ class PostMessageViewController: BaseViewController {
     func initBarBtn() {
         let saveBtn = UIButton()
         saveBtn.frame = CGRect(x: width - (width * 0.05 + width * 0.07), y: height * 0.07, width: width * 0.07, height: width * 0.07)
-        saveBtn.setImage(UIImage(named: "pin"), for: .normal)
+        saveBtn.setImage(UIImage(named: "send"), for: .normal)
         saveBtn.addTarget(self, action: #selector(sendPostBtn), for: .touchUpInside)
         self.view.addSubview(saveBtn)
     }
@@ -74,11 +74,15 @@ class PostMessageViewController: BaseViewController {
             messageBoardManager.createMessageInList(token: token,
                                                     cafeID: cafeId ?? 6,
                                                     content: content!,
-                                                    photos: []) { (result) in
+                                                    photos: ["https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                                                    "https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg",
+                                                    "https://s3.amazonaws.com/jo.www.bucket/neighborhoodcats/nodes/images/1844/default/Flynn_Rider_photo.jpg?1548904662"]) { (result) in
                 switch result {
                 case .success:
                     CustomProgressHUD.showSuccess(text: "發送成功")
-                    self.navigationController?.popToRootViewController(animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 case .failure(let error):
                     CustomProgressHUD.showFailure(text: "發送失敗")
                     DispatchQueue.main.async {

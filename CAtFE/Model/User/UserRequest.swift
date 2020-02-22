@@ -13,7 +13,8 @@ enum UserRequest: CAtFERequest {
     case register(String, String, String)
     case login(String, String)
     case userInfo(String)
-    case loginWithAppleAndFB(String, String, String, String, String)
+    case loginWithfb(String)
+    case loginWithApple
     
     var headers: [String: String] {
         switch self {
@@ -25,8 +26,10 @@ enum UserRequest: CAtFERequest {
             return [HTTPHeaderField.contentType.rawValue: "application/json"]
         case .userInfo(let accessToken):
             return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
-        case .loginWithAppleAndFB:
+        case .loginWithfb:
             return [HTTPHeaderField.contentType.rawValue: "application/json"]
+        case .loginWithApple:
+            return [:]
         }
     }
     
@@ -52,15 +55,11 @@ enum UserRequest: CAtFERequest {
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .userInfo:
             return nil
-        case .loginWithAppleAndFB(let token, let email, let name, let registerType, let avatar):
-            let dict = [
-                "email": email,
-                "name": name,
-                "registerType": registerType,
-                "avatar": avatar,
-                "token": token
-            ]
+        case .loginWithfb(let token):
+            let dict = ["token": token]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        case .loginWithApple:
+            return nil
         }
     }
         
@@ -74,8 +73,10 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .userInfo:
             return HTTPMethod.GET.rawValue
-        case .loginWithAppleAndFB:
-            return HTTPMethod.PATCH.rawValue
+        case .loginWithfb:
+            return HTTPMethod.POST.rawValue
+        case .loginWithApple:
+            return HTTPMethod.POST.rawValue
         }
     }
     
@@ -89,7 +90,9 @@ enum UserRequest: CAtFERequest {
             return "/users/login/"
         case .userInfo:
             return "/users/me/"
-        case .loginWithAppleAndFB:
+        case .loginWithfb:
+            return "/users/fbLogin/"
+        case .loginWithApple:
             return "/users/"
         }
     }

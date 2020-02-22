@@ -12,7 +12,8 @@ class KeyChainManager {
 
     static let shared = KeyChainManager()
     private let service: Keychain
-    private let serverTokenKey: String = "CAtFEToken"
+    private let fbTokenKey: String = "fbToken"
+    private let cafeTokenKey: String = "CAtFEToken"
     private let userName: String = "userName"
     private let userEmail: String = "userEmail"
     private let userAvatar: String = "userAvatar"
@@ -21,30 +22,30 @@ class KeyChainManager {
     private init() {
         service = Keychain(service: Bundle.main.bundleIdentifier!)
     }
-
-    var token: String? {
+    
+    var fbToken: String? {
         set {
-            guard let uuid = UserDefaults.standard.value(forKey: serverTokenKey) as? String else {
-
-                let uuid = UUID().uuidString
-                UserDefaults.standard.set(uuid, forKey: serverTokenKey)
-                service[uuid] = newValue
-                return
-            }
-            service[uuid] = newValue
+            UserDefaults.standard.set(newValue, forKey: fbTokenKey)
         }
 
         get {
-            guard let serverKey = UserDefaults.standard.string(forKey: serverTokenKey) else {
+            guard let fbToken = UserDefaults.standard.string(forKey: fbTokenKey) else {
                 return nil
             }
-            for item in service.allItems() {
-                if let key = item["key"] as? String,
-                   key == serverKey {
-                    return item["value"] as? String
-                }
+            return fbToken
+        }
+    }
+
+    var token: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: cafeTokenKey)
+        }
+
+        get {
+            guard let cafeToken = UserDefaults.standard.string(forKey: cafeTokenKey) else {
+                return nil
             }
-            return nil
+            return cafeToken
         }
     }
     

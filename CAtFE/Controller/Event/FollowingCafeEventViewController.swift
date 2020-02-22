@@ -28,7 +28,7 @@ class FollowingCafeEventViewController: BaseViewController {
             tableView.delegate = self
         }
     }
-    var message: [Message] = [] {
+    var message: [CafeComments] = [] {
         didSet {
             if message.isEmpty {
                 DispatchQueue.main.async {
@@ -55,7 +55,7 @@ class FollowingCafeEventViewController: BaseViewController {
     
     func initView() {
         createPostBtn.layer.cornerRadius = createPostBtn.frame.width / 2
-        createBtnBottomConstraint.constant = -height * 0.28
+        createBtnBottomConstraint.constant = -height * 0.29
         createBtnRightConstraint.constant = width * 0.05
         
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)

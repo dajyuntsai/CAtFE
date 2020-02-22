@@ -22,7 +22,7 @@ struct Cafe: Codable {
     let longitude: Double
     let fbUrl: String
     let notes: String
-    let cafeComments: [Message]
+    let cafeComments: [CafeComments]
 
     enum CodingKeys: String, CodingKey {
         case id

@@ -30,9 +30,9 @@ class RatedTableViewCell: UITableViewCell {
     @IBAction func followBtnClick(_ sender: Any) {
         followBtnState = !followBtnState
         if followBtnState {
-            followBtn.setImage(UIImage(named: "select_pin"), for: .normal)
+            followBtn.setImage(UIImage(named: "select_bookmark"), for: .normal)
         } else {
-            followBtn.setImage(UIImage(named: "unselect_pin"), for: .normal)
+            followBtn.setImage(UIImage(named: "unselect_bookmark"), for: .normal)
         }
         delegate?.getBtnState(self, followBtnState)
     }

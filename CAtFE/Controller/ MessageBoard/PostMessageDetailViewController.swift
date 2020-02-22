@@ -16,7 +16,7 @@ class PostMessageDetailViewController: BaseViewController {
             tableView.delegate = self
         }
     }
-    var cafeComments: CafeComment?
+    var cafeComments: Comments?
     var headerView = UIView()
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
@@ -87,8 +87,7 @@ class PostMessageDetailViewController: BaseViewController {
     
     func setUpPageControl() {
         pageControl.currentPage = 0
-        pageControl.numberOfPages = 2
-//            data?.postPhotos.count ?? 1
+        pageControl.numberOfPages = 3 // data?.postPhotos.count ?? 1
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
         pageControl.hidesForSinglePage = true
@@ -122,11 +121,40 @@ class PostMessageDetailViewController: BaseViewController {
             backBtn.isHidden = true
         }
     }
+    
+    func sendReplyMessage(text: String) {
+        guard KeyChainManager.shared.token != nil else {
+            alert(message: "請先登入後再留言") { _ in
+                self.onShowLogin()
+            }
+            return
+        }
+        guard let token = KeyChainManager.shared.token else { return }
+        let messageId = cafeComments!.messageId
+        messageBoardManager.replyMessage(
+            token: token,
+            messageId: messageId,
+            text: text) { (reuslt) in
+                switch reuslt {
+                case .success:
+                    CustomProgressHUD.showSuccess(text: "發送成功")
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                case .failure:
+                    CustomProgressHUD.showFailure(text: "發送失敗")
+                }
+        }
+    }
 }
 
 extension PostMessageDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if !cafeComments!.commentReplies.isEmpty {
+            return cafeComments!.commentReplies.count + 2
+        } else {
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,14 +173,14 @@ extension PostMessageDetailViewController: UITableViewDataSource {
                                                            for: indexPath) as? PostMessageAddReplyTableViewCell else {
                 return UITableViewCell()
             }
-            
+            cell.delegate = self
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell",
                                                            for: indexPath) as? PostMessageReplyTableViewCell else {
             return UITableViewCell() }
             
-            cell.replayContentLabel.text = "一個留言"
+            cell.setData(data: cafeComments!.commentReplies[indexPath.row - 2])
             return cell
         }
     }
@@ -228,5 +256,15 @@ extension PostMessageDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+    }
+}
+
+extension PostMessageDetailViewController: SendReplyToMessageDelegate {
+    func sendReply(_ cell: PostMessageAddReplyTableViewCell, reply: String) {
+        if reply == "" {
+            alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
+        } else {
+            self.sendReplyMessage(text: reply)
+        }
     }
 }

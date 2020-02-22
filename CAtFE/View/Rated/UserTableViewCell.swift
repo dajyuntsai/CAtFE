@@ -23,6 +23,7 @@ class UserTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         userNameLabel.text = KeyChainManager.shared.name
+        userImageView.loadImage(KeyChainManager.shared.avatar)
     }
     
     func setData() {

@@ -31,7 +31,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
 //        let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
 //        collectionView.setContentOffset(offset, animated: true)
     }
-    var data: CafeComment?
+    var data: Comments?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +48,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         authorImageView.layer.cornerRadius = authorImageView.frame.width / 2
     }
 
-    func setData(data: CafeComment) {
+    func setData(data: Comments) {
         self.data = data
         authorImageView.loadImage(data.userImage)
         authorNameLabel.text = data.userName

@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol SendReplyToMessageDelegate: AnyObject {
+    func sendReply(_ cell: PostMessageAddReplyTableViewCell, reply: String)
+}
+
 class PostMessageAddReplyTableViewCell: UITableViewCell {
 
+    weak var delegate: SendReplyToMessageDelegate?
+    var replyMessage: String?
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var replyContentTextField: UITextField!
     @IBAction func sendBtn(_ sender: Any) {
+        delegate?.sendReply(self, reply: replyMessage ?? "")
     }
     
     override func awakeFromNib() {
@@ -28,8 +35,16 @@ class PostMessageAddReplyTableViewCell: UITableViewCell {
     }
     
     func initView() {
+        replyContentTextField.delegate = self
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
-        
+        userImageView.loadImage(KeyChainManager.shared.avatar)
     }
+}
 
+extension PostMessageAddReplyTableViewCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if !textField.isEmpty {
+            replyMessage = textField.text
+        }
+    }
 }

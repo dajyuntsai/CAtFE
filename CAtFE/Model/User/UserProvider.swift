@@ -42,9 +42,34 @@ class UserProvider {
                     return completion(Result.failure(fbError))
                 }
                 self.getUserDataFromFB(fbToken: token)
+                self.fbLogin(token: token) { (result) in
+                    switch result {
+                    case .success:
+                        print("FB登入成功")
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
                 completion(Result.success(token))
             }
         })
+    }
+    
+    func fbLogin(token: String, completion: @escaping (Result<LoginResponse>) -> Void) {
+        HTTPClient.shared.request(UserRequest.loginWithfb(token)) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let response = try self.decoder.decode(LoginResponse.self, from: data)
+                    KeyChainManager.shared.token = response.access
+                    completion(.success(response))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func getUserDataFromFB(fbToken: String) {
@@ -69,7 +94,9 @@ class UserProvider {
                                 avator: userPictureUrl) { (response) in
                 switch response {
                 case .success:
-                    print("======= getUserDataFromFB: success")
+                    KeyChainManager.shared.name = name
+                    KeyChainManager.shared.email = email
+                    KeyChainManager.shared.avatar = userPictureUrl
                 case .failure(let error):
                     print("======= getUserDataFromFB error: \(error)")
                 }
@@ -84,10 +111,9 @@ class UserProvider {
                         registerType: String,
                         avator: String,
                         completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
+        HTTPClient.shared.request(UserRequest.loginWithfb(token)) { (result) in
             switch result {
             case .success:
-                KeyChainManager.shared.token = token // TODO: 寫這邊還是前面？？
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))
@@ -95,16 +121,10 @@ class UserProvider {
         }
     }
 
-    func loginWithApple(token: String,
-                        email: String,
-                        name: String,
-                        registerType: String,
-                        avator: String,
-                        completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.loginWithAppleAndFB(token, email, name, registerType, avator)) { (result) in
+    func loginWithApple(completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.loginWithApple) { (result) in
             switch result {
             case .success:
-                KeyChainManager.shared.token = token
                 completion(Result.success(()))
             case .failure(let error):
                 completion(Result.failure(error))

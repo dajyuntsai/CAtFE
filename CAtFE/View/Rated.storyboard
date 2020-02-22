@@ -110,7 +110,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="mhI-1m-GmN" secondAttribute="height" multiplier="1:1" id="wvv-xm-Aw9"/>
                                                             </constraints>
-                                                            <state key="normal" image="unselect_pin">
+                                                            <state key="normal" image="unselect_bookmark">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
@@ -314,7 +314,7 @@
         <image name="first" width="512" height="512"/>
         <image name="placeholder" width="987" height="777"/>
         <image name="select_trophy" width="40" height="40"/>
-        <image name="unselect_pin" width="512" height="512"/>
+        <image name="unselect_bookmark" width="512" height="512"/>
         <image name="unselect_trophy" width="30" height="30"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

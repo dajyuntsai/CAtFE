@@ -19,7 +19,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var createCafeBtnView: UIView!
-
+    @IBOutlet weak var createBtnBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var createBtnRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBAction func filterBtn(_ sender: Any) {
+        petFilterBtn()
+    }
+    
     var resultSearchController: UISearchController?
     private lazy var geoCoder: CLGeocoder = {
         return CLGeocoder()
@@ -51,6 +57,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initView()
         setUpTabBarItem()
         setSearchBar()
         initMapView()
@@ -71,6 +78,23 @@ class HomeViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         locationManager.stopUpdatingLocation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func initView() {
+        createBtnRightConstraint.constant = width * 0.05
+        createBtnBottomConstraint.constant = width * 0.05
     }
     
     func setUpCollectionView() {

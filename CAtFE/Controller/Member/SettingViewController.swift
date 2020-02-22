@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 struct Settings {
     let type: SectionType
@@ -46,7 +47,6 @@ class SettingViewController: BaseViewController {
         picker.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(showPhotoSelectWay), name: Notification.Name("showPhotoSelectWay"), object: nil)
 
-        
         setUptTableView()
         
         for _ in settingList {
@@ -164,6 +164,7 @@ extension SettingViewController: UITableViewDelegate {
         let presentVC = UIStoryboard.main.instantiateViewController(identifier: LoginViewController.identifier) as? LoginViewController
         presentVC?.modalPresentationStyle = .fullScreen
         self.present(presentVC!, animated: true, completion: nil)
+        LoginManager().logOut()
     }
     
     @objc func createCafe() {

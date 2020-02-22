@@ -55,8 +55,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func setData(message: CafeComment) {
-        
+    func setData(message: Comments) {
         userImageView.loadImage(message.userImage)
         userNameLabel.text = message.userName
         dateTimeLabel.text = message.timeAgo

@@ -11,22 +11,29 @@ import Foundation
 enum MessageBoardRequest: CAtFERequest {
     case allMessage
     case myMessage(String)
-    case createMessage(String, Int, String, [Photos]) // (token, cafeId, content, photos)
+    case createMessage(String, Int, String, [String]) // (token, cafeId, content, photos)
     case updateMessage(String, Int, Int, String, [Photos]) // (token, msgId, cafeId, content, photos)
-    case deleteMessage(String, Message, Int)
+    case deleteMessage(String, CafeComments, Int)
+    case replyMessage(String, Int, String) // (token, messageId, text)
 
     var headers: [String: String] {
         switch self {
         case .allMessage:
             return [:]
-        case .myMessage(let token):
-            return ["X-Auth-Token": "\(token)"]
-        case .createMessage(let token, _, _, _):
-            return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
-        case .updateMessage(let token, _, _, _, _):
-            return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
-        case .deleteMessage(let token, _, _):
-            return ["Content-Type": "application/json", "X-Auth-Token": "\(token)"]
+        case .myMessage(let accessToken):
+            return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .createMessage(let accessToken, _, _, _):
+            return [HTTPHeaderField.contentType.rawValue: "application/json",
+                    HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .updateMessage(let accessToken, _, _, _, _):
+            return [HTTPHeaderField.contentType.rawValue: "application/json",
+                    HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .deleteMessage(let accessToken, _, _):
+            return [HTTPHeaderField.contentType.rawValue: "application/json",
+                    HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .replyMessage(let accessToken, _, _):
+            return [HTTPHeaderField.contentType.rawValue: "application/json",
+                    HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         }
     }
 
@@ -36,10 +43,9 @@ enum MessageBoardRequest: CAtFERequest {
             return nil
         case .myMessage:
             return nil
-        case .createMessage(_, let cafeId, let content, let photos):
+        case .createMessage(_, _, let content, let photos):
             let dict = [
-                "cafeID": cafeId,
-                "content": content,
+                "comment": content,
                 "photos": photos
                 ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
@@ -53,6 +59,9 @@ enum MessageBoardRequest: CAtFERequest {
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .deleteMessage:
             return nil
+        case .replyMessage(_, _, let text):
+            let dict = ["text": text]
+            return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         }
     }
 
@@ -68,6 +77,8 @@ enum MessageBoardRequest: CAtFERequest {
             return HTTPMethod.PUT.rawValue
         case .deleteMessage:
             return HTTPMethod.DELETE.rawValue
+        case .replyMessage:
+            return HTTPMethod.POST.rawValue
         }
     }
 
@@ -76,13 +87,15 @@ enum MessageBoardRequest: CAtFERequest {
         case .allMessage:
             return "/cafes/"
         case .myMessage:
-            return "/cafes/messageBoard"
-        case .createMessage:
-            return "/cafes/messageBoard"
+            return "/cafes/messageBoard" // TODO: 還沒改
+        case .createMessage(_, let cafeId, _, _):
+            return "/cafes/\(cafeId)/comment/"
         case .updateMessage(_, let msgId, _, _, _):
-            return "/cafes/messageBoard/\(msgId)"
+            return "/cafes/messageBoard/\(msgId)" // TODO: 還沒改
         case .deleteMessage(_, _, let id):
-            return "/cafes/messageBoard/\(id)"
+            return "/cafes/messageBoard/\(id)" // TODO: 還沒改
+        case .replyMessage(_, let messageId, _):
+            return "/cafeComments/\(messageId)/reply/"
         }
     }
 }
@@ -106,12 +119,12 @@ class MessageBoardManager {
     }
 
     func getMyMessageList(token: String,
-                          completion: @escaping (Result<Message>) -> Void) {
+                          completion: @escaping (Result<CafeComments>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.myMessage(token)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let myMessage = try self.decoder.decode(Message.self, from: data)
+                    let myMessage = try self.decoder.decode(CafeComments.self, from: data)
                     completion(.success(myMessage))
                 } catch {
                     completion(.failure(error))
@@ -125,17 +138,12 @@ class MessageBoardManager {
     func createMessageInList(token: String,
                              cafeID: Int,
                              content: String,
-                             photos: [Photos],
-                             completion: @escaping (Result<Message>) -> Void) {
+                             photos: [String], // TODO: [Photos]
+                             completion: @escaping (Result<Void>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.createMessage(token, cafeID, content, photos)) { (result) in
             switch result {
-            case .success(let data):
-                do {
-                    let messageData = try self.decoder.decode(Message.self, from: data)
-                    completion(.success(messageData))
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -147,12 +155,12 @@ class MessageBoardManager {
                              cafeId: Int,
                              content: String,
                              photos: [Photos],
-                             completion: @escaping (Result<Message>) -> Void) {
+                             completion: @escaping (Result<CafeComments>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, cafeId, content, photos)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let updateMessage = try self.decoder.decode(Message.self, from: data)
+                    let updateMessage = try self.decoder.decode(CafeComments.self, from: data)
                     completion(.success(updateMessage))
                 } catch {
                     completion(.failure(error))
@@ -164,18 +172,32 @@ class MessageBoardManager {
     }
 
     func deleteMessageInList(token: String,
-                             messageObj: Message,
+                             messageObj: CafeComments,
                              msgId: Int,
-                             completion: @escaping (Result<Message>) -> Void) {
+                             completion: @escaping (Result<CafeComments>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.deleteMessage(token, messageObj, msgId)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let deleteMessage = try self.decoder.decode(Message.self, from: data)
+                    let deleteMessage = try self.decoder.decode(CafeComments.self, from: data)
                     completion(.success(deleteMessage))
                 } catch {
                     completion(.failure(error))
                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func replyMessage(token: String,
+                      messageId: Int,
+                      text: String,
+                      completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.replyMessage(token, messageId, text)) { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }

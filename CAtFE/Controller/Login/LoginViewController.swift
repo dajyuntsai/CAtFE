@@ -96,11 +96,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
         let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"
 
-        userProvider.loginWithApple(token: appleToken,
-                                    email: email,
-                                    name: fullName,
-                                    registerType: "apple",
-                                    avator: "") { (result) in
+        userProvider.loginWithApple()
+//            token: appleToken,
+//            email: email,
+//            name: fullName,
+//            registerType: "apple",
+//            avator: "")
+        { (result) in
             switch result {
             case .success:
                 self.appleLoginSuccess()
@@ -127,7 +129,7 @@ extension LoginViewController: LoginButtonDelegate {
             switch result {
             case .success:
                 self.fbLoginSuccess()
-            case .failure( _):
+            case .failure:
                 CustomProgressHUD.showSuccess(text: "Facebook 登入失敗")
             }
         }
