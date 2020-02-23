@@ -35,6 +35,7 @@ enum HTTPHeaderField: String {
 
 enum HTTPHeaderValue: String {
     case json = "application/json"
+    case formData = "multipart/form-data; boundary="
 }
 
 protocol CAtFERequest {

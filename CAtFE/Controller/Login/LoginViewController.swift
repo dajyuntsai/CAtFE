@@ -96,15 +96,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
         let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"
 
-        userProvider.loginWithApple()
-//            token: appleToken,
-//            email: email,
-//            name: fullName,
-//            registerType: "apple",
-//            avator: "")
-        { (result) in
+        userProvider.loginWithApple(token: appleToken) { (result) in
             switch result {
             case .success:
+                KeyChainManager.shared.name = fullName
+                KeyChainManager.shared.email = email
                 self.appleLoginSuccess()
                 self.backToRoot()
             case .failure(let error):

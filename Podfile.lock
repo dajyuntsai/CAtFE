@@ -1,5 +1,6 @@
 PODS:
   - AAInfographics (4.0.0)
+  - Alamofire (5.0.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -8,31 +9,32 @@ PODS:
   - Bolts/Tasks (1.9.0)
   - Cosmos (21.0.0)
   - DLRadioButton (1.4.12)
-  - FBSDKCoreKit (5.13.1):
-    - FBSDKCoreKit/Basics (= 5.13.1)
-    - FBSDKCoreKit/Core (= 5.13.1)
-  - FBSDKCoreKit/Basics (5.13.1)
-  - FBSDKCoreKit/Core (5.13.1):
+  - FBSDKCoreKit (6.0.0):
+    - FBSDKCoreKit/Basics (= 6.0.0)
+    - FBSDKCoreKit/Core (= 6.0.0)
+  - FBSDKCoreKit/Basics (6.0.0)
+  - FBSDKCoreKit/Core (6.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.13.1):
-    - FBSDKLoginKit/Login (= 5.13.1)
-  - FBSDKLoginKit/Login (5.13.1):
-    - FBSDKCoreKit (~> 5.0)
+  - FBSDKLoginKit (6.0.0):
+    - FBSDKLoginKit/Login (= 6.0.0)
+  - FBSDKLoginKit/Login (6.0.0):
+    - FBSDKCoreKit (~> 6.0.0)
   - IQKeyboardManagerSwift (6.5.5)
   - JGProgressHUD (2.1)
   - KeychainAccess (4.1.0)
-  - Kingfisher (5.12.0):
-    - Kingfisher/Core (= 5.12.0)
-  - Kingfisher/Core (5.12.0)
+  - Kingfisher (5.13.1):
+    - Kingfisher/Core (= 5.13.1)
+  - Kingfisher/Core (5.13.1)
   - PryntTrimmerView (4.0.0)
   - SteviaLayout (4.7.3)
-  - SwiftLint (0.38.0)
+  - SwiftLint (0.39.1)
   - YPImagePicker (4.2.0):
     - PryntTrimmerView (~> 4.0.0)
     - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - AAInfographics
+  - Alamofire
   - Bolts
   - Cosmos
   - DLRadioButton
@@ -48,6 +50,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AAInfographics
+    - Alamofire
     - Bolts
     - Cosmos
     - DLRadioButton
@@ -64,20 +67,21 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
+  Alamofire: 41c162d645ba6a78e7fd030fcdaf6aa394ca39a0
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
-  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
-  FBSDKLoginKit: c7c6ffd9ca9ea45aee32361840af040ad8f6706a
+  FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
+  FBSDKLoginKit: fa57df1b967fe0e147b25bede6ea4e9cdf4d64be
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
-  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  Kingfisher: f33a848445e33c543620812158dc5d47f6bf90df
   PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   YPImagePicker: accf310f9526641a84372c0ecf943547d9b1e52c
 
-PODFILE CHECKSUM: dc6ed85935875b8b73b3949e2456a41ace3846cf
+PODFILE CHECKSUM: 3a54231bc0248358826485fec9672b0055522e58
 
 COCOAPODS: 1.8.4

@@ -139,7 +139,7 @@ class PostMessageDetailViewController: BaseViewController {
                 case .success:
                     CustomProgressHUD.showSuccess(text: "發送成功")
                     DispatchQueue.main.async {
-                        self.navigationController?.popToRootViewController(animated: true)
+                        self.tableView.reloadData()
                     }
                 case .failure:
                     CustomProgressHUD.showFailure(text: "發送失敗")

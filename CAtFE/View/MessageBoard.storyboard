@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="width" constant="20" id="b0v-OI-K5q"/>
                                                         <constraint firstAttribute="height" constant="20" id="wTs-3M-orH"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="unselect_typing"/>
+                                                    <state key="normal" title="Button" image="comment"/>
                                                     <connections>
                                                         <action selector="commentBtn:" destination="Yse-tx-xS6" eventType="touchUpInside" id="8ro-av-htn"/>
                                                     </connections>
@@ -101,7 +101,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="e2W-i0-Ctk"/>
                                                         <constraint firstAttribute="width" constant="20" id="x1G-Gh-7dq"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="unselect_heart"/>
+                                                    <state key="normal" title="Button" image="favourite"/>
                                                     <connections>
                                                         <action selector="likeBtn:" destination="Yse-tx-xS6" eventType="touchUpInside" id="il1-FF-lrC"/>
                                                     </connections>
@@ -243,7 +243,7 @@
                                                                             <constraint firstAttribute="height" constant="50" id="6Hs-Ud-LWp"/>
                                                                             <constraint firstAttribute="width" constant="50" id="jlI-5N-g0s"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="＋" image="photo-camera"/>
+                                                                        <state key="normal" image="camera"/>
                                                                         <connections>
                                                                             <action selector="addPhotoBtn:" destination="o5i-2L-Ddo" eventType="touchUpInside" id="Ndh-vW-Dh6"/>
                                                                         </connections>
@@ -688,14 +688,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="32" height="32"/>
         <image name="cat" width="512" height="512"/>
+        <image name="comment" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
-        <image name="photo-camera" width="512" height="512"/>
+        <image name="favourite" width="32" height="32"/>
         <image name="placeholder" width="987" height="777"/>
         <image name="select_write" width="40" height="40"/>
-        <image name="send" width="512" height="512"/>
-        <image name="unselect_heart" width="512" height="512"/>
-        <image name="unselect_typing" width="512" height="512"/>
+        <image name="send" width="32" height="32"/>
         <image name="unselect_write" width="30" height="30"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

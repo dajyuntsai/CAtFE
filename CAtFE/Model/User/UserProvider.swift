@@ -121,11 +121,17 @@ class UserProvider {
         }
     }
 
-    func loginWithApple(completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.loginWithApple) { (result) in
+    func loginWithApple(token: String, completion: @escaping (Result<LoginResponse>) -> Void) {
+        HTTPClient.shared.request(UserRequest.loginWithApple(token)) { (result) in
             switch result {
-            case .success:
-                completion(Result.success(()))
+            case .success(let data):
+                do {
+                    let response = try self.decoder.decode(LoginResponse.self, from: data)
+                    KeyChainManager.shared.token = response.access
+                    completion(Result.success(response))
+                } catch {
+                    completion(Result.failure(error))
+                }
             case .failure(let error):
                 completion(Result.failure(error))
                 print(error)
@@ -178,6 +184,21 @@ class UserProvider {
                 }
             case .failure(let error):
                 completion(Result.failure(error))
+            }
+        }
+    }
+    
+    func updateUserInfo(token: String,
+                        name: String,
+                        avatar: String,
+                        password: String,
+                        completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(UserRequest.updateUserInfo(token, name, avatar, password)) { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
 
 struct Settings {
     let type: SectionType
@@ -37,8 +38,12 @@ class SettingViewController: BaseViewController {
     Settings(type: .cell, title: "版本", details: []),
     Settings(type: .logout, title: "登出", details: [])]
     let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
+    let userProvider = UserProvider()
     let picker: UIImagePickerController = UIImagePickerController()
     var selectedPhoto: UIImage?
+    var updateName = KeyChainManager.shared.name
+    var updateAvatar: Data?
     var isExpendDataList: [Bool] = []
     
     override func viewDidLoad() {
@@ -47,11 +52,20 @@ class SettingViewController: BaseViewController {
         picker.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(showPhotoSelectWay), name: Notification.Name("showPhotoSelectWay"), object: nil)
 
+        initSaveBtn()
         setUptTableView()
         
         for _ in settingList {
             isExpendDataList.append(false)
         }
+    }
+    
+    func initSaveBtn() {
+        let saveBtn = UIBarButtonItem(image: UIImage(named: "send"),
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(updateUserInfo))
+        navigationItem.rightBarButtonItem = saveBtn
     }
     
     func setUptTableView() {
@@ -72,6 +86,39 @@ class SettingViewController: BaseViewController {
         controller.addAction(libraryAction)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func updateUserInfo() {
+        guard let token = KeyChainManager.shared.token else { return }
+        var parameters = [String: AnyObject]()
+        parameters = ["name": updateName,
+                      "avatar": updateAvatar
+            ] as [String : AnyObject]
+        let headers: HTTPHeaders = [
+            "Content-type": "multipart/form-data",
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(self.updateAvatar!, withName: "image_file")
+            for (key, value) in parameters {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+        }, to: "https://catfe.herokuapp.com/users/me/",
+           method: .patch,
+           headers: headers).response { (response) in
+            if let statusCode = response.response?.statusCode {
+                NSLog("statusCode: \(statusCode)")
+            }
+            switch response.result {
+            case .success(let data):
+                if let data = data, let message = String(data: data, encoding: .utf8) {
+                    NSLog("message: \(message)")
+                }
+            case .failure(let error):
+                NSLog("error: \(error)")
+            }
+        }
     }
 }
 
@@ -104,7 +151,7 @@ extension SettingViewController: UITableViewDataSource {
             }
             cell.selectedPhoto = selectedPhoto
             cell.changeUserName = { (name) in
-                cell.userNameTextField.text = name
+                self.updateName = name
             }
             cell.setData(data: data)
             return cell
@@ -220,12 +267,13 @@ extension SettingViewController: UIImagePickerControllerDelegate, UINavigationCo
             selectedImageFromPicker = pickedImage
             selectedPhoto = selectedImageFromPicker
         }
-        // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
-        let uniqueString = NSUUID().uuidString
         
         // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
         if let selectedImage = selectedImageFromPicker {
-            print("\(uniqueString), \(selectedImage)")
+            let imageData = selectedImage.pngData()
+//            let strBase64 = imageData?.base64EncodedData(options: .lineLength64Characters)
+//            let img = "data:image/png;base64,\(strBase64)"
+            updateAvatar = imageData
         }
         tableView.reloadData()
         

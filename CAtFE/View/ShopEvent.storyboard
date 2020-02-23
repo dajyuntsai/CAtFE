@@ -129,7 +129,7 @@
                                                                 <constraint firstAttribute="width" constant="20" id="MB7-iH-Q6X"/>
                                                                 <constraint firstAttribute="height" constant="20" id="Ymw-Fp-FEk"/>
                                                             </constraints>
-                                                            <state key="normal" image="unselect_like"/>
+                                                            <state key="normal" image="favourite"/>
                                                             <connections>
                                                                 <action selector="goodBtnClick:" destination="6tP-kx-H6P" eventType="touchUpInside" id="J5M-Y3-1xk"/>
                                                             </connections>
@@ -140,7 +140,7 @@
                                                                 <constraint firstAttribute="height" constant="20" id="Q6i-Dz-RKe"/>
                                                                 <constraint firstAttribute="width" constant="20" id="lJm-JF-S6s"/>
                                                             </constraints>
-                                                            <state key="normal" image="unselect_chat"/>
+                                                            <state key="normal" image="comment"/>
                                                             <connections>
                                                                 <action selector="commentBtnClick:" destination="6tP-kx-H6P" eventType="touchUpInside" id="Kn6-i4-Ayb"/>
                                                             </connections>
@@ -151,7 +151,7 @@
                                                                 <constraint firstAttribute="height" constant="20" id="puT-1n-cZk"/>
                                                                 <constraint firstAttribute="width" constant="20" id="q3y-E2-xVi"/>
                                                             </constraints>
-                                                            <state key="normal" image="unselect_share"/>
+                                                            <state key="normal" image="share"/>
                                                             <connections>
                                                                 <action selector="shareBtnClick:" destination="6tP-kx-H6P" eventType="touchUpInside" id="mBJ-nZ-YMU"/>
                                                             </connections>
@@ -263,13 +263,13 @@
     </scenes>
     <resources>
         <image name="banner1" width="598" height="210"/>
+        <image name="comment" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
+        <image name="favourite" width="32" height="32"/>
         <image name="placeholder" width="987" height="777"/>
         <image name="select_calendar" width="40" height="40"/>
+        <image name="share" width="32" height="32"/>
         <image name="unselect_calendar" width="30" height="30"/>
-        <image name="unselect_chat" width="512" height="512"/>
-        <image name="unselect_like" width="512" height="512"/>
-        <image name="unselect_share" width="512" height="512"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

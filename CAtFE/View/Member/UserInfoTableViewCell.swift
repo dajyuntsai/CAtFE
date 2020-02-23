@@ -27,11 +27,11 @@ class UserInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
+        userNameTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func setData(data: String) {
@@ -54,7 +54,7 @@ extension UserInfoTableViewCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if !textField.isEmpty {
             newName = textField.text!
-            changeUserName?(newName) // TODO: 更新到後端
+            changeUserName?(newName)
             isChangeName = true
         }
     }

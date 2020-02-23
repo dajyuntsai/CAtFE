@@ -37,4 +37,6 @@ target 'CAtFE' do
 
   # Pod for IG like select photo
   pod 'YPImagePicker'
+
+  pod 'Alamofire'
 end

@@ -14,22 +14,27 @@ enum UserRequest: CAtFERequest {
     case login(String, String)
     case userInfo(String)
     case loginWithfb(String)
-    case loginWithApple
+    case loginWithApple(String)
+    case updateUserInfo(String, String, String, String) // token, name, avatar, password
     
     var headers: [String: String] {
         switch self {
         case .userList:
             return [:]
         case .register:
-            return [HTTPHeaderField.contentType.rawValue: "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .login:
-            return [HTTPHeaderField.contentType.rawValue: "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .userInfo(let accessToken):
             return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         case .loginWithfb:
-            return [HTTPHeaderField.contentType.rawValue: "application/json"]
+            return [:]
         case .loginWithApple:
             return [:]
+        case .updateUserInfo(let accessToken, _, _, _):
+            let boundary = UUID().uuidString
+            return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)",
+                HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.formData.rawValue + "\(boundary)"]
         }
     }
     
@@ -58,8 +63,16 @@ enum UserRequest: CAtFERequest {
         case .loginWithfb(let token):
             let dict = ["token": token]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .loginWithApple:
-            return nil
+        case .loginWithApple(let token):
+            let dict = ["token": token]
+            return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        case .updateUserInfo(_, let name, let avatar, let password):
+            let dict = [
+                "name": name,
+                "avatar": avatar,
+                "password": password
+                ] as [String: Any]
+            return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         }
     }
         
@@ -77,6 +90,8 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .loginWithApple:
             return HTTPMethod.POST.rawValue
+        case .updateUserInfo:
+            return HTTPMethod.PATCH.rawValue
         }
     }
     
@@ -93,7 +108,9 @@ enum UserRequest: CAtFERequest {
         case .loginWithfb:
             return "/users/fbLogin/"
         case .loginWithApple:
-            return "/users/"
+            return "/users/appleLogin/"
+        case .updateUserInfo:
+            return "/users/me/"
         }
     }
 }
