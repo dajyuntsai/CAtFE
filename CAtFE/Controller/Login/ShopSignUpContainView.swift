@@ -67,18 +67,19 @@ class ShopSignUpContainView: BaseViewController {
         } else if password != checkPsd {
             alert(message: "請再次確認密碼", title: "錯誤", handler: nil)
         } else {
-            onCAtFESignUp(email: account, password: password, name: name, register: "email")
+            onCAtFESignUp(email: account, name: name, password: password)
         }
     }
 
-    func onCAtFESignUp(email: String, password: String, name: String, register: String) {
-        userProvider.emailSignUp(email: email, password: password, name: name) { (result) in
+    func onCAtFESignUp(email: String, name: String, password: String) {
+        userProvider.emailSignUp(email: email, name: name, password: password) { (result) in
             switch result {
             case .success:
                 CustomProgressHUD.showSuccess(text: "CAtFE 註冊成功")
                 self.backToRoot()
-            case .failure:
+            case .failure(let error):
                 CustomProgressHUD.showSuccess(text: "CAtFE 註冊失敗")
+                print(error.localizedDescription)
             }
         }
     }

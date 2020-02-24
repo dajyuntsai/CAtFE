@@ -36,6 +36,8 @@ class MemberViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        userName.text = KeyChainManager.shared.name
+        userImageView.loadImage(KeyChainManager.shared.avatar)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     

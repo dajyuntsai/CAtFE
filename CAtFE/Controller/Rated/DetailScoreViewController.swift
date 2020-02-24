@@ -69,6 +69,9 @@ class DetailScoreViewController: BaseViewController {
     }
     
     @objc func showRatedStarView() {
+        if KeyChainManager.shared.token == nil {
+            alert(message: "登入後才能評分喔！", title: "溫馨小提醒", handler: nil)
+        }
         let presentVC = UIStoryboard.rated
             .instantiateViewController(identifier: ScoreForCafeViewController.identifier)
             as? ScoreForCafeViewController

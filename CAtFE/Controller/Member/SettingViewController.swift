@@ -42,7 +42,7 @@ class SettingViewController: BaseViewController {
     let userProvider = UserProvider()
     let picker: UIImagePickerController = UIImagePickerController()
     var selectedPhoto: UIImage?
-    var updateName = KeyChainManager.shared.name
+    var updateName = ""
     var updateAvatar: Data?
     var isExpendDataList: [Bool] = []
     
@@ -90,33 +90,60 @@ class SettingViewController: BaseViewController {
     
     @objc func updateUserInfo() {
         guard let token = KeyChainManager.shared.token else { return }
-        var parameters = [String: AnyObject]()
-        parameters = ["name": updateName,
-                      "avatar": updateAvatar
-            ] as [String : AnyObject]
-        let headers: HTTPHeaders = [
-            "Content-type": "multipart/form-data",
-            "Authorization": "Bearer \(token)"
-        ]
-        
-        AF.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(self.updateAvatar!, withName: "image_file")
-            for (key, value) in parameters {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            }
-        }, to: "https://catfe.herokuapp.com/users/me/",
-           method: .patch,
-           headers: headers).response { (response) in
-            if let statusCode = response.response?.statusCode {
-                NSLog("statusCode: \(statusCode)")
-            }
-            switch response.result {
-            case .success(let data):
-                if let data = data, let message = String(data: data, encoding: .utf8) {
-                    NSLog("message: \(message)")
+        if !updateName.isEmpty {
+            userProvider.updateUserName(token: token, name: updateName) { (result) in
+                switch result {
+                case .success:
+                    KeyChainManager.shared.name = self.updateName
+                    CustomProgressHUD.showSuccess(text: "更改成功")
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                case .failure:
+                    CustomProgressHUD.showFailure(text: "更改失敗")
                 }
-            case .failure(let error):
-                NSLog("error: \(error)")
+            }
+        }
+        
+        if selectedPhoto != nil {
+            //        var parameters = [String: AnyObject]()
+            //        parameters = ["name": updateName,
+            //                      "avatar": updateAvatar
+            //            ] as [String: AnyObject]
+            let headers: HTTPHeaders = [
+                "Content-type": "multipart/form-data",
+                "Authorization": "Bearer \(token)"
+            ]
+            let url = URL(string: "https://catfe.herokuapp.com/users/me/")!
+            
+            AF.upload(multipartFormData: { (multipartFormData) in
+                //            multipartFormData.append(self.updateAvatar!, withName: "image_file")
+                multipartFormData.append(self.updateAvatar!, withName: "avatar", fileName: "avatar.jpg", mimeType: "image/jpeg")
+                //            for (key, value) in parameters {
+                //                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+                //            }
+            }, to: url,
+               method: .patch,
+               headers: headers).response { (response) in
+                if let statusCode = response.response?.statusCode {
+                    NSLog("statusCode: \(statusCode)")
+                }
+                switch response.result {
+                case .success(let data):
+                    if let data = data,
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
+                        let jsonDict = json as? [String: Any] {
+                        NSLog("jsonDict : \(jsonDict)")
+                        guard let user = jsonDict["user"] as? [String: Any] else { return }
+                        guard let avatar = user["avatar"] as? String else { return }
+                        KeyChainManager.shared.avatar = avatar
+                    }
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                case .failure(let error):
+                    NSLog("error: \(error.localizedDescription)")
+                }
             }
         }
     }

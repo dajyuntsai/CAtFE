@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct CafeCommentModel: Codable {
+    let results: [CafeComments]
+}
+
 struct CafeComments: Codable {
     let id: Int
     let comment: String

@@ -16,9 +16,7 @@ class ComprehensiveRatedViewController: BaseViewController {
             tableView.delegate = self
         }
     }
-    
-    var ratedModel: RatedModel?
-    
+        
     let animation = Animation()
     let refreshControl = UIRefreshControl()
     

@@ -8,6 +8,18 @@
 
 import Foundation
 
-class RatedModel: Codable {
+struct CafeScores: Codable {
+    let traffic: Double
+    let meal: Double
+    let loveOne: Double
+    let price: Double
+    let surroundin: Double
     
+    enum CodingKeys: String, CodingKey {
+    case traffic
+    case meal
+    case loveOne = "love_one"
+    case price
+    case surroundin
+    }
 }

@@ -98,6 +98,7 @@
 		BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */; };
 		BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */; };
 		BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934923FFAB9E000A4A04 /* Animation.swift */; };
+		BEA3934C2403AC9C000A4A04 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -246,6 +247,7 @@
 		BE94EB5323F6993100FA4604 /* FollowingCafeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeEventViewController.swift; sourceTree = "<group>"; };
 		BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeTableViewCell.swift; sourceTree = "<group>"; };
 		BEA3934923FFAB9E000A4A04 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -307,14 +309,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BE076B5423EA60780090BC7F /* Home */ = {
+		BE076B5423EA60780090BC7F /* Cafe */ = {
 			isa = PBXGroup;
 			children = (
 				BE076B5523EA608F0090BC7F /* CafeManager.swift */,
 				BE076B5723EA625E0090BC7F /* CafeModel.swift */,
 				BE18E0A423FD4E3A006F004C /* CreateCafeModel.swift */,
 			);
-			path = Home;
+			path = Cafe;
 			sourceTree = "<group>";
 		};
 		BE1EDBD323E2E35E003C38D9 /* Resource */ = {
@@ -500,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				BE94EB4723F6856D00FA4604 /* RatedModel.swift */,
+				BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */,
 			);
 			path = Rated;
 			sourceTree = "<group>";
@@ -530,7 +533,7 @@
 		BEE181D323E20E2F00660AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE076B5423EA60780090BC7F /* Home */,
+				BE076B5423EA60780090BC7F /* Cafe */,
 				BE9131D523E5E375004A669D /* MessageBoard */,
 				BEE181F823E240B100660AEB /* User */,
 				BE94EB4623F6854800FA4604 /* Rated */,
@@ -1001,6 +1004,7 @@
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEA99E0723EFFE0000F2CC69 /* MemberInfoTableViewCell.swift in Sources */,
+				BEA3934C2403AC9C000A4A04 /* ScoreManager.swift in Sources */,
 				BE94EB4823F6856D00FA4604 /* RatedModel.swift in Sources */,
 				BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */,
 				BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */,

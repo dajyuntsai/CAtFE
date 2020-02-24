@@ -12,9 +12,10 @@ class MyMessagesViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
-    var messages = ["", "", "", "", ""]
+    var myMessages: [CafeComments] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,36 @@ class MyMessagesViewController: BaseViewController {
 
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
+        
+        getMessages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getMessages()
+    }
+    
+    func getMessages() {
+        messageBoardManager.getMyMessageList { (result) in
+            switch result {
+            case .success(let data):
+                self.getMyMessages(messages: data.results)
+            case .failure:
+                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+            }
+        }
+    }
+    
+    func getMyMessages(messages: [CafeComments]) {
+        myMessages = messages.filter { $0.user?.email == KeyChainManager.shared.email}
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 
     @objc func loadData() {
-        // TODO: calling api
+        self.myMessages.removeAll()
         self.collectionView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -35,7 +62,7 @@ class MyMessagesViewController: BaseViewController {
 
 extension MyMessagesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return myMessages.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -44,6 +71,7 @@ extension MyMessagesViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? MemberCollectionViewCell else {
             return UICollectionViewCell()
         }
+//        cell.imageView.loadImage(myMessages[indexPath.row].photos[0])
         return cell
     }
 }

@@ -71,15 +71,14 @@ class PostMessageViewController: BaseViewController {
         if content == nil {
             alert(message: "請輸入內容", handler: nil)
         } else {
-            messageBoardManager.createMessageInList(token: token,
-                                                    cafeID: cafeId ?? 6,
-                                                    content: content!,
-                                                    photos: ["https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                                                    "https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg",
-                                                    "https://s3.amazonaws.com/jo.www.bucket/neighborhoodcats/nodes/images/1844/default/Flynn_Rider_photo.jpg?1548904662"]) { (result) in
-                switch result {
-                case .success:
-                    CustomProgressHUD.showSuccess(text: "發送成功")
+            messageBoardManager.createMessageInList(
+                token: token,
+                cafeID: cafeId ?? 6,
+                content: content!,
+                photos: ["https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg", "https://s3.amazonaws.com/jo.www.bucket/neighborhoodcats/nodes/images/1844/default/Flynn_Rider_photo.jpg?1548904662"]) { (result) in
+                            switch result {
+                            case .success:
+                                CustomProgressHUD.showSuccess(text: "發送成功")
                     DispatchQueue.main.async {
                         self.navigationController?.popToRootViewController(animated: true)
                     }
@@ -87,7 +86,7 @@ class PostMessageViewController: BaseViewController {
                     CustomProgressHUD.showFailure(text: "發送失敗")
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
-                        print("======= createMessage error: \(error)")
+                        print("======= createMessage error: \(error.localizedDescription)")
                     }
                 }
             }

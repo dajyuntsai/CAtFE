@@ -17,8 +17,9 @@ class ScoreForCafeViewController: BaseViewController {
         }
     }
     
-    let starList: [CellContent] = [
-        CellContent(type: .star, title: ""),
+    let scoreManager = ScoreManager()
+    var starList: [CellContent] = [
+        CellContent(type: .bool, title: ""),
         CellContent(type: .star, title: "寵物親人"),
         CellContent(type: .star, title: "價格親人"),
         CellContent(type: .star, title: "用餐環境"),
@@ -27,7 +28,7 @@ class ScoreForCafeViewController: BaseViewController {
         CellContent(type: .text, title: "備註")]
     
     @IBAction func sendScoreBtn(_ sender: Any) {
-        // TODO: call api
+        updateScoreForCafe()
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -42,6 +43,25 @@ class ScoreForCafeViewController: BaseViewController {
         tableView.registerCellWithNib(identifier: String(describing: CreateDetailStarTableViewCell.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: NoteTableViewCell.self), bundle: nil)
     }
+    
+    func updateScoreForCafe() {
+        guard let token = KeyChainManager.shared.token else { return }
+        scoreManager.createCafeScore(
+            token: token,
+            cafeId: 5,
+            loveOne: starList[1].value[0] as? Double ?? 1.0,
+            price: starList[2].value[0] as? Double ?? 1.0,
+            surrounding: starList[3].value[0] as? Double ?? 1.0,
+            meal: starList[4].value[0] as? Double ?? 1.0,
+            traffic: starList[5].value[0] as? Double ?? 1.0) { (result) in
+                switch result {
+                case .success:
+                    CustomProgressHUD.showSuccess(text: "已完成評分")
+                case .failure:
+                    CustomProgressHUD.showFailure(text: "評分失敗")
+                }
+        }
+    }
 }
 
 extension ScoreForCafeViewController: UITableViewDataSource {
@@ -50,24 +70,28 @@ extension ScoreForCafeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier,
-                                                           for: indexPath) as? UserTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.setData()
-            return cell
-        case 1, 2, 3, 4, 5:
+        let listType = starList[indexPath.row].type
+        switch listType {
+        case .star:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateDetailStarTableViewCell.identifier,
                                                            for: indexPath) as? CreateDetailStarTableViewCell else {
                 return UITableViewCell()
             }
+            cell.starCount = { score in
+                self.starList[indexPath.row].value = score
+            }
             cell.setData(title: starList[indexPath.row].title)
             return cell
-        default:
+        case .text:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier,
                                                            for: indexPath) as? NoteTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setData()
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier,
+                                                           for: indexPath) as? UserTableViewCell else {
                 return UITableViewCell()
             }
             cell.setData()
