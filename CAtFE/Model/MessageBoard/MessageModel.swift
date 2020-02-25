@@ -15,7 +15,7 @@ struct CafeCommentModel: Codable {
 struct CafeComments: Codable {
     let id: Int
     let comment: String
-    let photos: [String] // TODO: [Photos]
+    let photos: [Photo]
     let createAt: String
     let updatedAt: String
     let user: UserDetail?
@@ -32,7 +32,22 @@ struct CafeComments: Codable {
     }
 }
 
+struct Photo: Codable {
+    let id: Int
+    let url: String
+    let createdAt: String
+    let updatedAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case url
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+}
+
 struct UserDetail: Codable {
+    let id: Int
     let email: String
     let name: String
     let avatar: String
@@ -43,6 +58,7 @@ struct CafeCommentReplies: Codable {
     let id: Int
     let text: String
     let user: UserDetail
+    let likeCount: Int
     let createAt: String
     let updatedAt: String
     
@@ -50,15 +66,10 @@ struct CafeCommentReplies: Codable {
         case id
         case text
         case user
+        case likeCount = "like_count"
         case createAt = "created_at"
         case updatedAt = "updated_at"
     }
-}
-
-struct Photos: Codable {
-    let id: Int
-    let url: String
-    let isPrimary: Bool
 }
 
 struct Comments {

@@ -42,7 +42,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
     }
 
     func setData(data: CafeComments) {
-//        self.data = data
+        self.data = data
         authorImageView.loadImage(data.user?.avatar)
         authorNameLabel.text = data.user?.name
         locationLabel.text = "data.user"
@@ -66,7 +66,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
 //                                                            for: indexPath) as? PostDetailPhotoCollectionViewCell else {
 //            return UICollectionViewCell()
 //        }
-//        cell.postImageView.loadImage(data?.photos[indexPath.item])
+//        cell.postImageView.loadImage(data?.photos[indexPath.item].url)
 //        return cell
 //    }
 //

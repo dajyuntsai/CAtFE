@@ -24,6 +24,7 @@ class MessageBoardViewController: UIViewController {
     let selectedImageV = UIImageView()
     var selectedItems = [YPMediaItem]()
     var selectedPhotos: [UIImage] = []
+    var testPhoto = UIImage()
     var cafeResults: [Cafe] = [] {
         didSet {
             if cafeResults.isEmpty {
@@ -46,9 +47,8 @@ class MessageBoardViewController: UIViewController {
         initView()
         initNavView()
         
-        presentLoadingVC {
-            self.getMessageList()
-        }
+        presentLoadingVC()
+        getMessageList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,6 +170,7 @@ class MessageBoardViewController: UIViewController {
                 case .photo(let photo):
                     self.selectedPhotos.append(photo.image)
                     self.selectedImageV.image = photo.image
+                    self.testPhoto = photo.image
                 case .video(let video):
                     self.selectedImageV.image = video.thumbnail
                         
@@ -187,6 +188,7 @@ class MessageBoardViewController: UIViewController {
                 .instantiateViewController(identifier: PostMessageViewController.identifier)
                 as? PostMessageViewController
             presentVC?.selectedPhotoList = self.selectedPhotos
+            presentVC?.testPhoto = self.testPhoto
             presentVC?.modalPresentationStyle = .overFullScreen
             self.show(presentVC!, sender: nil)
             picker.dismiss(animated: true, completion: nil)

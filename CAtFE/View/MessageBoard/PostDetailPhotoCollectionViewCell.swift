@@ -27,6 +27,6 @@ class PostDetailPhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(data: String) {
-        postImageView.loadImage(data)
+        postImageView.loadImage(data, placeHolder: UIImage(named: "placeholder"))
     }
 }

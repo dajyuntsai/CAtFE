@@ -100,15 +100,14 @@ class SettingViewController: BaseViewController {
             "Authorization": "Bearer \(token)"
         ]
         
-        presentLoadingVC(completion: {
-            if !self.updateName.isEmpty {
-                self.uploadUserName(url: url, headers: headers)
-            }
-            
-            if self.selectedPhoto != nil {
-                self.uploadUserImage(url: url, headers: headers)
-            }
-        })
+        presentLoadingVC()
+        if !self.updateName.isEmpty {
+            self.uploadUserName(url: url, headers: headers)
+        }
+        
+        if self.selectedPhoto != nil {
+            self.uploadUserImage(url: url, headers: headers)
+        }
     }
     
     @objc func back() {

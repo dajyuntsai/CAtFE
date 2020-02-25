@@ -10,9 +10,9 @@ import Foundation
 
 enum MessageBoardRequest: CAtFERequest {
     case allMessage
-    case allCafeComment
+    case myCafeComment(Int) // userId
     case createMessage(String, Int, String, [String]) // (token, cafeId, content, photos)
-    case updateMessage(String, Int, Int, String, [Photos]) // (token, msgId, cafeId, content, photos)
+    case updateMessage(String, Int, Int, String, [String]) // (token, msgId, cafeId, content, photos)
     case deleteMessage(String, CafeComments, Int)
     case replyMessage(String, Int, String) // (token, messageId, text)
 
@@ -20,7 +20,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return [:]
-        case .allCafeComment:
+        case .myCafeComment:
             return [:]
         case .createMessage(let accessToken, _, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
@@ -41,7 +41,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return nil
-        case .allCafeComment:
+        case .myCafeComment:
             return nil
         case .createMessage(_, _, let content, let photos):
             let dict = [
@@ -69,7 +69,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return HTTPMethod.GET.rawValue
-        case .allCafeComment:
+        case .myCafeComment:
             return HTTPMethod.GET.rawValue
         case .createMessage:
             return HTTPMethod.POST.rawValue
@@ -86,8 +86,8 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return "/cafes/"
-        case .allCafeComment:
-            return "/cafeComments/"
+        case .myCafeComment(let userId):
+            return "/cafeComments/?user_id=\(userId)"
         case .createMessage(_, let cafeId, _, _):
             return "/cafes/\(cafeId)/comment/"
         case .updateMessage(_, let msgId, _, _, _):
@@ -118,8 +118,8 @@ class MessageBoardManager {
         }
     }
 
-    func getAllCafeComment(completion: @escaping (Result<CafeCommentModel>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.allCafeComment) { (result) in
+    func getMyCafeComment(userId: Int, completion: @escaping (Result<CafeCommentModel>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.myCafeComment(userId)) { (result) in
             switch result {
             case .success(let data):
                 do {
@@ -153,7 +153,7 @@ class MessageBoardManager {
                              msgId: Int,
                              cafeId: Int,
                              content: String,
-                             photos: [Photos],
+                             photos: [String],
                              completion: @escaping (Result<CafeComments>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, cafeId, content, photos)) { (result) in
             switch result {
@@ -197,6 +197,8 @@ class MessageBoardManager {
             switch result {
             case .success(let data):
                 do {
+                    let test = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(test)
                     let replies = try self.decoder.decode(CafeComments.self, from: data)
                     completion(.success((replies)))
                 } catch {

@@ -19,14 +19,15 @@ class PostMessageViewController: BaseViewController {
     var selectedPhotoList: [UIImage] = [] {
         didSet {
             for photo in selectedPhotoList {
-                postImagesData.append(photo.pngData()!)
+//                postImagesData.append(photo.pngData()!)
             }
         }
     }
+    var testPhoto: UIImage? // test
     var cafeId: Int?
     var content: String?
     var editMessage: Comments?
-    var postImagesData: [Data] = []
+    var postImagesData: Data? //[Data] = []
     var isEditMode = false {
         didSet {
             tableView.reloadData()
@@ -79,9 +80,10 @@ class PostMessageViewController: BaseViewController {
             "Authorization": "Bearer \(token)"
         ]
         AF.upload(multipartFormData: { (multipartFormData) in
-            for photo in self.postImagesData {
-                multipartFormData.append(photo, withName: "photos[]", fileName: "photos.jpg", mimeType: "image/jpeg")
-            }
+//            for photo in self.postImagesData {
+            let test = self.testPhoto?.pngData()
+            multipartFormData.append(test!, withName: "photos[]", fileName: "photos.jpg", mimeType: "image/jpeg")
+//            }
             multipartFormData.append(self.content!.data(using: String.Encoding.utf8)!, withName: "comment")
         }, to: url,
            method: .post,
@@ -129,9 +131,8 @@ class PostMessageViewController: BaseViewController {
             if content == nil {
                 alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
             } else {
-                presentLoadingVC {
-                    self.onUploadPostData()
-                }
+                presentLoadingVC()
+                self.onUploadPostData()
             }
         }
     }

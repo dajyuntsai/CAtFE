@@ -13,21 +13,13 @@ class UserObject: Codable {
 }
 
 class User: Codable {
+    var id: Int
     var email: String
     var password: String
     var name: String
     var active: Bool
     var avatar: String
     var point: Int
-
-    enum CodingKeys: String, CodingKey {
-        case email
-        case password
-        case name
-        case active
-        case avatar
-        case point
-    }
 }
 
 class LoginResponse: Codable {

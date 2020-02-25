@@ -66,6 +66,7 @@ class ShopLoginContainView: BaseViewController {
         userProvider.getUserInfo(token: token) { (result) in
             switch result {
             case .success(let data):
+                KeyChainManager.shared.id = data.user.id
                 KeyChainManager.shared.name = data.user.name
                 KeyChainManager.shared.email = data.user.email
                 KeyChainManager.shared.avatar = data.user.avatar

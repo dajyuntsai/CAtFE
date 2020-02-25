@@ -16,7 +16,10 @@ class PostMessageDetailViewController: BaseViewController {
             tableView.delegate = self
         }
     }
-    var cafeComments: [CafeComments] = []
+    // from my messages
+    var cafeComments: CafeComments?
+    
+//    var cafeComments: [CafeComments] = []
     var messageId: Int?
     var headerView = UIView()
     let height = UIScreen.main.bounds.height
@@ -58,7 +61,8 @@ class PostMessageDetailViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
         initBackBtn()
-        getMessageDetail()
+        initHeader()
+//        getMessageDetail()
     }
     
     func initBackBtn() {
@@ -88,7 +92,7 @@ class PostMessageDetailViewController: BaseViewController {
     
     func setUpPageControl() {
         pageControl.currentPage = 0
-        pageControl.numberOfPages = cafeComments[0].photos.count
+        pageControl.numberOfPages = cafeComments?.photos.count ?? 1
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = UIColor(named: "MainColor")
         pageControl.hidesForSinglePage = true
@@ -131,6 +135,7 @@ class PostMessageDetailViewController: BaseViewController {
             return
         }
         guard let token = KeyChainManager.shared.token else { return }
+        messageId = cafeComments?.id
         messageBoardManager.replyMessage(
             token: token,
             messageId: messageId!,
@@ -148,29 +153,29 @@ class PostMessageDetailViewController: BaseViewController {
         }
     }
     
-    func getMessageDetail() {
-        messageBoardManager.getAllCafeComment { (result) in
-            switch result {
-            case .success(let data):
-//                self.cafeCommentsList = data.results
-                self.cafeComments = data.results.filter { $0.id == self.messageId }
-                self.initHeader()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("======= getMessageDetail() error: \(error.localizedDescription)")
-            }
-        }
-    }
+//    func getMessageDetail() {
+//        let userId = KeyChainManager.shared.id
+//        messageBoardManager.getMyCafeComment(userId: userId, completion: { (result) in
+//            switch result {
+//            case .success(let data):
+//                self.cafeComments = data.results
+//                self.initHeader()
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            case .failure(let error):
+//                print("======= getMessageDetail() error: \(error.localizedDescription)")
+//            }
+//        })
+//    }
 }
 
 extension PostMessageDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if cafeComments.isEmpty {
+        if cafeComments?.cafeCommentReplies.count == 0 {
             return 2
         } else {
-            return cafeComments[0].cafeCommentReplies.count + 2
+            return cafeComments!.cafeCommentReplies.count + 2
         }
     }
     
@@ -183,7 +188,7 @@ extension PostMessageDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.delegate = self
-            cell.setData(data: cafeComments[0])
+            cell.setData(data: cafeComments!)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostAddReplyCell",
@@ -198,7 +203,7 @@ extension PostMessageDetailViewController: UITableViewDataSource {
                                                            for: indexPath) as? PostMessageReplyTableViewCell else {
             return UITableViewCell() }
             
-            cell.setData(data: cafeComments[0].cafeCommentReplies[indexPath.row - 2])
+            cell.setData(data: cafeComments!.cafeCommentReplies[indexPath.row - 2])
             return cell
         }
     }
@@ -250,7 +255,7 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
 
 extension PostMessageDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return cafeComments!.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -258,7 +263,7 @@ extension PostMessageDetailViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? PostDetailPhotoCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setData(data: (cafeComments[0].photos[indexPath.item]))
+        cell.setData(data: (cafeComments!.photos[indexPath.item].url))
         return cell
     }
 }

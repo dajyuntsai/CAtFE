@@ -23,10 +23,10 @@ class LoadingViewController: UIViewController {
 }
 
 extension UIViewController {
-    func presentLoadingVC(completion: @escaping (() -> Void)) {
+    func presentLoadingVC() {
         let loadingVC = LoadingViewController()
         loadingVC.modalPresentationStyle = .overFullScreen
         loadingVC.modalTransitionStyle = .crossDissolve
-        present(loadingVC, animated: true, completion: completion)
+        present(loadingVC, animated: true, completion: nil)
     }
 }

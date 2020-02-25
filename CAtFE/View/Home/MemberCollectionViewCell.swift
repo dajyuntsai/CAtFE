@@ -17,7 +17,11 @@ class MemberCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setData(data: CafeComments) { // TODO: 更新資料
-        imageView.loadImage("https://images.unsplash.com/photo-1542736705-53f0131d1e98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80")
+    func setData(data: CafeComments) {
+        if data.photos.count > 0 {
+            imageView.loadImage(data.photos[0].url, placeHolder: UIImage(named: "placeholder"))
+        } else {
+            imageView.loadImage("https://ppt.cc/f5Rfex@.png")
+        }
     }
 }

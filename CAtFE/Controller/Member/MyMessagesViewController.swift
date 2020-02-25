@@ -15,7 +15,13 @@ class MyMessagesViewController: BaseViewController {
     let messageBoardManager = MessageBoardManager()
     let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
-    var myMessages: [CafeComments] = []
+    var myMessages: [CafeComments] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,25 +38,22 @@ class MyMessagesViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        presentLoadingVC()
         getMessages()
     }
     
     func getMessages() {
-        messageBoardManager.getAllCafeComment { (result) in
+        let userId = KeyChainManager.shared.id
+        messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
              case .success(let data):
-                self.getMyMessages(messages: data.results)
+                self.myMessages = data.results
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             case .failure(let error):
                 NSLog("getMessages error: \(error.localizedDescription)")
-//                CustomProgressHUD.showFailure(text: "讀取資料失敗")
             }
-        }
-    }
-    
-    func getMyMessages(messages: [CafeComments]) {
-        myMessages = messages.filter { $0.user?.email == KeyChainManager.shared.email}
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
         }
     }
 
@@ -97,9 +100,9 @@ extension MyMessagesViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: 串完api再打開
-//        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
-//        presentVC?.modalPresentationStyle = .overFullScreen
-//        self.show(presentVC!, sender: nil)
+        let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
+        presentVC?.modalPresentationStyle = .overFullScreen
+        presentVC?.cafeComments = self.myMessages[indexPath.row]
+        self.show(presentVC!, sender: nil)
     }
 }
