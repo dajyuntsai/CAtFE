@@ -48,7 +48,7 @@ class ScoreForCafeViewController: BaseViewController {
         guard let token = KeyChainManager.shared.token else { return }
         scoreManager.createCafeScore(
             token: token,
-            cafeId: 5,
+            cafeId: 6,
             loveOne: starList[1].value[0] as? Double ?? 1.0,
             price: starList[2].value[0] as? Double ?? 1.0,
             surrounding: starList[3].value[0] as? Double ?? 1.0,

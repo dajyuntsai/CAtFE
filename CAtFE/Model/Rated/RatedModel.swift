@@ -13,13 +13,13 @@ struct CafeScores: Codable {
     let meal: Double
     let loveOne: Double
     let price: Double
-    let surroundin: Double
+    let surrounding: Double
     
     enum CodingKeys: String, CodingKey {
     case traffic
     case meal
     case loveOne = "love_one"
     case price
-    case surroundin
+    case surrounding
     }
 }

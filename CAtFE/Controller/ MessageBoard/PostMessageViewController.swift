@@ -75,7 +75,7 @@ class PostMessageViewController: BaseViewController {
                 token: token,
                 cafeID: cafeId ?? 6,
                 content: content!,
-                photos: ["https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg", "https://s3.amazonaws.com/jo.www.bucket/neighborhoodcats/nodes/images/1844/default/Flynn_Rider_photo.jpg?1548904662"]) { (result) in
+                photos: ["https://www.iams.com/images/default-source/article-image/article_stomach-issues-in-cats-why-cats-vomit-and-what-to-do_header.jpg", "https://images.unsplash.com/photo-1542736705-53f0131d1e98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"]) { (result) in
                             switch result {
                             case .success:
                                 CustomProgressHUD.showSuccess(text: "發送成功")

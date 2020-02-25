@@ -23,6 +23,12 @@ struct Cafe: Codable {
     let fbUrl: String
     let notes: String
     let cafeComments: [CafeComments]
+    let cafeScores: [CafeScores]
+    let trafficAverage: Double
+    let mealAverage: Double
+    let loveOneAverage: Double
+    let priceAverage: Double
+    let surroundingAverage: Double
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -35,5 +41,11 @@ struct Cafe: Codable {
         case fbUrl = "fb_url"
         case notes
         case cafeComments = "cafe_comments"
+        case cafeScores = "cafe_scores"
+        case trafficAverage = "traffic_average"
+        case mealAverage = "meal_average"
+        case loveOneAverage = "love_one_average"
+        case priceAverage = "price_average"
+        case surroundingAverage = "surrounding_average"
     }
 }

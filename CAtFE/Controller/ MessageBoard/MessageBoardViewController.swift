@@ -44,6 +44,7 @@ class MessageBoardViewController: UIViewController {
         super.viewDidLoad()
 
         initView()
+        initNavView()
         getMessageList()
     }
     
@@ -57,13 +58,21 @@ class MessageBoardViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
+    
+    func initNavView() {
+        let navView = UILabel(frame: CGRect(x: width * 0.1, y: height * 0.06, width: width, height: 50))
+        navView.backgroundColor = .white
+        navView.text = "留言板"
+        navView.font = UIFont(name: "Helvetica Neue", size: 24)
+        self.view.addSubview(navView)
+    }
 
     func initView() {
         createBtnRightConstraint.constant = width * 0.05
         createBtnBottomConstraint.constant = width * 0.05
         addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
 
-        collectionView?.contentInset = UIEdgeInsets(top: height * 0.05, left: 8, bottom: 8, right: 8)
+        collectionView?.contentInset = UIEdgeInsets(top: height * 0.06 + 50, left: 8, bottom: 8, right: 8)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }

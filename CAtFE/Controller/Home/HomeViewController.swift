@@ -205,44 +205,44 @@ class HomeViewController: UIViewController {
     }
     
     func updateCafeData() {
-        let cafeId = 4
-        let cafe = Cafe(id: cafeId,
-                        petType: "貓",
-                        name: "貓下去敦北俱樂部",
-                        tel: "02-27177596",
-                        address: "台北市松山區敦化北路218號",
-                        latitude: 25.0587, longitude: 121.549,
-                        fbUrl: "",
-                        notes: "",
-                        cafeComments: [])
-        cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
-            switch result {
-            case .success:
-                print("修改成功")
-            case .failure(let error):
-                print("=======update", error)
-            }
-        }
+//        let cafeId = 4
+//        let cafe = Cafe(id: cafeId,
+//                        petType: "貓",
+//                        name: "貓下去敦北俱樂部",
+//                        tel: "02-27177596",
+//                        address: "台北市松山區敦化北路218號",
+//                        latitude: 25.0587, longitude: 121.549,
+//                        fbUrl: "",
+//                        notes: "",
+//                        cafeComments: [])
+//        cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
+//            switch result {
+//            case .success:
+//                print("修改成功")
+//            case .failure(let error):
+//                print("=======update", error)
+//            }
+//        }
     }
     
     func deleteCafeData() {
-        let cafe = Cafe(id: 5,
-                        petType: "test",
-                        name: "test",
-                        tel: "test",
-                        address: "test",
-                        latitude: 25.058734, longitude: 121.548898,
-                        fbUrl: "",
-                        notes: "",
-                        cafeComments: [])
-        cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
-            switch result {
-            case .success:
-                print("新增成功")
-            case .failure(let error):
-                print("=======create", error)
-            }
-        }
+//        let cafe = Cafe(id: 5,
+//                        petType: "test",
+//                        name: "test",
+//                        tel: "test",
+//                        address: "test",
+//                        latitude: 25.058734, longitude: 121.548898,
+//                        fbUrl: "",
+//                        notes: "",
+//                        cafeComments: [])
+//        cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
+//            switch result {
+//            case .success:
+//                print("新增成功")
+//            case .failure(let error):
+//                print("=======create", error)
+//            }
+//        }
     }
     
     func createAnnotations(locations: [Cafe]) {

@@ -37,7 +37,8 @@ class MemberViewController: UIViewController {
         super.viewWillAppear(animated)
         
         userName.text = KeyChainManager.shared.name
-        userImageView.loadImage(KeyChainManager.shared.avatar)
+        guard let avatar = KeyChainManager.shared.avatar else { return }
+        userImageView.loadImage(avatar, placeHolder: UIImage(named: "placeholder"))
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -56,7 +57,7 @@ class MemberViewController: UIViewController {
     func initView() { // TODO: 往上滑的時候消失
         userViewHeight.constant = height / 5
         userName.text = KeyChainManager.shared.name
-        userImageView.loadImage(KeyChainManager.shared.avatar)
+//        userImageView.loadImage(KeyChainManager.shared.avatar)
         
         pointBgView.layer.shadowOffset = CGSize(width: 2, height: 2)
         pointBgView.layer.shadowColor = UIColor.lightGray.cgColor

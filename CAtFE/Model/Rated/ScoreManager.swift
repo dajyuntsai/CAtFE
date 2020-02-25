@@ -9,10 +9,13 @@
 import Foundation
 
 enum ScoreRequest: CAtFERequest {
+    case getRatedList
     case createScore(String, Int, Double, Double, Double, Double, Double) // token, cafeId, love_one, price, surrounding, meal, traffic
     
     var headers: [String: String] {
         switch self {
+        case .getRatedList:
+            return [:]
         case .createScore(let accessToken, _, _, _, _, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
                     HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
@@ -21,6 +24,8 @@ enum ScoreRequest: CAtFERequest {
     
     var body: Data? {
         switch self {
+        case .getRatedList:
+            return nil
         case .createScore(_, _, let loveOne, let price, let surrounding, let meal, let traffic):
             let dict = [
                 "love_one": loveOne,
@@ -35,6 +40,8 @@ enum ScoreRequest: CAtFERequest {
     
     var method: String {
         switch self {
+        case .getRatedList:
+            return HTTPMethod.GET.rawValue
         case .createScore:
             return HTTPMethod.POST.rawValue
         }
@@ -42,6 +49,8 @@ enum ScoreRequest: CAtFERequest {
     
     var endPoint: String {
         switch self {
+        case .getRatedList:
+            return "/cafes/"
         case .createScore(_, let cafeId, _, _, _, _, _):
             return "/cafes/\(cafeId)/score/"
         }
@@ -50,6 +59,22 @@ enum ScoreRequest: CAtFERequest {
 
 class ScoreManager {
     let decoder = JSONDecoder()
+    func getRatedList(completion: @escaping (Result<CafeModel>) -> Void) {
+        HTTPClient.shared.request(ScoreRequest.getRatedList) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let ratedList = try self.decoder.decode(CafeModel.self, from: data)
+                    completion(.success(ratedList))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func createCafeScore(token: String,
                          cafeId: Int,
                          loveOne: Double,

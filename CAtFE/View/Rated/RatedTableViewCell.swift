@@ -51,6 +51,7 @@ class RatedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         starView.settings.updateOnTouch = false
+        starView.settings.fillMode = .precise
         
         followBtn.layer.cornerRadius = 10
         scoreBtn.layer.cornerRadius = 10
@@ -68,8 +69,12 @@ class RatedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setData(data: Bool) {
-        let stateColor = data == true ? .gray : UIColor(named: "MainColor")
-        followBtn.backgroundColor = stateColor
+    func setData(data: Cafe) {
+//        let stateColor = data == true ? .gray : UIColor(named: "MainColor")
+//        followBtn.backgroundColor = stateColor
+        let averageScore = (data.loveOneAverage + data.mealAverage + data.priceAverage + data.surroundingAverage + data.trafficAverage) / 5
+        cafeNameLabel.text = data.name
+        starView.rating = averageScore
+        cafeScoreLabel.text = String(averageScore)
     }
 }

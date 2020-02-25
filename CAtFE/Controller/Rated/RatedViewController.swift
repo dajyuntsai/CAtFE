@@ -22,10 +22,18 @@ class RatedViewController: UIViewController {
         super.viewDidLoad()
 
         initView()
+        initNavView()
+    }
+    
+    func initNavView() {
+        let navView = UILabel(frame: CGRect(x: width * 0.1, y: height * 0.06, width: width, height: 50))
+        navView.text = "排行榜"
+        navView.font = UIFont(name: "Helvetica Neue", size: 24)
+        self.view.addSubview(navView)
     }
     
     func initView() {
-        let rectTitle = CGRect(x: 0, y: height * 0.1, width: width, height: 50)
+        let rectTitle = CGRect(x: 0, y: height * 0.06 + 50, width: width, height: 50)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
         
@@ -53,7 +61,7 @@ class RatedViewController: UIViewController {
                            ambienceVC,
                            deliciousVC,
                            convenienceVC]
-        let rectContent = CGRect(x: 0, y: height * 0.1 + 50, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height * 0.06 + 50 + 50, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],

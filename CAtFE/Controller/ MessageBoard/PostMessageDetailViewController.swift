@@ -173,6 +173,7 @@ extension PostMessageDetailViewController: UITableViewDataSource {
                                                            for: indexPath) as? PostMessageAddReplyTableViewCell else {
                 return UITableViewCell()
             }
+            cell.replyContentTextField.text = ""
             cell.delegate = self
             return cell
         default:

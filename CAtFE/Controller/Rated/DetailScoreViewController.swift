@@ -15,7 +15,7 @@ class DetailScoreViewController: BaseViewController {
     open var aaChartModel: AAChartModel!
     open var aaChartView: AAChartView!
     
-    var scoreList = [5, 4, 3, 4, 4]
+    var ratedList: Cafe?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,9 @@ class DetailScoreViewController: BaseViewController {
         return AAChartModel()
             .chartType(.area)
             .animationType(.easeOutQuint)
-            .title("Cafe Name")
+            .title(ratedList?.name ?? "Cafe Name")
             .titleFontSize(18)
-            .subtitle("average score")
+            .subtitle("平均分數")
             .subtitleFontSize(15)
             .categories(["寵物親人", "價格親人", "用餐環境", "餐點好吃", "交通便利"])
             .colorsTheme(["#ffc069"])
@@ -55,8 +55,12 @@ class DetailScoreViewController: BaseViewController {
             .polar(true)
             .series([
                 AASeriesElement()
-                    .name(" 平均分數")
-                    .data(scoreList)
+//                    .name(" 平均分數")
+                    .data([ratedList?.loveOneAverage as Any,
+                           ratedList?.priceAverage as Any,
+                           ratedList?.surroundingAverage as Any,
+                           ratedList?.mealAverage as Any,
+                           ratedList?.trafficAverage as Any])
             ])
     }
     

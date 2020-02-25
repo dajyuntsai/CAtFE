@@ -38,10 +38,11 @@ class MyMessagesViewController: BaseViewController {
     func getMessages() {
         messageBoardManager.getMyMessageList { (result) in
             switch result {
-            case .success(let data):
+             case .success(let data):
                 self.getMyMessages(messages: data.results)
-            case .failure:
-                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+            case .failure(let error):
+                NSLog("getMessages error: \(error.localizedDescription)")
+//                CustomProgressHUD.showFailure(text: "讀取資料失敗")
             }
         }
     }
@@ -71,7 +72,7 @@ extension MyMessagesViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? MemberCollectionViewCell else {
             return UICollectionViewCell()
         }
-//        cell.imageView.loadImage(myMessages[indexPath.row].photos[0])
+        cell.setData(data: myMessages[indexPath.row])
         return cell
     }
 }

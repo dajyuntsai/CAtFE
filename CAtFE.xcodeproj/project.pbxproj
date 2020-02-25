@@ -99,6 +99,8 @@
 		BE94EB5723F69A2100FA4604 /* FollowingCafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */; };
 		BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934923FFAB9E000A4A04 /* Animation.swift */; };
 		BEA3934C2403AC9C000A4A04 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */; };
+		BEA39352240503C3000A4A04 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA39350240503C3000A4A04 /* LoadingViewController.swift */; };
+		BEA39353240503C3000A4A04 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA39351240503C3000A4A04 /* LoadingViewController.xib */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -248,6 +250,8 @@
 		BE94EB5623F69A2100FA4604 /* FollowingCafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCafeTableViewCell.swift; sourceTree = "<group>"; };
 		BEA3934923FFAB9E000A4A04 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		BEA39350240503C3000A4A04 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		BEA39351240503C3000A4A04 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -516,9 +520,19 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
+		BEA3934F240503A5000A4A04 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				BEA39350240503C3000A4A04 /* LoadingViewController.swift */,
+				BEA39351240503C3000A4A04 /* LoadingViewController.xib */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		BEE181D223E20E2100660AEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BEA3934F240503A5000A4A04 /* Loading */,
 				BEE181DF23E2326700660AEB /* Base */,
 				BEE181D523E20E6D00660AEB /* Login */,
 				BEE181DE23E2320C00660AEB /* Home */,
@@ -819,6 +833,7 @@
 				BE18E0A723FE6464006F004C /* PostDetailPhotoCollectionViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
 				BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */,
+				BEA39353240503C3000A4A04 /* LoadingViewController.xib in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
 				BE18E09923F9511A006F004C /* SectionView.xib in Resources */,
 				BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */,
@@ -1052,6 +1067,7 @@
 				BE076B5A23EA65380090BC7F /* CAtFEConstant.swift in Sources */,
 				BE9131F723E9A3B8004A669D /* LocationTableViewCell.swift in Sources */,
 				BE9131EB23E82166004A669D /* PostMessageReplyTableViewCell.swift in Sources */,
+				BEA39352240503C3000A4A04 /* LoadingViewController.swift in Sources */,
 				BE5258FE23EC583600F8AC00 /* CreateCafeViewController.swift in Sources */,
 				BEE181F023E2384500660AEB /* KingFisherWrapper.swift in Sources */,
 				BE52590723EC5F9A00F8AC00 /* UIButton+Extension.swift in Sources */,

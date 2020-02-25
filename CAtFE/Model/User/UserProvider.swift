@@ -142,7 +142,6 @@ class UserProvider {
     func emailSignUp(email: String,
                      name: String,
                      password: String,
-//                     avatar: String,
                      completion: @escaping (Result<Void>) -> Void) {
         HTTPClient.shared.request(UserRequest.register(email, password, name)) { (result) in
             switch result {
@@ -185,21 +184,6 @@ class UserProvider {
                 }
             case .failure(let error):
                 completion(Result.failure(error))
-            }
-        }
-    }
-    
-    func updateUserInfo(token: String,
-                        name: String,
-                        avatar: String,
-                        password: String,
-                        completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.updateUserInfo(token, name, avatar, password)) { (result) in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
             }
         }
     }

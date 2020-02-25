@@ -19,17 +19,22 @@ class ComprehensiveRatedViewController: BaseViewController {
         
     let animation = Animation()
     let refreshControl = UIRefreshControl()
+    let scoreManager = ScoreManager()
+
+    var ratedList: [Cafe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initView()
+        getRatedList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+//        getRatedList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +48,28 @@ class ComprehensiveRatedViewController: BaseViewController {
         tableView.addSubview(refreshControl)
     }
     
+    func getRatedList() {
+        scoreManager.getRatedList { (result) in
+            switch result {
+            case .success(let data):
+                self.getSortedRank(cafeList: data.results)
+            case .failure(let error):
+                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+            }
+        }
+    }
+    
+    func getSortedRank(cafeList: [Cafe]) {
+        ratedList = cafeList.sorted {
+            ($0.loveOneAverage + $0.mealAverage + $0.priceAverage + $0.surroundingAverage + $0.trafficAverage) / 5 >
+                ($1.loveOneAverage + $1.mealAverage + $1.priceAverage + $1.surroundingAverage + $1.trafficAverage) / 5}
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     @objc func loadData() {
+        getRatedList()
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -51,7 +77,7 @@ class ComprehensiveRatedViewController: BaseViewController {
 
 extension ComprehensiveRatedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return ratedList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,6 +95,7 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
         default:
             cell.ratedIcon.isHidden = true
         }
+        cell.setData(data: ratedList[indexPath.row])
         cell.delegate = self
         return cell
     }
@@ -91,10 +118,12 @@ extension ComprehensiveRatedViewController: UITableViewDelegate {
 
 extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
     func showDetailRadar(_ cell: RatedTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
         let presentVC = UIStoryboard.rated
             .instantiateViewController(identifier: DetailScoreViewController.identifier)
             as? DetailScoreViewController
         presentVC?.modalPresentationStyle = .fullScreen
+        presentVC?.ratedList = self.ratedList[indexPath.row]
         self.show(presentVC!, sender: nil)
     }
     

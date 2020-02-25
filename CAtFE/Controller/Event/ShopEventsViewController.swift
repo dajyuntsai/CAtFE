@@ -22,6 +22,7 @@ class ShopEventsViewController: UIViewController {
         super.viewDidLoad()
 
         initView()
+        initNavView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +37,15 @@ class ShopEventsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    func initNavView() {
+        let navView = UILabel(frame: CGRect(x: width * 0.1, y: height * 0.06, width: width, height: 50))
+        navView.text = "動態"
+        navView.font = UIFont(name: "Helvetica Neue", size: 24)
+        self.view.addSubview(navView)
+    }
+    
     func initView() {
-        let rectTitle = CGRect(x: 0, y: height * 0.1, width: width, height: 50)
+        let rectTitle = CGRect(x: 0, y: height * 0.06 + 50, width: width, height: 50)
         mPageTitleView = TabTitleView(frame: rectTitle, titleArr: titleList, config: conf, delegate: self)
         self.view.addSubview(mPageTitleView)
         
@@ -54,7 +62,7 @@ class ShopEventsViewController: UIViewController {
         let controllers = [myFollowingVC,
                            hotVC,
                            recommandVC]
-        let rectContent = CGRect(x: 0, y: height * 0.1 + 60, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height * 0.06 + 50 + 50, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],

@@ -39,4 +39,5 @@ target 'CAtFE' do
   pod 'YPImagePicker'
 
   pod 'Alamofire'
+  pod 'lottie-ios'
 end

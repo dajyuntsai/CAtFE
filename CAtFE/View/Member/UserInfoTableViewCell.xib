@@ -36,7 +36,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ue-hH-dQ7">
-                        <rect key="frame" x="196" y="78" width="30" height="30"/>
+                        <rect key="frame" x="188" y="86" width="30" height="30"/>
                         <state key="normal" image="camera"/>
                         <connections>
                             <action selector="cameraBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8DV-6O-ozN"/>
@@ -47,14 +47,14 @@
                     <constraint firstAttribute="trailingMargin" secondItem="kZe-mP-Qer" secondAttribute="trailing" constant="16" id="2y3-YH-L89"/>
                     <constraint firstItem="kZe-mP-Qer" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="DHe-Il-nc3"/>
                     <constraint firstItem="2vX-LW-yfP" firstAttribute="centerY" secondItem="rFF-8L-cWa" secondAttribute="centerY" id="HJR-UQ-ozO"/>
-                    <constraint firstItem="4Ue-hH-dQ7" firstAttribute="leading" secondItem="kZe-mP-Qer" secondAttribute="leadingMargin" id="UWc-5N-H4l"/>
+                    <constraint firstItem="4Ue-hH-dQ7" firstAttribute="leading" secondItem="kZe-mP-Qer" secondAttribute="leading" id="UWc-5N-H4l"/>
                     <constraint firstItem="2vX-LW-yfP" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="b3c-dz-bHi"/>
                     <constraint firstItem="rFF-8L-cWa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="fTv-Jm-rSa"/>
                     <constraint firstItem="rFF-8L-cWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="j5G-rB-cAZ"/>
                     <constraint firstItem="4Ue-hH-dQ7" firstAttribute="width" secondItem="kZe-mP-Qer" secondAttribute="width" multiplier="0.3" id="kVe-il-vO5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2vX-LW-yfP" secondAttribute="trailing" constant="16" id="nos-Mz-dfz"/>
                     <constraint firstItem="4Ue-hH-dQ7" firstAttribute="height" secondItem="kZe-mP-Qer" secondAttribute="height" multiplier="0.3" id="rI6-ai-1hW"/>
-                    <constraint firstItem="kZe-mP-Qer" firstAttribute="bottomMargin" secondItem="4Ue-hH-dQ7" secondAttribute="bottom" id="vFb-wo-UL9"/>
+                    <constraint firstItem="kZe-mP-Qer" firstAttribute="bottom" secondItem="4Ue-hH-dQ7" secondAttribute="bottom" id="vFb-wo-UL9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
