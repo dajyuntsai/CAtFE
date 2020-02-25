@@ -30,7 +30,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
     @IBAction func likeBtn(_ sender: Any) {
         likeBtnState = !likeBtnState
         let btnImg = likeBtnState == true ?
-            UIImage(named: "select_heart") : UIImage(named: "unselect_heart")
+            UIImage(named: "select_collect") : UIImage(named: "favourite")
         likeBtn.setImage(btnImg, for: .normal)
     }
     @IBOutlet weak var postImageViewHeightLayoutConstraint: NSLayoutConstraint!
@@ -63,7 +63,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         locationLabel.text = message.cafeName
 
         if message.postPhotos.count != 0 {
-            postImageView.loadImage(message.postPhotos[0])
+            postImageView.loadImage(message.postPhotos[0], placeHolder: UIImage(named: "placeholder"))
         }
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true

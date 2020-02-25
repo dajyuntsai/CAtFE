@@ -116,46 +116,38 @@ class SettingViewController: BaseViewController {
     }
     
     func uploadUserName(url: URL, headers: HTTPHeaders) {
-//        let dict = ["name": updateName]
-        do {
-//            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-            AF.upload(multipartFormData: { (multipartFormData) in
-                multipartFormData.append(self.updateName.data(using: String.Encoding.utf8)!, withName: "name")
-            }, to: url,
-               method: .patch,
-               headers: headers).response { (response) in
-                if let statusCode = response.response?.statusCode {
-                    NSLog("statusCode: \(statusCode)")
-                }
-                switch response.result {
-                case .success(let data):
-                    if let data = data,
-                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
-                        let jsonDict = json as? [String: Any] {
-                        NSLog("jsonDict : \(jsonDict)")
-                        guard let user = jsonDict["user"] as? [String: Any] else { return }
-                        guard let name = user["name"] as? String else { return }
-                        KeyChainManager.shared.name = name
-                    }
-                    CustomProgressHUD.showSuccess(text: "更改成功")
-                    self.navigationController?.popToRootViewController(animated: true)
-                case .failure(let error):
-                    NSLog("error: \(error.localizedDescription)")
-                    CustomProgressHUD.showFailure(text: "更改失敗")
-                }
+        AF.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(self.updateName.data(using: String.Encoding.utf8)!, withName: "name")
+        }, to: url,
+           method: .patch,
+           headers: headers).response { (response) in
+            if let statusCode = response.response?.statusCode {
+                NSLog("statusCode: \(statusCode)")
             }
-        } catch {
-            NSLog("encode userName error: \(error.localizedDescription)")
+            switch response.result {
+            case .success(let data):
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
+                    let jsonDict = json as? [String: Any] {
+                    NSLog("jsonDict : \(jsonDict)")
+                    guard let user = jsonDict["user"] as? [String: Any] else { return }
+                    guard let name = user["name"] as? String else { return }
+                    KeyChainManager.shared.name = name
+                }
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showSuccess(text: "更改成功")
+                self.navigationController?.popToRootViewController(animated: true)
+            case .failure(let error):
+                NSLog("error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showFailure(text: "更改失敗")
+            }
         }
     }
     
     func uploadUserImage(url: URL, headers: HTTPHeaders) {
         AF.upload(multipartFormData: { (multipartFormData) in
-            //            multipartFormData.append(self.updateAvatar!, withName: "image_file")
             multipartFormData.append(self.updateAvatar!, withName: "avatar", fileName: "avatar.jpg", mimeType: "image/jpeg")
-            //            for (key, value) in parameters {
-            //                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            //            }
         }, to: url,
            method: .patch,
            headers: headers).response { (response) in

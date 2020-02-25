@@ -45,7 +45,10 @@ class MessageBoardViewController: UIViewController {
 
         initView()
         initNavView()
-        getMessageList()
+        
+        presentLoadingVC {
+            self.getMessageList()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,14 +90,19 @@ class MessageBoardViewController: UIViewController {
                 self.cafeResults.removeAll()
                 self.cafeResults = cafeData.results
                 self.getCommentDetail(data: cafeData.results)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             case .failure(let error):
-                print("======= getMessageList error: \(error)")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                print("======= getMessageList error: \(error.localizedDescription)")
             }
         }
     }
     
     func getCommentDetail(data: [Cafe]) {
-        
         var commentTemp: [Comments] = []
         for comments in data {
             for comment in comments.cafeComments {
@@ -212,7 +220,8 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-        presentVC?.cafeComments = cafeComments[indexPath.item]
+//        presentVC?.cafeComments = cafeComments[indexPath.item]
+        presentVC?.messageId = cafeComments[indexPath.item].messageId
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -267,6 +276,6 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         let boundingRect = nsstring.boundingRect(with: constraintRect,
                                                  options: .usesLineFragmentOrigin,
                                                  attributes: textAttributes, context: nil)
-        return ceil(boundingRect.height) + 30
+        return ceil(boundingRect.height) * 1.5
     }
 }

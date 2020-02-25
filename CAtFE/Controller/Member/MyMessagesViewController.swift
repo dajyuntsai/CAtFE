@@ -36,7 +36,7 @@ class MyMessagesViewController: BaseViewController {
     }
     
     func getMessages() {
-        messageBoardManager.getMyMessageList { (result) in
+        messageBoardManager.getAllCafeComment { (result) in
             switch result {
              case .success(let data):
                 self.getMyMessages(messages: data.results)

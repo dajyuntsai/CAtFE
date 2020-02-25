@@ -101,6 +101,7 @@
 		BEA3934C2403AC9C000A4A04 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */; };
 		BEA39352240503C3000A4A04 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA39350240503C3000A4A04 /* LoadingViewController.swift */; };
 		BEA39353240503C3000A4A04 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA39351240503C3000A4A04 /* LoadingViewController.xib */; };
+		BEA393582405294C000A4A04 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA393572405294B000A4A04 /* loading.json */; };
 		BEA99DFC23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */; };
 		BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */; };
 		BEA99E0023EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */; };
@@ -252,6 +253,7 @@
 		BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		BEA39350240503C3000A4A04 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BEA39351240503C3000A4A04 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		BEA393572405294B000A4A04 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../Users/ninn/Downloads/loading.json; sourceTree = "<group>"; };
 		BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		BEA99DFB23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailTextTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99DFE23EFE59E00F2CC69 /* CreateDetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailStarTableViewCell.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		BE1EDBD323E2E35E003C38D9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BEA393542405106C000A4A04 /* Animation */,
 				BE66210923D3FE490053FD07 /* Assets.xcassets */,
 				BE076B5923EA65380090BC7F /* CAtFEConstant.swift */,
 			);
@@ -527,6 +530,14 @@
 				BEA39351240503C3000A4A04 /* LoadingViewController.xib */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		BEA393542405106C000A4A04 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				BEA393572405294B000A4A04 /* loading.json */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		BEE181D223E20E2100660AEB /* Controller */ = {
@@ -832,6 +843,7 @@
 				BEA99DFD23EFD12300F2CC69 /* CreateDetailTextTableViewCell.xib in Resources */,
 				BE18E0A723FE6464006F004C /* PostDetailPhotoCollectionViewCell.xib in Resources */,
 				BE1EDBC723E2DBEE003C38D9 /* ShopLogin.storyboard in Resources */,
+				BEA393582405294C000A4A04 /* loading.json in Resources */,
 				BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */,
 				BEA39353240503C3000A4A04 /* LoadingViewController.xib in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,

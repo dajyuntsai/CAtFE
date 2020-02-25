@@ -7,20 +7,25 @@
 //
 
 import UIKit
+import Lottie
 
 class LoadingViewController: UIViewController {
 
+    @IBOutlet weak var animationView: AnimationView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 0.5
+        animationView.play()
     }
 }
 
 extension UIViewController {
     func presentLoadingVC(completion: @escaping (() -> Void)) {
         let loadingVC = LoadingViewController()
-        loadingVC.modalPresentationStyle = .overCurrentContext
+        loadingVC.modalPresentationStyle = .overFullScreen
         loadingVC.modalTransitionStyle = .crossDissolve
         present(loadingVC, animated: true, completion: completion)
     }

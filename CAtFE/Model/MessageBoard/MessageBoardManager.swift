@@ -10,7 +10,7 @@ import Foundation
 
 enum MessageBoardRequest: CAtFERequest {
     case allMessage
-    case myMessage
+    case allCafeComment
     case createMessage(String, Int, String, [String]) // (token, cafeId, content, photos)
     case updateMessage(String, Int, Int, String, [Photos]) // (token, msgId, cafeId, content, photos)
     case deleteMessage(String, CafeComments, Int)
@@ -20,7 +20,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return [:]
-        case .myMessage:
+        case .allCafeComment:
             return [:]
         case .createMessage(let accessToken, _, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
@@ -41,7 +41,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return nil
-        case .myMessage:
+        case .allCafeComment:
             return nil
         case .createMessage(_, _, let content, let photos):
             let dict = [
@@ -69,7 +69,7 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return HTTPMethod.GET.rawValue
-        case .myMessage:
+        case .allCafeComment:
             return HTTPMethod.GET.rawValue
         case .createMessage:
             return HTTPMethod.POST.rawValue
@@ -86,8 +86,8 @@ enum MessageBoardRequest: CAtFERequest {
         switch self {
         case .allMessage:
             return "/cafes/"
-        case .myMessage:
-            return "/cafeComments"
+        case .allCafeComment:
+            return "/cafeComments/"
         case .createMessage(_, let cafeId, _, _):
             return "/cafes/\(cafeId)/comment/"
         case .updateMessage(_, let msgId, _, _, _):
@@ -118,8 +118,8 @@ class MessageBoardManager {
         }
     }
 
-    func getMyMessageList(completion: @escaping (Result<CafeCommentModel>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.myMessage) { (result) in
+    func getAllCafeComment(completion: @escaping (Result<CafeCommentModel>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.allCafeComment) { (result) in
             switch result {
             case .success(let data):
                 do {
@@ -192,11 +192,16 @@ class MessageBoardManager {
     func replyMessage(token: String,
                       messageId: Int,
                       text: String,
-                      completion: @escaping (Result<Void>) -> Void) {
+                      completion: @escaping (Result<CafeComments>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.replyMessage(token, messageId, text)) { (result) in
             switch result {
             case .success(let data):
-                completion(.success(()))
+                do {
+                    let replies = try self.decoder.decode(CafeComments.self, from: data)
+                    completion(.success((replies)))
+                } catch {
+                    completion(.failure(error))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }

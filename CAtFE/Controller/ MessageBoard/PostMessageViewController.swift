@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PostMessageViewController: BaseViewController {
 
@@ -15,10 +16,17 @@ class PostMessageViewController: BaseViewController {
     let messageBoardManager = MessageBoardManager()
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
-    var selectedPhotoList: [UIImage] = []
+    var selectedPhotoList: [UIImage] = [] {
+        didSet {
+            for photo in selectedPhotoList {
+                postImagesData.append(photo.pngData()!)
+            }
+        }
+    }
     var cafeId: Int?
     var content: String?
     var editMessage: Comments?
+    var postImagesData: [Data] = []
     var isEditMode = false {
         didSet {
             tableView.reloadData()
@@ -63,34 +71,49 @@ class PostMessageViewController: BaseViewController {
         self.view.addSubview(saveBtn)
     }
     
-    func onCreateMessage() {
-        guard KeyChainManager.shared.token != nil else {
-            return onShowLogin()
-        }
-        let token = KeyChainManager.shared.token ?? ""
-        if content == nil {
-            alert(message: "請輸入內容", handler: nil)
-        } else {
-            messageBoardManager.createMessageInList(
-                token: token,
-                cafeID: cafeId ?? 6,
-                content: content!,
-                photos: ["https://www.iams.com/images/default-source/article-image/article_stomach-issues-in-cats-why-cats-vomit-and-what-to-do_header.jpg", "https://images.unsplash.com/photo-1542736705-53f0131d1e98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"]) { (result) in
-                            switch result {
-                            case .success:
-                                CustomProgressHUD.showSuccess(text: "發送成功")
-                    DispatchQueue.main.async {
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                case .failure(let error):
-                    CustomProgressHUD.showFailure(text: "發送失敗")
-                    DispatchQueue.main.async {
-                        self.dismiss(animated: true, completion: nil)
-                        print("======= createMessage error: \(error.localizedDescription)")
-                    }
+    func onUploadPostData() {
+        guard let token = KeyChainManager.shared.token else { return }
+        let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 6)/comment/")!
+        let headers: HTTPHeaders = [
+            "Content-type": "multipart/form-data",
+            "Authorization": "Bearer \(token)"
+        ]
+        AF.upload(multipartFormData: { (multipartFormData) in
+            for photo in self.postImagesData {
+                multipartFormData.append(photo, withName: "photos[]", fileName: "photos.jpg", mimeType: "image/jpeg")
+            }
+            multipartFormData.append(self.content!.data(using: String.Encoding.utf8)!, withName: "comment")
+        }, to: url,
+           method: .post,
+           headers: headers).response { (response) in
+            if let statusCode = response.response?.statusCode {
+                NSLog("statusCode: \(statusCode)")
+            }
+            switch response.result {
+            case .success(let data):
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
+                    let jsonDict = json as? [String: Any] {
+                    NSLog("jsonDict : \(jsonDict)")
+                }
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showSuccess(text: "發送成功")
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            case .failure(let error):
+                NSLog("error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showFailure(text: "發送失敗")
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }
+    }
+    
+    func onUpdateMessage() {
+        // TODO: update message feature
     }
     
     func onShowLogin() {
@@ -99,25 +122,17 @@ class PostMessageViewController: BaseViewController {
         present(authVC, animated: false, completion: nil)
     }
     
-    func onUpdateMessage() { // TODO: update message api
-        //        let token = KeyChainManager.shared.token ?? ""
-        //        messageBoardManager.updateMessageInList(token: <#T##String#>,
-        //                                                messageObj: <#T##Message#>,
-        //                                                msgId: <#T##Int#>) { (result) in
-        //                                                    switch result {
-        //                                                    case .success(_):
-        //                                                        <#code#>
-        //                                                    case .failure(_):
-        //                                                        <#code#>
-        //                                                    }
-        //        }
-    }
-    
     @objc func sendPostBtn() {
         if isEditMode {
             onUpdateMessage()
         } else {
-            onCreateMessage()
+            if content == nil {
+                alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
+            } else {
+                presentLoadingVC {
+                    self.onUploadPostData()
+                }
+            }
         }
     }
     

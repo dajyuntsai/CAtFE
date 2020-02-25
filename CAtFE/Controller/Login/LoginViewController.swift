@@ -10,6 +10,7 @@ import UIKit
 import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Alamofire
 
 class LoginViewController: BaseViewController {
     
@@ -96,18 +97,47 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
         let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"
 
-        userProvider.loginWithApple(token: appleToken) { (result) in
-            switch result {
-            case .success:
-                KeyChainManager.shared.name = fullName
-                KeyChainManager.shared.email = email
-                self.appleLoginSuccess()
+        let url = URL(string: "https://catfe.herokuapp.com/users/appleLogin/")!
+        AF.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(appleToken.data(using: .utf8)!, withName: "token")
+        }, to: url,
+           method: .post).response { (response) in
+            if let statusCode = response.response?.statusCode {
+                NSLog("statusCode: \(statusCode)")
+            }
+            switch response.result {
+            case .success(let data):
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
+                    let jsonDict = json as? [String: Any] {
+                    NSLog("jsonDict : \(jsonDict)")
+                    guard let access = jsonDict["access"] as? String else { return }
+                    KeyChainManager.shared.token = access
+                    KeyChainManager.shared.name = fullName
+                    KeyChainManager.shared.email = email
+                }
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showSuccess(text: "更改成功")
                 self.backToRoot()
             case .failure(let error):
-                CustomProgressHUD.showFailure(text: "Apple Sign In 登入失敗")
-                print(error)
+                NSLog("error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showFailure(text: "更改失敗")
             }
         }
+        
+//        userProvider.loginWithApple(token: appleToken) { (result) in
+//            switch result {
+//            case .success:
+//                KeyChainManager.shared.name = fullName
+//                KeyChainManager.shared.email = email
+//                self.appleLoginSuccess()
+//                self.backToRoot()
+//            case .failure(let error):
+//                CustomProgressHUD.showFailure(text: "Apple Sign In 登入失敗")
+//                print(error)
+//            }
+//        }
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

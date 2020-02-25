@@ -24,14 +24,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
     @IBAction func editBtn(_ sender: Any) {
         self.delegate?.showEditView(self)
     }
-    
-    @IBAction func pageControlChange(_ sender: UIPageControl) {
-//        let currentPageNumber = sender.currentPage
-//        let width = collectionView.frame.width
-//        let offset = CGPoint(x: width * CGFloat(currentPageNumber), y: 0)
-//        collectionView.setContentOffset(offset, animated: true)
-    }
-    var data: Comments?
+    var data: CafeComments?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,37 +41,37 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         authorImageView.layer.cornerRadius = authorImageView.frame.width / 2
     }
 
-    func setData(data: Comments) {
-        self.data = data
-        authorImageView.loadImage(data.userImage)
-        authorNameLabel.text = data.userName
-        locationLabel.text = data.cafeName
-        postContentLabel.text = data.content
-        timeAgoLabel.text = data.timeAgo
+    func setData(data: CafeComments) {
+//        self.data = data
+        authorImageView.loadImage(data.user?.avatar)
+        authorNameLabel.text = data.user?.name
+        locationLabel.text = "data.user"
+        postContentLabel.text = data.comment
+        timeAgoLabel.text = data.updatedAt
     }
 }
 
-extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (data?.postPhotos.isEmpty)! {
-            return 0
-        } else {
-            return (data?.postPhotos.count)!
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell",
-                                                            for: indexPath) as? PostDetailPhotoCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.postImageView.loadImage(data?.postPhotos[indexPath.item])
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        return CGSize(width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height / 3)
-    }
-}
+//extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if (data?.photos.isEmpty)! {
+//            return 0
+//        } else {
+//            return (data?.photos.count)!
+//        }
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell",
+//                                                            for: indexPath) as? PostDetailPhotoCollectionViewCell else {
+//            return UICollectionViewCell()
+//        }
+//        cell.postImageView.loadImage(data?.photos[indexPath.item])
+//        return cell
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+//        return CGSize(width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height / 3)
+//    }
+//}
