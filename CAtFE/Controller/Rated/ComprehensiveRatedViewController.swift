@@ -123,7 +123,7 @@ extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
             .instantiateViewController(identifier: DetailScoreViewController.identifier)
             as? DetailScoreViewController
         presentVC?.modalPresentationStyle = .fullScreen
-        presentVC?.ratedList = self.ratedList[indexPath.row]
+        presentVC?.cafeRating = self.ratedList[indexPath.row]
         self.show(presentVC!, sender: nil)
     }
     

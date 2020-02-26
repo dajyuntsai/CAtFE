@@ -192,19 +192,19 @@ extension FollowingCafeEventViewController: GoodCommentShareDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-    func getMessageList() { // 假的
-        let messageBoardManager = MessageBoardManager()
-        messageBoardManager.getMessageList { (result) in
-            switch result {
-            case .success(let cafeData):
-                self.message.removeAll()
-                for messages in cafeData.results {
-                    self.message = messages.cafeComments
-                }
-            case .failure(let error):
-                print("======= 測試資料 error: \(error)")
-            }
-        }
+    func getMessageList() {
+//        let messageBoardManager = MessageBoardManager()
+//        messageBoardManager.getMessageList { (result) in
+//            switch result {
+//            case .success(let cafeData):
+//                self.message.removeAll()
+//                for messages in cafeData.results {
+//                    self.message = messages.cafeComments
+//                }
+//            case .failure(let error):
+//                print("======= 測試資料 error: \(error)")
+//            }
+//        }
     }
     
     func onEditMessage() {

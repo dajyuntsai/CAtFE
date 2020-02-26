@@ -15,7 +15,7 @@ class DetailScoreViewController: BaseViewController {
     open var aaChartModel: AAChartModel!
     open var aaChartView: AAChartView!
     
-    var ratedList: Cafe?
+    var cafeRating: Cafe?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class DetailScoreViewController: BaseViewController {
         return AAChartModel()
             .chartType(.area)
             .animationType(.easeOutQuint)
-            .title(ratedList?.name ?? "Cafe Name")
+            .title(cafeRating?.name ?? "Cafe Name")
             .titleFontSize(18)
             .subtitle("平均分數")
             .subtitleFontSize(15)
@@ -56,11 +56,11 @@ class DetailScoreViewController: BaseViewController {
             .series([
                 AASeriesElement()
 //                    .name(" 平均分數")
-                    .data([ratedList?.loveOneAverage as Any,
-                           ratedList?.priceAverage as Any,
-                           ratedList?.surroundingAverage as Any,
-                           ratedList?.mealAverage as Any,
-                           ratedList?.trafficAverage as Any])
+                    .data([cafeRating?.loveOneAverage as Any,
+                           cafeRating?.priceAverage as Any,
+                           cafeRating?.surroundingAverage as Any,
+                           cafeRating?.mealAverage as Any,
+                           cafeRating?.trafficAverage as Any])
             ])
     }
     
@@ -80,6 +80,7 @@ class DetailScoreViewController: BaseViewController {
             .instantiateViewController(identifier: ScoreForCafeViewController.identifier)
             as? ScoreForCafeViewController
         presentVC?.modalPresentationStyle = .fullScreen
+        presentVC?.cafeRating = self.cafeRating
         self.show(presentVC!, sender: nil)
     }
 }

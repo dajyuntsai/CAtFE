@@ -19,6 +19,7 @@ struct CafeComments: Codable {
     let createAt: String
     let updatedAt: String
     let user: UserDetail?
+    let cafe: TinyCafe
     let cafeCommentReplies: [CafeCommentReplies]
 
     enum CodingKeys: String, CodingKey {
@@ -28,7 +29,32 @@ struct CafeComments: Codable {
         case createAt = "created_at"
         case updatedAt = "updated_at"
         case user
+        case cafe
         case cafeCommentReplies = "cafe_comment_replies"
+    }
+}
+
+struct TinyCafe: Codable {
+    let id: Int
+    let petType: String
+    let name: String
+    let tel: String
+    let address: String
+    let latitude: Double
+    let longitude: Double
+    let fbUrl: String
+    let notes: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case petType = "pet_type"
+        case name
+        case tel
+        case address
+        case latitude
+        case longitude
+        case fbUrl = "fb_url"
+        case notes
     }
 }
 
@@ -58,7 +84,7 @@ struct CafeCommentReplies: Codable {
     let id: Int
     let text: String
     let user: UserDetail
-    let likeCount: Int
+//    let likeCount: Int
     let createAt: String
     let updatedAt: String
     
@@ -66,7 +92,7 @@ struct CafeCommentReplies: Codable {
         case id
         case text
         case user
-        case likeCount = "like_count"
+//        case likeCount = "like_count"
         case createAt = "created_at"
         case updatedAt = "updated_at"
     }

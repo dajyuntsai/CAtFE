@@ -85,7 +85,7 @@ enum MessageBoardRequest: CAtFERequest {
     var endPoint: String {
         switch self {
         case .allMessage:
-            return "/cafes/"
+            return "/cafeComments/"
         case .myCafeComment(let userId):
             return "/cafeComments/?user_id=\(userId)"
         case .createMessage(_, let cafeId, _, _):
@@ -102,12 +102,12 @@ enum MessageBoardRequest: CAtFERequest {
 
 class MessageBoardManager {
     let decoder = JSONDecoder()
-    func getMessageList(completion: @escaping (Result<CafeModel>) -> Void) {
+    func getMessageList(completion: @escaping (Result<CafeCommentModel>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.allMessage) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let messageData = try self.decoder.decode(CafeModel.self, from: data)
+                    let messageData = try self.decoder.decode(CafeCommentModel.self, from: data)
                     completion(.success(messageData))
                 } catch {
                     completion(.failure(error))

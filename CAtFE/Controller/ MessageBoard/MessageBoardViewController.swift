@@ -25,21 +25,10 @@ class MessageBoardViewController: UIViewController {
     var selectedItems = [YPMediaItem]()
     var selectedPhotos: [UIImage] = []
     var testPhoto = UIImage()
-    var cafeResults: [Cafe] = [] {
-        didSet {
-            if cafeResults.isEmpty {
-                DispatchQueue.main.async {
-                    self.refreshControl.beginRefreshing()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.refreshControl.endRefreshing()
-                }
-            }
-        }
-    }
     var cafeComments: [Comments] = []
+    
+    // from messageboard
+    var cafeCommentList: [CafeComments] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +36,13 @@ class MessageBoardViewController: UIViewController {
         initView()
         initNavView()
         
-        presentLoadingVC()
-        getMessageList()
+        getPostDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-        getMessageList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,52 +69,28 @@ class MessageBoardViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
     }
-
-    func getMessageList() {
+    
+    func getPostDetail() {
+        presentLoadingVC()
+        
         messageBoardManager.getMessageList { (result) in
             switch result {
-            case .success(let cafeData):
-                self.cafeResults.removeAll()
-                self.cafeResults = cafeData.results
-                self.getCommentDetail(data: cafeData.results)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+            case .success(let data):
+                self.cafeCommentList = data.results
+                self.getCommentDetail()
             case .failure(let error):
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
                 print("======= getMessageList error: \(error.localizedDescription)")
             }
         }
     }
-    
-    func getCommentDetail(data: [Cafe]) {
-        var commentTemp: [Comments] = []
-        for comments in data {
-            for comment in comments.cafeComments {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-                guard let date = dateFormatter.date(from: comment.updatedAt) else { return }
-                let timeAgo = date.timeAgoSinceDate()
-                let updateTime = date.timeIntervalSince1970
-                let commentInfo = Comments(
-                    messageId: comment.id,
-                    cafeName: comments.name,
-                    userName: comment.user?.name ?? "不能縮ㄉ秘密",
-                    userImage: comment.user?.avatar ?? "https://ppt.cc/f5Rfex@.png",
-                    timeAgo: timeAgo,
-                    updateTime: updateTime,
-                    postPhotos: ["https://www.c-ville.com/wp-content/uploads/2019/09/Cats-660x335.jpg", "https://www.petmd.com/sites/default/files/Tabby-cat-yawning-and-showing-all-his-teeth.jpg", "https://media.wired.com/photos/5cdefc28b2569892c06b2ae4/master/w_2560%2Cc_limit/Culture-Grumpy-Cat-487386121-2.jpg"],
-                    content: comment.comment,
-                    commentReplies: comment.cafeCommentReplies)
-                commentTemp.append(commentInfo)
-            }
-        }
-        let sortedComments = commentTemp.sorted { $0.updateTime > $1.updateTime }
-        self.cafeComments = sortedComments
+
+    func getCommentDetail() {
+        let sortedComments = cafeCommentList.sorted { $0.updatedAt > $1.updatedAt }
+        self.cafeCommentList = sortedComments
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -197,15 +160,15 @@ class MessageBoardViewController: UIViewController {
     }
 
     @objc func loadData() {
-        cafeResults.removeAll()
-        self.getMessageList()
+        cafeComments.removeAll()
+        self.getPostDetail()
         refreshControl.endRefreshing()
     }
 }
 
 extension MessageBoardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cafeComments.count
+        return cafeCommentList.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -214,7 +177,7 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
                                                             for: indexPath) as? MessageCollectionViewCell else {
                                                                 return UICollectionViewCell() }
             
-        cell.setData(message: cafeComments[indexPath.item])
+        cell.setData(message: cafeCommentList[indexPath.item])
         return cell
     }
     
@@ -222,8 +185,7 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
-//        presentVC?.cafeComments = cafeComments[indexPath.item]
-        presentVC?.messageId = cafeComments[indexPath.item].messageId
+        presentVC?.cafeComments = cafeCommentList[indexPath.item]
         presentVC?.modalPresentationStyle = .overFullScreen
         self.show(presentVC!, sender: nil)
     }
@@ -233,11 +195,11 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForCaptionAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = cafeComments[indexPath.item]
+        let post = cafeCommentList[indexPath.item]
         let topPadding = CGFloat(8)
         let bottomPadding = CGFloat(16)
         let captionFont = UIFont.systemFont(ofSize: 15)
-        let captionHeight = self.height(for: post.content, with: captionFont, width: width)
+        let captionHeight = self.height(for: post.comment, with: captionFont, width: width)
         let profileImageHeight = CGFloat(36)
         let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
 
@@ -247,13 +209,13 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = cafeComments[indexPath.item]
-        let havePhoto = post.postPhotos.count
+        let post = cafeCommentList[indexPath.item]
+        let havePhoto = post.photos.count
         
         if havePhoto == 0 {
             return 30
         } else {
-            let photo = URL(string: post.postPhotos[0])!
+            let photo = URL(string: post.photos[0].url)!
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let request = URLRequest(url: photo)
             guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest,
@@ -278,6 +240,6 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         let boundingRect = nsstring.boundingRect(with: constraintRect,
                                                  options: .usesLineFragmentOrigin,
                                                  attributes: textAttributes, context: nil)
-        return ceil(boundingRect.height) * 1.5
+        return ceil(boundingRect.height)
     }
 }

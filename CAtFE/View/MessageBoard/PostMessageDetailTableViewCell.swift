@@ -43,35 +43,14 @@ class PostMessageDetailTableViewCell: UITableViewCell {
 
     func setData(data: CafeComments) {
         self.data = data
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        guard let date = dateFormatter.date(from: data.updatedAt) else { return }
+        let timeAgo = date.timeAgoSinceDate()
         authorImageView.loadImage(data.user?.avatar)
         authorNameLabel.text = data.user?.name
-        locationLabel.text = "data.user"
+        locationLabel.text = data.cafe.name
         postContentLabel.text = data.comment
-        timeAgoLabel.text = data.updatedAt
+        timeAgoLabel.text = timeAgo
     }
 }
-
-//extension PostMessageDetailTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if (data?.photos.isEmpty)! {
-//            return 0
-//        } else {
-//            return (data?.photos.count)!
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostPhotoCollectionCell",
-//                                                            for: indexPath) as? PostDetailPhotoCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        cell.postImageView.loadImage(data?.photos[indexPath.item].url)
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-//        return CGSize(width: UIScreen.main.bounds.width - 16, height: UIScreen.main.bounds.height / 3)
-//    }
-//}

@@ -75,6 +75,6 @@ class RatedTableViewCell: UITableViewCell {
         let averageScore = (data.loveOneAverage + data.mealAverage + data.priceAverage + data.surroundingAverage + data.trafficAverage) / 5
         cafeNameLabel.text = data.name
         starView.rating = averageScore
-        cafeScoreLabel.text = String(averageScore)
+        cafeScoreLabel.text = String(round(averageScore*10)/10)
     }
 }

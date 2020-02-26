@@ -13,6 +13,7 @@ class MyMessagesViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     let messageBoardManager = MessageBoardManager()
+    let cafeManager = CafeManager()
     let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
     var myMessages: [CafeComments] = [] {
@@ -32,28 +33,37 @@ class MyMessagesViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         
-        getMessages()
+        getPostDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presentLoadingVC()
-        getMessages()
+//        getPostDetail()
     }
     
-    func getMessages() {
+    func getPostDetail() {
+        presentLoadingVC()
+        
         let userId = KeyChainManager.shared.id
         messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
-             case .success(let data):
+            case .success(let data):
                 self.myMessages = data.results
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                self.onSortedMessages()
             case .failure(let error):
                 NSLog("getMessages error: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func onSortedMessages() {
+        let sortedComments = myMessages.sorted { $0.updatedAt > $1.updatedAt }
+        self.myMessages = sortedComments
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
+            self.dismiss(animated: true, completion: nil)
         }
     }
 

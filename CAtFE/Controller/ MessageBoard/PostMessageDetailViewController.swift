@@ -18,6 +18,7 @@ class PostMessageDetailViewController: BaseViewController {
     }
     // from my messages
     var cafeComments: CafeComments?
+    var location: String?
     
 //    var cafeComments: [CafeComments] = []
     var messageId: Int?

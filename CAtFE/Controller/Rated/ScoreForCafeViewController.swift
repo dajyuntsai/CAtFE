@@ -18,6 +18,7 @@ class ScoreForCafeViewController: BaseViewController {
     }
     
     let scoreManager = ScoreManager()
+    var cafeRating: Cafe?
     var starList: [CellContent] = [
         CellContent(type: .bool, title: ""),
         CellContent(type: .star, title: "寵物親人"),
@@ -48,7 +49,7 @@ class ScoreForCafeViewController: BaseViewController {
         guard let token = KeyChainManager.shared.token else { return }
         scoreManager.createCafeScore(
             token: token,
-            cafeId: 6,
+            cafeId: cafeRating!.id,
             loveOne: starList[1].value[0] as? Double ?? 1.0,
             price: starList[2].value[0] as? Double ?? 1.0,
             surrounding: starList[3].value[0] as? Double ?? 1.0,

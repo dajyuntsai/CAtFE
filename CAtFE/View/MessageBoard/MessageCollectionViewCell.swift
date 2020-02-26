@@ -55,16 +55,20 @@ class MessageCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func setData(message: Comments) {
-        userImageView.loadImage(message.userImage)
-        userNameLabel.text = message.userName
-        dateTimeLabel.text = message.timeAgo
-        captionLabel.text = message.content
-        locationLabel.text = message.cafeName
+    func setData(message: CafeComments) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        guard let date = dateFormatter.date(from: message.updatedAt) else { return }
+        let timeAgo = date.timeAgoSinceDate()
+        userImageView.loadImage(message.user?.avatar)
+        userNameLabel.text = message.user?.name
+        dateTimeLabel.text = timeAgo
+        captionLabel.text = message.comment
+        locationLabel.text = message.cafe.name
 
-        if message.postPhotos.count != 0 {
-            postImageView.loadImage(message.postPhotos[0], placeHolder: UIImage(named: "placeholder"))
-        }
+        if message.photos.count != 0 {
+            postImageView.loadImage(message.photos[0].url, placeHolder: UIImage(named: "placeholder"))
+        } 
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true
     }
