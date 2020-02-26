@@ -69,12 +69,11 @@ class RatedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setData(data: Cafe) {
+    func setData(data: Cafe, score: Double) {
 //        let stateColor = data == true ? .gray : UIColor(named: "MainColor")
 //        followBtn.backgroundColor = stateColor
-        let averageScore = (data.loveOneAverage + data.mealAverage + data.priceAverage + data.surroundingAverage + data.trafficAverage) / 5
         cafeNameLabel.text = data.name
-        starView.rating = averageScore
-        cafeScoreLabel.text = String(round(averageScore*10)/10)
+        starView.rating = score
+        cafeScoreLabel.text = String(round(score*10)/10)
     }
 }

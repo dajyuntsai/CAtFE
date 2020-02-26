@@ -21,6 +21,7 @@ struct CafeComments: Codable {
     let user: UserDetail?
     let cafe: TinyCafe
     let cafeCommentReplies: [CafeCommentReplies]
+//    let likeCount: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +32,7 @@ struct CafeComments: Codable {
         case user
         case cafe
         case cafeCommentReplies = "cafe_comment_replies"
+//        case likeCount
     }
 }
 
@@ -84,7 +86,6 @@ struct CafeCommentReplies: Codable {
     let id: Int
     let text: String
     let user: UserDetail
-//    let likeCount: Int
     let createAt: String
     let updatedAt: String
     
@@ -92,7 +93,6 @@ struct CafeCommentReplies: Codable {
         case id
         case text
         case user
-//        case likeCount = "like_count"
         case createAt = "created_at"
         case updatedAt = "updated_at"
     }

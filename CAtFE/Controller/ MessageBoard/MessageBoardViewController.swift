@@ -76,7 +76,7 @@ class MessageBoardViewController: UIViewController {
         messageBoardManager.getMessageList { (result) in
             switch result {
             case .success(let data):
-                self.cafeCommentList = data.results
+                self.cafeCommentList = data
                 self.getCommentDetail()
             case .failure(let error):
                 print("======= getMessageList error: \(error.localizedDescription)")
@@ -89,9 +89,12 @@ class MessageBoardViewController: UIViewController {
         self.cafeCommentList = sortedComments
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            self.refreshControl.endRefreshing()
             self.dismiss(animated: true, completion: nil)
         }
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            self.refreshControl.endRefreshing()
+//        }
     }
     
     @IBAction func addPostBtn(_ sender: Any) {
@@ -162,7 +165,7 @@ class MessageBoardViewController: UIViewController {
     @objc func loadData() {
         cafeComments.removeAll()
         self.getPostDetail()
-        refreshControl.endRefreshing()
+//        refreshControl.endRefreshing()
     }
 }
 

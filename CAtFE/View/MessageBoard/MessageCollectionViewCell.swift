@@ -30,7 +30,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
     @IBAction func likeBtn(_ sender: Any) {
         likeBtnState = !likeBtnState
         let btnImg = likeBtnState == true ?
-            UIImage(named: "select_collect") : UIImage(named: "favourite")
+            UIImage(named: "heart_fill") : UIImage(named: "heart")
         likeBtn.setImage(btnImg, for: .normal)
     }
     @IBOutlet weak var postImageViewHeightLayoutConstraint: NSLayoutConstraint!

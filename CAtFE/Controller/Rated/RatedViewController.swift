@@ -46,7 +46,7 @@ class RatedViewController: UIViewController {
         guard let priceVC = UIStoryboard.rated
             .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
             as? ComprehensiveRatedViewController else { return }
-        guard let ambienceVC = UIStoryboard.rated
+        guard let surroundingVC = UIStoryboard.rated
             .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
             as? ComprehensiveRatedViewController else { return }
         guard let deliciousVC = UIStoryboard.rated
@@ -56,9 +56,16 @@ class RatedViewController: UIViewController {
             .instantiateViewController(identifier: ComprehensiveRatedViewController.identifier)
             as? ComprehensiveRatedViewController else { return }
         
+        comprehensiveVC.setSortType(rateCategory: .overAll)
+        petVC.setSortType(rateCategory: .pet)
+        priceVC.setSortType(rateCategory: .price)
+        surroundingVC.setSortType(rateCategory: .surrounding)
+        deliciousVC.setSortType(rateCategory: .meal)
+        convenienceVC.setSortType(rateCategory: .traffic)
+        
         let controllers = [comprehensiveVC,
                            petVC, priceVC,
-                           ambienceVC,
+                           surroundingVC,
                            deliciousVC,
                            convenienceVC]
         let rectContent = CGRect(x: 0, y: height * 0.06 + 50 + 50, width: width, height: height)

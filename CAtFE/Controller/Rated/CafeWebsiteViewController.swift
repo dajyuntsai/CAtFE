@@ -13,10 +13,12 @@ class CafeWebsiteViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
+    var cafeUrl: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let url = URL(string: "https://school.appworks.tw") {
+        if let url = URL(string: cafeUrl!) {
             let request = URLRequest(url: url)
             webView.load(request)
         }

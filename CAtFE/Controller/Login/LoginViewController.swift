@@ -117,27 +117,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     KeyChainManager.shared.email = email
                 }
                 self.dismiss(animated: true, completion: nil)
-                CustomProgressHUD.showSuccess(text: "更改成功")
+                CustomProgressHUD.showSuccess(text: "登入成功")
                 self.backToRoot()
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
                 self.dismiss(animated: true, completion: nil)
-                CustomProgressHUD.showFailure(text: "更改失敗")
+                CustomProgressHUD.showFailure(text: "登入失敗")
             }
         }
-        
-//        userProvider.loginWithApple(token: appleToken) { (result) in
-//            switch result {
-//            case .success:
-//                KeyChainManager.shared.name = fullName
-//                KeyChainManager.shared.email = email
-//                self.appleLoginSuccess()
-//                self.backToRoot()
-//            case .failure(let error):
-//                CustomProgressHUD.showFailure(text: "Apple Sign In 登入失敗")
-//                print(error)
-//            }
-//        }
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

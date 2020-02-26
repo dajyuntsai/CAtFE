@@ -102,12 +102,12 @@ enum MessageBoardRequest: CAtFERequest {
 
 class MessageBoardManager {
     let decoder = JSONDecoder()
-    func getMessageList(completion: @escaping (Result<CafeCommentModel>) -> Void) {
+    func getMessageList(completion: @escaping (Result<[CafeComments]>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.allMessage) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let messageData = try self.decoder.decode(CafeCommentModel.self, from: data)
+                    let messageData = try self.decoder.decode([CafeComments].self, from: data)
                     completion(.success(messageData))
                 } catch {
                     completion(.failure(error))

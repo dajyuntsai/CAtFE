@@ -48,8 +48,8 @@ class MemberViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
     }
