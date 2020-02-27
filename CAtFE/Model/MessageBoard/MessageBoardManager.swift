@@ -9,16 +9,18 @@
 import Foundation
 
 enum MessageBoardRequest: CAtFERequest {
-    case allMessage
+    case allMessages
     case myCafeComment(Int) // userId
-    case createMessage(String, Int, String, [String]) // (token, cafeId, content, photos)
-    case updateMessage(String, Int, Int, String, [String]) // (token, msgId, cafeId, content, photos)
+    case createMessage(String, Int, String, [String]) // token, cafeId, content, photos
+    case updateMessage(String, Int, Int, String, [String]) // token, msgId, cafeId, content, photos
     case deleteMessage(String, CafeComments, Int)
-    case replyMessage(String, Int, String) // (token, messageId, text)
+    case replyMessage(String, Int, String) // token, messageId, text
+    case likeMessages(String) // token
+    case addLikeMessage(String, Int) // token, messageId
 
     var headers: [String: String] {
         switch self {
-        case .allMessage:
+        case .allMessages:
             return [:]
         case .myCafeComment:
             return [:]
@@ -34,12 +36,17 @@ enum MessageBoardRequest: CAtFERequest {
         case .replyMessage(let accessToken, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
                     HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .likeMessages(let accessToken):
+            return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
+        case .addLikeMessage(let accessToken, _):
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
+            HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         }
     }
 
     var body: Data? {
         switch self {
-        case .allMessage:
+        case .allMessages:
             return nil
         case .myCafeComment:
             return nil
@@ -62,12 +69,16 @@ enum MessageBoardRequest: CAtFERequest {
         case .replyMessage(_, _, let text):
             let dict = ["text": text]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        case .likeMessages:
+            return nil
+        case .addLikeMessage:
+            return nil
         }
     }
 
     var method: String {
         switch self {
-        case .allMessage:
+        case .allMessages:
             return HTTPMethod.GET.rawValue
         case .myCafeComment:
             return HTTPMethod.GET.rawValue
@@ -79,12 +90,16 @@ enum MessageBoardRequest: CAtFERequest {
             return HTTPMethod.DELETE.rawValue
         case .replyMessage:
             return HTTPMethod.POST.rawValue
+        case .likeMessages:
+            return HTTPMethod.GET.rawValue
+        case .addLikeMessage:
+            return HTTPMethod.POST.rawValue
         }
     }
 
     var endPoint: String {
         switch self {
-        case .allMessage:
+        case .allMessages:
             return "/cafeComments/"
         case .myCafeComment(let userId):
             return "/cafeComments/?user_id=\(userId)"
@@ -96,6 +111,10 @@ enum MessageBoardRequest: CAtFERequest {
             return "/cafes/messageBoard/\(id)" // TODO: 還沒改
         case .replyMessage(_, let messageId, _):
             return "/cafeComments/\(messageId)/reply/"
+        case .likeMessages:
+            return "/users/likeComments/"
+        case .addLikeMessage(_, let messageId):
+            return "/cafeComments/\(messageId)/like/"
         }
     }
 }
@@ -103,7 +122,7 @@ enum MessageBoardRequest: CAtFERequest {
 class MessageBoardManager {
     let decoder = JSONDecoder()
     func getMessageList(completion: @escaping (Result<[CafeComments]>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.allMessage) { (result) in
+        HTTPClient.shared.request(MessageBoardRequest.allMessages) { (result) in
             switch result {
             case .success(let data):
                 do {
@@ -118,12 +137,12 @@ class MessageBoardManager {
         }
     }
 
-    func getMyCafeComment(userId: Int, completion: @escaping (Result<CafeCommentModel>) -> Void) {
+    func getMyCafeComment(userId: Int, completion: @escaping (Result<[CafeComments]>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.myCafeComment(userId)) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let myMessage = try self.decoder.decode(CafeCommentModel.self, from: data)
+                    let myMessage = try self.decoder.decode([CafeComments].self, from: data)
                     completion(.success(myMessage))
                 } catch {
                     completion(.failure(error))
@@ -137,7 +156,7 @@ class MessageBoardManager {
     func createMessageInList(token: String,
                              cafeID: Int,
                              content: String,
-                             photos: [String], // TODO: [Photos]
+                             photos: [String],
                              completion: @escaping (Result<Void>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.createMessage(token, cafeID, content, photos)) { (result) in
             switch result {
@@ -197,13 +216,40 @@ class MessageBoardManager {
             switch result {
             case .success(let data):
                 do {
-                    let test = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(test)
                     let replies = try self.decoder.decode(CafeComments.self, from: data)
                     completion(.success((replies)))
                 } catch {
                     completion(.failure(error))
                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getLikeMessages(token: String, completion: @escaping (Result<LikeComments>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.likeMessages(token)) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let response = try self.decoder.decode(LikeComments.self, from: data)
+                    completion(.success(response))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func addLikeMessage(token: String,
+                        messageId: Int,
+                        completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.addLikeMessage(token, messageId)) { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }

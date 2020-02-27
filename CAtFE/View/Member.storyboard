@@ -35,7 +35,7 @@
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="積分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-8y-suQ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="貼文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-8y-suQ">
                                                                 <rect key="frame" x="0.0" y="29.5" width="25" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" name="TextColor"/>
@@ -62,7 +62,7 @@
                                                                 <color key="textColor" name="TextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="追蹤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQP-B8-tr8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="按讚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQP-B8-tr8">
                                                                 <rect key="frame" x="0.0" y="28.5" width="25" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" name="TextColor"/>
@@ -144,7 +144,9 @@
                     <navigationItem key="navigationItem" id="5hi-8U-MPY"/>
                     <connections>
                         <outlet property="followingBgView" destination="Kpv-22-ucU" id="bS1-MI-Mha"/>
+                        <outlet property="followingLabel" destination="ss8-rv-Qhw" id="CV3-mg-kv6"/>
                         <outlet property="pointBgView" destination="R8F-wh-Vkx" id="H97-nP-FtO"/>
+                        <outlet property="pointLabel" destination="lJ8-gC-i4I" id="3sY-fL-vnF"/>
                         <outlet property="userImageView" destination="JpP-D8-FBH" id="rWh-0T-qmB"/>
                         <outlet property="userName" destination="J3s-fy-nqp" id="xab-Xh-iDf"/>
                         <outlet property="userViewHeight" destination="3NQ-Mg-xDP" id="KmT-uO-wEG"/>

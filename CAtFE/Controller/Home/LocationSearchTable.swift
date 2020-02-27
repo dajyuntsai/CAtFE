@@ -40,7 +40,7 @@ extension LocationSearchTable: UITableViewDataSource {
         let selectedItem = matchingItems[indexPath.row].placemark
         // swiftlint:disable:next line_length
         let address = "\(selectedItem.thoroughfare ?? ""), \(selectedItem.locality ?? ""), \(selectedItem.subLocality ?? ""), \(selectedItem.administrativeArea ?? ""), \(selectedItem.postalCode ?? ""), \(selectedItem.country ?? "")"
-        cell.setData(title: selectedItem.name ?? "??", desc: address)
+//        cell.setData(title: selectedItem.name ?? "??", desc: address)
         // swiftlint:disable:previous line_length
         return cell
     }

@@ -10,7 +10,9 @@ import UIKit
 
 protocol MessageBoardDelegate: AnyObject {
     func showCommentView(_ cell: MessageCollectionViewCell)
+    func getBtnState(_ cell: MessageCollectionViewCell, _ btnState: Bool)
 }
+
 class MessageCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: MessageBoardDelegate?
@@ -30,8 +32,9 @@ class MessageCollectionViewCell: UICollectionViewCell {
     @IBAction func likeBtn(_ sender: Any) {
         likeBtnState = !likeBtnState
         let btnImg = likeBtnState == true ?
-            UIImage(named: "heart_fill") : UIImage(named: "heart")
+            UIImage(named: "heart_fill") : UIImage(named: "favourite")
         likeBtn.setImage(btnImg, for: .normal)
+        delegate?.getBtnState(self, likeBtnState)
     }
     @IBOutlet weak var postImageViewHeightLayoutConstraint: NSLayoutConstraint!
     
@@ -71,5 +74,8 @@ class MessageCollectionViewCell: UICollectionViewCell {
         } 
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true
+        
+        let heartState = message.isLike == true ? "heart_fill" : "favourite"
+        likeBtn.setImage(UIImage(named: heartState), for: .normal)
     }
 }

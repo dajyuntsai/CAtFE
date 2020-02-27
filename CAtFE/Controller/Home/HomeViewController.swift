@@ -10,6 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
+struct LocationList {
+    let title: String
+    let address: String
+}
+
 protocol HandleMapSearch: AnyObject {
     func dropPinZoomIn(placemark: MKPlacemark)
 }
@@ -26,7 +31,7 @@ class HomeViewController: UIViewController {
         petFilterBtn()
     }
     
-    var resultSearchController: UISearchController?
+//    var resultSearchController: UISearchController?
     private lazy var geoCoder: CLGeocoder = {
         return CLGeocoder()
     }()
@@ -37,9 +42,20 @@ class HomeViewController: UIViewController {
     var phone: String?
     var selectedDest: String?
     var selectedPin: MKPlacemark?
+    var currentPlaceMark: CLPlacemark?
+    var searchResult = ""
+    var locationList: [LocationList] = []
     var cafeList: [Cafe] = [] {
         didSet {
             self.createAnnotations(locations: cafeList)
+        }
+    }
+    var tableView = UITableView() {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+            
+            setUpTableView()
         }
     }
     
@@ -63,9 +79,6 @@ class HomeViewController: UIViewController {
         initMapView()
 //        setUpCollectionView()
         getCafeData()
-        
-//        updateCafeData()
-//        deleteCafeData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +108,20 @@ class HomeViewController: UIViewController {
     func initView() {
         createBtnRightConstraint.constant = width * 0.05
         createBtnBottomConstraint.constant = width * 0.05
+        
+        searchTextField.delegate = self
+    }
+    
+    func setUpTableView() {
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 8),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        tableView.register(LocationSearchTableViewCell.self, forCellReuseIdentifier: LocationSearchTableViewCell.identifier)
     }
     
     func setUpCollectionView() {
@@ -143,25 +170,25 @@ class HomeViewController: UIViewController {
     }
 
     func setSearchBar() {
-        let locationSearchTable = UIStoryboard.home
-            .instantiateViewController(identifier: LocationSearchTable.identifier)
-            as? LocationSearchTable
-        
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchBar.delegate = self
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        locationSearchTable!.mapView = mapView
-        locationSearchTable?.handleMapSearchDelegate = self
-
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
-        navigationItem.titleView = resultSearchController?.searchBar
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.obscuresBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        
-        createNaviRightBtn()
+//        let locationSearchTable = UIStoryboard.home
+//            .instantiateViewController(identifier: LocationSearchTable.identifier)
+//            as? LocationSearchTable
+//
+//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+//        resultSearchController?.searchBar.delegate = self
+//        resultSearchController?.searchResultsUpdater = locationSearchTable
+//        locationSearchTable!.mapView = mapView
+//        locationSearchTable?.handleMapSearchDelegate = self
+//
+//        let searchBar = resultSearchController!.searchBar
+//        searchBar.sizeToFit()
+//        searchBar.placeholder = "Search for places"
+//        navigationItem.titleView = resultSearchController?.searchBar
+//        resultSearchController?.hidesNavigationBarDuringPresentation = false
+//        resultSearchController?.obscuresBackgroundDuringPresentation = true
+//        definesPresentationContext = true
+//
+//        createNaviRightBtn()
     }
     
     func setUpLocationAuthorization() {
@@ -198,51 +225,17 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let cafeData):
                 self.cafeList = cafeData.results
+                self.getLocationList(data: cafeData.results)
             case .failure(let error):
                 print("======= getCafeData error: \(error)")
             }
         }
     }
     
-    func updateCafeData() {
-//        let cafeId = 4
-//        let cafe = Cafe(id: cafeId,
-//                        petType: "貓",
-//                        name: "貓下去敦北俱樂部",
-//                        tel: "02-27177596",
-//                        address: "台北市松山區敦化北路218號",
-//                        latitude: 25.0587, longitude: 121.549,
-//                        fbUrl: "",
-//                        notes: "",
-//                        cafeComments: [])
-//        cafeManager.updateCafeInList(cafeId: cafeId, cafeObj: cafe) { (result) in
-//            switch result {
-//            case .success:
-//                print("修改成功")
-//            case .failure(let error):
-//                print("=======update", error)
-//            }
-//        }
-    }
-    
-    func deleteCafeData() {
-//        let cafe = Cafe(id: 5,
-//                        petType: "test",
-//                        name: "test",
-//                        tel: "test",
-//                        address: "test",
-//                        latitude: 25.058734, longitude: 121.548898,
-//                        fbUrl: "",
-//                        notes: "",
-//                        cafeComments: [])
-//        cafeManager.deleteCafeInList(cafeId: 5, cafeObj: cafe) { (result) in
-//            switch result {
-//            case .success:
-//                print("新增成功")
-//            case .failure(let error):
-//                print("=======create", error)
-//            }
-//        }
+    func getLocationList(data: [Cafe]) {
+        for location in cafeList {
+            locationList.append(LocationList(title: location.name, address: location.address))
+        }
     }
     
     func createAnnotations(locations: [Cafe]) {
@@ -261,7 +254,6 @@ class HomeViewController: UIViewController {
             .instantiateViewController(identifier: CreateCafeViewController.identifier)
             as? CreateCafeViewController
         presentVC?.modalPresentationStyle = .formSheet
-//        self.present(presentVC!, animated: true, completion: nil)
         self.show(presentVC!, sender: nil)
     }
 }
@@ -305,7 +297,10 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
         userLocation = nowLocation
-//        mapView.setRegion(currentRegion, animated: true)
+        
+        geoCoder.reverseGeocodeLocation(currentLocation) { (placeMark, _) in
+            self.currentPlaceMark = placeMark?.first
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -366,13 +361,11 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
-    func guideToCafe(destination: String) { // TODO: 改user定位
-        geoCoder.geocodeAddressString("台北市信義區基隆路一段178號") { (place: [CLPlacemark]?, _) -> Void in
-            let startLocation = place?.first
-            self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, _) -> Void in
-                let destination = place?.first
-                self.beginNav(startLocation!, endPLCL: destination!)
-            }
+    func guideToCafe(destination: String) {
+        self.geoCoder.geocodeAddressString(destination) { (place: [CLPlacemark]?, _) -> Void in
+            let destination = place?.first
+            guard let currentPlaceMark = self.currentPlaceMark else { return }
+            self.beginNav(currentPlaceMark, endPLCL: destination!)
         }
     }
     
@@ -484,5 +477,31 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.createNaviRightBtn()
+    }
+}
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationSearchTableViewCell.identifier,
+                                                       for: indexPath) as? LocationSearchTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setData(data: locationList[indexPath.row])
+        return cell
+    }
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if searchResult.isEmpty {
+            
+        } else {
+            searchResult = textField.text!
+        }
     }
 }

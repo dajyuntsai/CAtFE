@@ -26,7 +26,7 @@ class PostMessageViewController: BaseViewController {
     var testPhoto: UIImage? // test
     var cafeId: Int?
     var content: String?
-    var editMessage: Comments?
+    var editMessage: CafeComments?
     var postImagesData: Data? //[Data] = []
     var isEditMode = false {
         didSet {
@@ -59,7 +59,9 @@ class PostMessageViewController: BaseViewController {
         let backBtn = UIButton()
         backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.07, height: width * 0.07)
         backBtn.layer.cornerRadius = backBtn.frame.width / 2
-        backBtn.setImage(UIImage(named: "arrow"), for: .normal)
+        backBtn.setImage(UIImage(named: "back"), for: .normal)
+        backBtn.backgroundColor = .lightGray
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
         backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
         self.view.addSubview(backBtn)
     }
@@ -156,7 +158,7 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             if isEditMode {
                 cell.isEditMode = true
-                cell.editPhotoList = editMessage?.postPhotos
+//                cell.editPhotoList = editMessage?.postPhotos
                 cell.isReload = true
             } else {
                 cell.photoList = selectedPhotoList
@@ -169,7 +171,7 @@ extension PostMessageViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             if isEditMode {
-                cell.setData(content: editMessage!.content)
+//                cell.setData(content: editMessage!.content)
             } else {
                 cell.content = { (content) in
                     self.content = content

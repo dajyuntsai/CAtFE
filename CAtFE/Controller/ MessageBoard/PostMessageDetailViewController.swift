@@ -68,7 +68,9 @@ class PostMessageDetailViewController: BaseViewController {
     
     func initBackBtn() {
         backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.07, height: width * 0.07)
-        backBtn.setImage(UIImage(named: "arrow"), for: .normal)
+        backBtn.setImage(UIImage(named: "back"), for: .normal)
+        backBtn.backgroundColor = .lightGray
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
         backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
         self.view.addSubview(backBtn)
     }

@@ -24,8 +24,8 @@ class LocationSearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setData(title: String, desc: String) {
-        titleLabel.text = title
-        descLabel.text = desc
+    func setData(data: LocationList) {
+        titleLabel.text = data.title
+        descLabel.text = data.address
     }
 }

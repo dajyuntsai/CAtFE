@@ -62,6 +62,7 @@ class UserProvider {
                 do {
                     let response = try self.decoder.decode(LoginResponse.self, from: data)
                     KeyChainManager.shared.token = response.access
+                    self.getUserDataFromFB(fbToken: token)
                     completion(.success(response))
                 } catch {
                     completion(.failure(error))
@@ -87,38 +88,11 @@ class UserProvider {
             let name: String = result["name"]!
             let id: String = result["id"]!
             let userPictureUrl = "http://graph.facebook.com/\(id)/picture?type=large"
-            self.uploadUserData(token: fbToken,
-                                email: email,
-                                name: name,
-                                registerType: "facebook",
-                                avator: userPictureUrl) { (response) in
-                switch response {
-                case .success:
-                    KeyChainManager.shared.name = name
-                    KeyChainManager.shared.email = email
-                    KeyChainManager.shared.avatar = userPictureUrl
-                case .failure(let error):
-                    print("======= getUserDataFromFB error: \(error)")
-                }
-            }
+            KeyChainManager.shared.name = name
+            KeyChainManager.shared.email = email
+            KeyChainManager.shared.avatar = userPictureUrl
         }
         connection.start()
-    }
-
-    func uploadUserData(token: String,
-                        email: String,
-                        name: String,
-                        registerType: String,
-                        avator: String,
-                        completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.loginWithfb(token)) { (result) in
-            switch result {
-            case .success:
-                completion(Result.success(()))
-            case .failure(let error):
-                completion(Result.failure(error))
-            }
-        }
     }
 
     func loginWithApple(token: String, completion: @escaping (Result<LoginResponse>) -> Void) {

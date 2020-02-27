@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct CafeCommentModel: Codable {
+class CafeCommentModel: Codable {
     let results: [CafeComments]
 }
 
-struct CafeComments: Codable {
+class CafeComments: Codable {
     let id: Int
     let comment: String
     let photos: [Photo]
@@ -22,6 +22,7 @@ struct CafeComments: Codable {
     let cafe: TinyCafe
     let cafeCommentReplies: [CafeCommentReplies]
 //    let likeCount: Int
+    var isLike: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -33,10 +34,11 @@ struct CafeComments: Codable {
         case cafe
         case cafeCommentReplies = "cafe_comment_replies"
 //        case likeCount
+        case isLike
     }
 }
 
-struct TinyCafe: Codable {
+class TinyCafe: Codable {
     let id: Int
     let petType: String
     let name: String
@@ -60,7 +62,7 @@ struct TinyCafe: Codable {
     }
 }
 
-struct Photo: Codable {
+class Photo: Codable {
     let id: Int
     let url: String
     let createdAt: String
@@ -74,7 +76,7 @@ struct Photo: Codable {
     }
 }
 
-struct UserDetail: Codable {
+class UserDetail: Codable {
     let id: Int
     let email: String
     let name: String
@@ -82,7 +84,7 @@ struct UserDetail: Codable {
     let point: Int
 }
 
-struct CafeCommentReplies: Codable {
+class CafeCommentReplies: Codable {
     let id: Int
     let text: String
     let user: UserDetail
@@ -98,14 +100,6 @@ struct CafeCommentReplies: Codable {
     }
 }
 
-struct Comments {
-    let messageId: Int
-    let cafeName: String
-    let userName: String
-    let userImage: String
-    let timeAgo: String
-    let updateTime: Double
-    let postPhotos: [String]
-    let content: String
-    let commentReplies: [CafeCommentReplies]
+class LikeComments: Codable {
+    let data: [Int]
 }

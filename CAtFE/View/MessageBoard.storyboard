@@ -101,7 +101,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="e2W-i0-Ctk"/>
                                                         <constraint firstAttribute="width" constant="20" id="x1G-Gh-7dq"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="heart"/>
+                                                    <state key="normal" title="Button" image="favourite"/>
                                                     <connections>
                                                         <action selector="likeBtn:" destination="Yse-tx-xS6" eventType="touchUpInside" id="il1-FF-lrC"/>
                                                     </connections>
@@ -692,7 +692,7 @@
         <image name="cat" width="512" height="512"/>
         <image name="comment" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
-        <image name="heart" width="512" height="512"/>
+        <image name="favourite" width="32" height="32"/>
         <image name="placeholder" width="987" height="777"/>
         <image name="select_write" width="40" height="40"/>
         <image name="send" width="32" height="32"/>

@@ -46,9 +46,8 @@ class ComprehensiveRatedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-//        getRatedList()
+        getRatedList()
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)

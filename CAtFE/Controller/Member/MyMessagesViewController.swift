@@ -8,15 +8,27 @@
 
 import UIKit
 
+enum MessagesCategory {
+    case myMessages
+    case likeMessages
+}
+
+protocol PostCountDelegate: AnyObject {
+    func getPostCount(postCount: Int)
+    func getLikeCount(likeCount: Int)
+}
+
 class MyMessagesViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    weak var delegate: PostCountDelegate?
 
+    private var messageType: MessagesCategory = .myMessages
     let messageBoardManager = MessageBoardManager()
     let cafeManager = CafeManager()
     let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
-    var myMessages: [CafeComments] = [] {
+    var messageList: [CafeComments] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -33,42 +45,96 @@ class MyMessagesViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         
-        getPostDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        getPostDetail()
+        getMessageList()
     }
     
-    func getPostDetail() {
-        presentLoadingVC()
+    func messageType(messagesCategory: MessagesCategory) {
+        messageType = messagesCategory
+    }
+    
+    func getMessageList() {
+        self.presentLoadingVC()
+        messageList.removeAll()
         
+        switch self.messageType {
+        case .myMessages:
+            self.getMyMessages()
+        case .likeMessages:
+            self.getLikeMessages()
+        }
+    }
+    
+    func getMyMessages() {
         let userId = KeyChainManager.shared.id
         messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
             case .success(let data):
-                self.myMessages = data.results
+                self.messageList = data
                 self.onSortedMessages()
+                self.delegate?.getPostCount(postCount: data.count)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+                    self.dismiss(animated: true, completion: nil)
+                }
             case .failure(let error):
                 NSLog("getMessages error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    func getLikeMessages() {
+        guard let token = KeyChainManager.shared.token else { return }
+        messageBoardManager.getLikeMessages(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                self.serchLikeMessages(messageId: data.data)
+                self.delegate?.getLikeCount(likeCount: data.data.count)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .failure:
+                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    func serchLikeMessages(messageId: [Int]) {
+        messageBoardManager.getMessageList { (result) in
+            switch result {
+            case .success(let data):
+                for message in data {
+                    for id in messageId where message.id == id {
+                        self.messageList.append(message)
+                    }
+                }
+            case .failure(let error):
+                print("======= getMessageList() error: \(error)")
             }
         }
     }
     
     func onSortedMessages() {
-        let sortedComments = myMessages.sorted { $0.updatedAt > $1.updatedAt }
-        self.myMessages = sortedComments
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.refreshControl.endRefreshing()
-            self.dismiss(animated: true, completion: nil)
-        }
+        let sortedComments = messageList.sorted { $0.updatedAt > $1.updatedAt }
+        self.messageList = sortedComments
     }
+    
 
     @objc func loadData() {
-        self.myMessages.removeAll()
+        self.messageList.removeAll()
         self.collectionView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -76,7 +142,7 @@ class MyMessagesViewController: BaseViewController {
 
 extension MyMessagesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myMessages.count
+        return messageList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -85,7 +151,7 @@ extension MyMessagesViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? MemberCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setData(data: myMessages[indexPath.row])
+        cell.setData(data: messageList[indexPath.row])
         return cell
     }
 }
@@ -112,7 +178,7 @@ extension MyMessagesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let presentVC = UIStoryboard.messageBoard.instantiateViewController(identifier: PostMessageDetailViewController.identifier) as? PostMessageDetailViewController
         presentVC?.modalPresentationStyle = .overFullScreen
-        presentVC?.cafeComments = self.myMessages[indexPath.row]
+        presentVC?.cafeComments = self.messageList[indexPath.row]
         self.show(presentVC!, sender: nil)
     }
 }

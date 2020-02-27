@@ -138,6 +138,20 @@ extension LoginViewController: LoginButtonDelegate {
             print(error.localizedDescription)
             return
         }
+        guard let token = result!.token?.tokenString else {
+            let fbError = FacebookError.noToken
+            CustomProgressHUD.showFailure(text: fbError.rawValue)
+            return 
+        }
+//        userProvider.fbLogin(token: token) { (result) in
+//            switch result {
+//            case .success:
+//                self.fbLoginSuccess()
+//            case .failure(let error):
+//                CustomProgressHUD.showFailure(text: "Facebook 登入失敗")
+//                print("====== Facebook 登入失敗: \(error)")
+//            }
+//        }
         userProvider.loginWithFaceBook(from: self) { (result) in
             switch result {
             case .success:

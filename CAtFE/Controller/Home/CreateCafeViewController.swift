@@ -92,6 +92,14 @@ class CreateCafeViewController: BaseViewController {
 //                CustomProgressHUD.showFailure(text: "新增失敗")
 //            }
 //        }
+        if !categoryList[0].cellContent[0].value.isEmpty &&
+        !categoryList[0].cellContent[1].value.isEmpty &&
+        !categoryList[0].cellContent[2].value.isEmpty &&
+        !categoryList[0].cellContent[3].value.isEmpty {
+            alert(message: "資料已送出！", title: "待審核", handler: nil)
+        } else {
+            alert(message: "請填入必要資訊！", title: "溫馨小提醒", handler: nil)
+        }
         print(categoryList)
     }
     

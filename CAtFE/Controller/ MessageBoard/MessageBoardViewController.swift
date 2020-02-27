@@ -25,7 +25,6 @@ class MessageBoardViewController: UIViewController {
     var selectedItems = [YPMediaItem]()
     var selectedPhotos: [UIImage] = []
     var testPhoto = UIImage()
-    var cafeComments: [Comments] = []
     
     // from messageboard
     var cafeCommentList: [CafeComments] = []
@@ -35,13 +34,12 @@ class MessageBoardViewController: UIViewController {
 
         initView()
         initNavView()
-        
-        getPostDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getAllMessages()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -54,6 +52,9 @@ class MessageBoardViewController: UIViewController {
         navView.backgroundColor = .white
         navView.text = "留言板"
         navView.font = UIFont(name: "Helvetica Neue", size: 24)
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 50))
+        bgView.backgroundColor = .white
+        self.view.addSubview(bgView)
         self.view.addSubview(navView)
     }
 
@@ -70,31 +71,46 @@ class MessageBoardViewController: UIViewController {
         collectionView.addSubview(refreshControl)
     }
     
-    func getPostDetail() {
+    func getAllMessages() {
         presentLoadingVC()
         
         messageBoardManager.getMessageList { (result) in
+            print("======= 轉圈圈測試")
             switch result {
             case .success(let data):
-                self.cafeCommentList = data
-                self.getCommentDetail()
+                self.getCommentDetail(data: data)
             case .failure(let error):
+                CustomProgressHUD.showFailure(text: "讀取資料失敗")
                 print("======= getMessageList error: \(error.localizedDescription)")
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.refreshControl.endRefreshing()
             }
         }
     }
 
-    func getCommentDetail() {
-        let sortedComments = cafeCommentList.sorted { $0.updatedAt > $1.updatedAt }
+    func getCommentDetail(data: [CafeComments]) {
+        let sortedComments = data.sorted { $0.updatedAt > $1.updatedAt }
         self.cafeCommentList = sortedComments
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.dismiss(animated: true, completion: nil)
+    }
+    
+    func addLikeMessage(_ cell: MessageCollectionViewCell) {
+        guard let token = KeyChainManager.shared.token else {
+            return
         }
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            self.refreshControl.endRefreshing()
-//        }
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let messageId = cafeCommentList[indexPath.row].id
+        messageBoardManager.addLikeMessage(token: token, messageId: messageId) { (result) in
+            switch result {
+            case .success:
+                print("收藏成功")
+//                CustomProgressHUD.showSuccess(text: "收藏成功")
+            case .failure(let error):
+                CustomProgressHUD.showFailure(text: "\(error.localizedDescription)")
+            }
+        }
     }
     
     @IBAction func addPostBtn(_ sender: Any) {
@@ -102,7 +118,7 @@ class MessageBoardViewController: UIViewController {
             showPicker()
         } else {
             alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
-                self.backToLoginView()
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -133,7 +149,7 @@ class MessageBoardViewController: UIViewController {
             
             for item in items {
                 switch item {
-                case .photo(let photo):
+                case .photo(let photo): // TODO: 改成多選
                     self.selectedPhotos.append(photo.image)
                     self.selectedImageV.image = photo.image
                     self.testPhoto = photo.image
@@ -163,9 +179,9 @@ class MessageBoardViewController: UIViewController {
     }
 
     @objc func loadData() {
-        cafeComments.removeAll()
-        self.getPostDetail()
-//        refreshControl.endRefreshing()
+        cafeCommentList.removeAll()
+        self.getAllMessages()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -179,12 +195,13 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell",
                                                             for: indexPath) as? MessageCollectionViewCell else {
                                                                 return UICollectionViewCell() }
-            
+        cell.delegate = self
         cell.setData(message: cafeCommentList[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: 改成放大圖片
         let presentVC = UIStoryboard.messageBoard
             .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
             as? PostMessageDetailViewController
@@ -216,14 +233,13 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
         let havePhoto = post.photos.count
         
         if havePhoto == 0 {
-            return 30
+            return 0
         } else {
             let photo = URL(string: post.photos[0].url)!
             let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
             let request = URLRequest(url: photo)
-            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest,
-                                                                            returning: nil) else {
-                return 0.75
+            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+                return 1.0
             }
             var img: UIImage?
             let imageView1 = UIImageView()
@@ -244,5 +260,30 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
                                                  options: .usesLineFragmentOrigin,
                                                  attributes: textAttributes, context: nil)
         return ceil(boundingRect.height)
+    }
+}
+
+extension MessageBoardViewController: MessageBoardDelegate {
+    func showCommentView(_ cell: MessageCollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageDetailViewController.identifier)
+            as? PostMessageDetailViewController
+        presentVC?.cafeComments = cafeCommentList[indexPath.item]
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
+    }
+    
+    func getBtnState(_ cell: MessageCollectionViewCell, _ btnState: Bool) {
+        if KeyChainManager.shared.token != nil {
+            addLikeMessage(cell)
+            guard let indexPath = collectionView.indexPath(for: cell) else { return }
+            self.cafeCommentList[indexPath.row].isLike = btnState
+            self.collectionView.reloadData()
+        } else {
+            alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
