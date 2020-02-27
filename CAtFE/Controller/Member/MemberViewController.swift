@@ -155,9 +155,10 @@ extension MemberViewController: PostCountDelegate {
         }
     }
     
-    func getLikeCount(likeCount: Int) {
+    func getLikeCount(likeCountList: [Int]) {
+        let sum = likeCountList.reduce(0, +)
         DispatchQueue.main.async {
-            self.followingLabel.text = String(likeCount)
+            self.followingLabel.text = String(sum)
         }
     }
 }

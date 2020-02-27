@@ -23,7 +23,7 @@
                         <color key="textColor" name="TextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-Q7-lY6" customClass="CosmosView" customModule="Cosmos">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-Q7-lY6" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="69.5" y="9.5" width="165" height="25"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <userDefinedRuntimeAttributes>

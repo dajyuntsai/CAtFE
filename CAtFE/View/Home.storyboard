@@ -124,7 +124,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CIl-6E-Zy6">
-                                <rect key="frame" x="16" y="32" width="382" height="46"/>
+                                <rect key="frame" x="16" y="40" width="382" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z6J-Ze-CKh">
                                         <rect key="frame" x="8" y="8" width="366" height="30"/>
@@ -186,7 +186,7 @@
                             <constraint firstItem="YjU-RQ-GpO" firstAttribute="top" secondItem="NuU-8P-dp7" secondAttribute="bottom" constant="16" id="VAH-qK-r11"/>
                             <constraint firstItem="ghU-Hg-Qej" firstAttribute="trailing" secondItem="CIl-6E-Zy6" secondAttribute="trailing" constant="16" id="VUE-PC-Hg1"/>
                             <constraint firstItem="wf9-jr-bPj" firstAttribute="leading" secondItem="ghU-Hg-Qej" secondAttribute="leading" id="Vpx-Vc-Ax8"/>
-                            <constraint firstItem="CIl-6E-Zy6" firstAttribute="top" secondItem="9Cy-LT-A8t" secondAttribute="top" constant="32" id="dK0-Bb-4gn"/>
+                            <constraint firstItem="CIl-6E-Zy6" firstAttribute="top" secondItem="9Cy-LT-A8t" secondAttribute="top" constant="40" id="dK0-Bb-4gn"/>
                             <constraint firstItem="NuU-8P-dp7" firstAttribute="centerX" secondItem="mNB-hH-NBM" secondAttribute="centerX" id="dfz-fe-Pjv"/>
                             <constraint firstItem="CNo-n7-Wiv" firstAttribute="leading" secondItem="ghU-Hg-Qej" secondAttribute="leading" id="hb0-Vq-2fW"/>
                             <constraint firstItem="ghU-Hg-Qej" firstAttribute="bottom" secondItem="YjU-RQ-GpO" secondAttribute="bottom" constant="16" id="i50-0W-K8H"/>

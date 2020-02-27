@@ -50,14 +50,14 @@ class PostMessageViewController: BaseViewController {
     }
     
     func initView() {
-        tableView.contentInset = UIEdgeInsets(top: height * 0.07, left: 0, bottom: 0, right: 0)
-        initBarBtn()
+        tableView.contentInset = UIEdgeInsets(top: height * 0.1, left: 0, bottom: 0, right: 0)
+        initSendBtn()
         initBackBtn()
     }
     
     func initBackBtn() {
         let backBtn = UIButton()
-        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.07, height: width * 0.07)
+        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.1, height: width * 0.1)
         backBtn.layer.cornerRadius = backBtn.frame.width / 2
         backBtn.setImage(UIImage(named: "back"), for: .normal)
         backBtn.backgroundColor = .lightGray
@@ -66,9 +66,9 @@ class PostMessageViewController: BaseViewController {
         self.view.addSubview(backBtn)
     }
     
-    func initBarBtn() {
+    func initSendBtn() {
         let saveBtn = UIButton()
-        saveBtn.frame = CGRect(x: width - (width * 0.05 + width * 0.07), y: height * 0.07, width: width * 0.07, height: width * 0.07)
+        saveBtn.frame = CGRect(x: width - (width * 0.05 + width * 0.1), y: height * 0.07, width: width * 0.1, height: width * 0.1)
         saveBtn.setImage(UIImage(named: "send"), for: .normal)
         saveBtn.addTarget(self, action: #selector(sendPostBtn), for: .touchUpInside)
         self.view.addSubview(saveBtn)
@@ -83,7 +83,7 @@ class PostMessageViewController: BaseViewController {
         ]
         AF.upload(multipartFormData: { (multipartFormData) in
 //            for photo in self.postImagesData {
-            let test = self.testPhoto?.pngData()
+            let test = self.testPhoto?.jpegData(compressionQuality: 0.6)
             multipartFormData.append(test!, withName: "photos[]", fileName: "photos.jpg", mimeType: "image/jpeg")
 //            }
             multipartFormData.append(self.content!.data(using: String.Encoding.utf8)!, withName: "comment")

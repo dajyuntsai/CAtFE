@@ -91,8 +91,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         guard let idToken = appleIDCredential.identityToken else { return }
 //        let userIdentifier = appleIDCredential.user
-        let givenName = appleIDCredential.fullName?.givenName ?? "Apple Sign in: No givenName"
-        let familyName = appleIDCredential.fullName?.familyName ?? "Apple Sign in: No familyName"
+        let givenName = appleIDCredential.fullName?.givenName ?? ""
+        let familyName = appleIDCredential.fullName?.familyName ?? ""
         let fullName = givenName +  " " + familyName
         let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
         let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"

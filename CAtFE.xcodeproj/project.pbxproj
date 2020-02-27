@@ -56,8 +56,6 @@
 		BE5B245A23F282E60092FACA /* MyMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245923F282E60092FACA /* MyMessagesViewController.swift */; };
 		BE5B245C23F28A280092FACA /* MyFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245B23F28A280092FACA /* MyFollowingViewController.swift */; };
 		BE5B245E23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */; };
-		BE5B246023F2C52E0092FACA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */; };
-		BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */; };
 		BE5B246423F3AEE90092FACA /* MessageBoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */; };
 		BE5B246623F3BC140092FACA /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B246523F3BC140092FACA /* MessageModel.swift */; };
 		BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66210023D3FE450053FD07 /* AppDelegate.swift */; };
@@ -68,6 +66,8 @@
 		BE66211823D3FE490053FD07 /* CAtFETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66211723D3FE490053FD07 /* CAtFETests.swift */; };
 		BE66212323D3FE490053FD07 /* CAtFEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66212223D3FE490053FD07 /* CAtFEUITests.swift */; };
 		BE6D2E6A2406A50700B3846D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BE6D2E692406A50700B3846D /* loading.json */; };
+		BE6D2E6F2407D05600B3846D /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6D2E6D2407D05600B3846D /* SearchLocationTableViewCell.swift */; };
+		BE6D2E702407D05600B3846D /* SearchLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE6D2E6E2407D05600B3846D /* SearchLocationTableViewCell.xib */; };
 		BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */; };
 		BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */; };
 		BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */; };
@@ -202,8 +202,6 @@
 		BE5B245923F282E60092FACA /* MyMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessagesViewController.swift; sourceTree = "<group>"; };
 		BE5B245B23F28A280092FACA /* MyFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowingViewController.swift; sourceTree = "<group>"; };
 		BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowingViewTableViewCell.swift; sourceTree = "<group>"; };
-		BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
-		BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewCell.swift; sourceTree = "<group>"; };
 		BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardManager.swift; sourceTree = "<group>"; };
 		BE5B246523F3BC140092FACA /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		BE6620FD23D3FE450053FD07 /* CAtFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAtFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +218,8 @@
 		BE66212223D3FE490053FD07 /* CAtFEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAtFEUITests.swift; sourceTree = "<group>"; };
 		BE66212423D3FE490053FD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE6D2E692406A50700B3846D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../Users/ninn/Downloads/loading.json; sourceTree = "<group>"; };
+		BE6D2E6D2407D05600B3846D /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
+		BE6D2E6E2407D05600B3846D /* SearchLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchLocationTableViewCell.xib; sourceTree = "<group>"; };
 		BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailCheckBoxTableViewCell.swift; sourceTree = "<group>"; };
 		BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailCheckBoxTableViewCell.xib; sourceTree = "<group>"; };
 		BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopEventsViewController.swift; sourceTree = "<group>"; };
@@ -583,7 +583,6 @@
 			children = (
 				BE076B9B23EBA49E0090BC7F /* SinaLikePopupViewController.swift */,
 				BEE181E423E232C300660AEB /* HomeViewController.swift */,
-				BE5B245F23F2C52E0092FACA /* LocationSearchTable.swift */,
 				BE5258FD23EC583600F8AC00 /* CreateCafeViewController.swift */,
 			);
 			path = Home;
@@ -654,7 +653,6 @@
 			isa = PBXGroup;
 			children = (
 				BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */,
-				BE5B246123F2D3C10092FACA /* LocationSearchTableViewCell.swift */,
 				BE52590223EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift */,
 				BE52590323EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib */,
 				BEA99DFA23EFD12300F2CC69 /* CreateDetailTextTableViewCell.swift */,
@@ -670,6 +668,8 @@
 				BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */,
 				BE18E0A023FD2897006F004C /* ServeyTitleTableViewCell.swift */,
 				BE18E0A123FD2897006F004C /* ServeyTitleTableViewCell.xib */,
+				BE6D2E6D2407D05600B3846D /* SearchLocationTableViewCell.swift */,
+				BE6D2E6E2407D05600B3846D /* SearchLocationTableViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -859,6 +859,7 @@
 				BE1EDBD023E2DC49003C38D9 /* MessageBoard.storyboard in Resources */,
 				BE5258FC23EC57FD00F8AC00 /* CreateCafe.storyboard in Resources */,
 				BE66210823D3FE450053FD07 /* Main.storyboard in Resources */,
+				BE6D2E702407D05600B3846D /* SearchLocationTableViewCell.xib in Resources */,
 				BE1EDBCB23E2DC11003C38D9 /* Rated.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1008,6 +1009,7 @@
 				BE66210523D3FE450053FD07 /* LoginViewController.swift in Sources */,
 				BE52590023EC5A1600F8AC00 /* UITableView+Extension.swift in Sources */,
 				BE36C40D23F195C9003C4BDB /* TabTitleConfig.swift in Sources */,
+				BE6D2E6F2407D05600B3846D /* SearchLocationTableViewCell.swift in Sources */,
 				BEE181EB23E2339D00660AEB /* UIViewController+Extension.swift in Sources */,
 				BE9131E523E7DD5C004A669D /* PostMessagePhotoTableViewCell.swift in Sources */,
 				BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */,
@@ -1056,7 +1058,6 @@
 				BE4FD7D823F4F739004E190A /* UITextView+Extension.swift in Sources */,
 				BE18E0A223FD2897006F004C /* ServeyTitleTableViewCell.swift in Sources */,
 				BEA99E0423EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.swift in Sources */,
-				BE5B246223F2D3C10092FACA /* LocationSearchTableViewCell.swift in Sources */,
 				BE94EB4323F6549900FA4604 /* DetailScoreViewController.swift in Sources */,
 				BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */,
 				BE36C40F23F195C9003C4BDB /* TabTitleView.swift in Sources */,
@@ -1086,7 +1087,6 @@
 				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
 				BE36C40E23F195C9003C4BDB /* TabContentView.swift in Sources */,
 				BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */,
-				BE5B246023F2C52E0092FACA /* LocationSearchTable.swift in Sources */,
 				BE52590423EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift in Sources */,
 				BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */,
 				BE9131F123E95188004A669D /* PostMessageAddReplyTableViewCell.swift in Sources */,

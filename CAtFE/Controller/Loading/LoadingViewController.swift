@@ -9,6 +9,8 @@
 import UIKit
 import Lottie
 
+let loadingVC = LoadingViewController()
+
 class LoadingViewController: UIViewController {
 
     @IBOutlet weak var animationView: AnimationView!

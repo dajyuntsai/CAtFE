@@ -55,6 +55,7 @@ class ComprehensiveRatedViewController: BaseViewController {
     }
     
     func initView() {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }

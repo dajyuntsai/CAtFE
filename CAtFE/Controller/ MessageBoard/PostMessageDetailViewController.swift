@@ -67,7 +67,7 @@ class PostMessageDetailViewController: BaseViewController {
     }
     
     func initBackBtn() {
-        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.07, height: width * 0.07)
+        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.1, height: width * 0.1)
         backBtn.setImage(UIImage(named: "back"), for: .normal)
         backBtn.backgroundColor = .lightGray
         backBtn.layer.cornerRadius = backBtn.frame.width / 2
@@ -144,8 +144,7 @@ class PostMessageDetailViewController: BaseViewController {
             messageId: messageId!,
             text: text) { (reuslt) in
                 switch reuslt {
-                case .success(let data):
-//                    self.cafeComments = data
+                case .success:
                     CustomProgressHUD.showSuccess(text: "發送成功")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()

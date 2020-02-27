@@ -323,7 +323,7 @@ extension SettingViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
         if let selectedImage = selectedImageFromPicker {
-            let imageData = selectedImage.pngData()
+            let imageData = selectedImage.jpegData(compressionQuality: 0.6)
 //            let strBase64 = imageData?.base64EncodedData(options: .lineLength64Characters)
 //            let img = "data:image/png;base64,\(strBase64)"
             updateAvatar = imageData

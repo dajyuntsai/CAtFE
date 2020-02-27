@@ -52,7 +52,7 @@ class MessageBoardViewController: UIViewController {
         navView.backgroundColor = .white
         navView.text = "留言板"
         navView.font = UIFont(name: "Helvetica Neue", size: 24)
-        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 50))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 100))
         bgView.backgroundColor = .white
         self.view.addSubview(bgView)
         self.view.addSubview(navView)

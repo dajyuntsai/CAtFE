@@ -10,15 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-struct LocationList {
-    let title: String
-    let address: String
-}
-
-protocol HandleMapSearch: AnyObject {
-    func dropPinZoomIn(placemark: MKPlacemark)
-}
-
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -37,6 +28,7 @@ class HomeViewController: UIViewController {
     }()
     private let locationManager: CLLocationManager = CLLocationManager()
     let width = UIScreen.main.bounds.width
+    let height = UIScreen.main.bounds.height
     let cafeManager = CafeManager()
     var userLocation: CLLocationCoordinate2D?
     var phone: String?
@@ -44,20 +36,16 @@ class HomeViewController: UIViewController {
     var selectedPin: MKPlacemark?
     var currentPlaceMark: CLPlacemark?
     var searchResult = ""
-    var locationList: [LocationList] = []
+    var searching = false
+    var zoomInSearchLocation: ((String) -> Void)?
+    var locationList: [[String: String]] = []
+    var searchedList: [[String: String]] = []
     var cafeList: [Cafe] = [] {
         didSet {
             self.createAnnotations(locations: cafeList)
         }
     }
-    var tableView = UITableView() {
-        didSet {
-            tableView.dataSource = self
-            tableView.delegate = self
-            
-            setUpTableView()
-        }
-    }
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
     let filterList = ["離我最近", "寵物篩選", "Wifi"]
     let iconList = ["", "filter", ""]
@@ -74,9 +62,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         initView()
-        setUpTabBarItem()
-        setSearchBar()
         initMapView()
+        setUpTabBarItem()
 //        setUpCollectionView()
         getCafeData()
     }
@@ -113,6 +100,8 @@ class HomeViewController: UIViewController {
     }
     
     func setUpTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -121,7 +110,7 @@ class HomeViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
-        tableView.register(LocationSearchTableViewCell.self, forCellReuseIdentifier: LocationSearchTableViewCell.identifier)
+        tableView.registerCellWithNib(identifier: String(describing: SearchLocationTableViewCell.self), bundle: nil)
     }
     
     func setUpCollectionView() {
@@ -168,28 +157,6 @@ class HomeViewController: UIViewController {
         action: #selector(petFilterBtn))
         navigationItem.rightBarButtonItem = filterBtn
     }
-
-    func setSearchBar() {
-//        let locationSearchTable = UIStoryboard.home
-//            .instantiateViewController(identifier: LocationSearchTable.identifier)
-//            as? LocationSearchTable
-//
-//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-//        resultSearchController?.searchBar.delegate = self
-//        resultSearchController?.searchResultsUpdater = locationSearchTable
-//        locationSearchTable!.mapView = mapView
-//        locationSearchTable?.handleMapSearchDelegate = self
-//
-//        let searchBar = resultSearchController!.searchBar
-//        searchBar.sizeToFit()
-//        searchBar.placeholder = "Search for places"
-//        navigationItem.titleView = resultSearchController?.searchBar
-//        resultSearchController?.hidesNavigationBarDuringPresentation = false
-//        resultSearchController?.obscuresBackgroundDuringPresentation = true
-//        definesPresentationContext = true
-//
-//        createNaviRightBtn()
-    }
     
     func setUpLocationAuthorization() {
         // 首次使用 向使用者詢問定位自身位置權限
@@ -234,7 +201,7 @@ class HomeViewController: UIViewController {
     
     func getLocationList(data: [Cafe]) {
         for location in cafeList {
-            locationList.append(LocationList(title: location.name, address: location.address))
+            locationList.append(["title": location.name, "address": location.address])
         }
     }
     
@@ -297,12 +264,12 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
         userLocation = nowLocation
-        
+        mapView.setCenter(nowLocation, animated: true)
         geoCoder.reverseGeocodeLocation(currentLocation) { (placeMark, _) in
             self.currentPlaceMark = placeMark?.first
         }
     }
-    
+        
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
@@ -337,6 +304,15 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let infoBtn = UIButton(type: .detailDisclosure)
         infoBtn.addTarget(self, action: #selector(infoDetail), for: .touchUpInside)
         view.rightCalloutAccessoryView = infoBtn
+    }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        zoomInSearchLocation = { location in
+            let target = self.cafeList.filter({ $0.name == location})
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: target[0].latitude, longitude: target[0].longitude), span: span)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     @objc func infoDetail() {
@@ -386,8 +362,6 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             MKLaunchOptionsMapTypeKey: MKMapType.standard.rawValue as AnyObject,
             // 显示交通：显示
             MKLaunchOptionsShowsTrafficKey: true as AnyObject]
-        
-        // 根据 MKMapItem 的起点和终点组成数组, 通过导航地图启动项参数字典, 调用系统的地图APP进行导航
         MKMapItem.openMaps(with: mapItems, launchOptions: dic)
     }
 }
@@ -397,17 +371,10 @@ extension HomeViewController: PetFilterDelegate {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         switch indexPath.item {
         case 0:
-            nearestCafe(cell)
-        case 1:
             petFilterClick(cell)
         default:
             wifiFilterClick(locations: cafeList)
         }
-
-    }
-
-    func nearestCafe(_ cell: HomeFilterCollectionViewCell) {
-
     }
 
     func petFilterClick(_ cell: HomeFilterCollectionViewCell) {
@@ -446,26 +413,6 @@ extension HomeViewController: PetFilterDelegate {
     }
 }
 
-extension HomeViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark) {
-        // cache the pin
-        selectedPin = placemark
-        // clear existing pins
-        mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
-        let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city) \(state)"
-        }
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-    }
-}
-
 extension HomeViewController: UISearchBarDelegate {
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         self.petFilterBtn()
@@ -480,28 +427,74 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationList.count
+        if searching {
+            return searchedList.count
+        } else {
+            return locationList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationSearchTableViewCell.identifier,
-                                                       for: indexPath) as? LocationSearchTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchLocationTableViewCell.identifier,
+                                                       for: indexPath) as? SearchLocationTableViewCell else {
             return UITableViewCell()
         }
-        cell.setData(data: locationList[indexPath.row])
+        if searching {
+            cell.setData(data: searchedList[indexPath.row])
+        } else {
+            cell.setData(data: locationList[indexPath.row])
+        }
         return cell
     }
 }
 
-extension HomeViewController: UITextFieldDelegate {
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchResult = locationList[indexPath.row]["title"]!
+        zoomInSearchLocation?(searchResult)
+        self.tableView.isHidden = true
+        self.view.endEditing(true)
+    }
+}
+
+extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if searchResult.isEmpty {
-            
+        setUpTableView()
+        searchedList.removeAll()
+        tableView.isHidden = false
+        searching = false
+        tableView.reloadData()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        tableView.isHidden = true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+       return true
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let searchText  = textField.text! + string
+
+        if searchText.count >= 3 {
+            searchedList = self.locationList.filter { (($0["title"]!).localizedCaseInsensitiveContains(searchText)) }
+            if searchedList.count == 0 {
+                searching = false
+            } else {
+                searching = true
+            }
         } else {
-            searchResult = textField.text!
+            searchedList = []
         }
+        tableView.reloadData()
+        return true
     }
 }

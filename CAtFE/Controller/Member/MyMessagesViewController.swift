@@ -15,7 +15,7 @@ enum MessagesCategory {
 
 protocol PostCountDelegate: AnyObject {
     func getPostCount(postCount: Int)
-    func getLikeCount(likeCount: Int)
+    func getLikeCount(likeCountList: [Int])
 }
 
 class MyMessagesViewController: BaseViewController {
@@ -28,6 +28,7 @@ class MyMessagesViewController: BaseViewController {
     let cafeManager = CafeManager()
     let refreshControl = UIRefreshControl()
     let width = UIScreen.main.bounds.width
+    var likeCountList: [Int] = []
     var messageList: [CafeComments] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -97,7 +98,6 @@ class MyMessagesViewController: BaseViewController {
             switch result {
             case .success(let data):
                 self.serchLikeMessages(messageId: data.data)
-                self.delegate?.getLikeCount(likeCount: data.data.count)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
@@ -130,9 +130,12 @@ class MyMessagesViewController: BaseViewController {
     func onSortedMessages() {
         let sortedComments = messageList.sorted { $0.updatedAt > $1.updatedAt }
         self.messageList = sortedComments
+        for like in messageList {
+            self.likeCountList.append(like.likeCount)
+        }
+        self.delegate?.getLikeCount(likeCountList: self.likeCountList)
     }
     
-
     @objc func loadData() {
         self.messageList.removeAll()
         self.collectionView.reloadData()
