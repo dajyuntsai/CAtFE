@@ -22,7 +22,6 @@ class CafeComments: Codable {
     let cafe: TinyCafe
     let cafeCommentReplies: [CafeCommentReplies]
     let likeCount: Int
-    var isLike: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,7 +33,6 @@ class CafeComments: Codable {
         case cafe
         case cafeCommentReplies = "cafe_comment_replies"
         case likeCount = "like_count"
-        case isLike
     }
 }
 
@@ -80,7 +78,7 @@ class UserDetail: Codable {
     let id: Int
     let email: String
     let name: String
-    let avatar: String
+    let avatar: String?
     let point: Int
 }
 

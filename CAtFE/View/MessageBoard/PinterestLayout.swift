@@ -92,8 +92,6 @@ class PinterestLayout: UICollectionViewLayout {
     }
 }
 
-// UICollectionViewFlowLayout
-// abstract
 class PinterestLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var photoHeight: CGFloat = 0.0

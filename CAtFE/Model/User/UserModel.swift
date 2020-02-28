@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserObject: Codable {
+class UserModel: Codable {
     var results: [User]
 }
 
@@ -18,7 +18,7 @@ class User: Codable {
     var password: String
     var name: String
     var active: Bool
-    var avatar: String
+    var avatar: String?
     var point: Int
 }
 

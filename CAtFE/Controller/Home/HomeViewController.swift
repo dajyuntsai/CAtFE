@@ -121,7 +121,7 @@ class HomeViewController: UIViewController {
     }
     
     func setUpTabBarItem() {
-        let tabBarHome = self.tabBarController?.tabBar.items?[2]
+        let tabBarHome = self.tabBarController?.tabBar.items?[1]
         tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
@@ -146,6 +146,8 @@ class HomeViewController: UIViewController {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
+        let center = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.0477505, longitude: 121.5148712), latitudinalMeters: 50000, longitudinalMeters: 50000)
+        mapView.setRegion(center, animated: true)
 
         createCafeBtnView.layer.cornerRadius = createCafeBtnView.frame.width / 2
     }
@@ -264,7 +266,6 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let currentRegion: MKCoordinateRegion = MKCoordinateRegion(center: nowLocation,
         span: currentLocationSpan)
         userLocation = nowLocation
-        mapView.setCenter(nowLocation, animated: true)
         geoCoder.reverseGeocodeLocation(currentLocation) { (placeMark, _) in
             self.currentPlaceMark = placeMark?.first
         }

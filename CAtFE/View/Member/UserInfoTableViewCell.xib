@@ -37,7 +37,7 @@
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ue-hH-dQ7">
                         <rect key="frame" x="188" y="86" width="30" height="30"/>
-                        <state key="normal" image="camera"/>
+                        <state key="normal" image="camera-1"/>
                         <connections>
                             <action selector="cameraBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8DV-6O-ozN"/>
                         </connections>
@@ -67,7 +67,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="camera" width="32" height="32"/>
+        <image name="camera-1" width="128" height="128"/>
         <image name="placeholder" width="987" height="777"/>
         <namedColor name="TextColor">
             <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

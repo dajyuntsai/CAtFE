@@ -40,7 +40,6 @@ class ComprehensiveRatedViewController: BaseViewController {
         super.viewDidLoad()
 
         initView()
-        getRatedList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +66,7 @@ class ComprehensiveRatedViewController: BaseViewController {
     }
     
     func getRatedList() {
+        presentLoadingVC()
         scoreManager.getRatedList { (result) in
             switch result {
             case .success(let data):
@@ -102,7 +102,11 @@ class ComprehensiveRatedViewController: BaseViewController {
             case .failure:
                 CustomProgressHUD.showFailure(text: "讀取資料失敗")
             }
-            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     

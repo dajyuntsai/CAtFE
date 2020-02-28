@@ -52,6 +52,13 @@ class MyMessagesViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getMessageList()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func messageType(messagesCategory: MessagesCategory) {
@@ -66,11 +73,12 @@ class MyMessagesViewController: BaseViewController {
         case .myMessages:
             self.getMyMessages()
         case .likeMessages:
-            self.getLikeMessages()
+            self.serchLikeMessages()
         }
     }
     
     func getMyMessages() {
+        likeCountList.removeAll()
         let userId = KeyChainManager.shared.id
         messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
@@ -92,27 +100,30 @@ class MyMessagesViewController: BaseViewController {
         }
     }
     
-    func getLikeMessages() {
-        guard let token = KeyChainManager.shared.token else { return }
-        messageBoardManager.getLikeMessages(token: token) { (result) in
-            switch result {
-            case .success(let data):
-                self.serchLikeMessages(messageId: data.data)
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.refreshControl.endRefreshing()
-                    self.dismiss(animated: true, completion: nil)
-                }
-            case .failure:
-                CustomProgressHUD.showFailure(text: "讀取資料失敗")
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-    }
+//    func getLikeMessages() {
+//        guard let token = KeyChainManager.shared.token else { return }
+//        messageBoardManager.getLikeMessages(token: token) { (result) in
+//            switch result {
+//            case .success(let data):
+//                self.serchLikeMessages(messageId: data.data)
+//                MessageBoardObject.shared.likeList = data.data
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                    self.refreshControl.endRefreshing()
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            case .failure:
+//                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+//                DispatchQueue.main.async {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//        }
+//    }
     
-    func serchLikeMessages(messageId: [Int]) {
+    func serchLikeMessages() {
+        likeCountList.removeAll()
+        let messageId = MessageBoardObject.shared.likeList
         messageBoardManager.getMessageList { (result) in
             switch result {
             case .success(let data):
@@ -121,6 +132,7 @@ class MyMessagesViewController: BaseViewController {
                         self.messageList.append(message)
                     }
                 }
+                self.onSortedMessages()
             case .failure(let error):
                 print("======= getMessageList() error: \(error)")
             }
@@ -129,7 +141,8 @@ class MyMessagesViewController: BaseViewController {
     
     func onSortedMessages() {
         let sortedComments = messageList.sorted { $0.updatedAt > $1.updatedAt }
-        self.messageList = sortedComments
+        messageList = sortedComments
+//        likeCountList.removeAll()
         for like in messageList {
             self.likeCountList.append(like.likeCount)
         }

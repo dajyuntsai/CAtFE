@@ -90,7 +90,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         guard let idToken = appleIDCredential.identityToken else { return }
-//        let userIdentifier = appleIDCredential.user
         let givenName = appleIDCredential.fullName?.givenName ?? ""
         let familyName = appleIDCredential.fullName?.familyName ?? ""
         let fullName = givenName +  " " + familyName
@@ -143,21 +142,33 @@ extension LoginViewController: LoginButtonDelegate {
             CustomProgressHUD.showFailure(text: fbError.rawValue)
             return 
         }
-//        userProvider.fbLogin(token: token) { (result) in
-//            switch result {
-//            case .success:
-//                self.fbLoginSuccess()
-//            case .failure(let error):
-//                CustomProgressHUD.showFailure(text: "Facebook 登入失敗")
-//                print("====== Facebook 登入失敗: \(error)")
-//            }
-//        }
-        userProvider.loginWithFaceBook(from: self) { (result) in
-            switch result {
-            case .success:
-                self.fbLoginSuccess()
-            case .failure:
-                CustomProgressHUD.showSuccess(text: "Facebook 登入失敗")
+        self.userProvider.getUserDataFromFB(fbToken: token)
+        
+        let url = URL(string: "https://catfe.herokuapp.com/users/fbLogin/")!
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(token.data(using: .utf8)!, withName: "token")
+        }, to: url,
+           method: .post).response { (response) in
+            if let statusCode = response.response?.statusCode {
+                NSLog("statusCode: \(statusCode)")
+            }
+            switch response.result {
+            case .success(let data):
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) ,
+                    let jsonDict = json as? [String: Any] {
+                    NSLog("jsonDict : \(jsonDict)")
+                    guard let access = jsonDict["access"] as? String else { return }
+                    KeyChainManager.shared.token = access
+                    self.dismiss(animated: true, completion: nil)
+                    CustomProgressHUD.showSuccess(text: "登入成功")
+                    self.backToRoot()
+                }
+            case .failure(let error):
+                NSLog("error: \(error.localizedDescription)")
+                self.dismiss(animated: true, completion: nil)
+                CustomProgressHUD.showFailure(text: "登入失敗")
             }
         }
     }

@@ -50,20 +50,24 @@ class MessageCollectionViewCell: UICollectionViewCell {
         cellBackgroundView.layer.cornerRadius = 15
     }
     
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes)
-        if let attributes = layoutAttributes as? PinterestLayoutAttributes {
-            // - change the image height
-            postImageViewHeightLayoutConstraint.constant = attributes.photoHeight
-        }
-    }
+//    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+//        super.apply(layoutAttributes)
+//        if let attributes = layoutAttributes as? PinterestLayoutAttributes {
+//            // - change the image height
+//            postImageViewHeightLayoutConstraint.constant = attributes.photoHeight
+//        }
+//    }
 
     func setData(message: CafeComments) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
         guard let date = dateFormatter.date(from: message.updatedAt) else { return }
         let timeAgo = date.timeAgoSinceDate()
-        userImageView.loadImage(message.user?.avatar)
+        if message.user?.avatar != nil {
+            userImageView.loadImage(message.user?.avatar, placeHolder: UIImage(named: "placeholder"))
+        } else {
+            userImageView.image = UIImage(named: "placeholder")
+        }
         userNameLabel.text = message.user?.name
         dateTimeLabel.text = timeAgo
         captionLabel.text = message.comment
@@ -75,7 +79,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         postImageView.layer.cornerRadius = 5.0
         postImageView.layer.masksToBounds = true
         
-        let heartState = message.isLike == true ? "heart_fill" : "favourite"
+        let heartState = likeBtnState == true ? "heart_fill" : "favourite"
         likeBtn.setImage(UIImage(named: heartState), for: .normal)
     }
 }

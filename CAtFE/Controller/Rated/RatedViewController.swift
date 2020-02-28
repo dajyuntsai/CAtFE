@@ -68,7 +68,7 @@ class RatedViewController: UIViewController {
                            surroundingVC,
                            deliciousVC,
                            convenienceVC]
-        let rectContent = CGRect(x: 0, y: height * 0.06 + 50 + 50, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height * 0.06 + 50 + 50, width: width, height: height - (height * 0.06 + 70))
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],

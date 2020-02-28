@@ -211,16 +211,11 @@ class MessageBoardManager {
     func replyMessage(token: String,
                       messageId: Int,
                       text: String,
-                      completion: @escaping (Result<CafeComments>) -> Void) {
+                      completion: @escaping (Result<Void>) -> Void) {
         HTTPClient.shared.request(MessageBoardRequest.replyMessage(token, messageId, text)) { (result) in
             switch result {
-            case .success(let data):
-                do {
-                    let replies = try self.decoder.decode(CafeComments.self, from: data)
-                    completion(.success((replies)))
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }

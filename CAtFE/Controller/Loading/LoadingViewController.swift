@@ -21,6 +21,13 @@ class LoadingViewController: UIViewController {
         animationView.loopMode = .loop
         animationView.animationSpeed = 0.5
         animationView.play()
+//        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: Notification.Name("closeLoading"), object: nil)
+    }
+    
+    @objc func stop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

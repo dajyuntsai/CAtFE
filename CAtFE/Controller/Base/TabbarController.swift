@@ -10,7 +10,7 @@ import UIKit
 
 private enum Tab {
     case home
-    case shopEvent
+//    case shopEvent
     case rated
     case messageBoard
     case member
@@ -18,8 +18,8 @@ private enum Tab {
     func controller() -> UIViewController {
         var controller: UIViewController
         switch self {
-        case .shopEvent:
-            controller = UIStoryboard.shopEvent.instantiateInitialViewController()!
+//        case .shopEvent:
+//            controller = UIStoryboard.shopEvent.instantiateInitialViewController()!
         case .rated:
             controller = UIStoryboard.rated.instantiateInitialViewController()!
         case .home:
@@ -38,7 +38,7 @@ private enum Tab {
 
 class TabbarController: UITabBarController, UITabBarControllerDelegate {
     
-    private let tabs: [Tab] = [.shopEvent, .rated, .home, .messageBoard, .member]
+    private let tabs: [Tab] = [.rated, .home, .messageBoard, .member]
     var trolleyTabBarItem: UITabBarItem!
 
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate {
 
         self.tabBar.unselectedItemTintColor = .black
         viewControllers = tabs.map({ $0.controller() })
-        selectedIndex = 2
+        selectedIndex = 1
         delegate = self
     }
 

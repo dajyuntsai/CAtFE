@@ -21,7 +21,7 @@ class PostMessageDetailViewController: BaseViewController {
     var location: String?
     
 //    var cafeComments: [CafeComments] = []
-    var messageId: Int?
+//    var messageId: Int?
     var headerView = UIView()
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
@@ -34,7 +34,7 @@ class PostMessageDetailViewController: BaseViewController {
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0,
                                                             width: UIScreen.main.bounds.width,
-                                                            height: UIScreen.main.bounds.height / 3),
+                                                            height: UIScreen.main.bounds.height / 2),
                                               collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -69,14 +69,14 @@ class PostMessageDetailViewController: BaseViewController {
     func initBackBtn() {
         backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.1, height: width * 0.1)
         backBtn.setImage(UIImage(named: "back"), for: .normal)
-        backBtn.backgroundColor = .lightGray
+        backBtn.backgroundColor = UIColor.hexStringToUIColor(hex: "#D6D6D6")
         backBtn.layer.cornerRadius = backBtn.frame.width / 2
         backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
         self.view.addSubview(backBtn)
     }
     
     func initHeader() {
-        headerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height / 3))
+        headerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height / 2))
         tableView.tableHeaderView = headerView
         headerView.addSubview(collectionView)
         headerView.addSubview(pageControl)
@@ -107,12 +107,13 @@ class PostMessageDetailViewController: BaseViewController {
     }
 
     @objc func loadData() {
-        // TODO: calling api for loading reply
+        getUpdateReplies()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
     @objc func back() {
+//        NotificationCenter.default.post(name: Notification.Name("closeLoading"), object: nil)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -138,20 +139,34 @@ class PostMessageDetailViewController: BaseViewController {
             return
         }
         guard let token = KeyChainManager.shared.token else { return }
-        messageId = cafeComments?.id
+        let messageId = cafeComments?.id
         messageBoardManager.replyMessage(
             token: token,
             messageId: messageId!,
             text: text) { (reuslt) in
                 switch reuslt {
                 case .success:
+                    self.getUpdateReplies()
                     CustomProgressHUD.showSuccess(text: "發送成功")
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
                 case .failure:
                     CustomProgressHUD.showFailure(text: "發送失敗")
                 }
+        }
+    }
+    
+    func getUpdateReplies() {
+        messageBoardManager.getMessageList { (result) in
+            switch result {
+            case .success(let data):
+                for message in data where message.id == self.cafeComments?.id {
+                    self.cafeComments = message
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print("======= getUpdateReplies() error: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -205,7 +220,9 @@ extension PostMessageDetailViewController: UITableViewDataSource {
                                                            for: indexPath) as? PostMessageReplyTableViewCell else {
             return UITableViewCell() }
             
-            cell.setData(data: cafeComments!.cafeCommentReplies[indexPath.row - 2])
+            let sortedReplies = cafeComments!.cafeCommentReplies.sorted { $0.updatedAt > $1.updatedAt
+            }
+            cell.setData(data: sortedReplies[indexPath.row - 2])
             return cell
         }
     }
@@ -272,7 +289,7 @@ extension PostMessageDetailViewController: UICollectionViewDataSource {
 
 extension PostMessageDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: width, height: height / 3)
+        return CGSize(width: width, height: height / 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

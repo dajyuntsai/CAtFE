@@ -105,7 +105,7 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-1m-GmN">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-1m-GmN">
                                                             <rect key="frame" x="350" y="0.0" width="32" height="32"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="mhI-1m-GmN" secondAttribute="height" multiplier="1:1" id="wvv-xm-Aw9"/>

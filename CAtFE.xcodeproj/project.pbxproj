@@ -52,7 +52,7 @@
 		BE52590723EC5F9A00F8AC00 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */; };
 		BE52590D23EE58CE00F8AC00 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590C23EE58CD00F8AC00 /* UserRequest.swift */; };
 		BE52591023EE996300F8AC00 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52590F23EE996300F8AC00 /* KeyChainManager.swift */; };
-		BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52591123EE9C6500F8AC00 /* UserObject.swift */; };
+		BE52591223EE9C6500F8AC00 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52591123EE9C6500F8AC00 /* UserModel.swift */; };
 		BE5B245A23F282E60092FACA /* MyMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245923F282E60092FACA /* MyMessagesViewController.swift */; };
 		BE5B245C23F28A280092FACA /* MyFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245B23F28A280092FACA /* MyFollowingViewController.swift */; };
 		BE5B245E23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */; };
@@ -68,6 +68,7 @@
 		BE6D2E6A2406A50700B3846D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BE6D2E692406A50700B3846D /* loading.json */; };
 		BE6D2E6F2407D05600B3846D /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6D2E6D2407D05600B3846D /* SearchLocationTableViewCell.swift */; };
 		BE6D2E702407D05600B3846D /* SearchLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE6D2E6E2407D05600B3846D /* SearchLocationTableViewCell.xib */; };
+		BE6D2E722408CEF500B3846D /* MessageBoardObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6D2E712408CEF400B3846D /* MessageBoardObject.swift */; };
 		BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */; };
 		BE725AD123F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */; };
 		BE9131C623E2EE77004A669D /* ShopEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */; };
@@ -198,7 +199,7 @@
 		BE52590623EC5F9A00F8AC00 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		BE52590C23EE58CD00F8AC00 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		BE52590F23EE996300F8AC00 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
-		BE52591123EE9C6500F8AC00 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		BE52591123EE9C6500F8AC00 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BE5B245923F282E60092FACA /* MyMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessagesViewController.swift; sourceTree = "<group>"; };
 		BE5B245B23F28A280092FACA /* MyFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowingViewController.swift; sourceTree = "<group>"; };
 		BE5B245D23F28B2B0092FACA /* MyFollowingViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFollowingViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 		BE6D2E692406A50700B3846D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../Users/ninn/Downloads/loading.json; sourceTree = "<group>"; };
 		BE6D2E6D2407D05600B3846D /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
 		BE6D2E6E2407D05600B3846D /* SearchLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchLocationTableViewCell.xib; sourceTree = "<group>"; };
+		BE6D2E712408CEF400B3846D /* MessageBoardObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardObject.swift; sourceTree = "<group>"; };
 		BE725ACE23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDetailCheckBoxTableViewCell.swift; sourceTree = "<group>"; };
 		BE725ACF23F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailCheckBoxTableViewCell.xib; sourceTree = "<group>"; };
 		BE9131C523E2EE77004A669D /* ShopEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopEventsViewController.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			children = (
 				BE5B246323F3AEE90092FACA /* MessageBoardManager.swift */,
 				BE5B246523F3BC140092FACA /* MessageModel.swift */,
+				BE6D2E712408CEF400B3846D /* MessageBoardObject.swift */,
 			);
 			path = MessageBoard;
 			sourceTree = "<group>";
@@ -688,7 +691,7 @@
 				BEE181E223E232B900660AEB /* UserProvider.swift */,
 				BE52590C23EE58CD00F8AC00 /* UserRequest.swift */,
 				BE52590F23EE996300F8AC00 /* KeyChainManager.swift */,
-				BE52591123EE9C6500F8AC00 /* UserObject.swift */,
+				BE52591123EE9C6500F8AC00 /* UserModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1019,7 +1022,7 @@
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
 				BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */,
 				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
-				BE52591223EE9C6500F8AC00 /* UserObject.swift in Sources */,
+				BE52591223EE9C6500F8AC00 /* UserModel.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
 				BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */,
 				BE076B5C23EA657A0090BC7F /* Bundle+Extension.swift in Sources */,
@@ -1087,6 +1090,7 @@
 				BEE181E323E232B900660AEB /* UserProvider.swift in Sources */,
 				BE36C40E23F195C9003C4BDB /* TabContentView.swift in Sources */,
 				BE9131F523E9A381004A669D /* PostAddLocationViewController.swift in Sources */,
+				BE6D2E722408CEF500B3846D /* MessageBoardObject.swift in Sources */,
 				BE52590423EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.swift in Sources */,
 				BEA3934A23FFAB9F000A4A04 /* Animation.swift in Sources */,
 				BE9131F123E95188004A669D /* PostMessageAddReplyTableViewCell.swift in Sources */,

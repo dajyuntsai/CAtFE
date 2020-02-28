@@ -22,10 +22,11 @@ target 'CAtFE' do
   pod 'IQKeyboardManagerSwift'
   pod 'KeychainAccess'
   
-  pod 'Bolts'
+  #  pod 'Bolts'
+  pod 'FacebookSDK'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-
+  
   # Pod for chart
   pod 'AAInfographics'
 

@@ -34,12 +34,14 @@ class MessageBoardViewController: UIViewController {
 
         initView()
         initNavView()
+        getAllMessages ()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         getAllMessages()
+        getLikeMessages()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -73,12 +75,13 @@ class MessageBoardViewController: UIViewController {
     
     func getAllMessages() {
         presentLoadingVC()
-        
         messageBoardManager.getMessageList { (result) in
-            print("======= 轉圈圈測試")
             switch result {
             case .success(let data):
                 self.getCommentDetail(data: data)
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                }
             case .failure(let error):
                 CustomProgressHUD.showFailure(text: "讀取資料失敗")
                 print("======= getMessageList error: \(error.localizedDescription)")
@@ -106,9 +109,30 @@ class MessageBoardViewController: UIViewController {
             switch result {
             case .success:
                 print("收藏成功")
-//                CustomProgressHUD.showSuccess(text: "收藏成功")
+                self.getLikeMessages()
             case .failure(let error):
                 CustomProgressHUD.showFailure(text: "\(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getLikeMessages() {
+        MessageBoardObject.shared.likeList.removeAll()
+        guard let token = KeyChainManager.shared.token else { return }
+        messageBoardManager.getLikeMessages(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                MessageBoardObject.shared.likeList = data.data
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print("======= getLikeMessages() error: \(error)")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
@@ -181,7 +205,6 @@ class MessageBoardViewController: UIViewController {
     @objc func loadData() {
         cafeCommentList.removeAll()
         self.getAllMessages()
-        refreshControl.endRefreshing()
     }
 }
 
@@ -192,9 +215,15 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell",
-                                                            for: indexPath) as? MessageCollectionViewCell else {
-                                                                return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.likeBtnState = false
+        
+        for like in MessageBoardObject.shared.likeList where like == cafeCommentList[indexPath.item].id {
+            cell.likeBtn.isSelected = true
+            cell.likeBtnState = true
+        }
+        
         cell.delegate = self
         cell.setData(message: cafeCommentList[indexPath.item])
         return cell
@@ -215,51 +244,52 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForCaptionAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = cafeCommentList[indexPath.item]
-        let topPadding = CGFloat(8)
-        let bottomPadding = CGFloat(16)
-        let captionFont = UIFont.systemFont(ofSize: 15)
-        let captionHeight = self.height(for: post.comment, with: captionFont, width: width)
-        let profileImageHeight = CGFloat(36)
-        let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
+//        let post = cafeCommentList[indexPath.item]
+//        let topPadding = CGFloat(8)
+//        let bottomPadding = CGFloat(16)
+//        let captionFont = UIFont.systemFont(ofSize: 15)
+//        let captionHeight = self.height(for: post.comment, with: captionFont, width: width)
+//        let profileImageHeight = CGFloat(36)
+//        let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
 
-        return height
+        return 50 // height
     }
     
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = cafeCommentList[indexPath.item]
-        let havePhoto = post.photos.count
-        
-        if havePhoto == 0 {
-            return 0
-        } else {
-            let photo = URL(string: post.photos[0].url)!
-            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-            let request = URLRequest(url: photo)
-            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
-                return 1.0
-            }
-            var img: UIImage?
-            let imageView1 = UIImageView()
-            img = UIImage(data: imgData)!
-            imageView1.image = img
-            let photoSize = img?.size
-            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
-            
-            return rect.size.height
-        }
+//        let post = cafeCommentList[indexPath.item]
+//        let havePhoto = post.photos.count
+//
+//        if havePhoto == 0 {
+//            return 0
+//        } else {
+//            let photo = URL(string: post.photos[0].url)!
+//            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+//            let request = URLRequest(url: photo)
+//            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+//                return 1.0
+//            }
+//            var img: UIImage?
+//            let imageView1 = UIImageView()
+//            img = UIImage(data: imgData)!
+//            imageView1.image = img
+//            let photoSize = img?.size
+//            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
+//
+//            return rect.size.height
+//        }
+        return 200
     }
     
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {
-        let nsstring = NSString(string: text)
-        let textAttributes = [NSAttributedString.Key.font: font]
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingRect = nsstring.boundingRect(with: constraintRect,
-                                                 options: .usesLineFragmentOrigin,
-                                                 attributes: textAttributes, context: nil)
-        return ceil(boundingRect.height)
+//        let nsstring = NSString(string: text)
+//        let textAttributes = [NSAttributedString.Key.font: font]
+//        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+//        let boundingRect = nsstring.boundingRect(with: constraintRect,
+//                                                 options: .usesLineFragmentOrigin,
+//                                                 attributes: textAttributes, context: nil)
+        return 100 // ceil(boundingRect.height)
     }
 }
 
@@ -278,7 +308,6 @@ extension MessageBoardViewController: MessageBoardDelegate {
         if KeyChainManager.shared.token != nil {
             addLikeMessage(cell)
             guard let indexPath = collectionView.indexPath(for: cell) else { return }
-            self.cafeCommentList[indexPath.row].isLike = btnState
             self.collectionView.reloadData()
         } else {
             alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in
