@@ -66,7 +66,7 @@ class ComprehensiveRatedViewController: BaseViewController {
     }
     
     func getRatedList() {
-        presentLoadingVC()
+        let loadingVC = presentLoadingVC()
         scoreManager.getRatedList { (result) in
             switch result {
             case .success(let data):
@@ -104,7 +104,7 @@ class ComprehensiveRatedViewController: BaseViewController {
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                loadingVC.dismiss(animated: true, completion: nil)
                 self.refreshControl.endRefreshing()
             }
         }
@@ -167,8 +167,10 @@ extension ComprehensiveRatedViewController: UITableViewDelegate {
         if ratedList[indexPath.row].fbUrl.isEmpty || ratedList[indexPath.row].fbUrl == "nil"{
             alert(message: "店家目前沒有架設網站喔！", handler: nil)
         } else {
+            let loadingVC = presentLoadingVC()
             prsentVC.cafeUrl = ratedList[indexPath.row].fbUrl
             self.show(prsentVC, sender: nil)
+            loadingVC.dismiss(animated: true, completion: nil)
         }
     }
     

@@ -75,6 +75,7 @@ class PostMessageViewController: BaseViewController {
     }
     
     func onUploadPostData() {
+        let loadingVC = presentLoadingVC()
         guard let token = KeyChainManager.shared.token else { return }
         let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 0)/comment/")!
         let headers: HTTPHeaders = [
@@ -100,19 +101,18 @@ class PostMessageViewController: BaseViewController {
                     let jsonDict = json as? [String: Any] {
                     NSLog("jsonDict : \(jsonDict)")
                 }
-                self.dismiss(animated: true, completion: nil)
                 CustomProgressHUD.showSuccess(text: "發送成功")
                 DispatchQueue.main.async {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
-                self.dismiss(animated: true, completion: nil)
                 CustomProgressHUD.showFailure(text: "發送失敗")
                 DispatchQueue.main.async {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
             }
+            loadingVC.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -133,7 +133,6 @@ class PostMessageViewController: BaseViewController {
             if content == nil {
                 alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
             } else {
-                presentLoadingVC()
                 self.onUploadPostData()
             }
         }

@@ -17,6 +17,8 @@ class ScoreForCafeViewController: BaseViewController {
         }
     }
     
+    let width = UIScreen.main.bounds.width
+    let height = UIScreen.main.bounds.height
     let scoreManager = ScoreManager()
     var cafeRating: Cafe?
     var starList: [CellContent] = [
@@ -36,10 +38,29 @@ class ScoreForCafeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initBackBtn()
         setUpTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func initBackBtn() {
+        let backBtn = UIButton()
+        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.1, height: width * 0.1)
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
+        backBtn.setImage(UIImage(named: "back"), for: .normal)
+        backBtn.backgroundColor = .lightGray
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
+        backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        self.view.addSubview(backBtn)
+    }
+    
     func setUpTableView() {
+        tableView.contentInset = UIEdgeInsets(top: height * 0.1, left: 0, bottom: 0, right: 0)
         tableView.registerCellWithNib(identifier: String(describing: UserTableViewCell.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: CreateDetailStarTableViewCell.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: NoteTableViewCell.self), bundle: nil)
@@ -62,6 +83,10 @@ class ScoreForCafeViewController: BaseViewController {
                     CustomProgressHUD.showFailure(text: "評分失敗")
                 }
         }
+    }
+    
+    @objc func back() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

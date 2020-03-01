@@ -74,7 +74,7 @@ class MessageBoardViewController: UIViewController {
     }
     
     func getAllMessages() {
-        presentLoadingVC()
+        let loadingVC = presentLoadingVC()
         messageBoardManager.getMessageList { (result) in
             switch result {
             case .success(let data):
@@ -88,7 +88,7 @@ class MessageBoardViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                loadingVC.dismiss(animated: true, completion: nil)
                 self.refreshControl.endRefreshing()
             }
         }
@@ -307,7 +307,6 @@ extension MessageBoardViewController: MessageBoardDelegate {
     func getBtnState(_ cell: MessageCollectionViewCell, _ btnState: Bool) {
         if KeyChainManager.shared.token != nil {
             addLikeMessage(cell)
-            guard let indexPath = collectionView.indexPath(for: cell) else { return }
             self.collectionView.reloadData()
         } else {
             alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in

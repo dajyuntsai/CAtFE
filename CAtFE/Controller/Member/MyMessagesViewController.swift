@@ -66,7 +66,6 @@ class MyMessagesViewController: BaseViewController {
     }
     
     func getMessageList() {
-        self.presentLoadingVC()
         messageList.removeAll()
         likeCountList.removeAll()
         switch self.messageType {
@@ -78,6 +77,7 @@ class MyMessagesViewController: BaseViewController {
     }
     
     func getMyMessages() {
+//        let loadingVC =  presentLoadingVC()
         let userId = KeyChainManager.shared.id
         messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
@@ -86,21 +86,24 @@ class MyMessagesViewController: BaseViewController {
                 self.messageList = data
                 self.onSortedMessages()
                 self.delegate?.getPostCount(postCount: data.count)
-                for myMessageId in data {
-                    MessageBoardObject.shared.myMessageIdList.append(myMessageId.id)
+                for myMessage in data {
+                    MessageBoardObject.shared.myMessageIdList.append(myMessage.id)
+                    self.likeCountList.append(myMessage.likeCount)
                 }
+                self.delegate?.getLikeCount(likeCountList: self.likeCountList)
             case .failure(let error):
                 NSLog("getMessages error: \(error.localizedDescription)")
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.refreshControl.endRefreshing()
-                self.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.refreshControl.endRefreshing()
+//                    loadingVC.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
     
     func serchLikeMessages() {
+        let loadingVC =  presentLoadingVC()
         let messageId = MessageBoardObject.shared.likeMessageIdList
         messageBoardManager.getMessageList { (result) in
             switch result {
@@ -117,7 +120,7 @@ class MyMessagesViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.refreshControl.endRefreshing()
-                self.dismiss(animated: true, completion: nil)
+                loadingVC.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -125,10 +128,6 @@ class MyMessagesViewController: BaseViewController {
     func onSortedMessages() {
         let sortedComments = messageList.sorted { $0.updatedAt > $1.updatedAt }
         messageList = sortedComments
-        for like in messageList {
-            self.likeCountList.append(like.likeCount)
-        }
-        self.delegate?.getLikeCount(likeCountList: self.likeCountList)
     }
     
     @objc func loadData() {

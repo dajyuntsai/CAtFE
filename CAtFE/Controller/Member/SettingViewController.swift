@@ -35,7 +35,7 @@ class SettingViewController: BaseViewController {
     let settingList: [Settings] = [
     Settings(type: .expand, title: "個人資料", details: ["頭像", "名稱"]),
     Settings(type: .createCafe, title: "新增店家", details: []),
-    Settings(type: .cell, title: "版本", details: []),
+    Settings(type: .cell, title: "版本", details: ["1.0"]),
     Settings(type: .logout, title: "登出", details: [])]
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
@@ -59,20 +59,47 @@ class SettingViewController: BaseViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     func initView() {
-        initSaveBtn()
+        initBackBtn()
+        initSendBtn()
         setUptTableView()
     }
     
-    func initSaveBtn() {
-        let saveBtn = UIBarButtonItem(image: UIImage(named: "send"),
-                                      style: .plain,
-                                      target: self,
-                                      action: #selector(updateUserInfo))
-        navigationItem.rightBarButtonItem = saveBtn
+    func initBackBtn() {
+        let backBtn = UIButton()
+        backBtn.frame = CGRect(x: width * 0.05, y: height * 0.07, width: width * 0.1, height: width * 0.1)
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
+        backBtn.setImage(UIImage(named: "back"), for: .normal)
+        backBtn.backgroundColor = .lightGray
+        backBtn.layer.cornerRadius = backBtn.frame.width / 2
+        backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        self.view.addSubview(backBtn)
     }
     
+    func initSendBtn() {
+        let saveBtn = UIButton()
+        saveBtn.frame = CGRect(x: width - (width * 0.05 + width * 0.1), y: height * 0.07, width: width * 0.1, height: width * 0.1)
+        saveBtn.setImage(UIImage(named: "send"), for: .normal)
+        saveBtn.addTarget(self, action: #selector(updateUserInfo), for: .touchUpInside)
+        self.view.addSubview(saveBtn)
+    }
+    
+//    func initSaveBtn() {
+//        let saveBtn = UIBarButtonItem(image: UIImage(named: "send"),
+//                                      style: .plain,
+//                                      target: self,
+//                                      action: #selector(updateUserInfo))
+//        navigationItem.rightBarButtonItem = saveBtn
+//    }
+    
     func setUptTableView() {
+        tableView.contentInset = UIEdgeInsets(top: height * 0.1, left: 0, bottom: 0, right: 0)
         tableView.registerHeaderWithNib(identifier: String(describing: SectionView.self), bundle: nil)
         tableView.registerCellWithNib(identifier: String(describing: UserInfoTableViewCell.self), bundle: nil)
     }
@@ -100,7 +127,6 @@ class SettingViewController: BaseViewController {
             "Authorization": "Bearer \(token)"
         ]
         
-        presentLoadingVC()
         if !self.updateName.isEmpty {
             self.uploadUserName(url: url, headers: headers)
         }
@@ -115,6 +141,7 @@ class SettingViewController: BaseViewController {
     }
     
     func uploadUserName(url: URL, headers: HTTPHeaders) {
+        let loadingVC = presentLoadingVC()
         AF.upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(self.updateName.data(using: String.Encoding.utf8)!, withName: "name")
         }, to: url,
@@ -133,18 +160,18 @@ class SettingViewController: BaseViewController {
                     guard let name = user["name"] as? String else { return }
                     KeyChainManager.shared.name = name
                 }
-                self.dismiss(animated: true, completion: nil)
                 CustomProgressHUD.showSuccess(text: "更改成功")
                 self.navigationController?.popToRootViewController(animated: true)
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
-                self.dismiss(animated: true, completion: nil)
                 CustomProgressHUD.showFailure(text: "更改失敗")
             }
+            loadingVC.dismiss(animated: true, completion: nil)
         }
     }
     
     func uploadUserImage(url: URL, headers: HTTPHeaders) {
+        let loadingVC = presentLoadingVC()
         AF.upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(self.updateAvatar!, withName: "avatar", fileName: "avatar.jpg", mimeType: "image/jpeg")
         }, to: url,
@@ -171,6 +198,7 @@ class SettingViewController: BaseViewController {
                 NSLog("error: \(error.localizedDescription)")
                 CustomProgressHUD.showFailure(text: "更改失敗")
             }
+            loadingVC.dismiss(animated: true, completion: nil)
         }
     }
 }

@@ -258,7 +258,7 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
     }
     
     func onDeleteMessage() {
-        presentLoadingVC()
+        let loadingVC = presentLoadingVC()
         guard let token = KeyChainManager.shared.token else { return }
         messageBoardManager.deleteMessageInList(token: token, msgId: mymessageId!) { (result) in
             switch result {
@@ -268,7 +268,7 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
                 CustomProgressHUD.showFailure(text: "刪除失敗")
             }
             DispatchQueue.main.async {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                loadingVC.dismiss(animated: true, completion: nil)
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
