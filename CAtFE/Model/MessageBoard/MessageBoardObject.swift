@@ -14,5 +14,6 @@ class MessageBoardObject: NSObject {
     
     private override init() {}
     
-    var likeList: [Int] = []
+    var likeMessageIdList: [Int] = []
+    var myMessageIdList: [Int] = []
 }

@@ -21,6 +21,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var timeAgoLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postContentLabel: UILabel!
+    @IBOutlet weak var editBtn: UIButton!
     @IBAction func editBtn(_ sender: Any) {
         self.delegate?.showEditView(self)
     }

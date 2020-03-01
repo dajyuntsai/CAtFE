@@ -16,12 +16,10 @@ class PostMessageDetailViewController: BaseViewController {
             tableView.delegate = self
         }
     }
-    // from my messages
     var cafeComments: CafeComments?
     var location: String?
-    
-//    var cafeComments: [CafeComments] = []
-//    var messageId: Int?
+    var mymessageId: Int?
+    var isMyPost = false
     var headerView = UIView()
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width
@@ -59,6 +57,11 @@ class PostMessageDetailViewController: BaseViewController {
     }
     
     func initView() {
+        let myMessageIdList = MessageBoardObject.shared.myMessageIdList
+        for messagesId in myMessageIdList where messagesId == cafeComments?.id {
+            mymessageId = messagesId
+            isMyPost = true
+        }
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
         initBackBtn()
@@ -113,7 +116,6 @@ class PostMessageDetailViewController: BaseViewController {
     }
     
     @objc func back() {
-//        NotificationCenter.default.post(name: Notification.Name("closeLoading"), object: nil)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -169,22 +171,6 @@ class PostMessageDetailViewController: BaseViewController {
             }
         }
     }
-    
-//    func getMessageDetail() {
-//        let userId = KeyChainManager.shared.id
-//        messageBoardManager.getMyCafeComment(userId: userId, completion: { (result) in
-//            switch result {
-//            case .success(let data):
-//                self.cafeComments = data.results
-//                self.initHeader()
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print("======= getMessageDetail() error: \(error.localizedDescription)")
-//            }
-//        })
-//    }
 }
 
 extension PostMessageDetailViewController: UITableViewDataSource {
@@ -203,6 +189,11 @@ extension PostMessageDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell",
                                                            for: indexPath) as? PostMessageDetailTableViewCell else {
                 return UITableViewCell()
+            }
+            if KeyChainManager.shared.token != nil {
+                cell.editBtn.isHidden = false
+            } else {
+                cell.editBtn.isHidden = true
             }
             cell.delegate = self
             cell.setData(data: cafeComments!)
@@ -235,15 +226,22 @@ extension PostMessageDetailViewController: UITableViewDelegate {
 extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
     func showEditView(_ cell: PostMessageDetailTableViewCell) {
         let alertController = UIAlertController(title: "選擇功能", message: nil, preferredStyle: .actionSheet)
-        let callOutAction = UIAlertAction(title: "編輯", style: .default) { (_) in
-            self.onEditMessage()
-        }
-        let guideAction = UIAlertAction(title: "刪除", style: .destructive) { (_) in
-            self.onDeleteMessage()
+        if isMyPost {
+            let editAction = UIAlertAction(title: "編輯", style: .default) { (_) in
+                self.onEditMessage()
+            }
+            let deleteAction = UIAlertAction(title: "刪除", style: .destructive) { (_) in
+                self.onDeleteMessage()
+            }
+            alertController.addAction(editAction)
+            alertController.addAction(deleteAction)
+        } else {
+            let reportAction = UIAlertAction(title: "檢舉", style: .default) { (_) in
+                self.onReportMessage()
+            }
+            alertController.addAction(reportAction)
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        alertController.addAction(callOutAction)
-        alertController.addAction(guideAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
@@ -259,16 +257,25 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
         self.show(presentVC!, sender: nil)
     }
     
-    func onDeleteMessage() { // TODO: delete message api
-//        messageBoardManager.deleteMessageInList(token: <#T##String#>, messageObj: <#T##Message#>, msgId: <#T##Int#>) { (result) in
-//            switch result {
-//            case .success:
-//                CustomProgressHUD.showSuccess(text: "刪除成功")
-//            case .failure:
-//                CustomProgressHUD.showFailure(text: "刪除失敗")
-//            }
-//        }
-        self.navigationController?.popToRootViewController(animated: true)
+    func onDeleteMessage() {
+        presentLoadingVC()
+        guard let token = KeyChainManager.shared.token else { return }
+        messageBoardManager.deleteMessageInList(token: token, msgId: mymessageId!) { (result) in
+            switch result {
+            case .success:
+                CustomProgressHUD.showSuccess(text: "刪除成功")
+            case .failure:
+                CustomProgressHUD.showFailure(text: "刪除失敗")
+            }
+            DispatchQueue.main.async {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+    }
+    
+    func onReportMessage() {
+        alert(message: "還不能檢舉ㄏ", handler: nil)
     }
 }
 

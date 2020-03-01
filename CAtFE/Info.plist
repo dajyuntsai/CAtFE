@@ -48,11 +48,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>允許App存取相簿裡的照片</string>
+	<string>您的相機將在CAtFE內被開啟，用於存取照片</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>CAtFE將存取您的位置，方便在地圖上搜尋附近的寵物咖啡廳</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>CAtFE將存取您的位置，方便在地圖上搜尋附近的寵物咖啡廳</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>允許App取用相機</string>
+	<string>當有需要上傳照片時，您的照片將在CAtFE內被使用</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

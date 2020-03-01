@@ -76,7 +76,7 @@ class PostMessageViewController: BaseViewController {
     
     func onUploadPostData() {
         guard let token = KeyChainManager.shared.token else { return }
-        let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 6)/comment/")!
+        let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 0)/comment/")!
         let headers: HTTPHeaders = [
             "Content-type": "multipart/form-data",
             "Authorization": "Bearer \(token)"

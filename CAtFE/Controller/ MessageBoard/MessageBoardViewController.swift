@@ -34,7 +34,7 @@ class MessageBoardViewController: UIViewController {
 
         initView()
         initNavView()
-        getAllMessages ()
+        getAllMessages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +54,7 @@ class MessageBoardViewController: UIViewController {
         navView.backgroundColor = .white
         navView.text = "留言板"
         navView.font = UIFont(name: "Helvetica Neue", size: 24)
-        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 100))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height * 0.06 + 50))
         bgView.backgroundColor = .white
         self.view.addSubview(bgView)
         self.view.addSubview(navView)
@@ -117,12 +117,12 @@ class MessageBoardViewController: UIViewController {
     }
     
     func getLikeMessages() {
-        MessageBoardObject.shared.likeList.removeAll()
         guard let token = KeyChainManager.shared.token else { return }
         messageBoardManager.getLikeMessages(token: token) { (result) in
             switch result {
             case .success(let data):
-                MessageBoardObject.shared.likeList = data.data
+                MessageBoardObject.shared.likeMessageIdList.removeAll()
+                MessageBoardObject.shared.likeMessageIdList = data.data
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
@@ -219,7 +219,7 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         
         cell.likeBtnState = false
         
-        for like in MessageBoardObject.shared.likeList where like == cafeCommentList[indexPath.item].id {
+        for like in MessageBoardObject.shared.likeMessageIdList where like == cafeCommentList[indexPath.item].id {
             cell.likeBtn.isSelected = true
             cell.likeBtnState = true
         }
