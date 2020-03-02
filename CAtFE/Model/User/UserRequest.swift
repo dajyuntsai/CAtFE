@@ -28,7 +28,7 @@ enum UserRequest: CAtFERequest {
         case .userInfo(let accessToken):
             return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         case .loginWithfb:
-            return [:]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .loginWithApple:
             return [:]
         case .updateUserName(let accessToken, _):

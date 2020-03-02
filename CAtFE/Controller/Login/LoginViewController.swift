@@ -142,7 +142,6 @@ extension LoginViewController: LoginButtonDelegate {
             CustomProgressHUD.showFailure(text: fbError.rawValue)
             return 
         }
-        self.userProvider.getUserDataFromFB(fbToken: token)
         
         let url = URL(string: "https://catfe.herokuapp.com/users/fbLogin/")!
         
@@ -161,6 +160,7 @@ extension LoginViewController: LoginButtonDelegate {
                     NSLog("jsonDict : \(jsonDict)")
                     guard let access = jsonDict["access"] as? String else { return }
                     KeyChainManager.shared.token = access
+                    self.userProvider.getUserDataFromFB(fbToken: token)
                     self.dismiss(animated: true, completion: nil)
                     CustomProgressHUD.showSuccess(text: "登入成功")
                     self.backToRoot()

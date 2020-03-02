@@ -1,28 +1,32 @@
 PODS:
   - AAInfographics (4.0.0)
   - Alamofire (5.0.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Cosmos (21.0.0)
   - DLRadioButton (1.4.12)
-  - FacebookSDK (6.0.0):
-    - FacebookSDK/CoreKit (= 6.0.0)
-    - FacebookSDK/MarketingKit (= 6.0.0)
-  - FacebookSDK/CoreKit (6.0.0):
-    - FBSDKCoreKit (~> 6.0.0)
-  - FacebookSDK/MarketingKit (6.0.0):
-    - FacebookSDK/CoreKit
-    - FBSDKMarketingKit (~> 6.0.0)
   - FBSDKCoreKit (6.0.0):
     - FBSDKCoreKit/Basics (= 6.0.0)
     - FBSDKCoreKit/Core (= 6.0.0)
   - FBSDKCoreKit/Basics (6.0.0)
   - FBSDKCoreKit/Core (6.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (6.0.0):
-    - FBSDKLoginKit/Login (= 6.0.0)
+  - FBSDKCoreKit/Swift (6.0.0):
+    - FBSDKCoreKit/Core
   - FBSDKLoginKit/Login (6.0.0):
     - FBSDKCoreKit (~> 6.0.0)
-  - FBSDKMarketingKit (6.0.0):
+  - FBSDKLoginKit/Swift (6.0.0):
+    - FBSDKCoreKit/Swift (~> 6.0.0)
+    - FBSDKLoginKit/Login
+  - FBSDKShareKit/Share (6.0.0):
     - FBSDKCoreKit (~> 6.0.0)
+  - FBSDKShareKit/Swift (6.0.0):
+    - FBSDKCoreKit/Swift (~> 6.0.0)
+    - FBSDKShareKit/Share
   - IQKeyboardManagerSwift (6.5.5)
   - JGProgressHUD (2.1)
   - KeychainAccess (4.1.0)
@@ -40,11 +44,12 @@ PODS:
 DEPENDENCIES:
   - AAInfographics
   - Alamofire
+  - Bolts
   - Cosmos
   - DLRadioButton
-  - FacebookSDK
-  - FBSDKCoreKit
-  - FBSDKLoginKit
+  - FBSDKCoreKit/Swift
+  - FBSDKLoginKit/Swift
+  - FBSDKShareKit/Swift
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
@@ -57,12 +62,12 @@ SPEC REPOS:
   trunk:
     - AAInfographics
     - Alamofire
+    - Bolts
     - Cosmos
     - DLRadioButton
-    - FacebookSDK
     - FBSDKCoreKit
     - FBSDKLoginKit
-    - FBSDKMarketingKit
+    - FBSDKShareKit
     - IQKeyboardManagerSwift
     - JGProgressHUD
     - KeychainAccess
@@ -76,12 +81,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
   Alamofire: 41c162d645ba6a78e7fd030fcdaf6aa394ca39a0
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
-  FacebookSDK: c9c27c7d3c0fc189fab6b2f735b3a97b83fbe6e3
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
   FBSDKLoginKit: fa57df1b967fe0e147b25bede6ea4e9cdf4d64be
-  FBSDKMarketingKit: 23dc92210340019f88e9fc1edbbc8c1ec43914b3
+  FBSDKShareKit: 210dcda2603042cf73f31983fc99df4dac06f1d8
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
@@ -92,6 +97,6 @@ SPEC CHECKSUMS:
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   YPImagePicker: accf310f9526641a84372c0ecf943547d9b1e52c
 
-PODFILE CHECKSUM: e9248e1c91a84e9a521c79e98ea66499a783e12e
+PODFILE CHECKSUM: 1c9e6aae491ea035ebabe255865549cbe822a2ef
 
 COCOAPODS: 1.8.4

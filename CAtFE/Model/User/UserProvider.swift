@@ -8,6 +8,7 @@
 
 import FBSDKLoginKit
 import FBSDKCoreKit
+import FBSDKShareKit
 
 typealias FacebookResponse = (Result<String>) -> Void
 
@@ -41,8 +42,7 @@ class UserProvider {
                     CustomProgressHUD.showFailure(text: fbError.rawValue)
                     return completion(Result.failure(fbError))
                 }
-                self.getUserDataFromFB(fbToken: token)
-                self.fbLogin(token: token) { (result) in
+                self.fbLogin(token: token, view: from) { (result) in
                     switch result {
                     case .success:
                         print("FB登入成功")
@@ -55,7 +55,7 @@ class UserProvider {
         })
     }
     
-    func fbLogin(token: String, completion: @escaping (Result<LoginResponse>) -> Void) {
+    func fbLogin(token: String, view: UIViewController, completion: @escaping (Result<LoginResponse>) -> Void) {
         HTTPClient.shared.request(UserRequest.loginWithfb(token)) { (result) in
             switch result {
             case .success(let data):
@@ -76,7 +76,7 @@ class UserProvider {
     func getUserDataFromFB(fbToken: String) {
         let connection = GraphRequestConnection()
         connection.add(GraphRequest(graphPath: "/me",
-                                    parameters: ["fields": "email, name, id"])) { (_, result, error) in
+                                    parameters: ["fields": "name, email, id"])) { (_, result, error) in
             if error != nil {
                 NSLog(error.debugDescription)
                 return
@@ -84,6 +84,7 @@ class UserProvider {
             guard let result = result as? [String: String] else {
                 return
             }
+            
             let email: String = result["email"]!
             let name: String = result["name"]!
             let id: String = result["id"]!

@@ -158,7 +158,7 @@ class SettingViewController: BaseViewController {
                     NSLog("jsonDict : \(jsonDict)")
                     guard let user = jsonDict["user"] as? [String: Any] else { return }
                     guard let name = user["name"] as? String else { return }
-                    KeyChainManager.shared.name = name
+                    KeyChainManager.shared.name = "\(name)"
                 }
                 CustomProgressHUD.showSuccess(text: "更改成功")
                 self.navigationController?.popToRootViewController(animated: true)
