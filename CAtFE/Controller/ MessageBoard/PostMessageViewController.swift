@@ -75,6 +75,7 @@ class PostMessageViewController: BaseViewController {
     }
     
     func onUploadPostData() {
+        let previousVC = navigationController?.viewControllers[0] as? MessageBoardViewController
         let loadingVC = presentLoadingVC()
         guard let token = KeyChainManager.shared.token else { return }
         let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 0)/comment/")!
@@ -102,7 +103,9 @@ class PostMessageViewController: BaseViewController {
                     NSLog("jsonDict : \(jsonDict)")
                 }
                 CustomProgressHUD.showSuccess(text: "發送成功")
+                NotificationCenter.default.post(name: Notification.Name("updatePost"), object: nil)
                 DispatchQueue.main.async {
+                    previousVC?.getAllMessages()
                     self.navigationController?.popToRootViewController(animated: true)
                 }
             case .failure(let error):

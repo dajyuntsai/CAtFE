@@ -32,16 +32,17 @@ class MessageBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(getAllMessages), name: Notification.Name("updatePost"), object: nil)
+        
         initView()
         initNavView()
         getAllMessages()
+        getLikeMessages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getAllMessages()
-        getLikeMessages()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -73,7 +74,7 @@ class MessageBoardViewController: UIViewController {
         collectionView.addSubview(refreshControl)
     }
     
-    func getAllMessages() {
+    @objc func getAllMessages() {
         let loadingVC = presentLoadingVC()
         messageBoardManager.getMessageList { (result) in
             switch result {
@@ -124,6 +125,7 @@ class MessageBoardViewController: UIViewController {
                 MessageBoardObject.shared.likeMessageIdList.removeAll()
                 MessageBoardObject.shared.likeMessageIdList = data.data
                 DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Notification.Name("updatePost"), object: nil)
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
                     self.dismiss(animated: true, completion: nil)

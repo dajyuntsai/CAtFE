@@ -46,12 +46,14 @@ class MyMessagesViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessageList), name: Notification.Name("updatePost"), object: nil)
+        getMessageList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getMessageList()
+//        getMessageList()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -65,7 +67,7 @@ class MyMessagesViewController: BaseViewController {
         messageType = messagesCategory
     }
     
-    func getMessageList() {
+    @objc func getMessageList() {
         messageList.removeAll()
         likeCountList.removeAll()
         switch self.messageType {
@@ -77,7 +79,7 @@ class MyMessagesViewController: BaseViewController {
     }
     
     func getMyMessages() {
-//        let loadingVC =  presentLoadingVC()
+        let loadingVC =  presentLoadingVC()
         let userId = KeyChainManager.shared.id
         messageBoardManager.getMyCafeComment(userId: userId) { (result) in
             switch result {
@@ -96,7 +98,7 @@ class MyMessagesViewController: BaseViewController {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
-//                    loadingVC.dismiss(animated: true, completion: nil)
+                    loadingVC.dismiss(animated: true, completion: nil)
                 }
             }
         }

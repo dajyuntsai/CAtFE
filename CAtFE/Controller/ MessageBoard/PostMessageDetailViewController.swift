@@ -258,17 +258,20 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
     }
     
     func onDeleteMessage() {
+        let previousVC = navigationController?.viewControllers[0] as? MessageBoardViewController
         let loadingVC = presentLoadingVC()
         guard let token = KeyChainManager.shared.token else { return }
         messageBoardManager.deleteMessageInList(token: token, msgId: mymessageId!) { (result) in
             switch result {
             case .success:
                 CustomProgressHUD.showSuccess(text: "刪除成功")
+                NotificationCenter.default.post(name: Notification.Name("updatePost"), object: nil)
             case .failure:
                 CustomProgressHUD.showFailure(text: "刪除失敗")
             }
             DispatchQueue.main.async {
                 loadingVC.dismiss(animated: true, completion: nil)
+                previousVC?.getAllMessages()
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
