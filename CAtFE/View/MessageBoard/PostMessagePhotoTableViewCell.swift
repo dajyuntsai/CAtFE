@@ -16,7 +16,7 @@ class PostMessagePhotoTableViewCell: UITableViewCell {
     let width = UIScreen.main.bounds.width
     var photoList: [UIImage] = []
     var isEditMode = false
-    var editPhotoList: [String]?
+    var editPhotoList: [Photo]?
     var isReload: Bool = false {
         didSet {
             collectionView.reloadData()
@@ -61,7 +61,7 @@ UICollectionViewDelegateFlowLayout {
                                                             for: indexPath) as? PostMessagePhotoCollectionViewCell else {
                                                                 return UICollectionViewCell()
         }
-        if isEditMode { // TODO: refactor
+        if isEditMode {
             guard let editPhotoList = editPhotoList else { return UICollectionViewCell() }
             if indexPath.row == editPhotoList.count {
                 cell.addPhotoBtn.isHidden = false
@@ -69,17 +69,12 @@ UICollectionViewDelegateFlowLayout {
             } else {
                 cell.addPhotoBtn.isHidden = true
                 cell.photoImageView.isHidden = false
-                cell.photoImageView.loadImage(editPhotoList[indexPath.item])
+                cell.photoImageView.loadImage(editPhotoList[indexPath.item].url)
             }
         } else {
-            if indexPath.row == photoList.count {
-                cell.addPhotoBtn.isHidden = false
-                cell.photoImageView.isHidden = true
-            } else {
-                cell.addPhotoBtn.isHidden = true
-                cell.photoImageView.isHidden = false
-                cell.photoImageView.image = photoList[indexPath.item]
-            }
+            cell.addPhotoBtn.isHidden = true
+            cell.photoImageView.isHidden = false
+            cell.photoImageView.image = photoList[indexPath.item]
         }
         return cell
     }

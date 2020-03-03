@@ -244,7 +244,7 @@
                                                                             <constraint firstAttribute="height" constant="50" id="6Hs-Ud-LWp"/>
                                                                             <constraint firstAttribute="width" constant="50" id="jlI-5N-g0s"/>
                                                                         </constraints>
-                                                                        <state key="normal" image="camera"/>
+                                                                        <state key="normal" image="camera-1"/>
                                                                         <connections>
                                                                             <action selector="addPhotoBtn:" destination="o5i-2L-Ddo" eventType="touchUpInside" id="Ndh-vW-Dh6"/>
                                                                         </connections>
@@ -379,14 +379,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCafeCell" id="Oxc-Bp-ftA" customClass="LocationTableViewCell" customModule="CAtFE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="37"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="37.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oxc-Bp-ftA" id="a8p-42-bsr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-g2-gRY">
-                                                    <rect key="frame" x="16" y="8" width="382" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -690,7 +690,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" width="32" height="32"/>
+        <image name="camera-1" width="128" height="128"/>
         <image name="cat" width="512" height="512"/>
         <image name="comment" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>

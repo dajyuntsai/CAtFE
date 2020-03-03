@@ -24,7 +24,7 @@ class PostMessageViewController: BaseViewController {
         }
     }
     var testPhoto: UIImage? // test
-    var cafeId: Int?
+    var cafeId: Int = 0
     var content: String?
     var editMessage: CafeComments?
     var postImagesData: Data? //[Data] = []
@@ -78,7 +78,7 @@ class PostMessageViewController: BaseViewController {
         let previousVC = navigationController?.viewControllers[0] as? MessageBoardViewController
         let loadingVC = presentLoadingVC()
         guard let token = KeyChainManager.shared.token else { return }
-        let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId ?? 0)/comment/")!
+        let url = URL(string: "https://catfe.herokuapp.com/cafes/\(cafeId)/comment/")!
         let headers: HTTPHeaders = [
             "Content-type": "multipart/form-data",
             "Authorization": "Bearer \(token)"
@@ -131,7 +131,7 @@ class PostMessageViewController: BaseViewController {
     
     @objc func sendPostBtn() {
         if isEditMode {
-            onUpdateMessage()
+            self.onUploadPostData()
         } else {
             if content == nil {
                 alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
@@ -160,7 +160,7 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             if isEditMode {
                 cell.isEditMode = true
-//                cell.editPhotoList = editMessage?.postPhotos
+                cell.editPhotoList = editMessage?.photos
                 cell.isReload = true
             } else {
                 cell.photoList = selectedPhotoList
@@ -173,7 +173,7 @@ extension PostMessageViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             if isEditMode {
-//                cell.setData(content: editMessage!.content)
+                cell.setData(content: editMessage!.comment)
             } else {
                 cell.content = { (content) in
                     self.content = content

@@ -33,6 +33,7 @@ class MessageBoardViewController: UIViewController {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(getAllMessages), name: Notification.Name("updatePost"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPicker), name: Notification.Name("showAlbum"), object: nil)
         
         initView()
         initNavView()
@@ -149,7 +150,7 @@ class MessageBoardViewController: UIViewController {
         }
     }
     
-    func showPicker() {
+    @objc func showPicker() {
         self.selectedPhotos.removeAll()
         
         var config = YPImagePickerConfiguration()
@@ -162,7 +163,7 @@ class MessageBoardViewController: UIViewController {
         config.hidesStatusBar = false
         config.hidesBottomBar = false
         config.maxCameraZoomFactor = 2.0
-        config.library.maxNumberOfItems = 5
+        config.library.maxNumberOfItems = 1
         config.gallery.hidesRemoveButton = false
         config.library.preselectedItems = selectedItems
         
@@ -175,7 +176,7 @@ class MessageBoardViewController: UIViewController {
             
             for item in items {
                 switch item {
-                case .photo(let photo): // TODO: 改成多選
+                case .photo(let photo):
                     self.selectedPhotos.append(photo.image)
                     self.selectedImageV.image = photo.image
                     self.testPhoto = photo.image

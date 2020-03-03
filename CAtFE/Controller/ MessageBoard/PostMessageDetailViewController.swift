@@ -235,11 +235,11 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
             }
             alertController.addAction(editAction)
             alertController.addAction(deleteAction)
-        } else {
-            let reportAction = UIAlertAction(title: "檢舉", style: .default) { (_) in
-                self.onReportMessage()
-            }
-            alertController.addAction(reportAction)
+//        } else {
+//            let reportAction = UIAlertAction(title: "檢舉", style: .default) { (_) in
+//                self.onReportMessage()
+//            }
+//            alertController.addAction(reportAction)
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
@@ -253,7 +253,7 @@ extension PostMessageDetailViewController: TopViewOfDetailMessageDelegate {
         presentVC?.modalPresentationStyle = .formSheet
         presentVC?.loadViewIfNeeded()
         presentVC?.isEditMode = true
-//        presentVC!.editMessage = cafeComments
+        presentVC!.editMessage = cafeComments
         self.show(presentVC!, sender: nil)
     }
     
