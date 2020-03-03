@@ -161,12 +161,14 @@ class SettingViewController: BaseViewController {
                     KeyChainManager.shared.name = "\(name)"
                 }
                 CustomProgressHUD.showSuccess(text: "更改成功")
-                self.navigationController?.popToRootViewController(animated: true)
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
                 CustomProgressHUD.showFailure(text: "更改失敗")
             }
-            loadingVC.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                loadingVC.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
     
@@ -191,14 +193,14 @@ class SettingViewController: BaseViewController {
                     KeyChainManager.shared.avatar = avatar
                 }
                 CustomProgressHUD.showSuccess(text: "更改成功")
-                DispatchQueue.main.async {
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
                 CustomProgressHUD.showFailure(text: "更改失敗")
             }
-            loadingVC.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                loadingVC.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
 }

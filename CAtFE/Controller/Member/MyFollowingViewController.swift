@@ -10,14 +10,26 @@ import UIKit
 
 class MyFollowingViewController: BaseViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
     let refreshControl = UIRefreshControl()
+    let userProvider = UserProvider()
+    var cafeList: [Cafe] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.dataSource = self
-        tableView.delegate = self
+        getFollowingCafe()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -25,6 +37,19 @@ class MyFollowingViewController: BaseViewController {
 
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
+    }
+    
+    func getFollowingCafe() {
+        cafeList.removeAll()
+        guard let token = KeyChainManager.shared.token else { return }
+        userProvider.getUserFollowing(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                self.cafeList = data.data
+            case .failure:
+                CustomProgressHUD.showFailure(text: "讀取資料失敗")
+            }
+        }
     }
 
     func updateUnfollowingCafe() {
@@ -40,7 +65,7 @@ class MyFollowingViewController: BaseViewController {
 
 extension MyFollowingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return cafeList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +73,7 @@ extension MyFollowingViewController: UITableViewDataSource {
                                                        for: indexPath) as? MyFollowingViewTableViewCell else {
             return UITableViewCell()
         }
+        cell.setData(data: cafeList[indexPath.row])
         return cell
     }
 }

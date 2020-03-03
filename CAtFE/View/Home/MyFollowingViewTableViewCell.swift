@@ -24,4 +24,7 @@ class MyFollowingViewTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setData(data: Cafe) {
+        cafeName.text = data.name
+    }
 }

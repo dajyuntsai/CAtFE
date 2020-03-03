@@ -71,7 +71,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         userNameLabel.text = message.user?.name
         dateTimeLabel.text = timeAgo
         captionLabel.text = message.comment
-        locationLabel.text = message.cafe.name
+        locationLabel.text = message.cafe?.name
 
         if message.photos.count != 0 {
             postImageView.loadImage(message.photos[0].url, placeHolder: UIImage(named: "placeholder"))

@@ -19,7 +19,7 @@ class CafeComments: Codable {
     let createAt: String
     let updatedAt: String
     let user: UserDetail?
-    let cafe: TinyCafe
+    let cafe: TinyCafe?
     let cafeCommentReplies: [CafeCommentReplies]
     let likeCount: Int
 
@@ -76,7 +76,7 @@ class Photo: Codable {
 
 class UserDetail: Codable {
     let id: Int
-    let email: String
+    let email: String?
     let name: String
     let avatar: String?
     let point: Int

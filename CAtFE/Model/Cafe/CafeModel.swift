@@ -12,6 +12,10 @@ struct CafeModel: Codable {
     let results: [Cafe]
 }
 
+struct CafeList: Codable {
+    let data: [Cafe]
+}
+
 struct Cafe: Codable {
     let id: Int
     let petType: String

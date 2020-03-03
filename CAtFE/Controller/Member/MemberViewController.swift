@@ -21,7 +21,7 @@ class MemberViewController: UIViewController {
     private var mPageContentView: TabContentView!
     private var scrollView = UIScrollView()
 
-    private var titleList = ["我的留言", "按讚的留言"] //, "追蹤的店家"]
+    private var titleList = ["我的留言", "按讚的留言", "追蹤的店家"]
 
     let conf = TabTitleConfig()
     let width = UIScreen.main.bounds.width
@@ -85,18 +85,19 @@ class MemberViewController: UIViewController {
         guard let likeMessagesViewController = UIStoryboard.member
         .instantiateViewController(identifier: MyMessagesViewController.identifier)
         as? MyMessagesViewController else { return }
-//        guard let myFollowingViewController = UIStoryboard.member
-//            .instantiateViewController(identifier: MyFollowingViewController.identifier)
-//            as? MyFollowingViewController else { return }
+        guard let myFollowingViewController = UIStoryboard.member
+            .instantiateViewController(identifier: MyFollowingViewController.identifier)
+            as? MyFollowingViewController else { return }
         
         myMessagesViewController.delegate = self
         likeMessagesViewController.delegate = self
         myMessagesViewController.messageType(messagesCategory: .myMessages)
         likeMessagesViewController.messageType(messagesCategory: .likeMessages)
+        myFollowingViewController.getFollowingCafe()
         
         let controllers = [myMessagesViewController,
-                           likeMessagesViewController]
-//                           myFollowingViewController]
+                           likeMessagesViewController,
+                           myFollowingViewController]
         let rectContent = CGRect(x: 0, y: height / 5 + (width / 4) + 16 + 50, width: width, height: height)
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,

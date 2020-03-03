@@ -16,6 +16,7 @@ enum UserRequest: CAtFERequest {
     case loginWithfb(String)
     case loginWithApple(String)
     case updateUserName(String, String) // token, user name
+    case getFollowing(String)
     
     var headers: [String: String] {
         switch self {
@@ -30,10 +31,12 @@ enum UserRequest: CAtFERequest {
         case .loginWithfb:
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .loginWithApple:
-            return [:]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .updateUserName(let accessToken, _):
             return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)",
                 HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
+        case .getFollowing(let accessToken):
+            return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         }
     }
     
@@ -70,9 +73,11 @@ enum UserRequest: CAtFERequest {
                 "name": name
                 ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        case .getFollowing:
+            return nil
         }
     }
-        
+
     var method: String {
         switch self {
         case .userList:
@@ -89,6 +94,8 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .updateUserName:
             return HTTPMethod.PATCH.rawValue
+        case .getFollowing:
+            return HTTPMethod.GET.rawValue
         }
     }
     
@@ -108,6 +115,8 @@ enum UserRequest: CAtFERequest {
             return "/users/appleLogin/"
         case .updateUserName:
             return "/users/me/"
+        case .getFollowing:
+            return "/users/followCafe/"
         }
     }
 }

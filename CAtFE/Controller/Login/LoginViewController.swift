@@ -114,10 +114,12 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     KeyChainManager.shared.token = access
                     KeyChainManager.shared.name = fullName
                     KeyChainManager.shared.email = email
+                    CustomProgressHUD.showSuccess(text: "登入成功")
+                    self.dismiss(animated: true, completion: nil)
+                    self.backToRoot()
+                } else {
+                    CustomProgressHUD.showFailure(text: "登入失敗")
                 }
-                self.dismiss(animated: true, completion: nil)
-                CustomProgressHUD.showSuccess(text: "登入成功")
-                self.backToRoot()
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
                 self.dismiss(animated: true, completion: nil)

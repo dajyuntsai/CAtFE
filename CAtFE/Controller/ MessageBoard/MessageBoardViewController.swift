@@ -24,9 +24,7 @@ class MessageBoardViewController: UIViewController {
     let selectedImageV = UIImageView()
     var selectedItems = [YPMediaItem]()
     var selectedPhotos: [UIImage] = []
-    var testPhoto = UIImage()
-    
-    // from messageboard
+    var singlePhoto = UIImage()
     var cafeCommentList: [CafeComments] = []
     
     override func viewDidLoad() {
@@ -152,22 +150,7 @@ class MessageBoardViewController: UIViewController {
     
     @objc func showPicker() {
         self.selectedPhotos.removeAll()
-        
-        var config = YPImagePickerConfiguration()
-        config.library.mediaType = .photoAndVideo
-        config.shouldSaveNewPicturesToAlbum = false
-        config.video.compression = AVAssetExportPresetMediumQuality
-        config.startOnScreen = .library
-        config.screens = [.library, .photo]
-        config.wordings.libraryTitle = "Gallery"
-        config.hidesStatusBar = false
-        config.hidesBottomBar = false
-        config.maxCameraZoomFactor = 2.0
-        config.library.maxNumberOfItems = 1
-        config.gallery.hidesRemoveButton = false
-        config.library.preselectedItems = selectedItems
-        
-        let picker = YPImagePicker(configuration: config)
+        let picker = YPImagePicker(configuration: imagePickerSetting())
         picker.didFinishPicking { [unowned picker] items, cancelled in
             if cancelled {
                 picker.dismiss(animated: true, completion: nil)
@@ -179,7 +162,7 @@ class MessageBoardViewController: UIViewController {
                 case .photo(let photo):
                     self.selectedPhotos.append(photo.image)
                     self.selectedImageV.image = photo.image
-                    self.testPhoto = photo.image
+                    self.singlePhoto = photo.image
                 case .video(let video):
                     self.selectedImageV.image = video.thumbnail
                         
@@ -193,16 +176,37 @@ class MessageBoardViewController: UIViewController {
                         })
                 }
             }
-            let presentVC = UIStoryboard.messageBoard
-                .instantiateViewController(identifier: PostMessageViewController.identifier)
-                as? PostMessageViewController
-            presentVC?.selectedPhotoList = self.selectedPhotos
-            presentVC?.testPhoto = self.testPhoto
-            presentVC?.modalPresentationStyle = .overFullScreen
-            self.show(presentVC!, sender: nil)
+            self.presentPostMessageVC()
             picker.dismiss(animated: true, completion: nil)
         }
         present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerSetting() -> YPImagePickerConfiguration {
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photoAndVideo
+        config.shouldSaveNewPicturesToAlbum = false
+        config.video.compression = AVAssetExportPresetMediumQuality
+        config.startOnScreen = .library
+        config.screens = [.library, .photo]
+        config.wordings.libraryTitle = "Gallery"
+        config.hidesStatusBar = false
+        config.hidesBottomBar = false
+        config.maxCameraZoomFactor = 2.0
+        config.library.maxNumberOfItems = 1
+        config.gallery.hidesRemoveButton = false
+        config.library.preselectedItems = selectedItems
+        return config
+    }
+    
+    func presentPostMessageVC() {
+        let presentVC = UIStoryboard.messageBoard
+            .instantiateViewController(identifier: PostMessageViewController.identifier)
+            as? PostMessageViewController
+        presentVC?.selectedPhotoList = self.selectedPhotos
+        presentVC?.testPhoto = self.singlePhoto
+        presentVC?.modalPresentationStyle = .overFullScreen
+        self.show(presentVC!, sender: nil)
     }
 
     @objc func loadData() {

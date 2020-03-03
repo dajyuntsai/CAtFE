@@ -175,4 +175,20 @@ class UserProvider {
             }
         }
     }
+    
+    func getUserFollowing(token: String, completion: @escaping (Result<CafeList>) -> Void) {
+        HTTPClient.shared.request(UserRequest.getFollowing(token)) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let cafeList = try self.decoder.decode(CafeList.self, from: data)
+                    completion(.success(cafeList))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

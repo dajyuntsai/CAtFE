@@ -50,7 +50,7 @@ class PostMessageDetailTableViewCell: UITableViewCell {
         let timeAgo = date.timeAgoSinceDate()
         authorImageView.loadImage(data.user?.avatar)
         authorNameLabel.text = data.user?.name
-        locationLabel.text = data.cafe.name
+        locationLabel.text = data.cafe?.name
         postContentLabel.text = data.comment
         timeAgoLabel.text = timeAgo
     }

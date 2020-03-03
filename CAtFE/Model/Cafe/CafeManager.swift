@@ -13,17 +13,21 @@ enum CafeRequest: CAtFERequest {
     case updateCafeList(Int, Cafe) // update
     case createCafeList(Cafe) // create
     case deleteCafeList(Int, Cafe) // delete
+    case following(String, Int) // token, cafeId
     
     var headers: [String: String] {
         switch self {
         case .cafeList:
             return [:]
         case .updateCafeList:
-            return ["Content-Type": "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .createCafeList:
-            return ["Content-Type": "application/json"]
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .deleteCafeList:
             return [:]
+        case .following(let accessToken, _):
+            return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
+                    HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         }
     }
     
@@ -49,6 +53,8 @@ enum CafeRequest: CAtFERequest {
             return nil
         case .deleteCafeList( _, _):
             return nil
+        case .following:
+            return nil
         }
     }
         
@@ -62,6 +68,8 @@ enum CafeRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .deleteCafeList:
             return HTTPMethod.DELETE.rawValue
+        case .following:
+            return HTTPMethod.POST.rawValue
         }
     }
     
@@ -75,6 +83,8 @@ enum CafeRequest: CAtFERequest {
             return "/cafes"
         case .deleteCafeList(let id, _):
             return "/cafes/\(id)"
+        case .following(_, let cafeId):
+            return "/cafes/\(cafeId)/follow/"
         }
     }
 }
@@ -141,6 +151,17 @@ class CafeManager {
                 } catch {
                     completion(.failure(error))
                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func addFollowingCafe(token: String, cafeId: Int, completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(CafeRequest.following(token, cafeId)) { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }
