@@ -21,7 +21,7 @@ class MyFollowingViewTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        cafeImageView.layer.cornerRadius = cafeImageView.frame.width / 2
     }
 
     func setData(data: Cafe) {

@@ -11,7 +11,7 @@ import Cosmos
 
 protocol RatedCellBtnDelegate: AnyObject {
     func showDetailRadar(_ cell: RatedTableViewCell)
-    func getBtnState(_ cell: RatedTableViewCell, _ btnState: Bool)
+    func getBtnState(_ cell: RatedTableViewCell)
 }
 
 class RatedTableViewCell: UITableViewCell {
@@ -28,13 +28,10 @@ class RatedTableViewCell: UITableViewCell {
     @IBOutlet weak var scoreBtn: UIButton!
     @IBOutlet weak var starView: CosmosView!
     @IBAction func followBtnClick(_ sender: Any) {
-        followBtnState = !followBtnState
-        if followBtnState {
-            followBtn.setImage(UIImage(named: "select_bookmark"), for: .normal)
-        } else {
-            followBtn.setImage(UIImage(named: "unselect_bookmark"), for: .normal)
-        }
-        delegate?.getBtnState(self, followBtnState)
+//        followBtnState = !followBtnState
+//        let btnImg = followBtnState == true ? UIImage(named: "select_bookmark") : UIImage(named: "unselect_bookmark")
+//        followBtn.setImage(btnImg, for: .normal)
+        delegate?.getBtnState(self)
     }
     
     @IBAction func scoreBtnClick(_ sender: Any) {
@@ -66,14 +63,14 @@ class RatedTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
     func setData(data: Cafe, score: Double) {
-//        let stateColor = data == true ? .gray : UIColor(named: "MainColor")
-//        followBtn.backgroundColor = stateColor
         cafeNameLabel.text = data.name
         starView.rating = score
         cafeScoreLabel.text = String(round(score*10)/10)
+        
+        let btnImg = followBtnState == true ? UIImage(named: "select_bookmark") : UIImage(named: "unselect_bookmark")
+        followBtn.setImage(btnImg, for: .normal)
     }
 }

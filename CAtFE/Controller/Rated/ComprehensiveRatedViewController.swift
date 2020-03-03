@@ -32,6 +32,8 @@ class ComprehensiveRatedViewController: BaseViewController {
     let animation = Animation()
     let refreshControl = UIRefreshControl()
     let scoreManager = ScoreManager()
+    let cafeManager = CafeManager()
+    let userProvider = UserProvider()
 
     var cafeList: [Cafe] = []
     var ratedList: [Cafe] = []
@@ -40,12 +42,13 @@ class ComprehensiveRatedViewController: BaseViewController {
         super.viewDidLoad()
 
         initView()
+        getRatedList()
+        getFollowingCafes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        getRatedList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,18 +97,52 @@ class ComprehensiveRatedViewController: BaseViewController {
                     self.ratedList = self.cafeList.sorted { $0.trafficAverage > $1.trafficAverage }
                     self.index = 0
                 }
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                    loadingVC.dismiss(animated: true, completion: nil)
                 }
-                
             case .failure:
                 CustomProgressHUD.showFailure(text: "讀取資料失敗")
+                DispatchQueue.main.async {
+                    loadingVC.dismiss(animated: true, completion: nil)
+                }
             }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                loadingVC.dismiss(animated: true, completion: nil)
-                self.refreshControl.endRefreshing()
+        }
+    }
+    
+    func getFollowingCafes() {
+        guard let token = KeyChainManager.shared.token else { return }
+        userProvider.getUserFollowing(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                RatedObject.shared.followingCafes.removeAll()
+                RatedObject.shared.followingCafes = data.data
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            case .failure(let error):
+                print("======= getFollowingCafes() error: \(error.localizedDescription)")
+            }
+        }
+    }
+    func addFollowingCafe(_ cell: RatedTableViewCell) {
+        guard let token = KeyChainManager.shared.token else {
+            return
+        }
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let cafeId = ratedList[indexPath.row].id
+        cafeManager.addFollowingCafe(token: token, cafeId: cafeId) { (result) in
+            switch result {
+            case .success:
+                print("=======追蹤成功")
+                DispatchQueue.main.async {
+                    self.getFollowingCafes()
+                }
+                NotificationCenter.default.post(name: Notification.Name("updateFollowing"), object: nil)
+            case .failure:
+                CustomProgressHUD.showFailure(text: "追蹤失敗")
             }
         }
     }
@@ -113,7 +150,6 @@ class ComprehensiveRatedViewController: BaseViewController {
     @objc func loadData() {
         getRatedList()
         tableView.reloadData()
-        refreshControl.endRefreshing()
     }
 }
 
@@ -126,6 +162,13 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RatedTableViewCell.identifier,
                                                        for: indexPath) as? RatedTableViewCell else {
             return UITableViewCell()
+        }
+        
+        cell.followBtnState = false
+        for following in RatedObject.shared.followingCafes
+            where following.id == ratedList[indexPath.row].id {
+                cell.followBtn.isSelected = true
+                cell.followBtnState = true
         }
         
         cell.ratedIcon.isHidden = false
@@ -156,6 +199,7 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
             let overAllScore = (data.loveOneAverage + data.mealAverage + data.priceAverage + data.surroundingAverage + data.trafficAverage) / 5
             cell.setData(data: data, score: overAllScore)
         }
+        
         cell.delegate = self
         return cell
     }
@@ -194,8 +238,13 @@ extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
         self.show(presentVC!, sender: nil)
     }
     
-    func getBtnState(_ cell: RatedTableViewCell, _ btnState: Bool) {
-//        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        tableView.reloadData()
+    func getBtnState(_ cell: RatedTableViewCell) {
+        if KeyChainManager.shared.token != nil {
+            self.addFollowingCafe(cell)
+        } else {
+            alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }

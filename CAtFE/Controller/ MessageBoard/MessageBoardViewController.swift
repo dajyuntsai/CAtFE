@@ -108,10 +108,10 @@ class MessageBoardViewController: UIViewController {
         messageBoardManager.addLikeMessage(token: token, messageId: messageId) { (result) in
             switch result {
             case .success:
-                print("收藏成功")
+                print("======= 收藏成功")
                 self.getLikeMessages()
-            case .failure(let error):
-                CustomProgressHUD.showFailure(text: "\(error.localizedDescription)")
+            case .failure:
+                CustomProgressHUD.showFailure(text: "收藏失敗")
             }
         }
     }
@@ -311,9 +311,9 @@ extension MessageBoardViewController: MessageBoardDelegate {
         self.show(presentVC!, sender: nil)
     }
     
-    func getBtnState(_ cell: MessageCollectionViewCell, _ btnState: Bool) {
+    func getBtnState(_ cell: MessageCollectionViewCell) {
         if KeyChainManager.shared.token != nil {
-            addLikeMessage(cell)
+            self.addLikeMessage(cell)
             self.collectionView.reloadData()
         } else {
             alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in
