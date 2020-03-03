@@ -9,6 +9,9 @@
 import UIKit
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
+import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = rootViewController
 
         IQKeyboardManager.shared.enable = true
+        FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
+        Fabric.sharedSDK().debug = true
         
         return true
     }

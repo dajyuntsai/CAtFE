@@ -49,7 +49,7 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if isEditMode {
-            return (editPhotoList?.count ?? 0) + 1
+            return editPhotoList!.count
         } else {
             return photoList.count
         }

@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>239039912764-bsc4ud5e73nt3f4qodecmkg86hb8ofjj.apps.googleusercontent.com</string>
+	<string>1000303265308-lt6lhe7akf2p5atkq8hbcl5n2hr2eads.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.239039912764-bsc4ud5e73nt3f4qodecmkg86hb8ofjj</string>
+	<string>com.googleusercontent.apps.1000303265308-lt6lhe7akf2p5atkq8hbcl5n2hr2eads</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA5fmEPZIHj6DafJ0Dn1pW46wv-IkUBrx8</string>
+	<string>AIzaSyAvlAZbB2uOFbrn8v1IeXwvgP-fGZHBz9U</string>
 	<key>GCM_SENDER_ID</key>
-	<string>239039912764</string>
+	<string>1000303265308</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>ninnnnn.CAtFE</string>
 	<key>PROJECT_ID</key>
-	<string>CAtFE</string>
+	<string>catfe-34bfc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>CAtFE.appspot.com</string>
+	<string>catfe-34bfc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:239039912764:ios:59fec364fb2c4beff8dc39</string>
+	<string>1:1000303265308:ios:827995dc9b3154f925c1d9</string>
 	<key>DATABASE_URL</key>
-	<string>https://CAtFE.firebaseio.com</string>
+	<string>https://catfe-34bfc.firebaseio.com</string>
 </dict>
 </plist>

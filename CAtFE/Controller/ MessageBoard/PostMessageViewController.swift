@@ -120,7 +120,15 @@ class PostMessageViewController: BaseViewController {
     }
     
     func onUpdateMessage() {
-        // TODO: update message feature
+        guard let token = KeyChainManager.shared.token else { return }
+        messageBoardManager.updateMessageInList(token: token, msgId: editMessage!.id, content: content!) { (result) in
+            switch result {
+            case .success:
+                CustomProgressHUD.showSuccess(text: "修改成功")
+            case .failure:
+                CustomProgressHUD.showFailure(text: "修改失敗")
+            }
+        }
     }
     
     func onShowLogin() {
@@ -131,7 +139,7 @@ class PostMessageViewController: BaseViewController {
     
     @objc func sendPostBtn() {
         if isEditMode {
-            self.onUploadPostData()
+            self.onUpdateMessage()
         } else {
             if content == nil {
                 alert(message: "請輸入內容再送出", title: "溫馨小提醒", handler: nil)
@@ -174,6 +182,9 @@ extension PostMessageViewController: UITableViewDataSource {
             }
             if isEditMode {
                 cell.setData(content: editMessage!.comment)
+                cell.content = { (content) in
+                    self.content = content
+                }
             } else {
                 cell.content = { (content) in
                     self.content = content

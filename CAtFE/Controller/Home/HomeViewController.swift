@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
 
         initView()
         initMapView()
-        setUpTabBarItem()
+//        setUpTabBarItem()
 //        setUpCollectionView()
         getCafeData()
     }
@@ -122,8 +122,8 @@ class HomeViewController: UIViewController {
     
     func setUpTabBarItem() {
         let tabBarHome = self.tabBarController?.tabBar.items?[1]
-        tabBarHome?.image = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        tabBarHome?.selectedImage = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        tabBarHome?.image = UIImage(named: "home-3")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        tabBarHome?.selectedImage = UIImage(named: "home-2")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
     
     @objc func petFilterBtn() {

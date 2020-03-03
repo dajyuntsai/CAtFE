@@ -18,6 +18,7 @@ class MyFollowingViewController: BaseViewController {
     }
     let refreshControl = UIRefreshControl()
     let userProvider = UserProvider()
+    let cafeManager = CafeManager()
     var cafeList: [Cafe] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -29,6 +30,8 @@ class MyFollowingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(getFollowingCafe), name: Notification.Name("updateFollowing"), object: nil)
+        
         getFollowingCafe()
     }
 
@@ -39,12 +42,31 @@ class MyFollowingViewController: BaseViewController {
         tableView.addSubview(refreshControl)
     }
     
-    func getFollowingCafe() {
+    func cancelFollowingCafe(_ indexPath: IndexPath) {
+        guard let token = KeyChainManager.shared.token else {
+            return
+        }
+        let cafeId = cafeList[indexPath.row].id
+        cafeManager.addFollowingCafe(token: token, cafeId: cafeId) { (result) in
+            switch result {
+            case .success:
+                CustomProgressHUD.showSuccess(text: "取消追蹤")
+                DispatchQueue.main.async {
+                    self.getFollowingCafe()
+                }
+            case .failure:
+                CustomProgressHUD.showFailure(text: "操作失敗")
+            }
+        }
+    }
+    
+    @objc func getFollowingCafe() {
         cafeList.removeAll()
         guard let token = KeyChainManager.shared.token else { return }
         userProvider.getUserFollowing(token: token) { (result) in
             switch result {
             case .success(let data):
+                RatedObject.shared.followingCafes = data.data
                 self.cafeList = data.data
             case .failure:
                 CustomProgressHUD.showFailure(text: "讀取資料失敗")
@@ -52,12 +74,9 @@ class MyFollowingViewController: BaseViewController {
         }
     }
 
-    func updateUnfollowingCafe() {
-        // TODO: Update data to api
-    }
-
     @objc func loadData() {
-        // TODO: calling api
+        cafeList.removeAll()
+        getFollowingCafe()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -91,11 +110,10 @@ extension MyFollowingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            cancelFollowingCafe(indexPath)
+            cafeList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-            updateUnfollowingCafe()
         }
-        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

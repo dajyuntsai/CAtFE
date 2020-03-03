@@ -10,7 +10,7 @@ import UIKit
 
 private enum Tab {
     case home
-//    case shopEvent
+    case shopEvent
     case rated
     case messageBoard
     case member
@@ -18,8 +18,8 @@ private enum Tab {
     func controller() -> UIViewController {
         var controller: UIViewController
         switch self {
-//        case .shopEvent:
-//            controller = UIStoryboard.shopEvent.instantiateInitialViewController()!
+        case .shopEvent:
+            controller = UIStoryboard.shopEvent.instantiateInitialViewController()!
         case .rated:
             controller = UIStoryboard.rated.instantiateInitialViewController()!
         case .home:
@@ -30,7 +30,7 @@ private enum Tab {
             controller = UIStoryboard.member.instantiateInitialViewController()!
         }
         
-        controller.tabBarItem.imageInsets = UIEdgeInsets(top: 6.0, left: 0.0, bottom: -6.0, right: 0.0)
+//        controller.tabBarItem.imageInsets = UIEdgeInsets(top: 6.0, left: 0.0, bottom: -6.0, right: 0.0)
         
         return controller
     }

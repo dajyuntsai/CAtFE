@@ -18,12 +18,16 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var shopBtn: UIButton!
     @IBOutlet weak var appleSignInView: UIView!
     @IBOutlet weak var facebookLoginView: UIView!
-
+    @IBAction func privacyPolicyBtn(_ sender: Any) {
+        let prsentVC = CafeWebsiteViewController()
+        prsentVC.cafeUrl = "https://github.com/ninnnnn/PrivacyPolicy/blob/master/README.md"
+        self.show(prsentVC, sender: nil)
+    }
+    
     let userProvider = UserProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         initView()
     }
     
@@ -114,9 +118,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     KeyChainManager.shared.token = access
                     KeyChainManager.shared.name = fullName
                     KeyChainManager.shared.email = email
-                    CustomProgressHUD.showSuccess(text: "登入成功")
-                    self.dismiss(animated: true, completion: nil)
-                    self.backToRoot()
+                    self.appleLoginSuccess()
                 } else {
                     CustomProgressHUD.showFailure(text: "登入失敗")
                 }
@@ -163,9 +165,7 @@ extension LoginViewController: LoginButtonDelegate {
                     guard let access = jsonDict["access"] as? String else { return }
                     KeyChainManager.shared.token = access
                     self.userProvider.getUserDataFromFB(fbToken: token)
-                    self.dismiss(animated: true, completion: nil)
-                    CustomProgressHUD.showSuccess(text: "登入成功")
-                    self.backToRoot()
+                    self.fbLoginSuccess()
                 }
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
@@ -184,12 +184,14 @@ extension LoginViewController: LoginButtonDelegate {
         setLoginState(state: true)
         backToRoot()
         CustomProgressHUD.showSuccess(text: "Facebook 登入成功")
+        dismiss(animated: true, completion: nil)
     }
 
     func appleLoginSuccess() {
         setLoginState(state: true)
         backToRoot()
         CustomProgressHUD.showSuccess(text: "Apple Sign In 登入成功")
+        dismiss(animated: true, completion: nil)
     }
     
     public func setLoginState(state: Bool) {

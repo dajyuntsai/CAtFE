@@ -33,7 +33,7 @@ class PostMessageUserTableViewCell: UITableViewCell {
     }
     
     func setData(data: CafeComments) {
-//        addLocation.setTitle(data.cafe.name, for: .normal) //TODO: 打開
+        addLocation.setTitle(data.cafe?.name, for: .normal)
     }
 }
 

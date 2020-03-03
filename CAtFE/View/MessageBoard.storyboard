@@ -673,7 +673,7 @@
         <scene sceneID="w5p-7u-9tt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RTl-qX-cGc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="unselect_write" selectedImage="select_write" id="kQh-VK-aVz"/>
+                    <tabBarItem key="tabBarItem" title="" image="writing" selectedImage="writing-2" id="kQh-VK-aVz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kX6-QQ-TJF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -696,9 +696,9 @@
         <image name="ellipsis" catalog="system" width="64" height="18"/>
         <image name="favourite" width="32" height="32"/>
         <image name="placeholder" width="987" height="777"/>
-        <image name="select_write" width="40" height="40"/>
         <image name="send" width="32" height="32"/>
-        <image name="unselect_write" width="30" height="30"/>
+        <image name="writing" width="256" height="256"/>
+        <image name="writing-2" width="256" height="256"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

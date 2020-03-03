@@ -297,7 +297,7 @@
         <scene sceneID="ci7-Kc-UEj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0el-Xs-DrN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="unselect_trophy" selectedImage="select_trophy" id="8EV-OU-f8V"/>
+                    <tabBarItem key="tabBarItem" title="" image="rank" selectedImage="rank-2" id="8EV-OU-f8V"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KBO-iF-VIF">
@@ -319,9 +319,9 @@
         <image name="GoldStarEmpty" width="53" height="51"/>
         <image name="first" width="512" height="512"/>
         <image name="placeholder" width="987" height="777"/>
-        <image name="select_trophy" width="40" height="40"/>
+        <image name="rank" width="36" height="36"/>
+        <image name="rank-2" width="36" height="36"/>
         <image name="unselect_bookmark" width="512" height="512"/>
-        <image name="unselect_trophy" width="30" height="30"/>
         <namedColor name="MainColor">
             <color red="0.90299999713897705" green="0.72699999809265137" blue="0.31700000166893005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

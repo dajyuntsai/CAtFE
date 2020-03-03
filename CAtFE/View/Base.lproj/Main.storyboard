@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6XN-VN-tti">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6XN-VN-tti">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,10 +73,30 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BURU" translatesAutoresizingMaskIntoConstraints="NO" id="rku-eh-GRI">
                                 <rect key="frame" x="0.0" y="74" width="414" height="428"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YWH-F8-8Gv">
+                                <rect key="frame" x="88" y="798" width="238" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="註冊登入即代表您同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBz-eB-g3b">
+                                        <rect key="frame" x="0.0" y="0.0" width="153" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yf7-C1-HHj">
+                                        <rect key="frame" x="161" y="0.0" width="77" height="30"/>
+                                        <state key="normal" title="隱私權政策"/>
+                                        <connections>
+                                            <action selector="privacyPolicyBtn:" destination="6XN-VN-tti" eventType="touchUpInside" id="l2Y-gE-Xgq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="YWH-F8-8Gv" firstAttribute="top" secondItem="B3M-Pc-3Or" secondAttribute="bottom" constant="16" id="5Jj-4i-Fw1"/>
                             <constraint firstItem="rku-eh-GRI" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="Amy-C2-cq9"/>
+                            <constraint firstItem="YWH-F8-8Gv" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="T3A-jS-dSA"/>
                             <constraint firstItem="Q6M-9f-3bO" firstAttribute="bottom" secondItem="B3M-Pc-3Or" secondAttribute="bottom" constant="80" id="W7C-Cg-dMe"/>
                             <constraint firstItem="OhH-qZ-tLS" firstAttribute="centerX" secondItem="B0X-qi-8ff" secondAttribute="centerX" id="Wrk-oG-Kg0"/>
                             <constraint firstItem="B3M-Pc-3Or" firstAttribute="top" secondItem="OhH-qZ-tLS" secondAttribute="bottom" constant="50" id="c3J-ef-nQo"/>

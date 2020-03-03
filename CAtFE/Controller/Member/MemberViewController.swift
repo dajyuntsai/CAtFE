@@ -98,7 +98,7 @@ class MemberViewController: UIViewController {
         let controllers = [myMessagesViewController,
                            likeMessagesViewController,
                            myFollowingViewController]
-        let rectContent = CGRect(x: 0, y: height / 5 + (width / 4) + 16 + 50, width: width, height: height)
+        let rectContent = CGRect(x: 0, y: height / 5 + (width / 4) + 16 + 50, width: width, height: height - (height / 5 + (width / 4) + 16 + 50))
         mPageContentView = TabContentView(frame: rectContent, parentVC: self,
                                           childVCs: controllers,
                                           childViews: [],

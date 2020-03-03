@@ -12,7 +12,7 @@ enum MessageBoardRequest: CAtFERequest {
     case allMessages
     case myCafeComment(Int) // userId
     case createMessage(String, Int, String, [String]) // token, cafeId, content, photos
-    case updateMessage(String, Int, String, [String]) // token, msgId, content, photos
+    case updateMessage(String, Int, String) // token, msgId, content
     case deleteMessage(String, Int) // token, messageId
     case replyMessage(String, Int, String) // token, messageId, text
     case likeMessages(String) // token
@@ -27,7 +27,7 @@ enum MessageBoardRequest: CAtFERequest {
         case .createMessage(let accessToken, _, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
                     HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
-        case .updateMessage(let accessToken, _, _, _):
+        case .updateMessage(let accessToken, _, _):
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue,
                     HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)"]
         case .deleteMessage(let accessToken, _):
@@ -55,11 +55,10 @@ enum MessageBoardRequest: CAtFERequest {
                 "photos": photos
                 ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .updateMessage(_, let msgId, let content, let photos):
+        case .updateMessage(_, let msgId, let content):
             let dict = [
                 "msgId": msgId,
-                "content": content,
-                "photos": photos
+                "content": content
                 ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .deleteMessage:
@@ -103,7 +102,7 @@ enum MessageBoardRequest: CAtFERequest {
             return "/cafeComments/?user_id=\(userId)"
         case .createMessage(_, let cafeId, _, _):
             return "/cafes/\(cafeId)/comment/"
-        case .updateMessage(_, let msgId, _, _):
+        case .updateMessage(_, let msgId, _):
             return "/cafeComments/\(msgId)/"
         case .deleteMessage(_, let msgId):
             return "/cafeComments/\(msgId)/"
@@ -169,17 +168,11 @@ class MessageBoardManager {
     func updateMessageInList(token: String,
                              msgId: Int,
                              content: String,
-                             photos: [String],
-                             completion: @escaping (Result<CafeComments>) -> Void) {
-        HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, content, photos)) { (result) in
+                             completion: @escaping (Result<Void>) -> Void) {
+        HTTPClient.shared.request(MessageBoardRequest.updateMessage(token, msgId, content)) { (result) in
             switch result {
-            case .success(let data):
-                do {
-                    let updateMessage = try self.decoder.decode(CafeComments.self, from: data)
-                    completion(.success(updateMessage))
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }

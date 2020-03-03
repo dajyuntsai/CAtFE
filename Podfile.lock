@@ -8,7 +8,10 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - Cosmos (21.0.0)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
   - DLRadioButton (1.4.12)
+  - Fabric (1.10.2)
   - FBSDKCoreKit (6.0.0):
     - FBSDKCoreKit/Basics (= 6.0.0)
     - FBSDKCoreKit/Core (= 6.0.0)
@@ -27,6 +30,71 @@ PODS:
   - FBSDKShareKit/Swift (6.0.0):
     - FBSDKCoreKit/Swift (~> 6.0.0)
     - FBSDKShareKit/Share
+  - Firebase/Analytics (6.17.0):
+    - Firebase/Core
+  - Firebase/Core (6.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.2.2)
+  - Firebase/CoreOnly (6.17.0):
+    - FirebaseCore (= 6.6.2)
+  - FirebaseAnalytics (6.2.2):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleAppMeasurement (= 6.2.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - FirebaseCore (6.6.2):
+    - FirebaseCoreDiagnostics (~> 1.2)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.2.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseInstallations (1.1.0):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.3.1):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - GoogleAppMeasurement (6.2.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (4.0.0)
+  - GoogleDataTransportCCTSupport (1.4.0):
+    - GoogleDataTransport (~> 4.0)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.1)
+  - GoogleUtilities/Logger (6.5.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.5.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.5.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.1)"
+  - GoogleUtilities/Reachability (6.5.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.5.1):
+    - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.5.5)
   - JGProgressHUD (2.1)
   - KeychainAccess (4.1.0)
@@ -34,6 +102,12 @@ PODS:
     - Kingfisher/Core (= 5.13.1)
   - Kingfisher/Core (5.13.1)
   - lottie-ios (3.1.6)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - PromisesObjC (1.2.8)
   - PryntTrimmerView (4.0.0)
   - SteviaLayout (4.7.3)
   - SwiftLint (0.39.1)
@@ -46,10 +120,13 @@ DEPENDENCIES:
   - Alamofire
   - Bolts
   - Cosmos
+  - Crashlytics
   - DLRadioButton
+  - Fabric
   - FBSDKCoreKit/Swift
   - FBSDKLoginKit/Swift
   - FBSDKShareKit/Swift
+  - Firebase/Analytics
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
@@ -64,15 +141,30 @@ SPEC REPOS:
     - Alamofire
     - Bolts
     - Cosmos
+    - Crashlytics
     - DLRadioButton
+    - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
     - IQKeyboardManagerSwift
     - JGProgressHUD
     - KeychainAccess
     - Kingfisher
     - lottie-ios
+    - nanopb
+    - PromisesObjC
     - PryntTrimmerView
     - SteviaLayout
     - SwiftLint
@@ -83,20 +175,35 @@ SPEC CHECKSUMS:
   Alamofire: 41c162d645ba6a78e7fd030fcdaf6aa394ca39a0
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: fe738b172590e622c86735b45e20d196848b54df
   FBSDKLoginKit: fa57df1b967fe0e147b25bede6ea4e9cdf4d64be
   FBSDKShareKit: 210dcda2603042cf73f31983fc99df4dac06f1d8
+  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
+  FirebaseAnalytics: cf95d3aab897612783020fbd98401d5366f135ee
+  FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
+  FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
+  FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
+  GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
+  GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
+  GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
+  GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   Kingfisher: f33a848445e33c543620812158dc5d47f6bf90df
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   YPImagePicker: accf310f9526641a84372c0ecf943547d9b1e52c
 
-PODFILE CHECKSUM: 1c9e6aae491ea035ebabe255865549cbe822a2ef
+PODFILE CHECKSUM: b92143566c10b2ba620e01b8670879f189055f9b
 
 COCOAPODS: 1.8.4

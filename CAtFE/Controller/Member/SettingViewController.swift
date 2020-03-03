@@ -34,8 +34,8 @@ class SettingViewController: BaseViewController {
     
     let settingList: [Settings] = [
     Settings(type: .expand, title: "個人資料", details: ["頭像", "名稱"]),
-    Settings(type: .createCafe, title: "新增店家", details: []),
-    Settings(type: .cell, title: "版本", details: ["1.0"]),
+//    Settings(type: .createCafe, title: "新增店家", details: []),
+    Settings(type: .cell, title: "版本  1.0.4", details: []),
     Settings(type: .logout, title: "登出", details: [])]
     let height = UIScreen.main.bounds.height
     let width = UIScreen.main.bounds.width

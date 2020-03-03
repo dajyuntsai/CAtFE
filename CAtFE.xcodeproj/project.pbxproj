@@ -110,6 +110,9 @@
 		BEA99E0523EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA99E0323EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib */; };
 		BEA99E0723EFFE0000F2CC69 /* MemberInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA99E0623EFFE0000F2CC69 /* MemberInfoTableViewCell.swift */; };
 		BEB5662124098BAE00B38E77 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB5662024098BAE00B38E77 /* loading.json */; };
+		BEB56623240E2B6800B38E77 /* RatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB56622240E2B6700B38E77 /* RatedObject.swift */; };
+		BEB56627240E4E4300B38E77 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB56626240E4E4300B38E77 /* FirebaseUtils.swift */; };
+		BEB56629240E5D5700B38E77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEB56628240E5D5700B38E77 /* GoogleService-Info.plist */; };
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
@@ -123,7 +126,6 @@
 		BEE181F223E238AD00660AEB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F123E238AD00660AEB /* UIColor+Extension.swift */; };
 		BEE181F623E23A3C00660AEB /* HomeFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */; };
 		BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181F923E240C300660AEB /* HTTPClient.swift */; };
-		BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEE181FB23E2420500660AEB /* GoogleService-Info.plist */; };
 		BEF7A7A123F9032F00EB6D2D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */; };
 		BEF7A7A523F946F300EB6D2D /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7A7A323F946F300EB6D2D /* UserInfoTableViewCell.swift */; };
 		BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF7A7A423F946F300EB6D2D /* UserInfoTableViewCell.xib */; };
@@ -211,7 +213,6 @@
 		BE66210723D3FE450053FD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE66210923D3FE490053FD07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE66210C23D3FE490053FD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BE66210E23D3FE490053FD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE66211323D3FE490053FD07 /* CAtFETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CAtFETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE66211723D3FE490053FD07 /* CAtFETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAtFETests.swift; sourceTree = "<group>"; };
 		BE66211923D3FE490053FD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -263,6 +264,10 @@
 		BEA99E0323EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDetailOpenTimeTableViewCell.xib; sourceTree = "<group>"; };
 		BEA99E0623EFFE0000F2CC69 /* MemberInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoTableViewCell.swift; sourceTree = "<group>"; };
 		BEB5662024098BAE00B38E77 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../Users/ninn/Downloads/loading.json; sourceTree = "<group>"; };
+		BEB56622240E2B6700B38E77 /* RatedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedObject.swift; sourceTree = "<group>"; };
+		BEB56626240E4E4300B38E77 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		BEB56628240E5D5700B38E77 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BEB5662E240E5FA900B38E77 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
@@ -276,7 +281,6 @@
 		BEE181F123E238AD00660AEB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BEE181F523E23A3C00660AEB /* HomeFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEE181F923E240C300660AEB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		BEE181FB23E2420500660AEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		BEF7A7A323F946F300EB6D2D /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		BEF7A7A423F946F300EB6D2D /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -404,6 +408,9 @@
 			isa = PBXGroup;
 			children = (
 				BE36C40623F12FFA003C4BDB /* CAtFE.entitlements */,
+				BE66210023D3FE450053FD07 /* AppDelegate.swift */,
+				BEB56628240E5D5700B38E77 /* GoogleService-Info.plist */,
+				BEB5662E240E5FA900B38E77 /* Info.plist */,
 				BE36C40923F195C9003C4BDB /* TabLayout */,
 				BEE181EC23E2378F00660AEB /* Third Party Wrapper */,
 				BEE181E923E2336B00660AEB /* Extension */,
@@ -411,9 +418,6 @@
 				BEE181D323E20E2F00660AEB /* Model */,
 				BEE181D223E20E2100660AEB /* Controller */,
 				BEE181F323E239FB00660AEB /* View */,
-				BE66210023D3FE450053FD07 /* AppDelegate.swift */,
-				BE66210E23D3FE490053FD07 /* Info.plist */,
-				BEE181FB23E2420500660AEB /* GoogleService-Info.plist */,
 			);
 			path = CAtFE;
 			sourceTree = "<group>";
@@ -513,6 +517,7 @@
 			children = (
 				BE94EB4723F6856D00FA4604 /* RatedModel.swift */,
 				BEA3934B2403AC9C000A4A04 /* ScoreManager.swift */,
+				BEB56622240E2B6700B38E77 /* RatedObject.swift */,
 			);
 			path = Rated;
 			sourceTree = "<group>";
@@ -623,6 +628,7 @@
 			children = (
 				BEE181ED23E237B000660AEB /* JGProgressHUDWrapper.swift */,
 				BEE181EF23E2384500660AEB /* KingFisherWrapper.swift */,
+				BEB56626240E4E4300B38E77 /* FirebaseUtils.swift */,
 			);
 			path = "Third Party Wrapper";
 			sourceTree = "<group>";
@@ -849,6 +855,7 @@
 				BEF7A7A623F946F300EB6D2D /* UserInfoTableViewCell.xib in Resources */,
 				BEA39353240503C3000A4A04 /* LoadingViewController.xib in Resources */,
 				BE1EDBD523E2E77A003C38D9 /* TabBar.storyboard in Resources */,
+				BEB56629240E5D5700B38E77 /* GoogleService-Info.plist in Resources */,
 				BE18E09923F9511A006F004C /* SectionView.xib in Resources */,
 				BE5258F423EBC36400F8AC00 /* Popup.storyboard in Resources */,
 				BE1EDBCD23E2DC22003C38D9 /* Home.storyboard in Resources */,
@@ -856,7 +863,6 @@
 				BEA99E0523EFF6D500F2CC69 /* CreateDetailOpenTimeTableViewCell.xib in Resources */,
 				BE52590523EC5B5300F8AC00 /* CreateDetailBoolTableViewCell.xib in Resources */,
 				BEB5662124098BAE00B38E77 /* loading.json in Resources */,
-				BEE181FC23E2420500660AEB /* GoogleService-Info.plist in Resources */,
 				BE66210A23D3FE490053FD07 /* Assets.xcassets in Resources */,
 				BE1EDBC923E2DBFE003C38D9 /* ShopEvent.storyboard in Resources */,
 				BE1EDBD023E2DC49003C38D9 /* MessageBoard.storyboard in Resources */,
@@ -955,7 +961,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		CC46669A932B8FC51A6B5D9B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1036,6 +1042,7 @@
 				BE1EDBC323E2DA4A003C38D9 /* UIStoryboard+Extension.swift in Sources */,
 				BE9131E923E81FAB004A669D /* PostMessageDetailViewController.swift in Sources */,
 				BEA99E0723EFFE0000F2CC69 /* MemberInfoTableViewCell.swift in Sources */,
+				BEB56627240E4E4300B38E77 /* FirebaseUtils.swift in Sources */,
 				BEA3934C2403AC9C000A4A04 /* ScoreManager.swift in Sources */,
 				BE94EB4823F6856D00FA4604 /* RatedModel.swift in Sources */,
 				BE94EB5423F6993100FA4604 /* FollowingCafeEventViewController.swift in Sources */,
@@ -1053,6 +1060,7 @@
 				BE365F1623F794D70088A9C8 /* EventPhotoCollectionViewCell.swift in Sources */,
 				BE5B246423F3AEE90092FACA /* MessageBoardManager.swift in Sources */,
 				BEE181E123E2328400660AEB /* BaseViewController.swift in Sources */,
+				BEB56623240E2B6800B38E77 /* RatedObject.swift in Sources */,
 				BE9131CC23E2EF0F004A669D /* MessageBoardViewController.swift in Sources */,
 				BE9131CF23E2EF68004A669D /* MemberViewController.swift in Sources */,
 				BE725AD023F0FD16006B2DA7 /* CreateDetailCheckBoxTableViewCell.swift in Sources */,
@@ -1198,7 +1206,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1252,7 +1260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1269,7 +1277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CAtFE/CAtFE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5H82298CCW;
 				INFOPLIST_FILE = CAtFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1292,7 +1300,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CAtFE/CAtFE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5H82298CCW;
 				INFOPLIST_FILE = CAtFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

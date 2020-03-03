@@ -41,4 +41,8 @@ target 'CAtFE' do
 
   pod 'Alamofire'
   pod 'lottie-ios'
+
+  pod 'Firebase/Analytics'
+  pod 'Crashlytics'
+  pod 'Fabric'
 end
