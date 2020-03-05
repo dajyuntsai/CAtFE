@@ -93,3 +93,36 @@ class ScoreManager {
         }
     }
 }
+
+extension ScoreManager {
+    func sortByOverAll(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted {($0.loveOneAverage + $0.mealAverage + $0.priceAverage + $0.surroundingAverage + $0.trafficAverage) / 5 >
+            ($1.loveOneAverage + $1.mealAverage + $1.priceAverage + $1.surroundingAverage + $1.trafficAverage) / 5}
+        return sortResult
+    }
+    
+    func sortByMeal(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted { $0.mealAverage > $1.mealAverage }
+        return sortResult
+    }
+    
+    func sortByPet(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted { $0.loveOneAverage > $1.loveOneAverage }
+        return sortResult
+    }
+    
+    func sortByPrice(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted { $0.priceAverage > $1.priceAverage }
+        return sortResult
+    }
+    
+    func sortBySurrounding(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted { $0.surroundingAverage > $1.surroundingAverage }
+        return sortResult
+    }
+    
+    func sortByTraffic(data: [Cafe]) -> [Cafe] {
+        let sortResult = data.sorted { $0.trafficAverage > $1.trafficAverage }
+        return sortResult
+    }
+}

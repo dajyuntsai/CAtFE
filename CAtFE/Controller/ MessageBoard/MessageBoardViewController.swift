@@ -248,52 +248,51 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForCaptionAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-//        let post = cafeCommentList[indexPath.item]
-//        let topPadding = CGFloat(8)
-//        let bottomPadding = CGFloat(16)
-//        let captionFont = UIFont.systemFont(ofSize: 15)
-//        let captionHeight = self.height(for: post.comment, with: captionFont, width: width)
-//        let profileImageHeight = CGFloat(36)
-//        let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
+        let post = cafeCommentList[indexPath.item]
+        let topPadding = CGFloat(8)
+        let bottomPadding = CGFloat(16)
+        let captionFont = UIFont.systemFont(ofSize: 15)
+        let captionHeight = self.height(for: post.comment, with: captionFont, width: width)
+        let profileImageHeight = CGFloat(36)
+        let height = topPadding + captionHeight + topPadding + profileImageHeight + bottomPadding
 
-        return 50 // height
+        return height
     }
     
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-//        let post = cafeCommentList[indexPath.item]
-//        let havePhoto = post.photos.count
-//
-//        if havePhoto == 0 {
-//            return 0
-//        } else {
-//            let photo = URL(string: post.photos[0].url)!
-//            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-//            let request = URLRequest(url: photo)
-//            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
-//                return 1.0
-//            }
-//            var img: UIImage?
-//            let imageView1 = UIImageView()
-//            img = UIImage(data: imgData)!
-//            imageView1.image = img
-//            let photoSize = img?.size
-//            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
-//
-//            return rect.size.height
-//        }
-        return 200
+        let post = cafeCommentList[indexPath.item]
+        let havePhoto = post.photos.count
+
+        if havePhoto == 0 {
+            return 0
+        } else {
+            let photo = URL(string: post.photos[0].url)!
+            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+            let request = URLRequest(url: photo)
+            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+                return 0.7
+            }
+            var img: UIImage?
+            let imageView1 = UIImageView()
+            img = UIImage(data: imgData)!
+            imageView1.image = img
+            let photoSize = img?.size
+            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
+
+            return rect.size.height
+        }
     }
     
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {
-//        let nsstring = NSString(string: text)
-//        let textAttributes = [NSAttributedString.Key.font: font]
-//        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-//        let boundingRect = nsstring.boundingRect(with: constraintRect,
-//                                                 options: .usesLineFragmentOrigin,
-//                                                 attributes: textAttributes, context: nil)
-        return 100 // ceil(boundingRect.height)
+        let nsstring = NSString(string: text)
+        let textAttributes = [NSAttributedString.Key.font: font]
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingRect = nsstring.boundingRect(with: constraintRect,
+                                                 options: .usesLineFragmentOrigin,
+                                                 attributes: textAttributes, context: nil)
+        return ceil(boundingRect.height)
     }
 }
 

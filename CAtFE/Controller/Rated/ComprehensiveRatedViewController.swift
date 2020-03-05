@@ -36,7 +36,6 @@ class ComprehensiveRatedViewController: BaseViewController {
     let userProvider = UserProvider()
 
     var index = 0
-    var cafeList: [Cafe] = []
     var ratedList: [Cafe] = []
     
     override func viewDidLoad() {
@@ -83,28 +82,26 @@ class ComprehensiveRatedViewController: BaseViewController {
         scoreManager.getRatedList { (result) in
             switch result {
             case .success(let data):
-                self.cafeList = data.results
+                let cafeList: [Cafe] = data.results
                 
                 switch self.sortedType {
                 case .overAll:
-                    self.ratedList = self.cafeList.sorted {
-                    ($0.loveOneAverage + $0.mealAverage + $0.priceAverage + $0.surroundingAverage + $0.trafficAverage) / 5 >
-                        ($1.loveOneAverage + $1.mealAverage + $1.priceAverage + $1.surroundingAverage + $1.trafficAverage) / 5}
+                    self.ratedList = self.scoreManager.sortByOverAll(data: cafeList)
                     self.index = 5
                 case .meal:
-                    self.ratedList = self.cafeList.sorted { $0.mealAverage > $1.mealAverage }
+                    self.ratedList = self.scoreManager.sortByMeal(data: cafeList)
                     self.index = 1
                 case .pet:
-                    self.ratedList = self.cafeList.sorted { $0.loveOneAverage > $1.loveOneAverage }
+                    self.ratedList = self.scoreManager.sortByPet(data: cafeList)
                     self.index = 2
                 case .price:
-                    self.ratedList = self.cafeList.sorted { $0.priceAverage > $1.priceAverage }
+                    self.ratedList = self.scoreManager.sortByPrice(data: cafeList)
                     self.index = 3
                 case .surrounding:
-                    self.ratedList = self.cafeList.sorted { $0.surroundingAverage > $1.surroundingAverage }
+                    self.ratedList = self.scoreManager.sortBySurrounding(data: cafeList)
                     self.index = 4
                 case .traffic:
-                    self.ratedList = self.cafeList.sorted { $0.trafficAverage > $1.trafficAverage }
+                    self.ratedList = self.scoreManager.sortByTraffic(data: cafeList)
                     self.index = 0
                 }
             case .failure:
@@ -168,8 +165,7 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RatedTableViewCell.identifier,
-                                                       for: indexPath) as? RatedTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RatedTableViewCell.identifier, for: indexPath) as? RatedTableViewCell else {
             return UITableViewCell()
         }
         
