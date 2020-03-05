@@ -79,17 +79,14 @@ class MessageBoardViewController: UIViewController {
             switch result {
             case .success(let data):
                 self.getCommentDetail(data: data)
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    loadingVC.dismiss(animated: true, completion: nil)
-                    self.refreshControl.endRefreshing()
-                }
             case .failure(let error):
                 CustomProgressHUD.showFailure(text: "讀取資料失敗")
                 print("======= getMessageList error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.refreshControl.endRefreshing()
+                loadingVC.dismiss(animated: true, completion: nil)
             }
         }
     }

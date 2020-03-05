@@ -37,11 +37,11 @@ class MemberViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
+        navigationController?.setNavigationBarHidden(true, animated: false)
         userName.text = KeyChainManager.shared.name
         guard let avatar = KeyChainManager.shared.avatar else { return }
         userImageView.loadImage(avatar, placeHolder: UIImage(named: "placeholder"))
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

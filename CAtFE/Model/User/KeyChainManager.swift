@@ -18,6 +18,7 @@ class KeyChainManager {
     private let userEmail: String = "userEmail"
     private let userAvatar: String = "userAvatar"
     private let userId: String = "userId"
+    private let appleIdentifier: String = "appleIdentifier"
     
     private init() {
         service = Keychain(service: Bundle.main.bundleIdentifier!)
@@ -95,6 +96,19 @@ class KeyChainManager {
         
         get {
             return UserDefaults.standard.integer(forKey: userId)
+        }
+    }
+    
+    var identifier: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: appleIdentifier)
+        }
+
+        get {
+            guard let identifier = UserDefaults.standard.string(forKey: appleIdentifier) else {
+                return nil
+            }
+            return identifier
         }
     }
 }

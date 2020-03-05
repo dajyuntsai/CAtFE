@@ -62,7 +62,7 @@ class ComprehensiveRatedViewController: BaseViewController {
         tableView.addSubview(refreshControl)
         
         getRatedList()
-        getFollowingCafes()
+        getFollowingCafes {}
         
         group.notify(queue: .main) {
             self.tableView.reloadData()
@@ -118,7 +118,7 @@ class ComprehensiveRatedViewController: BaseViewController {
         }
     }
     
-    func getFollowingCafes() {
+    func getFollowingCafes(completion: @escaping (() -> Void)) {
         guard let token = KeyChainManager.shared.token else { return }
         group.enter()
         userProvider.getUserFollowing(token: token) { (result) in
@@ -126,9 +126,7 @@ class ComprehensiveRatedViewController: BaseViewController {
             case .success(let data):
                 RatedObject.shared.followingCafes.removeAll()
                 RatedObject.shared.followingCafes = data.data
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                completion()
             case .failure(let error):
                 print("======= getFollowingCafes() error: \(error.localizedDescription)")
             }
@@ -136,7 +134,7 @@ class ComprehensiveRatedViewController: BaseViewController {
         }
     }
     
-    func addFollowingCafe(_ cell: RatedTableViewCell) {
+    func addFollowingCafe(_ cell: RatedTableViewCell, completion: @escaping (() -> Void )) {
         guard let token = KeyChainManager.shared.token else {
             return
         }
@@ -147,7 +145,9 @@ class ComprehensiveRatedViewController: BaseViewController {
             case .success:
                 print("=======追蹤成功")
                 DispatchQueue.main.async {
-                    self.getFollowingCafes()
+                    self.getFollowingCafes {
+                        completion()
+                    }
                 }
                 NotificationCenter.default.post(name: Notification.Name("updateFollowing"), object: nil)
             case .failure:
@@ -249,7 +249,12 @@ extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
     
     func getBtnState(_ cell: RatedTableViewCell) {
         if KeyChainManager.shared.token != nil {
-            self.addFollowingCafe(cell)
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            self.addFollowingCafe(cell) {
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
         } else {
             alert(message: "登入後才能收藏喔！", title: "溫馨小提醒") { _ in
                 self.dismiss(animated: true, completion: nil)

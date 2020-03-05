@@ -35,9 +35,9 @@ class RatedTableViewCell: UITableViewCell {
     @IBOutlet weak var scoreBtn: UIButton!
     @IBOutlet weak var starView: CosmosView!
     @IBAction func followBtnClick(_ sender: Any) {
-//        followBtnState = !followBtnState
-//        let btnImg = followBtnState == true ? UIImage(named: "select_bookmark") : UIImage(named: "unselect_bookmark")
-//        followBtn.setImage(btnImg, for: .normal)
+        followBtnState = !followBtnState
+        let btnImg = followBtnState == true ? UIImage(named: "select_bookmark") : UIImage(named: "unselect_bookmark")
+        followBtn.setImage(btnImg, for: .normal)
         delegate?.getBtnState(self)
     }
     

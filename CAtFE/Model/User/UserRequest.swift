@@ -15,7 +15,7 @@ enum UserRequest: CAtFERequest {
     case userInfo(String)
     case loginWithfb(String)
     case loginWithApple(String)
-    case updateUserName(String, String) // token, user name
+    case updateUserInfo(String, String?, String?) // token, user name, email
     case getFollowing(String)
     
     var headers: [String: String] {
@@ -32,7 +32,7 @@ enum UserRequest: CAtFERequest {
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .loginWithApple:
             return [HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
-        case .updateUserName(let accessToken, _):
+        case .updateUserInfo(let accessToken, _, _):
             return [HTTPHeaderField.auth.rawValue: "Bearer \(accessToken)",
                 HTTPHeaderField.contentType.rawValue: HTTPHeaderValue.json.rawValue]
         case .getFollowing(let accessToken):
@@ -68,9 +68,10 @@ enum UserRequest: CAtFERequest {
         case .loginWithApple(let token):
             let dict = ["token": token]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .updateUserName(_, let name):
+        case .updateUserInfo(_, let name, let email):
             let dict = [
-                "name": name
+                "name": name,
+                "email": email
                 ]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .getFollowing:
@@ -92,7 +93,7 @@ enum UserRequest: CAtFERequest {
             return HTTPMethod.POST.rawValue
         case .loginWithApple:
             return HTTPMethod.POST.rawValue
-        case .updateUserName:
+        case .updateUserInfo:
             return HTTPMethod.PATCH.rawValue
         case .getFollowing:
             return HTTPMethod.GET.rawValue
@@ -113,7 +114,7 @@ enum UserRequest: CAtFERequest {
             return "/users/fbLogin/"
         case .loginWithApple:
             return "/users/appleLogin/"
-        case .updateUserName:
+        case .updateUserInfo:
             return "/users/me/"
         case .getFollowing:
             return "/users/followCafe/"

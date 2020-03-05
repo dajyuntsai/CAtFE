@@ -90,14 +90,6 @@ class SettingViewController: BaseViewController {
         self.view.addSubview(saveBtn)
     }
     
-//    func initSaveBtn() {
-//        let saveBtn = UIBarButtonItem(image: UIImage(named: "send"),
-//                                      style: .plain,
-//                                      target: self,
-//                                      action: #selector(updateUserInfo))
-//        navigationItem.rightBarButtonItem = saveBtn
-//    }
-    
     func setUptTableView() {
         tableView.contentInset = UIEdgeInsets(top: height * 0.1, left: 0, bottom: 0, right: 0)
         tableView.registerHeaderWithNib(identifier: String(describing: SectionView.self), bundle: nil)

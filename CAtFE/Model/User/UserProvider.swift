@@ -163,10 +163,11 @@ class UserProvider {
         }
     }
     
-    func updateUserName(token: String,
-                        name: String,
+    func updateUserInfo(token: String,
+                        name: String?,
+                        email: String?,
                         completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.updateUserName(token, name)) { (result) in
+        HTTPClient.shared.request(UserRequest.updateUserInfo(token, name, email)) { (result) in
             switch result {
             case .success:
                 completion(.success(()))

@@ -85,7 +85,46 @@ class LoginViewController: BaseViewController {
         request.requestedScopes = [.fullName, .email]
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        authorizationController.performRequests()
+        
+//        userProvider.getUserList { result in
+//            switch result {
+//            case .success(let userAll):
+//
+//                var isLogin = false
+//                userAll.results.forEach { userInfo in
+//                    if userInfo.
+//                }
+//
+//            case .failure:
+//                print("error")
+//            }
+//        }
+            authorizationController.performRequests()
+    }
+    
+    func getUserInfo(token: String) {
+        userProvider.getUserInfo(token: token) { (result) in
+            switch result {
+            case .success(let data):
+                KeyChainManager.shared.name = data.user.name
+                KeyChainManager.shared.email = data.user.email
+                KeyChainManager.shared.avatar = data.user.avatar
+                self.loginSuccess()
+            case .failure:
+                CustomProgressHUD.showFailure(text: "登入失敗")
+            }
+        }
+    }
+    
+    func updateUserInfo(token: String, name: String, email: String) {
+        userProvider.updateUserInfo(token: token, name: name, email: email) { (result) in
+            switch result {
+            case .success:
+                self.loginSuccess()
+            case .failure(let error):
+                CustomProgressHUD.showFailure(text: "更新使用者資料失敗： \(error.localizedDescription)")
+            }
+        }
     }
 }
 
@@ -97,7 +136,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         let givenName = appleIDCredential.fullName?.givenName ?? ""
         let familyName = appleIDCredential.fullName?.familyName ?? ""
         let fullName = givenName +  " " + familyName
-        let email = appleIDCredential.email ?? "Apple Sign in: No Email Provided"
+        let email = appleIDCredential.email ?? ""
         let appleToken = String(data: idToken, encoding: .utf8) ?? "Apple Sign in: No ID Token Returned"
 
         let url = URL(string: "https://catfe.herokuapp.com/users/appleLogin/")!
@@ -116,9 +155,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     NSLog("jsonDict : \(jsonDict)")
                     guard let access = jsonDict["access"] as? String else { return }
                     KeyChainManager.shared.token = access
-                    KeyChainManager.shared.name = fullName
-                    KeyChainManager.shared.email = email
-                    self.appleLoginSuccess()
+                    if fullName == " " || email == "" {
+                        self.getUserInfo(token: access)
+                    } else {
+                        self.updateUserInfo(token: access, name: fullName, email: email)
+                    }
                 } else {
                     CustomProgressHUD.showFailure(text: "登入失敗")
                 }
@@ -164,8 +205,8 @@ extension LoginViewController: LoginButtonDelegate {
                     NSLog("jsonDict : \(jsonDict)")
                     guard let access = jsonDict["access"] as? String else { return }
                     KeyChainManager.shared.token = access
-                    self.userProvider.getUserDataFromFB(fbToken: token)
-                    self.fbLoginSuccess()
+//                    self.userProvider.getUserDataFromFB(fbToken: token)
+                    self.getUserInfo(token: access)
                 }
             case .failure(let error):
                 NSLog("error: \(error.localizedDescription)")
@@ -180,18 +221,13 @@ extension LoginViewController: LoginButtonDelegate {
       print("Logged out")
     }
 
-    func fbLoginSuccess() {
+    func loginSuccess() {
+        CustomProgressHUD.showSuccess(text: "登入成功")
         setLoginState(state: true)
         backToRoot()
-        CustomProgressHUD.showSuccess(text: "Facebook 登入成功")
-        dismiss(animated: true, completion: nil)
-    }
-
-    func appleLoginSuccess() {
-        setLoginState(state: true)
-        backToRoot()
-        CustomProgressHUD.showSuccess(text: "Apple Sign In 登入成功")
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     public func setLoginState(state: Bool) {

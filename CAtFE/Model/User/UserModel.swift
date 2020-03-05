@@ -20,6 +20,7 @@ class User: Codable {
     var active: Bool
     var avatar: String?
     var point: Int
+    var role: String
 }
 
 class LoginResponse: Codable {
