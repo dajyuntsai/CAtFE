@@ -155,18 +155,29 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6IV-vT-itK" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CVf-bj-ROX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rZq-S4-ccR" firstAttribute="bottom" secondItem="Ltu-Sl-BSu" secondAttribute="bottom" id="46Z-Ty-9tV"/>
                             <constraint firstItem="Ltu-Sl-BSu" firstAttribute="leading" secondItem="rZq-S4-ccR" secondAttribute="leading" id="Fc3-cC-h50"/>
+                            <constraint firstItem="rZq-S4-ccR" firstAttribute="trailing" secondItem="6IV-vT-itK" secondAttribute="trailing" id="NlU-k4-Mos"/>
                             <constraint firstItem="Ltu-Sl-BSu" firstAttribute="top" secondItem="rZq-S4-ccR" secondAttribute="top" id="jea-tt-Iwd"/>
                             <constraint firstItem="rZq-S4-ccR" firstAttribute="trailing" secondItem="Ltu-Sl-BSu" secondAttribute="trailing" id="kGq-bs-8MU"/>
+                            <constraint firstItem="rZq-S4-ccR" firstAttribute="bottom" secondItem="6IV-vT-itK" secondAttribute="bottom" id="pxN-oB-5s2"/>
+                            <constraint firstItem="6IV-vT-itK" firstAttribute="leading" secondItem="rZq-S4-ccR" secondAttribute="leading" id="siw-Iq-AJX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rZq-S4-ccR"/>
                     </view>
                     <navigationItem key="navigationItem" id="5Ze-Tt-0t1"/>
                     <connections>
+                        <outlet property="bannerView" destination="6IV-vT-itK" id="rr1-H5-sv4"/>
                         <outlet property="tableView" destination="Ltu-Sl-BSu" id="xru-ok-7Me"/>
                         <segue destination="O2w-Lp-L9p" kind="show" identifier="showWebView" id="D4Y-cG-SdP"/>
                     </connections>

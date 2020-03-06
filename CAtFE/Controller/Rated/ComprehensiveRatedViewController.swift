@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 enum RatedCategory {
     case overAll
@@ -19,6 +20,7 @@ enum RatedCategory {
 
 class ComprehensiveRatedViewController: BaseViewController {
 
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -48,6 +50,7 @@ class ComprehensiveRatedViewController: BaseViewController {
         super.viewDidLoad()
 
         initView()
+        initBannerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +78,13 @@ class ComprehensiveRatedViewController: BaseViewController {
         }
     }
     
+    func initBannerView() {
+            bannerView.adUnitID = "ca-app-pub-1672359804255027/4123905974"
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
+    
     func getFollowingCafes(completion: @escaping (() -> Void)) {
         guard let token = KeyChainManager.shared.token else { return }
         group.enter()
@@ -89,6 +99,27 @@ class ComprehensiveRatedViewController: BaseViewController {
             }
             self.group.leave()
         }
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     view.addSubview(bannerView)
+     view.addConstraints(
+       [NSLayoutConstraint(item: bannerView,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: view.safeAreaLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: -100),
+        NSLayoutConstraint(item: bannerView,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0)
+       ])
     }
     
     func addFollowingCafe(_ cell: RatedTableViewCell, completion: @escaping (() -> Void )) {
@@ -216,5 +247,11 @@ extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
                 self.dismiss(animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension ComprehensiveRatedViewController: GADBannerViewDelegate {
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("test1234")
     }
 }

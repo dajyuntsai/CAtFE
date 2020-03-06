@@ -75,7 +75,7 @@ class MessageBoardViewController: UIViewController {
         createBtnBottomConstraint.constant = width * 0.05
         addPostBtnView.layer.cornerRadius = addPostBtnView.frame.width / 2
 
-        collectionView?.contentInset = UIEdgeInsets(top: height * 0.06 + 50, left: 8, bottom: 8, right: 8)
+        collectionView?.contentInset = UIEdgeInsets(top: height * 0.06 + 50, left: 8, bottom: 50, right: 8)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
@@ -263,27 +263,29 @@ extension MessageBoardViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView,
                         heightForPhotoAt indexPath: IndexPath,
                         with width: CGFloat) -> CGFloat {
-        let post = cafeCommentList[indexPath.item]
-        let havePhoto = post.photos.count
-
-        if havePhoto == 0 {
-            return 0
-        } else {
-            let photo = URL(string: post.photos[0].url)!
-            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-            let request = URLRequest(url: photo)
-            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
-                return 0.7
-            }
-            var img: UIImage?
-            let imageView1 = UIImageView()
-            img = UIImage(data: imgData)!
-            imageView1.image = img
-            let photoSize = img?.size
-            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
-
-            return rect.size.height
-        }
+//        let post = cafeCommentList[indexPath.item]
+//        let havePhoto = post.photos.count
+//
+//        if havePhoto == 0 {
+//            return 0
+//        } else {
+//            let photo = URL(string: post.photos[0].url)!
+//            let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+//            let request = URLRequest(url: photo)
+//            guard let imgData = try? NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil) else {
+//                return 0.7
+//            }
+//            var img: UIImage?
+//            let imageView1 = UIImageView()
+//            img = UIImage(data: imgData)!
+//            imageView1.image = img
+//            let photoSize = img?.size
+//            let rect = AVMakeRect(aspectRatio: photoSize!, insideRect: boundingRect)
+//
+//            return rect.size.height
+//        }
+        
+        return 250
     }
     
     func height(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {

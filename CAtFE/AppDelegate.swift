@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import Fabric
 import Crashlytics
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         Fabric.sharedSDK().debug = true
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }

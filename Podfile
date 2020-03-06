@@ -45,4 +45,7 @@ target 'CAtFE' do
   pod 'Firebase/Analytics'
   pod 'Crashlytics'
   pod 'Fabric'
+
+  # ADMob
+  pod 'Google-Mobile-Ads-SDK'
 end
