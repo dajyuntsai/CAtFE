@@ -92,15 +92,22 @@ public class TabContentView: UIView {
             tempX += self.frame.size.width
         }
         if let childVCs = mChildVCs {
-            for VCs in childVCs {
-                mParentVC.addChild(VCs)
-                addContent(view: VCs.view)
+            for childVC in childVCs {
+                mParentVC.addChild(childVC)
+                addContent(view: childVC.view)
             }
         } else {
             for view in mChildViews {
                 addContent(view: view)
             }
         }
+    }
+    
+    func getChildVC(at index: Int) -> UIViewController? {
+        guard mChildVCs != nil && mChildVCs?.count ?? -1 > index else {
+            return nil
+        }
+        return mChildVCs?[index]
     }
 }
 

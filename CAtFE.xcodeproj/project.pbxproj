@@ -113,6 +113,7 @@
 		BEB56623240E2B6800B38E77 /* RatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB56622240E2B6700B38E77 /* RatedObject.swift */; };
 		BEB56627240E4E4300B38E77 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB56626240E4E4300B38E77 /* FirebaseUtils.swift */; };
 		BEB56629240E5D5700B38E77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEB56628240E5D5700B38E77 /* GoogleService-Info.plist */; };
+		BEC2C6A02411588600D5965D /* DiffusionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2C69F2411588600D5965D /* DiffusionTransition.swift */; };
 		BEE181D723E20EFC00660AEB /* ShopLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */; };
 		BEE181D923E20FA300660AEB /* ShopLoginContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */; };
 		BEE181DB23E20FBC00660AEB /* ShopSignUpContainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */; };
@@ -268,6 +269,7 @@
 		BEB56626240E4E4300B38E77 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		BEB56628240E5D5700B38E77 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB5662E240E5FA900B38E77 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEC2C69F2411588600D5965D /* DiffusionTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionTransition.swift; sourceTree = "<group>"; };
 		BEE181D623E20EFC00660AEB /* ShopLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginViewController.swift; sourceTree = "<group>"; };
 		BEE181D823E20FA300660AEB /* ShopLoginContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLoginContainView.swift; sourceTree = "<group>"; };
 		BEE181DA23E20FBC00660AEB /* ShopSignUpContainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSignUpContainView.swift; sourceTree = "<group>"; };
@@ -619,6 +621,7 @@
 				BEF7A7A023F9032F00EB6D2D /* UITextField+Extension.swift */,
 				BE18E09E23FC51B0006F004C /* Date+Extension.swift */,
 				BEA3934923FFAB9E000A4A04 /* Animation.swift */,
+				BEC2C69F2411588600D5965D /* DiffusionTransition.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 				BE076B5823EA625E0090BC7F /* CafeModel.swift in Sources */,
 				BE94EB5223F68F9200FA4604 /* CafeWebsiteViewController.swift in Sources */,
 				BEE181FA23E240C300660AEB /* HTTPClient.swift in Sources */,
+				BEC2C6A02411588600D5965D /* DiffusionTransition.swift in Sources */,
 				BE52591223EE9C6500F8AC00 /* UserModel.swift in Sources */,
 				BE66210123D3FE450053FD07 /* AppDelegate.swift in Sources */,
 				BE94EB4523F654D400FA4604 /* ScoreForCafeViewController.swift in Sources */,
@@ -1285,7 +1289,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ninnnnn.CAtFE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1309,7 +1313,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ninnnnn.CAtFE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

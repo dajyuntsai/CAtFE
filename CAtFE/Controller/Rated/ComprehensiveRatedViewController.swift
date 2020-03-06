@@ -36,7 +36,13 @@ class ComprehensiveRatedViewController: BaseViewController {
     let userProvider = UserProvider()
 
     var index = 0
-    var ratedList: [Cafe] = []
+    var ratedList: [Cafe] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,58 +66,12 @@ class ComprehensiveRatedViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        getRatedList()
         getFollowingCafes {}
         
         group.notify(queue: .main) {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
             loadingVC.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    private var sortedType: RatedCategory = .overAll
-    
-    func setSortType(rateCategory: RatedCategory) {
-        sortedType = rateCategory
-    }
-    
-    func getRatedList() {
-        let loadingVC = presentLoadingVC()
-        group.enter()
-        scoreManager.getRatedList { (result) in
-            switch result {
-            case .success(let data):
-                let cafeList: [Cafe] = data.results
-                
-                switch self.sortedType {
-                case .overAll:
-                    self.ratedList = self.scoreManager.sortByOverAll(data: cafeList)
-                    self.index = 5
-                case .meal:
-                    self.ratedList = self.scoreManager.sortByMeal(data: cafeList)
-                    self.index = 1
-                case .pet:
-                    self.ratedList = self.scoreManager.sortByPet(data: cafeList)
-                    self.index = 2
-                case .price:
-                    self.ratedList = self.scoreManager.sortByPrice(data: cafeList)
-                    self.index = 3
-                case .surrounding:
-                    self.ratedList = self.scoreManager.sortBySurrounding(data: cafeList)
-                    self.index = 4
-                case .traffic:
-                    self.ratedList = self.scoreManager.sortByTraffic(data: cafeList)
-                    self.index = 0
-                }
-            case .failure:
-                CustomProgressHUD.showFailure(text: "讀取資料失敗")
-            }
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-                loadingVC.dismiss(animated: true, completion: nil)
-            }
-            self.group.leave()
         }
     }
     
@@ -154,8 +114,8 @@ class ComprehensiveRatedViewController: BaseViewController {
     }
     
     @objc func loadData() {
-        getRatedList()
         tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

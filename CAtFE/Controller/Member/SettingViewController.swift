@@ -129,7 +129,7 @@ class SettingViewController: BaseViewController {
     }
     
     @objc func back() {
-        navigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func uploadUserName(url: URL, headers: HTTPHeaders) {

@@ -20,9 +20,9 @@ class MemberViewController: UIViewController {
     private var mPageTitleView: TabTitleView!
     private var mPageContentView: TabContentView!
     private var scrollView = UIScrollView()
-
     private var titleList = ["我的留言", "按讚的留言", "追蹤的店家"]
-
+    var selectedView: UIView?
+    let transition = DiffusionTransition()
     let conf = TabTitleConfig()
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
@@ -30,6 +30,8 @@ class MemberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        navigationController?.delegate = self
+        
         initView()
         initTabView()
         initBarBtn()
@@ -58,8 +60,6 @@ class MemberViewController: UIViewController {
 
     func initView() { // TODO: 往上滑的時候消失
         userViewHeight.constant = height / 5
-        userName.text = KeyChainManager.shared.name
-//        userImageView.loadImage(KeyChainManager.shared.avatar)
         
         pointBgView.layer.shadowOffset = CGSize(width: 2, height: 2)
         pointBgView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -111,14 +111,17 @@ class MemberViewController: UIViewController {
         let settingBtn = UIButton(frame: CGRect(x: width * 0.9, y: width * 0.1, width: width * 0.07, height: width * 0.07))
         settingBtn.setImage(smallImage, for: .normal)
         settingBtn.addTarget(self, action: #selector(onUsetSetting), for: .touchUpInside)
+        selectedView = settingBtn
         self.view.addSubview(settingBtn)
     }
     
     @objc func onUsetSetting() {
-        let presentVC = UIStoryboard.member
-            .instantiateViewController(identifier: SettingViewController.identifier)
-            as? SettingViewController
-        self.show(presentVC!, sender: nil)
+        guard let presentVC = UIStoryboard.member.instantiateViewController(identifier: SettingViewController.identifier)as? SettingViewController else {
+                return
+        }
+        presentVC.transitioningDelegate = self
+        presentVC.modalPresentationStyle = .custom
+        self.present(presentVC, animated: true, completion: nil)
     }
     
     func resizeImage(image: UIImage, width: CGFloat) -> UIImage {
@@ -161,5 +164,22 @@ extension MemberViewController: PostCountDelegate {
         DispatchQueue.main.async {
             self.followingLabel.text = String(sum)
         }
+    }
+}
+
+extension MemberViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.circleColor = .clear
+        transition.startingPoint = CGPoint(x: width, y: width * 0.1 / 2)
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.circleColor = .clear
+        transition.startingPoint = CGPoint(x: 0, y: height)
+        return transition
     }
 }

@@ -27,6 +27,16 @@ class MessageBoardViewController: UIViewController {
     var singlePhoto = UIImage()
     var cafeCommentList: [CafeComments] = []
     
+    @IBAction func addPostBtn(_ sender: Any) {
+        if KeyChainManager.shared.token != nil {
+            showPicker()
+        } else {
+            alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -135,16 +145,6 @@ class MessageBoardViewController: UIViewController {
         }
     }
     
-    @IBAction func addPostBtn(_ sender: Any) {
-        if KeyChainManager.shared.token != nil {
-            showPicker()
-        } else {
-            alert(message: "登入後才能留言喔！", title: "溫馨小提醒") { _ in
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-    
     @objc func showPicker() {
         self.selectedPhotos.removeAll()
         let picker = YPImagePicker(configuration: imagePickerSetting())
@@ -162,15 +162,15 @@ class MessageBoardViewController: UIViewController {
                     self.singlePhoto = photo.image
                 case .video(let video):
                     self.selectedImageV.image = video.thumbnail
-                        
-                        let assetURL = video.url
-                        let playerVC = AVPlayerViewController()
-                        let player = AVPlayer(playerItem: AVPlayerItem(url: assetURL))
-                        playerVC.player = player
                     
-                        picker.dismiss(animated: true, completion: { [weak self] in
-                            self?.present(playerVC, animated: true, completion: nil)
-                        })
+                    let assetURL = video.url
+                    let playerVC = AVPlayerViewController()
+                    let player = AVPlayer(playerItem: AVPlayerItem(url: assetURL))
+                    playerVC.player = player
+                    
+                    picker.dismiss(animated: true, completion: { [weak self] in
+                        self?.present(playerVC, animated: true, completion: nil)
+                    })
                 }
             }
             self.presentPostMessageVC()
@@ -217,9 +217,10 @@ extension MessageBoardViewController: UICollectionViewDataSource, UICollectionVi
         return cafeCommentList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? MessageCollectionViewCell else { return UICollectionViewCell() }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCollectionViewCell.identifier, for: indexPath) as? MessageCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
         cell.likeBtnState = false
         
