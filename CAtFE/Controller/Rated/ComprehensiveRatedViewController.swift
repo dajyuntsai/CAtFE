@@ -182,18 +182,23 @@ extension ComprehensiveRatedViewController: UITableViewDataSource {
         let data = ratedList[indexPath.row]
         switch self.index {
         case 0:
-            cell.setData(data: data, score: data.trafficAverage)
-        case 1:
-            cell.setData(data: data, score: data.mealAverage)
-        case 2:
-            cell.setData(data: data, score: data.loveOneAverage)
-        case 3:
-            cell.setData(data: data, score: data.priceAverage)
-        case 4:
-            cell.setData(data: data, score: data.surroundingAverage)
-        default:
-            let overAllScore = (data.loveOneAverage + data.mealAverage + data.priceAverage + data.surroundingAverage + data.trafficAverage) / 5
+            let loveOneAverage = data.loveOneAverage ?? 0
+            let mealAverage = data.mealAverage ?? 0
+            let priceAverage = data.priceAverage ?? 0
+            let surroundingAverage = data.surroundingAverage ?? 0
+            let trafficAverage = data.trafficAverage ?? 0
+            let overAllScore = (loveOneAverage + mealAverage + priceAverage + surroundingAverage + trafficAverage) / 5
             cell.setData(data: data, score: overAllScore)
+        case 1:
+            cell.setData(data: data, score: data.loveOneAverage ?? 0)
+        case 2:
+            cell.setData(data: data, score: data.priceAverage ?? 0)
+        case 3:
+            cell.setData(data: data, score: data.surroundingAverage ?? 0)
+        case 4:
+            cell.setData(data: data, score: data.mealAverage ?? 0)
+        default:
+            cell.setData(data: data, score: data.trafficAverage ?? 0)
         }
         
         cell.delegate = self
@@ -252,6 +257,6 @@ extension ComprehensiveRatedViewController: RatedCellBtnDelegate {
 
 extension ComprehensiveRatedViewController: GADBannerViewDelegate {
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("test1234")
+        print("GADBannerView didFailToReceiveAdWithError: \(error)")
     }
 }

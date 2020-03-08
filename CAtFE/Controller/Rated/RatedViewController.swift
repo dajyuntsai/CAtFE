@@ -95,13 +95,13 @@ class RatedViewController: UIViewController {
             case 0:
                 controller.ratedList = self.scoreManager.sortByOverAll(data: data)
             case 1:
-                controller.ratedList = self.scoreManager.sortByMeal(data: data)
-            case 2:
                 controller.ratedList = self.scoreManager.sortByPet(data: data)
-            case 3:
+            case 2:
                 controller.ratedList = self.scoreManager.sortByPrice(data: data)
-            case 4:
+            case 3:
                 controller.ratedList = self.scoreManager.sortBySurrounding(data: data)
+            case 4:
+                controller.ratedList = self.scoreManager.sortByMeal(data: data)
             case 5:
                 controller.ratedList = self.scoreManager.sortByTraffic(data: data)
             default:

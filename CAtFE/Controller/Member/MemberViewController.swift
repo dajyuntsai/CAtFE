@@ -171,14 +171,14 @@ extension MemberViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        transition.circleColor = .clear
+        transition.circleColor = .white
         transition.startingPoint = CGPoint(x: width, y: width * 0.1 / 2)
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismiss
-        transition.circleColor = .clear
+        transition.circleColor = .white
         transition.startingPoint = CGPoint(x: 0, y: height)
         return transition
     }

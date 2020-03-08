@@ -27,12 +27,12 @@ struct Cafe: Codable {
     let fbUrl: String
     let notes: String
     let cafeComments: [CafeComments]
-    let cafeScores: [CafeScores]
-    let trafficAverage: Double
-    let mealAverage: Double
-    let loveOneAverage: Double
-    let priceAverage: Double
-    let surroundingAverage: Double
+    let cafeScores: [CafeScores]?
+    let trafficAverage: Double?
+    let mealAverage: Double?
+    let loveOneAverage: Double?
+    let priceAverage: Double?
+    let surroundingAverage: Double?
 
     enum CodingKeys: String, CodingKey {
         case id
