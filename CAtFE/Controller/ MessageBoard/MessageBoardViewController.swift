@@ -96,8 +96,10 @@ class MessageBoardViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.refreshControl.endRefreshing()
-                loadingVC.dismiss(animated: true, completion: nil)
             }
+        }
+        DispatchQueue.main.async {
+            loadingVC.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -139,6 +141,7 @@ class MessageBoardViewController: UIViewController {
             case .failure(let error):
                 print("======= getLikeMessages() error: \(error)")
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.dismiss(animated: true, completion: nil)
                 }
             }

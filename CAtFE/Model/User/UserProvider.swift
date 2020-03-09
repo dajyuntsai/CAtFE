@@ -117,8 +117,9 @@ class UserProvider {
     func emailSignUp(email: String,
                      name: String,
                      password: String,
+                     role: String,
                      completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(UserRequest.register(email, password, name)) { (result) in
+        HTTPClient.shared.request(UserRequest.register(email, password, name, role)) { (result) in
             switch result {
             case .success:
                 completion(Result.success(()))

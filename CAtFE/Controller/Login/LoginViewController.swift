@@ -85,21 +85,7 @@ class LoginViewController: BaseViewController {
         request.requestedScopes = [.fullName, .email]
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        
-//        userProvider.getUserList { result in
-//            switch result {
-//            case .success(let userAll):
-//
-//                var isLogin = false
-//                userAll.results.forEach { userInfo in
-//                    if userInfo.
-//                }
-//
-//            case .failure:
-//                print("error")
-//            }
-//        }
-            authorizationController.performRequests()
+        authorizationController.performRequests()
     }
     
     func getUserInfo(token: String) {

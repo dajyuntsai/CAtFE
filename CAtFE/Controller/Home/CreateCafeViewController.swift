@@ -30,7 +30,7 @@ class CreateCafeViewController: BaseViewController {
              CellContent(type: .openTime, title: "週五"),
              CellContent(type: .openTime, title: "週六"),
              CellContent(type: .openTime, title: "週日")]),
-        Categorys(title: "為店家評分", cellContent:
+        Categorys(title: "店家評分", cellContent:
              [CellContent(type: .star, title: "寵物親人"),
               CellContent(type: .star, title: "價格親人"),
               CellContent(type: .star, title: "用餐環境"),

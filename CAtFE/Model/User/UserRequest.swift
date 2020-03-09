@@ -10,7 +10,7 @@ import Foundation
 
 enum UserRequest: CAtFERequest {
     case userList
-    case register(String, String, String) // email, name, password
+    case register(String, String, String, String) // email, name, password, role
     case login(String, String)
     case userInfo(String)
     case loginWithfb(String)
@@ -44,11 +44,12 @@ enum UserRequest: CAtFERequest {
         switch self {
         case .userList:
             return nil
-        case .register(let email, let password, let name):
+        case .register(let email, let password, let name, let role):
             let dict = [
                 "email": email,
                 "name": name,
-                "password": password
+                "password": password,
+                "role": role
 //                "active": true,
 //                "avatar": "https://ppt.cc/f5Rfex@.png",
 //                "point": 0

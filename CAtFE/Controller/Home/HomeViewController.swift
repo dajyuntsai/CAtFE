@@ -350,10 +350,8 @@ extension HomeViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func beginNav(_ startPLCL: CLPlacemark, endPLCL: CLPlacemark) {
         let startplMK: MKPlacemark = MKPlacemark(placemark: startPLCL)
         let startItem: MKMapItem = MKMapItem(placemark: startplMK)
-        
         let endplMK: MKPlacemark = MKPlacemark(placemark: endPLCL)
         let endItem: MKMapItem = MKMapItem(placemark: endplMK)
-        
         let mapItems: [MKMapItem] = [startItem, endItem]
         
         let dic: [String: AnyObject] = [

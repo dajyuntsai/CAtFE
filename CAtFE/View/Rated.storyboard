@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ltu-Sl-BSu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RatedTableViewCell" rowHeight="98" id="edG-FR-vFX" customClass="RatedTableViewCell" customModule="CAtFE" customModuleProvider="target">
@@ -157,7 +157,7 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6IV-vT-itK" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="CVf-bj-ROX"/>
                                 </constraints>
@@ -165,7 +165,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="rZq-S4-ccR" firstAttribute="bottom" secondItem="Ltu-Sl-BSu" secondAttribute="bottom" id="46Z-Ty-9tV"/>
+                            <constraint firstItem="6IV-vT-itK" firstAttribute="top" secondItem="Ltu-Sl-BSu" secondAttribute="bottom" id="46Z-Ty-9tV"/>
                             <constraint firstItem="Ltu-Sl-BSu" firstAttribute="leading" secondItem="rZq-S4-ccR" secondAttribute="leading" id="Fc3-cC-h50"/>
                             <constraint firstItem="rZq-S4-ccR" firstAttribute="trailing" secondItem="6IV-vT-itK" secondAttribute="trailing" id="NlU-k4-Mos"/>
                             <constraint firstItem="Ltu-Sl-BSu" firstAttribute="top" secondItem="rZq-S4-ccR" secondAttribute="top" id="jea-tt-Iwd"/>

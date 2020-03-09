@@ -125,6 +125,9 @@ class PostMessageViewController: BaseViewController {
             switch result {
             case .success:
                 CustomProgressHUD.showSuccess(text: "修改成功")
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             case .failure:
                 CustomProgressHUD.showFailure(text: "修改失敗")
             }

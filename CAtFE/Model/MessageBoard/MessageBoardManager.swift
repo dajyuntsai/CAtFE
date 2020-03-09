@@ -55,10 +55,9 @@ enum MessageBoardRequest: CAtFERequest {
                 "photos": photos
                 ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-        case .updateMessage(_, let msgId, let content):
+        case .updateMessage(_, _, let comment):
             let dict = [
-                "msgId": msgId,
-                "content": content
+                "comment": comment
                 ] as [String: Any]
             return try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         case .deleteMessage:
@@ -82,7 +81,7 @@ enum MessageBoardRequest: CAtFERequest {
         case .createMessage:
             return HTTPMethod.PATCH.rawValue
         case .updateMessage:
-            return HTTPMethod.PUT.rawValue
+            return HTTPMethod.PATCH.rawValue
         case .deleteMessage:
             return HTTPMethod.DELETE.rawValue
         case .replyMessage:

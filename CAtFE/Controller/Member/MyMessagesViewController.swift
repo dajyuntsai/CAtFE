@@ -46,8 +46,8 @@ class MyMessagesViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getMessageList), name: Notification.Name("updatePost"), object: nil)
         getMessageList()
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessageList), name: Notification.Name("updatePost"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
